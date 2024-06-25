@@ -235,17 +235,6 @@
                         "style": "form"
                     },
                     {
-                        "description": "The sorting order of the returned items",
-                        "in": "query",
-                        "name": "order",
-                        "schema": {
-                            "$ref": "#/components/schemas/Ordering",
-                            "description": "The sorting order of the returned items",
-                            "nullable": true
-                        },
-                        "style": "form"
-                    },
-                    {
                         "description": "Provider of the order",
                         "in": "query",
                         "name": "provider",
