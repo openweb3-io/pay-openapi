@@ -556,12 +556,12 @@
                     },
                     "payLinks": {
                         "type": "string",
-                        "description": "Pay link for Bot of the specified provider",
+                        "description": "Pay link for bot of the specified provider",
                         "example": "https://t.me/wallet?startattach=wpay_order_2703383946854401"
                     },
                     "directPayLink": {
                         "type": "string",
-                        "description": "Pay link for Miniapp of the specified provider",
+                        "description": "Pay link for miniapp of the specified provider",
                         "example": "https://t.me/wallet/start?startapp=wpay_order-orderId__2703383946854401"
                     },
                     "expiredAt": {
