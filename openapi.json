@@ -204,6 +204,149 @@
             }
         },
         "/api/v1/orders": {
+            "get": {
+                "description": "List orders.",
+                "operationId": "v1.order.list",
+                "parameters": [
+                    {
+                        "description": "Limit the number of returned items",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "description": "Limit the number of returned items",
+                            "format": "uint64",
+                            "minimum": 0,
+                            "default": 20,
+                            "example": 100,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specifying the amount of excluded from a response the first N orders",
+                        "in": "query",
+                        "name": "offset",
+                        "schema": {
+                            "description": "Specifying the amount of excluded from a response the first N orders",
+                            "example": 0,
+                            "default": 0,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "The sorting order of the returned items",
+                        "in": "query",
+                        "name": "order",
+                        "schema": {
+                            "$ref": "#/components/schemas/Ordering",
+                            "description": "The sorting order of the returned items",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Provider of the order",
+                        "in": "query",
+                        "name": "provider",
+                        "schema": {
+                            "description": "Provider of the order",
+                            "example": "telegram",
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Wallet of the order",
+                        "in": "query",
+                        "name": "wallet",
+                        "schema": {
+                            "description": "Wallet of the order",
+                            "example": "wallet",
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse_OrderOut_"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "List Orders",
+                "tags": [
+                    "Order"
+                ]
+            },
             "post": {
                 "description": "Create a new order.",
                 "operationId": "v1.order.create",
@@ -438,6 +581,14 @@
                 ],
                 "type": "object"
             },
+            "Ordering": {
+                "description": "Defines the ordering in a listing of results.",
+                "enum": [
+                    "asc",
+                    "desc"
+                ],
+                "type": "string"
+            },
             "OrderIn": {
                 "properties": {
                     "metadata": {
@@ -588,6 +739,23 @@
                     "payLinks",
                     "createdAt",
                     "updatedAt"
+                ],
+                "type": "object"
+            },
+            "ListResponse_OrderOut_": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/OrderOut"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "data"
                 ],
                 "type": "object"
             }
