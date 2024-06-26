@@ -642,7 +642,7 @@
             "OrderOut": {
                 "properties": {
                     "id": {
-                        "description": "The webhook's ID",
+                        "description": "The order's ID",
                         "example": "1brOrx2ZWZBpBUvZwXKQmoEYga2",
                         "type": "string"
                     },
