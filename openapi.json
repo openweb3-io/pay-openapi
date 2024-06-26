@@ -694,7 +694,7 @@
                         "minLength": 1,
                         "type": "string"
                     },
-                    "payLinks": {
+                    "payLink": {
                         "type": "string",
                         "description": "Pay link for bot of the specified provider",
                         "example": "https://t.me/wallet?startattach=wpay_order_2703383946854401"
@@ -725,7 +725,8 @@
                     "description",
                     "currency",
                     "amount",
-                    "payLinks",
+                    "payLink",
+                    "directPayLink",
                     "createdAt",
                     "updatedAt"
                 ],
