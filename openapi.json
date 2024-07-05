@@ -30,25 +30,36 @@
     },
     "paths":
       {
-        "/api/v1/orders/{order_id}": {
+        "/api/v1/accounts": {
             "get": {
-                "description": "Get a order.",
-                "operationId": "v1.order.get",
+                "description": "List accounts.",
+                "operationId": "v1.account.list",
                 "parameters": [
                     {
-                        "description": "The order's ID or UID",
-                        "in": "path",
-                        "name": "order_id",
-                        "required": true,
+                        "description": "Limit the number of returned items",
+                        "in": "query",
+                        "name": "limit",
                         "schema": {
-                            "description": "The order's ID or UID",
-                            "example": "unique-order-identifier",
-                            "maxLength": 256,
-                            "minLength": 1,
-                            "pattern": "^[a-zA-Z0-9\\-_.]+$",
-                            "type": "string"
+                            "description": "Limit the number of returned items",
+                            "format": "uint64",
+                            "minimum": 0,
+                            "default": 20,
+                            "example": 100,
+                            "type": "integer"
                         },
-                        "style": "simple"
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specifying the amount of excluded from a response the first N items",
+                        "in": "query",
+                        "name": "offset",
+                        "schema": {
+                            "description": "Specifying the amount of excluded from a response the first N items",
+                            "example": 0,
+                            "default": 0,
+                            "type": "integer"
+                        },
+                        "style": "form"
                     }
                 ],
                 "responses": {
@@ -56,21 +67,11 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/OrderOut"
+                                    "$ref": "#/components/schemas/ListResponse_AccountOut_"
                                 }
                             }
                         },
                         "description": ""
-                    },
-                    "400": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
-                                }
-                            }
-                        },
-                        "description": "Bad request"
                     },
                     "401": {
                         "content": {
@@ -133,74 +134,10 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "Get Order",
+                "summary": "List Accounts",
                 "tags": [
-                    "Order"
-                ],
-                "x-readme": {
-                    "code-samples": [
-                        {
-                            "name": "JavaScript",
-                            "language": "node",
-                            "code": "const orderOut = await walletpay.order.get(\"order_id\");"
-                        },
-                        {
-                            "name": "TypeScript",
-                            "language": "node",
-                            "code": "const orderOut = await walletpay.order.get(\"order_id\");"
-                        },
-                        {
-                            "name": "Python",
-                            "language": "python",
-                            "code": "order_out = walletpay.order.get(\"order_id\")"
-                        },
-                        {
-                            "name": "Python (Async)",
-                            "language": "python",
-                            "code": "order_out = await walletpay.order.get(\"order_id\")"
-                        },
-                        {
-                            "name": "Go",
-                            "language": "go",
-                            "code": "orderOut, err := walletpayClient.Order.Get(ctx, \"order_id\")"
-                        },
-                        {
-                            "name": "Kotlin",
-                            "language": "kotlin",
-                            "code": "val orderOut = walletpay.order.get(\"order_id\")"
-                        },
-                        {
-                            "name": "Java",
-                            "language": "java",
-                            "code": "OrderOut orderOut = walletpay.getOrder().get(\"order_id\")"
-                        },
-                        {
-                            "name": "Ruby",
-                            "language": "ruby",
-                            "code": "order_out = walletpay.order.get(\"order_id\")"
-                        },
-                        {
-                            "name": "Rust",
-                            "language": "rust",
-                            "code": "let order_out = walletpay.order().get(\"order_id\").await?;"
-                        },
-                        {
-                            "name": "C#",
-                            "language": "csharp",
-                            "code": "var orderOut = await walletpay.Ordr.GetAsync(\"order_id\")"
-                        },
-                        {
-                            "name": "CLI",
-                            "language": "Shell",
-                            "code": "walletpay order get \"order_id\""
-                        },
-                        {
-                            "label": "cURL",
-                            "language": "shell",
-                            "code": "curl -X 'GET' \\\n  'https://api.wallet-pay.openweb3.io/api/v1/orders/{order_id}' \\\n  -H 'X-API-KEY: API_KEY' \\\n  -H 'Accept: application/json' \\\n  -H 'Content-Type: application/json'"
-                        }
-                    ]
-                }      
+                    "Account"
+                ]
             }
         },
         "/api/v1/orders": {
@@ -235,24 +172,24 @@
                         "style": "form"
                     },
                     {
-                        "description": "Provider of the order",
+                        "description": "Optional order blockchain code",
                         "in": "query",
-                        "name": "provider",
+                        "name": "chain",
                         "schema": {
-                            "description": "Provider of the order",
-                            "example": "telegram",
+                            "description": "Blockchain of the order",
+                            "example": "ton",
                             "type": "string",
                             "nullable": true
                         },
                         "style": "form"
                     },
                     {
-                        "description": "Wallet of the order",
+                        "description": "Channel of the order",
                         "in": "query",
-                        "name": "wallet",
+                        "name": "channel",
                         "schema": {
-                            "description": "Wallet of the order",
-                            "example": "wallet",
+                            "description": "Channel of the order",
+                            "example": "ton-connect",
                             "type": "string",
                             "nullable": true
                         },
@@ -585,27 +522,29 @@
                             "type": "string"
                         },
                         "default": {},
-                        "type": "object"
+                        "type": "object",
+                        "description": "Optional metadata"
                     },
-                    "provider": {
-                        "description": "Provider of the order. e.g.: telegram / dejoy",
-                        "example": "telegram",
+                    "userId": {
+                        "description": "Optional user identifier",
+                        "example": "userid_example",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
                     },
-                    "wallet": {
-                        "description": "Wallet for the order to pay. e.g.: wallet",
-                        "example": "wallet",
+                    "channel": {
+                        "type": "string",
+                        "description": "Order channel",
                         "maxLength": 256,
                         "minLength": 1,
-                        "type": "string"
+                        "example": "ton-connect"
                     },
-                    "description": {
-                        "description": "Description of the order",
-                        "example": "My first order",
+                    "chain": {
+                        "type": "string",
+                        "description": "Blockchain code",
+                        "maxLength": 256,
                         "minLength": 1,
-                        "type": "string"
+                        "example": "ton"
                     },
                     "uid": {
                         "description": "Optional unique identifier for the order",
@@ -625,15 +564,15 @@
                     },
                     "amount": {
                         "description": "Big decimal string representation. Note that the max precision (number of digits after decimal point) depends on the currencyCode. E.g. for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's also min order amount for creating an order. It's 0.000001 BTC / 0.01 USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.",
-                        "example": "USDT",
+                        "example": "0.0012345",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
                     }
                 },
                 "required": [
-                    "provider",
-                    "wallet",
+                    "channel",
+                    "chain",
                     "currency",
                     "amount"
                 ],
@@ -652,10 +591,10 @@
                         },
                         "type": "object"
                     },
-                    "description": {
-                        "description": "Description of the order",
-                        "example": "My first order",
-                        "type": "string"
+                    "userId": {
+                        "type": "string",
+                        "description": "The order's creator",
+                        "nullable": true
                     },
                     "uid": {
                         "description": "The order's UID",
@@ -666,19 +605,19 @@
                         "pattern": "^[a-zA-Z0-9\\-_.]+$",
                         "type": "string"
                     },
-                    "provider": {
-                        "description": "Provider of the order. e.g.: telegram / dejoy",
-                        "example": "telegram",
+                    "channel": {
+                        "type": "string",
+                        "description": "Order channel",
                         "maxLength": 256,
                         "minLength": 1,
-                        "type": "string"
+                        "example": "ton-connect"
                     },
-                    "wallet": {
-                        "description": "Wallet for the order to pay. e.g.: wallet",
-                        "example": "wallet",
+                    "chain": {
+                        "type": "string",
+                        "description": "Blockchain code",
                         "maxLength": 256,
                         "minLength": 1,
-                        "type": "string"
+                        "example": "ton"
                     },
                     "currency": {
                         "description": "Currency code",
@@ -694,41 +633,49 @@
                         "minLength": 1,
                         "type": "string"
                     },
-                    "payLink": {
+                    "credentials": {
                         "type": "string",
-                        "description": "Pay link for bot of the specified provider",
-                        "example": "https://t.me/wallet?startattach=wpay_order_2703383946854401"
-                    },
-                    "directPayLink": {
-                        "type": "string",
-                        "description": "Pay link for miniapp of the specified provider",
-                        "example": "https://t.me/wallet/start?startapp=wpay_order-orderId__2703383946854401"
-                    },
-                    "expiredAt": {
-                        "format": "date-time",
-                        "type": "string"
+                        "description": "The payment token from payment channel"
                     },
                     "createdAt": {
+                        "type": "string",
                         "format": "date-time",
-                        "type": "string"
+                        "description": "The order's creation time"
                     },
-                    "updatedAt": {
+                    "paidAt": {
+                        "type": "string",
                         "format": "date-time",
-                        "type": "string"
+                        "description": "The order's paid time"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "description": "The order's status\n0 - processing\n1 - paid\n2 - failed\n3 - canceled"
+                    },
+                    "failedMessage": {
+                        "type": "string",
+                        "description": "The message when order failed"
+                    },
+                    "canceledAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The order's cancel time"
+                    },
+                    "failedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The order's failure time"
                     }
                 },
                 "required": [
                     "id",
-                    "provider",
-                    "wallet",
+                    "channel",
+                    "chain",
                     "metadata",
                     "description",
                     "currency",
                     "amount",
-                    "payLink",
-                    "directPayLink",
-                    "createdAt",
-                    "updatedAt"
+                    "status",
+                    "createdAt"
                 ],
                 "type": "object"
             },
@@ -737,6 +684,64 @@
                     "data": {
                         "items": {
                             "$ref": "#/components/schemas/OrderOut"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "type": "object"
+            },
+            "AccountOut": {
+                "properties": {
+                    "id": {
+                        "description": "The order's ID",
+                        "example": "1brOrx2ZWZBpBUvZwXKQmoEYga2",
+                        "type": "string"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "example": "USDT",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Big decimal string representation. Note that the max precision (number of digits after decimal point) depends on the currencyCode. E.g. for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's also min order amount for creating an order. It's 0.000001 BTC / 0.01 USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.",
+                        "example": "0.1",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The order's created time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The order's updated time"
+                    }
+                },
+                "required": [
+                    "id",
+                    "currency",
+                    "amount",
+                    "createdAt",
+                    "updatedAt"
+                ],
+                "type": "object"
+            },
+            "ListResponse_AccountOut_": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/AccountOut"
                         },
                         "type": "array"
                     },
