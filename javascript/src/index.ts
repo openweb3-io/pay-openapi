@@ -24,7 +24,7 @@ import * as base64 from "@stablelib/base64";
 import * as sha256 from "fast-sha256";
 import { createHash } from 'crypto';
 
-const WEBHOOK_TOLERANCE_IN_SECONDS = 5 * 60; // 5 minutes
+const WALLETPAY_TOLERANCE_IN_SECONDS = 5 * 60; // 5 minutes
 const VERSION = "1.24.0";
 
 class UserAgentMiddleware implements Middleware {
@@ -78,9 +78,9 @@ export interface walletpayOptions {
 }
 
 const REGIONS = [
-  { region: "us", url: "https://api.webhook.openweb3.io" },
-  { region: "eu", url: "https://api.webhook.openweb3.io" },
-  { region: "in", url: "https://api.webhook.openweb3.io" },
+  { region: "us", url: "https://api.walletpay.openweb3.io" },
+  { region: "eu", url: "https://api.walletpay.openweb3.io" },
+  { region: "in", url: "https://api.walletpay.openweb3.io" },
 ];
 
 export class walletpay {
@@ -89,7 +89,7 @@ export class walletpay {
   public readonly Account: Account;
 
   public constructor(apikey: string, privateKey: string, options: walletpayOptions = {}) {
-    const baseUrl: string = options.serverUrl ?? "https://api.webhook.openweb3.io";
+    const baseUrl: string = options.serverUrl ?? "https://api.walletpay.openweb3.io";
 
     const baseServer = new ServerConfiguration<any>(baseUrl, {});
 
