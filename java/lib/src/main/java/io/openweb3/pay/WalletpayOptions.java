@@ -1,4 +1,4 @@
-package com.walletpay;
+package io.openweb3.pay;
 
 public final class WalletpayOptions {
 	private static final String DEFAULT_URL = "https://api.walletpay.openweb3.io";

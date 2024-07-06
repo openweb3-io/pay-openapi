@@ -1,8 +1,8 @@
-package com.walletpay;
+package io.openweb3.pay;
 
-import com.walletpay.exceptions.ApiException;
-import com.walletpay.internal.api.AccountApi;
-import com.walletpay.models.ListResponseAccountOut;
+import io.openweb3.pay.exceptions.ApiException;
+import io.openweb3.pay.internal.api.AccountApi;
+import io.openweb3.pay.models.ListResponseAccountOut;
 
 public final class Account {
 	private final AccountApi api;
@@ -14,7 +14,7 @@ public final class Account {
 	public ListResponseAccountOut list(final AccountListOptions options) throws ApiException {
 		try {
 			return api.v1AccountList(options.getLimit(), options.getOffset());
-		} catch (com.walletpay.internal.ApiException e) {
+		} catch (io.openweb3.pay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}

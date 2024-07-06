@@ -1,6 +1,6 @@
-package com.walletpay;
+package io.openweb3.pay;
 
-import com.walletpay.models.Ordering;
+import io.openweb3.pay.models.Ordering;
 
 public class OrderListOptions extends ListOptions {
     private Ordering order;

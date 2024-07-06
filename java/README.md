@@ -11,7 +11,7 @@
 Java library for interacting with the walletpay API and verifying walletpay signatures
 
 ![GitHub tag](https://img.shields.io/github/tag/walletpay/walletpays.svg)
-[![Maven Central (Java)](https://img.shields.io/maven-central/v/com.walletpay/walletpay?label=maven-central%20(java))](https://search.maven.org/artifact/com.walletpay/walletpay)
+[![Maven Central (Java)](https://img.shields.io/maven-central/v/io.openweb3.pay/walletpay?label=maven-central%20(java))](https://search.maven.org/artifact/io.openweb3.pay/walletpay)
 
 [![Join our slack](https://img.shields.io/badge/Slack-join%20the%20community-blue?logo=slack&style=social)](https://walletpay.openweb3.io/slack/)
 
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>com.walletpay</groupId>
+  <groupId>io.openweb3.pay</groupId>
   <artifactId>walletpay</artifactId>
   <version>1.24.0</version>
   <scope>compile</scope>
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "com.walletpay:walletpay:1.24.0"
+implementation "io.openweb3.pay:walletpay:1.24.0"
 ```
 
 # Development

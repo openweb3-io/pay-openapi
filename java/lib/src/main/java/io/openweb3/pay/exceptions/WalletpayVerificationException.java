@@ -1,4 +1,4 @@
-package com.walletpay.exceptions;
+package io.openweb3.pay.exceptions;
 
 public class WalletpayVerificationException extends Exception {
 

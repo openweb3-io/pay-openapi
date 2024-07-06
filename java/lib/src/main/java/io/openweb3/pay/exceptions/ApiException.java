@@ -1,4 +1,4 @@
-package com.walletpay.exceptions;
+package io.openweb3.pay.exceptions;
 
 import java.util.Map;
 import java.util.List;
@@ -17,7 +17,7 @@ class APIError {
     }
 }
 
-public class ApiException extends com.walletpay.internal.ApiException {
+public class ApiException extends io.openweb3.pay.internal.ApiException {
 
     private String message;
 

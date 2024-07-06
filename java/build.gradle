@@ -41,7 +41,7 @@ jar {
                    'Implementation-Version': VERSION_NAME,
                    'Implementation-Vendor': VENDOR_NAME,
                    'Bundle-SymbolicName': POM_ARTIFACT_ID,
-                   'Export-Package': 'com.walletpay,com.walletpay.models,com.walletpay.exceptions')
+                   'Export-Package': 'io.openweb3.pay,io.openweb3.pay.models,io.openweb3.pay.exceptions')
 
         archiveVersion = VERSION_NAME
     }

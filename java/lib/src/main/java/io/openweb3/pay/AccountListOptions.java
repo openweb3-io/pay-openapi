@@ -1,4 +1,4 @@
-package com.walletpay;
+package io.openweb3.pay;
 
 public class AccountListOptions extends ListOptions {
 	private boolean withContent;

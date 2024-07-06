@@ -1,20 +1,26 @@
-package com.walletpay;
+package io.openweb3.pay;
 
-import com.walletpay.internal.ApiClient;
-import com.walletpay.internal.ApiCallback;
-import com.walletpay.internal.Configuration;
-import com.walletpay.internal.ProgressResponseBody;
-import com.walletpay.internal.auth.ApiKeyAuth;
+import io.openweb3.pay.internal.ApiClient;
+import io.openweb3.pay.internal.ApiCallback;
+import io.openweb3.pay.internal.Configuration;
+import io.openweb3.pay.internal.ProgressResponseBody;
+import io.openweb3.pay.internal.auth.ApiKeyAuth;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
+
+import java.math.BigInteger;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.RSAPrivateKeySpec;
 import java.util.Base64;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.walletpay.exceptions.WalletpaySigningException;
+import io.openweb3.pay.exceptions.WalletpaySigningException;
 import java.io.IOException;
 
 public final class Walletpay {
@@ -38,14 +44,19 @@ public final class Walletpay {
 				Request.Builder builder = originalRequest.newBuilder();
 
 				String timestamp = String.format("%d",System.currentTimeMillis());
-				builder.header("x-request-timestamp",timestamp);
+				builder.header("x-request-time",timestamp);
 
-				String url = originalRequest.url().toString();
+				String path = originalRequest.url().encodedPath();
+				String query = originalRequest.url().encodedQuery();
+				String uri = path;
+                if (query != null && !query.isEmpty()) {
+					uri += "?" + query;
+				}
 				String body = originalRequest.body() == null ? "" : originalRequest.body().toString();
 				// 计算请求的 SHA-256 签名
                 String signature = null;
                 try {
-                    signature = calculateSignature(privateKey, body, url, timestamp);
+                    signature = calculateSignature(privateKey, body, uri, timestamp);
                 } catch (WalletpaySigningException e) {
                     throw new RuntimeException(e);
                 }
@@ -99,16 +110,42 @@ public final class Walletpay {
 		return account;
 	}
 
-    private static String calculateSignature(final String secret, final String body, final String uri, final String timestamp) throws WalletpaySigningException {
+    private static String calculateSignature(final String privateKey, final String body, final String uri, final String timestamp) throws WalletpaySigningException {
 		try {
-			String toSign = String.format("%s%s%s", body, uri, timestamp);
-			Mac sha512Hmac = Mac.getInstance(HMAC_SHA256);
-			SecretKeySpec keySpec = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), HMAC_SHA256);
-			sha512Hmac.init(keySpec);
-			byte[] macData = sha512Hmac.doFinal(toSign.getBytes(StandardCharsets.UTF_8));
-			return Base64.getEncoder().encodeToString(macData);
-		} catch (InvalidKeyException | NoSuchAlgorithmException e) {
-			throw new WalletpaySigningException(e.getMessage());
-		}
+			String content = String.format("%s%s%s", body, uri, timestamp);
+			Signature sign = Signature.getInstance("SHA256withRSA");
+
+			String stripPrivateKey = privateKey;
+			if (privateKey.startsWith("-----BEGIN")) {
+				stripPrivateKey = privateKey.replace("-----BEGIN PRIVATE KEY-----", "")
+						.replace("-----END PRIVATE KEY-----", "")
+						.replaceAll("\\s", ""); // 移除所有空白字符
+			}
+
+			Base64.Decoder decoder = Base64.getDecoder();
+			PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(decoder.decode(stripPrivateKey));
+			KeyFactory kf = KeyFactory.getInstance("RSA");
+			RSAPrivateKey pvt = (RSAPrivateKey)kf.generatePrivate(ks);
+
+			sign.initSign(pvt);
+			sign.update(content.getBytes(StandardCharsets.UTF_8));
+			return toHex(sign.sign());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return null;
+		} catch (InvalidKeySpecException | SignatureException | InvalidKeyException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+	private static String toHex(byte[] array) {
+		BigInteger bi = new BigInteger(1, array);
+		String hex = bi.toString(16);
+		int paddingLength = (array.length * 2) - hex.length();
+		if (paddingLength > 0) {
+			return String.format("%0" + paddingLength + "d", 0) + hex;
+		} else {
+			return hex;
+		}
+	}
 }

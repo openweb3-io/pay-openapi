@@ -1,10 +1,10 @@
-package com.walletpay;
+package io.openweb3.pay;
 
-import com.walletpay.exceptions.ApiException;
-import com.walletpay.internal.api.OrderApi;
-import com.walletpay.models.OrderIn;
-import com.walletpay.models.OrderOut;
-import com.walletpay.models.ListResponseOrderOut;
+import io.openweb3.pay.exceptions.ApiException;
+import io.openweb3.pay.internal.api.OrderApi;
+import io.openweb3.pay.models.OrderIn;
+import io.openweb3.pay.models.OrderOut;
+import io.openweb3.pay.models.ListResponseOrderOut;
 
 public final class Order {
 	private final OrderApi api;
@@ -16,7 +16,7 @@ public final class Order {
 	public ListResponseOrderOut list(final OrderListOptions options) throws ApiException {
 		try {
 			return api.v1OrderList(options.getLimit(), options.getOffset(), options.getChain(), options.getChannel());
-		} catch (com.walletpay.internal.ApiException e) {
+		} catch (io.openweb3.pay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
@@ -28,7 +28,7 @@ public final class Order {
 	public OrderOut create(final OrderIn OrderIn, final PostOptions options) throws ApiException {
 		try {
 			return api.v1OrderCreate(OrderIn);
-		} catch (com.walletpay.internal.ApiException e) {
+		} catch (io.openweb3.pay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
@@ -40,7 +40,7 @@ public final class Order {
 	public OrderOut getOrCreate(final OrderIn OrderIn, final PostOptions options) throws ApiException {
 		try {
 			return api.v1OrderCreate(OrderIn);
-		} catch (com.walletpay.internal.ApiException e) {
+		} catch (io.openweb3.pay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}

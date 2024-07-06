@@ -1,4 +1,4 @@
-package com.walletpay;
+package io.openweb3.pay;
 
 public class ListOptions {
     private static final int DEFAULT_LIMIT = 50;
