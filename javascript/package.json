@@ -1,11 +1,12 @@
 {
-  "name": "walletpay",
-  "version": "1.24.0",
+  "name": "@openweb3-io/pay",
+  "version": "0.1.0",
   "description": "Wallet Pay API client and wallet pay verification library",
   "author": "walletpay",
   "repository": "https://github.com/walletpay/walletpay-libs",
   "type": "commonjs",
   "keywords": [
+    "openweb3",
     "walletpay",
     "diahook",
     "walletpay",

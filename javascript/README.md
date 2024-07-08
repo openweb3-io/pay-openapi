@@ -1,6 +1,6 @@
 <h1 align="center">
     <a style="text-decoration: none" href="https://walletpay.openweb3.io">
-      <img width="120" src="https://avatars.githubusercontent.com/u/80175132?s=200&v=4" />
+      <img width="120" src="" />
       <p align="center">walletpay - Wallet Pay as a service</p>
     </a>
 </h1>
@@ -44,18 +44,18 @@ You can find general usage documentation at <https://docs.walletpay.openweb3.io>
 # Installation
 
 ```sh
-npm install walletpay
+npm install @openweb3-io/pay 
 # or
-yarn add walletpay
+yarn add @openweb3-io/pay
 ```
 
 # Usage
 
 ```js
-import { walletpay } from "walletpay";
+import { Walletpay } from "@openweb3-io/pay";
 
-const walletpay = new walletpay("AUTH_TOKEN");
-const app = await walletpay.application.create({ name: "Application name" });
+const walletpay = new Walletpay("API-KEY", "RSA PRIVATE KEY");
+const order = await walletpay.Order.create({ channel: "ton-connect", chain:"ton", amount: "0.11", currency: "USDT"});
 ```
 # Development
 
