@@ -7,10 +7,14 @@ import { HTTPValidationError } from '../models/HTTPValidationError';
 import { HttpErrorOut } from '../models/HttpErrorOut';
 import { ListResponseAccountOut } from '../models/ListResponseAccountOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
+import { ListResponseWebhookOut } from '../models/ListResponseWebhookOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
 import { ValidationError } from '../models/ValidationError';
+import { WebhookIn } from '../models/WebhookIn';
+import { WebhookOut } from '../models/WebhookOut';
+import { WebhookPatch } from '../models/WebhookPatch';
 
 import { ObservableAccountApi } from "./ObservableAPI";
 import { AccountApiRequestFactory, AccountApiResponseProcessor} from "../apis/AccountApi";
@@ -110,6 +114,120 @@ export class ObjectOrderApi {
      */
     public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ListResponseOrderOut> {
         return this.api.v1OrderList(param.limit, param.offset, param.chain, param.channel,  options).toPromise();
+    }
+
+}
+
+import { ObservableWebhookApi } from "./ObservableAPI";
+import { WebhookApiRequestFactory, WebhookApiResponseProcessor} from "../apis/WebhookApi";
+
+export interface WebhookApiV1WebhookCreateRequest {
+    /**
+     * 
+     * @type WebhookIn
+     * @memberof WebhookApiv1WebhookCreate
+     */
+    webhookIn: WebhookIn
+}
+
+export interface WebhookApiV1WebhookDeleteRequest {
+    /**
+     * Specified the webhook id.
+     * @type string
+     * @memberof WebhookApiv1WebhookDelete
+     */
+    webhookId: string
+}
+
+export interface WebhookApiV1WebhookListRequest {
+    /**
+     * Limit the number of returned items
+     * @type number
+     * @memberof WebhookApiv1WebhookList
+     */
+    limit?: number
+    /**
+     * Specifying the start cursor position
+     * @type string
+     * @memberof WebhookApiv1WebhookList
+     */
+    cursor?: string
+}
+
+export interface WebhookApiV1WebhookPatchRequest {
+    /**
+     * Specified the webhook id.
+     * @type string
+     * @memberof WebhookApiv1WebhookPatch
+     */
+    webhookId: string
+    /**
+     * 
+     * @type WebhookPatch
+     * @memberof WebhookApiv1WebhookPatch
+     */
+    webhookPatch: WebhookPatch
+}
+
+export interface WebhookApiV1WebhookRetrieveRequest {
+    /**
+     * Specified the webhook id.
+     * @type string
+     * @memberof WebhookApiv1WebhookRetrieve
+     */
+    webhookId: string
+}
+
+export class ObjectWebhookApi {
+    private api: ObservableWebhookApi
+
+    public constructor(configuration: Configuration, requestFactory?: WebhookApiRequestFactory, responseProcessor?: WebhookApiResponseProcessor) {
+        this.api = new ObservableWebhookApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create a webhook.
+     * Create webhook
+     * @param param the request object
+     */
+    public v1WebhookCreate(param: WebhookApiV1WebhookCreateRequest, options?: Configuration): Promise<WebhookOut> {
+        return this.api.v1WebhookCreate(param.webhookIn,  options).toPromise();
+    }
+
+    /**
+     * delete the specified webhook.
+     * Delete webhook
+     * @param param the request object
+     */
+    public v1WebhookDelete(param: WebhookApiV1WebhookDeleteRequest, options?: Configuration): Promise<WebhookOut> {
+        return this.api.v1WebhookDelete(param.webhookId,  options).toPromise();
+    }
+
+    /**
+     * List webhooks.
+     * List webhooks
+     * @param param the request object
+     */
+    public v1WebhookList(param: WebhookApiV1WebhookListRequest, options?: Configuration): Promise<ListResponseWebhookOut> {
+        return this.api.v1WebhookList(param.limit, param.cursor,  options).toPromise();
+    }
+
+    /**
+     * update a specified webhook.
+     * update webhook
+     * @param param the request object
+     */
+    public v1WebhookPatch(param: WebhookApiV1WebhookPatchRequest, options?: Configuration): Promise<WebhookOut> {
+        return this.api.v1WebhookPatch(param.webhookId, param.webhookPatch,  options).toPromise();
+    }
+
+    /**
+     * retrieve the specified webhook.
+     * Retrieve webhook
+     * @param param the request object
+     */
+    public v1WebhookRetrieve(param: WebhookApiV1WebhookRetrieveRequest, options?: Configuration): Promise<WebhookOut> {
+        return this.api.v1WebhookRetrieve(param.webhookId,  options).toPromise();
     }
 
 }

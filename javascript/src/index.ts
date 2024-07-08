@@ -9,6 +9,7 @@ import {
   OrderIn,
   OrderOut,
   ListResponseOrderOut,
+
   AccountApi,
   AccountOut,
   ListResponseAccountOut,
@@ -16,6 +17,12 @@ import {
   RequestContext,
   ResponseContext,
   Ordering,
+
+  WebhookApi,
+  WebhookIn,
+  WebhookOut,
+  WebhookPatch,
+  ListResponseWebhookOut,
 } from "./openapi/index";
 export * from "./openapi/models/all";
 export * from "./openapi/apis/exception";
@@ -87,6 +94,7 @@ export class walletpay {
   public readonly _configuration: Configuration;
   public readonly Order: Order;
   public readonly Account: Account;
+  public readonly Webhook: Webhook;
 
   public constructor(apikey: string, privateKey: string, options: walletpayOptions = {}) {
     const baseUrl: string = options.serverUrl ?? "https://api.walletpay.openweb3.io";
@@ -104,6 +112,7 @@ export class walletpay {
     this._configuration = config;
     this.Order = new Order(config);
     this.Account = new Account(config);
+    this.Webhook = new Webhook(config);
   }
 }
 export interface PostOptions {
@@ -121,6 +130,12 @@ export interface OrderListOptions extends ListOptions {
 
 export interface AccountListOptions extends ListOptions {
   order?: Ordering;
+}
+
+export interface WebhookListOptions {
+  order?: Ordering;
+  cursor?: string;
+  limit?: number;
 }
 
 class Order {
@@ -152,5 +167,44 @@ class Account {
 
   public list(options?: AccountListOptions): Promise<ListResponseAccountOut> {
     return this.api.v1AccountList({ ...options });
+  }
+}
+
+
+class Webhook{
+  private readonly api: WebhookApi;
+
+  public constructor(config: Configuration) {
+    this.api = new WebhookApi(config);
+  }
+
+  public create(
+    webhookIn : WebhookIn,
+    options?: PostOptions
+  ): Promise<WebhookOut> {
+    return this.api.v1WebhookCreate({ webhookIn, ...options });
+  }
+
+  public update(
+    webhookId: string,
+    webhookPatch: WebhookPatch,
+    options?: PostOptions
+  ): Promise<WebhookOut> {
+    return this.api.v1WebhookPatch({ webhookId, webhookPatch, ...options });
+  }
+
+  public delete(
+    webhookId: string,
+  ): Promise<WebhookOut> {
+    return this.api.v1WebhookDelete({ webhookId });
+  }
+
+  public retrieve(
+    webhookId: string,
+  ): Promise<WebhookOut> {
+    return this.api.v1WebhookRetrieve({ webhookId });
+  }
+  public list(options?: WebhookListOptions): Promise<ListResponseWebhookOut> {
+    return this.api.v1WebhookList({ ...options });
   }
 }

@@ -447,6 +447,612 @@
                     ]
                 }
             }
+        },
+        "/api/v1/webhooks" : {
+            "get": {
+                "description": "List webhooks.",
+                "operationId": "v1.webhook.list",
+                "parameters": [
+                    {
+                        "description": "Limit the number of returned items",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "description": "Limit the number of returned items",
+                            "format": "uint64",
+                            "minimum": 0,
+                            "default": 20,
+                            "example": 100,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specifying the start cursor position",
+                        "in": "query",
+                        "name": "cursor",
+                        "schema": {
+                            "description": "Specifying the start cursor position",
+                            "type": "string"
+                        },
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse_WebhookOut_"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "List webhooks",
+                "tags": [
+                    "Webhook"
+                ]
+            },
+            "post": {
+                "description": "Create a webhook.",
+                "operationId": "v1.webhook.create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WebhookIn"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WebhookOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WebhookOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Create webhook",
+                "tags": [
+                    "Webhook"
+                ],
+                "x-readme": {
+                    "code-samples": [
+                        {
+                            "name": "JavaScript",
+                            "language": "node",
+                            "code": "const orderOut = await walletpay.order.create({\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n});"
+                        },
+                        {
+                            "name": "TypeScript",
+                            "language": "node",
+                            "code": "const orderOut = await walletpay.order.create({\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"});"
+                        },
+                        {
+                            "name": "Python",
+                            "language": "python",
+                            "code": "order_out = walletpay.order.create(OrderIn(\n    provider=\"telegram\",\n    wallet=\"wallet\",\n    description=\"My first order\",\n    uid=\"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n), None)"
+                        },
+                        {
+                            "name": "Python (Async)",
+                            "language": "python",
+                            "code": "order_out = await walletpay.order.create(OrderIn(\n    provider=\"telegram\",\n    wallet=\"wallet\",\n    description=\"My first order\",\n    uid=\"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n), None)"
+                        },
+                        {
+                            "name": "Go",
+                            "language": "go",
+                            "code": "orderOut, err := walletpayClient.Order.Create(ctx, &OrderIn{\n    Provider: \"telegram\",\n    Wallet: \"wallet\",\n    Description: \"My first order\",\n    Uid: \"unique-order-identifier\",\n    Currency: \"USDT\",\n    Amount: \"1\"\n})"
+                        },
+                        {
+                            "name": "Kotlin",
+                            "language": "kotlin",
+                            "code": "val orderOut = walletpay.order.create(OrderIn()\n    .provider(\"telegram\")\n    .wallet(\"wallet\")\n    .description(\"My first order\")\n    .uid(\"unique-order-identifier\")\n    .currency(\"USDT\")\n    .amount(\"1\")\n)"
+                        },
+                        {
+                            "name": "Java",
+                            "language": "java",
+                            "code": "OrderOut orderOut = walletpay.getOrder().create(new OrderIn()\n    .provider(\"telegram\")\n    .wallet(\"wallet\")\n    .description(\"My first order\")\n    .uid(\"unique-order-identifier\")\n    .currency(\"USDT\")\n    .amount(\"1\")\n)"
+                        },
+                        {
+                            "name": "Ruby",
+                            "language": "ruby",
+                            "code": "order_out = walletpay.order.create(Walletpay::OrderIn.new({\n    \"provider\": \"telegram\",\n    \"wallet\": \"wallet\",\n    \"description\": \"My first order\",\n    \"uid\": \"unique-order-identifier\",\n    \"currency\": \"USDT\",\n    \"amount\": \"1\"\n}))"
+                        },
+                        {
+                            "name": "Rust",
+                            "language": "rust",
+                            "code": "let order_out = walletpay.order().create(OrderIn {\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: Some(\"unique-order-identifier\".to_string()),\n    currency: \"USDT\",\n    amount: \"1\"\n}, None).await?;"
+                        },
+                        {
+                            "name": "C#",
+                            "language": "csharp",
+                            "code": "var orderOut = await walletpay.Order.CreateAsync(new OrderIn{\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n})"
+                        },
+                        {
+                            "name": "CLI",
+                            "language": "shell",
+                            "code": "walletpay order create '{\n    \"provider\": \"telegram\",\n    \"wallet\": \"wallet\",\n    \"description\": \"My first order\",\n    \"uid\": \"unique-order-identifier\",\n    \"currency\": \"USDT\",\n    \"amount\": \"1\"\n}'"
+                        },
+                        {
+                            "name": "cURL",
+                            "language": "shell",
+                            "code": "curl -X 'POST' \\\n  'https://api.wallet-pay.openweb3.io/api/v1/orders' \\\n  -H 'X-API-KEY: API_KEY' \\\n  -H 'Accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n        \"provider\": \"telegram\",\n        \"wallet\": \"wallet\",\n        \"description\": \"My first order\",\n        \"uid\": \"unique-order-identifier\",\n        \"currency\": \"USDT\",\n        \"amount\": \"1\"\n    }'"
+                        }
+                    ]
+                }
+            }
+        },
+        "/api/v1/webhooks/{webhookId}": {
+            "get": {
+                "description": "retrieve the specified webhook.",
+                "operationId": "v1.webhook.retrieve",
+                "parameters": [
+                    {
+                        "description": "Specified the webhook id.",
+                        "in": "path",
+                        "name": "webhookId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the webhook id.",
+                            "example": "wb_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WebhookOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WebhookOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Retrieve webhook",
+                "tags": [
+                    "Webhook"
+                ]
+            },            
+            "patch": {
+                "description": "update a specified webhook.",
+                "operationId": "v1.webhook.patch",
+                "parameters": [
+                    {
+                        "description": "Specified the webhook id.",
+                        "in": "path",
+                        "name": "webhookId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the webhook id.",
+                            "example": "wb_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "form"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WebhookPatch"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WebhookOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WebhookOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "update webhook",
+                "tags": [
+                    "Webhook"
+                ]
+            },             
+            "delete": {
+                "description": "delete the specified webhook.",
+                "operationId": "v1.webhook.delete",
+                "parameters": [
+                    {
+                        "description": "Specified the webhook id.",
+                        "in": "path",
+                        "name": "webhookId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the webhook id.",
+                            "example": "wb_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WebhookOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WebhookOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Delete webhook",
+                "tags": [
+                    "Webhook"
+                ]
+            }
         }
     },
     "components": {
@@ -747,6 +1353,313 @@
                     },
                     "total": {
                         "type": "integer"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "type": "object"
+            },
+            "WebhookIn": {
+                "properties": {
+                    "uid": {
+                        "description": "The webhook's UID",
+                        "example": "unique-webhook-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "network": {
+                        "type": "string",
+                        "description": "The chain network monitor by webhook",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "example": "mainnet"
+                    },
+                    "chain": {
+                        "type": "string",
+                        "description": "Blockchain code",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "example": "ton"
+                    },
+                    "description": {
+                        "description": "The webhook's description",
+                        "example": "The description for webhook",
+                        "type": "string"
+                    },
+                    "secret": {
+                        "description": "The webhook's secret",
+                        "example": "whsec_13afsaew2skae1lo3r",
+                        "nullable": true,
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "The webhook endpoint url",
+                        "example": "http://example.com/webhook",
+                        "type": "string"
+                    },
+                    "filter": {
+                        "description": "The webhook endpoint url",
+                        "example": "{\"network\": \"mainnet\"}",
+                        "nullable": true,
+                        "type": "string"
+                    },
+                    "filterTypes": {
+                        "description": "The webhook endpoint url",
+                        "example": [
+                            "tx.created"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "disabled":{
+                        "description": "indicate whether to disable the webhook endpoint",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "nullable": true,
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    },
+                    "headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "nullable": true,
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    },
+                    "version": {
+                        "description": "webhook version",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "network",
+                    "chain",
+                    "url",
+                    "filterTypes"
+                ],
+                "type": "object"
+            },
+            "WebhookPatch": {
+                "properties": {
+                    "uid": {
+                        "description": "The webhook's UID",
+                        "example": "unique-webhook-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "The webhook's description",
+                        "example": "The description for webhook",
+                        "type": "string"
+                    },
+                    "secret": {
+                        "description": "The webhook's secret",
+                        "example": "whsec_13afsaew2skae1lo3r",
+                        "nullable": true,
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "The webhook endpoint url",
+                        "example": "http://example.com/webhook",
+                        "type": "string"
+                    },
+                    "filter": {
+                        "description": "The webhook endpoint url",
+                        "example": "{\"network\": \"mainnet\"}",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "filterTypes": {
+                        "description": "The webhook endpoint url",
+                        "example": [
+                            "tx.created"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "disabled":{
+                        "description": "indicate whether to disable the webhook endpoint",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "nullable": true,
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    },
+                    "headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "nullable": true,
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    },
+                    "version": {
+                        "description": "webhook version",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "url",
+                    "filterTypes"
+                ],
+                "type":"object"
+            },
+            "WebhookOut": {
+                "properties": {
+                    "uid": {
+                        "description": "The webhook's UID",
+                        "example": "unique-webhook-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "network": {
+                        "type": "string",
+                        "description": "The chain network monitor by webhook",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "example": "mainnet"
+                    },
+                    "chain": {
+                        "type": "string",
+                        "description": "Blockchain code",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "example": "ton"
+                    },
+                    "description": {
+                        "description": "The webhook's description",
+                        "example": "The description for webhook",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "The webhook endpoint url",
+                        "example": "http://example.com/webhook",
+                        "type": "string"
+                    },
+                    "filter": {
+                        "description": "The webhook endpoint url",
+                        "example": "{\"network\": \"mainnet\"}",
+                        "type": "string"
+                    },
+                    "filterTypes": {
+                        "description": "The webhook endpoint url",
+                        "example": [
+                            "tx.created"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "disabled":{
+                        "description": "indicate whether to disable the webhook endpoint",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    },
+                    "headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    },
+                    "version": {
+                        "description": "webhook version",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "chain",
+                    "network",
+                    "url",
+                    "filterTypes"
+                ],
+                "type": "object"
+            },
+            "ListResponse_WebhookOut_": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/WebhookOut"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "type": "integer"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "hasPrev": {
+                        "type": "boolean"
+                    },
+                    "preCursor": {
+                        "type": "string"
+                    },
+                    "nextCursor": {
+                        "type": "string"
                     }
                 },
                 "required": [

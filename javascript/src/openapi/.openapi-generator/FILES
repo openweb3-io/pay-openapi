@@ -2,6 +2,7 @@
 README.md
 apis/AccountApi.ts
 apis/OrderApi.ts
+apis/WebhookApi.ts
 apis/baseapi.ts
 apis/exception.ts
 auth/auth.ts
@@ -16,11 +17,15 @@ models/HTTPValidationError.ts
 models/HttpErrorOut.ts
 models/ListResponseAccountOut.ts
 models/ListResponseOrderOut.ts
+models/ListResponseWebhookOut.ts
 models/ObjectSerializer.ts
 models/OrderIn.ts
 models/OrderOut.ts
 models/Ordering.ts
 models/ValidationError.ts
+models/WebhookIn.ts
+models/WebhookOut.ts
+models/WebhookPatch.ts
 models/all.ts
 package.json
 rxjsStub.ts

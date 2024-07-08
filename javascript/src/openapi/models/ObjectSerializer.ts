@@ -3,20 +3,28 @@ export * from './HTTPValidationError';
 export * from './HttpErrorOut';
 export * from './ListResponseAccountOut';
 export * from './ListResponseOrderOut';
+export * from './ListResponseWebhookOut';
 export * from './OrderIn';
 export * from './OrderOut';
 export * from './Ordering';
 export * from './ValidationError';
+export * from './WebhookIn';
+export * from './WebhookOut';
+export * from './WebhookPatch';
 
 import { AccountOut } from './AccountOut';
 import { HTTPValidationError } from './HTTPValidationError';
 import { HttpErrorOut } from './HttpErrorOut';
 import { ListResponseAccountOut } from './ListResponseAccountOut';
 import { ListResponseOrderOut } from './ListResponseOrderOut';
+import { ListResponseWebhookOut } from './ListResponseWebhookOut';
 import { OrderIn } from './OrderIn';
 import { OrderOut } from './OrderOut';
 import { Ordering } from './Ordering';
 import { ValidationError } from './ValidationError';
+import { WebhookIn } from './WebhookIn';
+import { WebhookOut } from './WebhookOut';
+import { WebhookPatch } from './WebhookPatch';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -46,9 +54,13 @@ let typeMap: {[index: string]: any} = {
     "HttpErrorOut": HttpErrorOut,
     "ListResponseAccountOut": ListResponseAccountOut,
     "ListResponseOrderOut": ListResponseOrderOut,
+    "ListResponseWebhookOut": ListResponseWebhookOut,
     "OrderIn": OrderIn,
     "OrderOut": OrderOut,
     "ValidationError": ValidationError,
+    "WebhookIn": WebhookIn,
+    "WebhookOut": WebhookOut,
+    "WebhookPatch": WebhookPatch,
 }
 
 export class ObjectSerializer {
