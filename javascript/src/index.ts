@@ -80,7 +80,7 @@ export class walletpay {
   public readonly Webhook: Webhook;
 
   public constructor(apikey: string, privateKey: string, options: walletpayOptions = {}) {
-    const baseUrl: string = options.serverUrl ?? "https://api.walletpay.openweb3.io";
+    const baseUrl: string = options.serverUrl ?? "https://api.pay.openweb3.io";
 
     const baseServer = new ServerConfiguration<any>(baseUrl, {});
 
