@@ -1,6 +1,6 @@
 <h1 align="center">
     <a style="text-decoration: none" href="https://pay.openweb3.io">
-      <img width="120" src="https://avatars.githubusercontent.com/u/80175132?s=200&v=4" />
+      <img width="120" src="" />
       <p align="center">walletpay - walletpays as a service</p>
     </a>
 </h1>
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.openweb3.pay</groupId>
   <artifactId>walletpay</artifactId>
-  <version>1.24.0</version>
+  <version>0.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -61,7 +61,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "io.openweb3.pay:walletpay:1.24.0"
+implementation "io.openweb3.pay:walletpay:0.1.0"
 ```
 
 # Development

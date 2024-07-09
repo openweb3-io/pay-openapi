@@ -24,7 +24,7 @@ import io.openweb3.pay.exceptions.WalletpaySigningException;
 import java.io.IOException;
 
 public final class Walletpay {
-	public static final String VERSION = "1.24.0";
+	public static final String VERSION = "0.1.0";
 	private static final String HMAC_SHA256 = "HmacSHA256";
 	private final Order order;
 	private final Account account;

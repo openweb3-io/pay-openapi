@@ -19,17 +19,3 @@ hs_err_pid*
 target
 .gradle
 build
-.project
-
-# Build files
-bin/
-
-# auto generated files
-# lib/generated/
-
-.classpath
-.settings
-
-.idea/
-
-*.pem
