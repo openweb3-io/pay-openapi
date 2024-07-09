@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * OrderIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-08T11:02:47.583516+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-09T17:47:29.721176+08:00[Asia/Shanghai]")
 public class OrderIn {
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
@@ -69,7 +69,7 @@ public class OrderIn {
 
   public OrderIn putMetadataItem(String key, String metadataItem) {
     if (this.metadata == null) {
-      this.metadata = new HashMap<>();
+      this.metadata = new HashMap<String, String>();
     }
     this.metadata.put(key, metadataItem);
     return this;

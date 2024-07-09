@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * WebhookIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-08T11:02:47.583516+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-09T17:47:29.721176+08:00[Asia/Shanghai]")
 public class WebhookIn {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
@@ -63,7 +63,7 @@ public class WebhookIn {
 
   public static final String SERIALIZED_NAME_FILTER_TYPES = "filterTypes";
   @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
-  private List<String> filterTypes = new ArrayList<>();
+  private List<String> filterTypes = new ArrayList<String>();
 
   public static final String SERIALIZED_NAME_DISABLED = "disabled";
   @SerializedName(SERIALIZED_NAME_DISABLED)
@@ -298,7 +298,7 @@ public class WebhookIn {
 
   public WebhookIn putMetadataItem(String key, String metadataItem) {
     if (this.metadata == null) {
-      this.metadata = new HashMap<>();
+      this.metadata = new HashMap<String, String>();
     }
     this.metadata.put(key, metadataItem);
     return this;
@@ -329,7 +329,7 @@ public class WebhookIn {
 
   public WebhookIn putHeadersItem(String key, String headersItem) {
     if (this.headers == null) {
-      this.headers = new HashMap<>();
+      this.headers = new HashMap<String, String>();
     }
     this.headers.put(key, headersItem);
     return this;

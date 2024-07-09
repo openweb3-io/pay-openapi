@@ -23,7 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.time.OffsetDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * OrderOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-08T11:02:47.583516+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-09T17:47:29.721176+08:00[Asia/Shanghai]")
 public class OrderOut {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -39,7 +39,7 @@ public class OrderOut {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, String> metadata = new HashMap<>();
+  private Map<String, String> metadata = new HashMap<String, String>();
 
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
@@ -71,11 +71,11 @@ public class OrderOut {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private Date createdAt;
 
   public static final String SERIALIZED_NAME_PAID_AT = "paidAt";
   @SerializedName(SERIALIZED_NAME_PAID_AT)
-  private OffsetDateTime paidAt;
+  private Date paidAt;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -87,11 +87,11 @@ public class OrderOut {
 
   public static final String SERIALIZED_NAME_CANCELED_AT = "canceledAt";
   @SerializedName(SERIALIZED_NAME_CANCELED_AT)
-  private OffsetDateTime canceledAt;
+  private Date canceledAt;
 
   public static final String SERIALIZED_NAME_FAILED_AT = "failedAt";
   @SerializedName(SERIALIZED_NAME_FAILED_AT)
-  private OffsetDateTime failedAt;
+  private Date failedAt;
 
 
   public OrderOut id(String id) {
@@ -300,7 +300,7 @@ public class OrderOut {
   }
 
 
-  public OrderOut createdAt(OffsetDateTime createdAt) {
+  public OrderOut createdAt(Date createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -312,17 +312,17 @@ public class OrderOut {
   **/
   @ApiModelProperty(required = true, value = "The order's creation time")
 
-  public OffsetDateTime getCreatedAt() {
+  public Date getCreatedAt() {
     return createdAt;
   }
 
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public OrderOut paidAt(OffsetDateTime paidAt) {
+  public OrderOut paidAt(Date paidAt) {
     
     this.paidAt = paidAt;
     return this;
@@ -335,12 +335,12 @@ public class OrderOut {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The order's paid time")
 
-  public OffsetDateTime getPaidAt() {
+  public Date getPaidAt() {
     return paidAt;
   }
 
 
-  public void setPaidAt(OffsetDateTime paidAt) {
+  public void setPaidAt(Date paidAt) {
     this.paidAt = paidAt;
   }
 
@@ -390,7 +390,7 @@ public class OrderOut {
   }
 
 
-  public OrderOut canceledAt(OffsetDateTime canceledAt) {
+  public OrderOut canceledAt(Date canceledAt) {
     
     this.canceledAt = canceledAt;
     return this;
@@ -403,17 +403,17 @@ public class OrderOut {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The order's cancel time")
 
-  public OffsetDateTime getCanceledAt() {
+  public Date getCanceledAt() {
     return canceledAt;
   }
 
 
-  public void setCanceledAt(OffsetDateTime canceledAt) {
+  public void setCanceledAt(Date canceledAt) {
     this.canceledAt = canceledAt;
   }
 
 
-  public OrderOut failedAt(OffsetDateTime failedAt) {
+  public OrderOut failedAt(Date failedAt) {
     
     this.failedAt = failedAt;
     return this;
@@ -426,12 +426,12 @@ public class OrderOut {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The order's failure time")
 
-  public OffsetDateTime getFailedAt() {
+  public Date getFailedAt() {
     return failedAt;
   }
 
 
-  public void setFailedAt(OffsetDateTime failedAt) {
+  public void setFailedAt(Date failedAt) {
     this.failedAt = failedAt;
   }
 

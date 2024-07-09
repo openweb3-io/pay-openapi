@@ -30,11 +30,11 @@ import java.util.List;
 /**
  * HTTPValidationError
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-08T11:02:47.583516+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-09T17:47:29.721176+08:00[Asia/Shanghai]")
 public class HTTPValidationError {
   public static final String SERIALIZED_NAME_DETAIL = "detail";
   @SerializedName(SERIALIZED_NAME_DETAIL)
-  private List<ValidationError> detail = new ArrayList<>();
+  private List<ValidationError> detail = new ArrayList<ValidationError>();
 
 
   public HTTPValidationError detail(List<ValidationError> detail) {
