@@ -3,7 +3,7 @@ info:
   title: Wallet Pay API Documentations
   version: "1.0"
 servers:
-- url: https://api.wallet-pay.openweb3.io
+- url: https://api.pay.openweb3.io
 security:
 - ApiKeyAuth: []
 paths:
@@ -374,7 +374,7 @@ paths:
           language: shell
           code: |-
             curl -X 'POST' \
-              'https://api.wallet-pay.openweb3.io/api/v1/orders' \
+              'https://api.pay.openweb3.io/api/v1/orders' \
               -H 'X-API-KEY: API_KEY' \
               -H 'Accept: application/json' \
               -H 'Content-Type: application/json' \
@@ -652,7 +652,7 @@ paths:
           language: shell
           code: |-
             curl -X 'POST' \
-              'https://api.wallet-pay.openweb3.io/api/v1/orders' \
+              'https://api.pay.openweb3.io/api/v1/orders' \
               -H 'X-API-KEY: API_KEY' \
               -H 'Accept: application/json' \
               -H 'Content-Type: application/json' \

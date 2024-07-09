@@ -48,6 +48,6 @@ export class ServerConfiguration<T extends { [key: string]: string }> implements
     }
 }
 
-export const server1 = new ServerConfiguration<{  }>("https://api.wallet-pay.openweb3.io", {  })
+export const server1 = new ServerConfiguration<{  }>("https://api.pay.openweb3.io", {  })
 
 export const servers = [server1];

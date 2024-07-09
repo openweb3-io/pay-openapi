@@ -1,6 +1,6 @@
 # WebhookApi
 
-All URIs are relative to *https://api.wallet-pay.openweb3.io*
+All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -32,7 +32,7 @@ import io.openweb3.pay.internal.api.WebhookApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.wallet-pay.openweb3.io");
+    defaultClient.setBasePath("https://api.pay.openweb3.io");
     
     // Configure API key authorization: ApiKeyAuth
     ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
@@ -109,7 +109,7 @@ import io.openweb3.pay.internal.api.WebhookApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.wallet-pay.openweb3.io");
+    defaultClient.setBasePath("https://api.pay.openweb3.io");
     
     // Configure API key authorization: ApiKeyAuth
     ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
@@ -185,7 +185,7 @@ import io.openweb3.pay.internal.api.WebhookApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.wallet-pay.openweb3.io");
+    defaultClient.setBasePath("https://api.pay.openweb3.io");
     
     // Configure API key authorization: ApiKeyAuth
     ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
@@ -262,7 +262,7 @@ import io.openweb3.pay.internal.api.WebhookApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.wallet-pay.openweb3.io");
+    defaultClient.setBasePath("https://api.pay.openweb3.io");
     
     // Configure API key authorization: ApiKeyAuth
     ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
@@ -340,7 +340,7 @@ import io.openweb3.pay.internal.api.WebhookApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.wallet-pay.openweb3.io");
+    defaultClient.setBasePath("https://api.pay.openweb3.io");
     
     // Configure API key authorization: ApiKeyAuth
     ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");

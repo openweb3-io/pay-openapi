@@ -6,7 +6,7 @@
     },
     "servers": [
         {
-            "url": "https://api.wallet-pay.openweb3.io"
+            "url": "https://api.pay.openweb3.io"
         }
     ],
     "security": [
@@ -26,6 +26,14 @@
             "rust",
             "java",
             "shell"
+        ],
+        "parameter-ordering": [
+            "path", 
+            "query", 
+            "header", 
+            "cookie", 
+            "body", 
+            "form"
         ]
     },
     "paths":
@@ -442,7 +450,7 @@
                         {
                             "name": "cURL",
                             "language": "shell",
-                            "code": "curl -X 'POST' \\\n  'https://api.wallet-pay.openweb3.io/api/v1/orders' \\\n  -H 'X-API-KEY: API_KEY' \\\n  -H 'Accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n        \"provider\": \"telegram\",\n        \"wallet\": \"wallet\",\n        \"description\": \"My first order\",\n        \"uid\": \"unique-order-identifier\",\n        \"currency\": \"USDT\",\n        \"amount\": \"1\"\n    }'"
+                            "code": "curl -X 'POST' \\\n  'https://api.pay.openweb3.io/api/v1/orders' \\\n  -H 'X-API-KEY: API_KEY' \\\n  -H 'Accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n        \"provider\": \"telegram\",\n        \"wallet\": \"wallet\",\n        \"description\": \"My first order\",\n        \"uid\": \"unique-order-identifier\",\n        \"currency\": \"USDT\",\n        \"amount\": \"1\"\n    }'"
                         }
                     ]
                 }
@@ -724,7 +732,7 @@
                         {
                             "name": "cURL",
                             "language": "shell",
-                            "code": "curl -X 'POST' \\\n  'https://api.wallet-pay.openweb3.io/api/v1/orders' \\\n  -H 'X-API-KEY: API_KEY' \\\n  -H 'Accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n        \"provider\": \"telegram\",\n        \"wallet\": \"wallet\",\n        \"description\": \"My first order\",\n        \"uid\": \"unique-order-identifier\",\n        \"currency\": \"USDT\",\n        \"amount\": \"1\"\n    }'"
+                            "code": "curl -X 'POST' \\\n  'https://api.pay.openweb3.io/api/v1/orders' \\\n  -H 'X-API-KEY: API_KEY' \\\n  -H 'Accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n        \"provider\": \"telegram\",\n        \"wallet\": \"wallet\",\n        \"description\": \"My first order\",\n        \"uid\": \"unique-order-identifier\",\n        \"currency\": \"USDT\",\n        \"amount\": \"1\"\n    }'"
                         }
                     ]
                 }
