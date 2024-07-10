@@ -753,7 +753,7 @@
                             "example": "wb_12345xsfei",
                             "type": "string"
                         },
-                        "style": "form"
+                        "style": "simple"
                     }
                 ],
                 "responses": {
@@ -857,7 +857,7 @@
                             "example": "wb_12345xsfei",
                             "type": "string"
                         },
-                        "style": "form"
+                        "style": "simple"
                     }
                 ],
                 "requestBody": {
@@ -971,7 +971,7 @@
                             "example": "wb_12345xsfei",
                             "type": "string"
                         },
-                        "style": "form"
+                        "style": "simple"
                     }
                 ],
                 "responses": {

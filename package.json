@@ -9,6 +9,7 @@
     "@openapitools/openapi-generator-cli": "^2.6.0",
     "axios": "^0.28.0",
     "openapi-to-postmanv2": "^3.1.0",
+    "rdme": "^8.6.6",
     "semver": "^7.5.2"
   }
 }
