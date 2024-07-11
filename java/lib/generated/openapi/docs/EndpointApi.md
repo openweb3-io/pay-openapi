@@ -1,23 +1,23 @@
-# WebhookApi
+# EndpointApi
 
 All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1WebhookCreate**](WebhookApi.md#v1WebhookCreate) | **POST** /api/v1/webhooks | Create webhook
-[**v1WebhookDelete**](WebhookApi.md#v1WebhookDelete) | **DELETE** /api/v1/webhooks/{webhookId} | Delete webhook
-[**v1WebhookList**](WebhookApi.md#v1WebhookList) | **GET** /api/v1/webhooks | List webhooks
-[**v1WebhookPatch**](WebhookApi.md#v1WebhookPatch) | **PATCH** /api/v1/webhooks/{webhookId} | update webhook
-[**v1WebhookRetrieve**](WebhookApi.md#v1WebhookRetrieve) | **GET** /api/v1/webhooks/{webhookId} | Retrieve webhook
+[**v1EndpointCreate**](EndpointApi.md#v1EndpointCreate) | **POST** /api/v1/endpoints | Create endpoint
+[**v1EndpointDelete**](EndpointApi.md#v1EndpointDelete) | **DELETE** /api/v1/endpoints/{endpointId} | Delete endpoint
+[**v1EndpointList**](EndpointApi.md#v1EndpointList) | **GET** /api/v1/endpoints | List endpoints
+[**v1EndpointPatch**](EndpointApi.md#v1EndpointPatch) | **PATCH** /api/v1/endpoints/{endpointId} | update endpoint
+[**v1EndpointRetrieve**](EndpointApi.md#v1EndpointRetrieve) | **GET** /api/v1/endpoints/{endpointId} | Retrieve endpoint
 
 
-<a name="v1WebhookCreate"></a>
-# **v1WebhookCreate**
-> WebhookOut v1WebhookCreate(webhookIn)
+<a name="v1EndpointCreate"></a>
+# **v1EndpointCreate**
+> EndpointOut v1EndpointCreate(endpointIn)
 
-Create webhook
+Create endpoint
 
-Create a webhook.
+Create a endpoint.
 
 ### Example
 ```java
@@ -27,7 +27,7 @@ import io.openweb3.pay.internal.ApiException;
 import io.openweb3.pay.internal.Configuration;
 import io.openweb3.pay.internal.auth.*;
 import io.openweb3.pay.internal.models.*;
-import io.openweb3.pay.internal.api.WebhookApi;
+import io.openweb3.pay.internal.api.EndpointApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -40,13 +40,13 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    WebhookApi apiInstance = new WebhookApi(defaultClient);
-    WebhookIn webhookIn = new WebhookIn(); // WebhookIn | 
+    EndpointApi apiInstance = new EndpointApi(defaultClient);
+    EndpointIn endpointIn = new EndpointIn(); // EndpointIn | 
     try {
-      WebhookOut result = apiInstance.v1WebhookCreate(webhookIn);
+      EndpointOut result = apiInstance.v1EndpointCreate(endpointIn);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling WebhookApi#v1WebhookCreate");
+      System.err.println("Exception when calling EndpointApi#v1EndpointCreate");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -60,11 +60,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **webhookIn** | [**WebhookIn**](WebhookIn.md)|  |
+ **endpointIn** | [**EndpointIn**](EndpointIn.md)|  |
 
 ### Return type
 
-[**WebhookOut**](WebhookOut.md)
+[**EndpointOut**](EndpointOut.md)
 
 ### Authorization
 
@@ -88,13 +88,13 @@ Name | Type | Description  | Notes
 **422** | Validation Error |  -  |
 **429** | Too Many Requests |  -  |
 
-<a name="v1WebhookDelete"></a>
-# **v1WebhookDelete**
-> WebhookOut v1WebhookDelete(webhookId)
+<a name="v1EndpointDelete"></a>
+# **v1EndpointDelete**
+> EndpointOut v1EndpointDelete(endpointId)
 
-Delete webhook
+Delete endpoint
 
-delete the specified webhook.
+delete the specified endpoint.
 
 ### Example
 ```java
@@ -104,7 +104,7 @@ import io.openweb3.pay.internal.ApiException;
 import io.openweb3.pay.internal.Configuration;
 import io.openweb3.pay.internal.auth.*;
 import io.openweb3.pay.internal.models.*;
-import io.openweb3.pay.internal.api.WebhookApi;
+import io.openweb3.pay.internal.api.EndpointApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -117,13 +117,13 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    WebhookApi apiInstance = new WebhookApi(defaultClient);
-    String webhookId = "wb_12345xsfei"; // String | Specified the webhook id.
+    EndpointApi apiInstance = new EndpointApi(defaultClient);
+    String endpointId = "wb_12345xsfei"; // String | Specified the endpoint id.
     try {
-      WebhookOut result = apiInstance.v1WebhookDelete(webhookId);
+      EndpointOut result = apiInstance.v1EndpointDelete(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling WebhookApi#v1WebhookDelete");
+      System.err.println("Exception when calling EndpointApi#v1EndpointDelete");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -137,11 +137,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **webhookId** | **String**| Specified the webhook id. |
+ **endpointId** | **String**| Specified the endpoint id. |
 
 ### Return type
 
-[**WebhookOut**](WebhookOut.md)
+[**EndpointOut**](EndpointOut.md)
 
 ### Authorization
 
@@ -164,13 +164,13 @@ Name | Type | Description  | Notes
 **422** | Validation Error |  -  |
 **429** | Too Many Requests |  -  |
 
-<a name="v1WebhookList"></a>
-# **v1WebhookList**
-> ListResponseWebhookOut v1WebhookList(limit, cursor)
+<a name="v1EndpointList"></a>
+# **v1EndpointList**
+> ListResponseEndpointOut v1EndpointList(limit, cursor)
 
-List webhooks
+List endpoints
 
-List webhooks.
+List endpoints.
 
 ### Example
 ```java
@@ -180,7 +180,7 @@ import io.openweb3.pay.internal.ApiException;
 import io.openweb3.pay.internal.Configuration;
 import io.openweb3.pay.internal.auth.*;
 import io.openweb3.pay.internal.models.*;
-import io.openweb3.pay.internal.api.WebhookApi;
+import io.openweb3.pay.internal.api.EndpointApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -193,14 +193,14 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    WebhookApi apiInstance = new WebhookApi(defaultClient);
+    EndpointApi apiInstance = new EndpointApi(defaultClient);
     Integer limit = 20; // Integer | Limit the number of returned items
     String cursor = "cursor_example"; // String | Specifying the start cursor position
     try {
-      ListResponseWebhookOut result = apiInstance.v1WebhookList(limit, cursor);
+      ListResponseEndpointOut result = apiInstance.v1EndpointList(limit, cursor);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling WebhookApi#v1WebhookList");
+      System.err.println("Exception when calling EndpointApi#v1EndpointList");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListResponseWebhookOut**](ListResponseWebhookOut.md)
+[**ListResponseEndpointOut**](ListResponseEndpointOut.md)
 
 ### Authorization
 
@@ -241,13 +241,13 @@ Name | Type | Description  | Notes
 **422** | Validation Error |  -  |
 **429** | Too Many Requests |  -  |
 
-<a name="v1WebhookPatch"></a>
-# **v1WebhookPatch**
-> WebhookOut v1WebhookPatch(webhookId, webhookPatch)
+<a name="v1EndpointPatch"></a>
+# **v1EndpointPatch**
+> EndpointOut v1EndpointPatch(endpointId, endpointPatch)
 
-update webhook
+update endpoint
 
-update a specified webhook.
+update a specified endpoint.
 
 ### Example
 ```java
@@ -257,7 +257,7 @@ import io.openweb3.pay.internal.ApiException;
 import io.openweb3.pay.internal.Configuration;
 import io.openweb3.pay.internal.auth.*;
 import io.openweb3.pay.internal.models.*;
-import io.openweb3.pay.internal.api.WebhookApi;
+import io.openweb3.pay.internal.api.EndpointApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -270,14 +270,14 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    WebhookApi apiInstance = new WebhookApi(defaultClient);
-    String webhookId = "wb_12345xsfei"; // String | Specified the webhook id.
-    WebhookPatch webhookPatch = new WebhookPatch(); // WebhookPatch | 
+    EndpointApi apiInstance = new EndpointApi(defaultClient);
+    String endpointId = "wb_12345xsfei"; // String | Specified the endpoint id.
+    EndpointPatch endpointPatch = new EndpointPatch(); // EndpointPatch | 
     try {
-      WebhookOut result = apiInstance.v1WebhookPatch(webhookId, webhookPatch);
+      EndpointOut result = apiInstance.v1EndpointPatch(endpointId, endpointPatch);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling WebhookApi#v1WebhookPatch");
+      System.err.println("Exception when calling EndpointApi#v1EndpointPatch");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -291,12 +291,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **webhookId** | **String**| Specified the webhook id. |
- **webhookPatch** | [**WebhookPatch**](WebhookPatch.md)|  |
+ **endpointId** | **String**| Specified the endpoint id. |
+ **endpointPatch** | [**EndpointPatch**](EndpointPatch.md)|  |
 
 ### Return type
 
-[**WebhookOut**](WebhookOut.md)
+[**EndpointOut**](EndpointOut.md)
 
 ### Authorization
 
@@ -319,13 +319,13 @@ Name | Type | Description  | Notes
 **422** | Validation Error |  -  |
 **429** | Too Many Requests |  -  |
 
-<a name="v1WebhookRetrieve"></a>
-# **v1WebhookRetrieve**
-> WebhookOut v1WebhookRetrieve(webhookId)
+<a name="v1EndpointRetrieve"></a>
+# **v1EndpointRetrieve**
+> EndpointOut v1EndpointRetrieve(endpointId)
 
-Retrieve webhook
+Retrieve endpoint
 
-retrieve the specified webhook.
+retrieve the specified endpoint.
 
 ### Example
 ```java
@@ -335,7 +335,7 @@ import io.openweb3.pay.internal.ApiException;
 import io.openweb3.pay.internal.Configuration;
 import io.openweb3.pay.internal.auth.*;
 import io.openweb3.pay.internal.models.*;
-import io.openweb3.pay.internal.api.WebhookApi;
+import io.openweb3.pay.internal.api.EndpointApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -348,13 +348,13 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    WebhookApi apiInstance = new WebhookApi(defaultClient);
-    String webhookId = "wb_12345xsfei"; // String | Specified the webhook id.
+    EndpointApi apiInstance = new EndpointApi(defaultClient);
+    String endpointId = "wb_12345xsfei"; // String | Specified the endpoint id.
     try {
-      WebhookOut result = apiInstance.v1WebhookRetrieve(webhookId);
+      EndpointOut result = apiInstance.v1EndpointRetrieve(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling WebhookApi#v1WebhookRetrieve");
+      System.err.println("Exception when calling EndpointApi#v1EndpointRetrieve");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -368,11 +368,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **webhookId** | **String**| Specified the webhook id. |
+ **endpointId** | **String**| Specified the endpoint id. |
 
 ### Return type
 
-[**WebhookOut**](WebhookOut.md)
+[**EndpointOut**](EndpointOut.md)
 
 ### Authorization
 

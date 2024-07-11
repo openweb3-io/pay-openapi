@@ -31,17 +31,17 @@ import org.junit.Test;
 
 
 /**
- * Model tests for EndpointIn
+ * Model tests for EndpointPatch
  */
-public class EndpointInTest {
-    private final EndpointIn model = new EndpointIn();
+public class EndpointPatchTest {
+    private final EndpointPatch model = new EndpointPatch();
 
     /**
-     * Model tests for EndpointIn
+     * Model tests for EndpointPatch
      */
     @Test
-    public void testEndpointIn() {
-        // TODO: test EndpointIn
+    public void testEndpointPatch() {
+        // TODO: test EndpointPatch
     }
 
     /**
@@ -50,22 +50,6 @@ public class EndpointInTest {
     @Test
     public void uidTest() {
         // TODO: test uid
-    }
-
-    /**
-     * Test the property 'network'
-     */
-    @Test
-    public void networkTest() {
-        // TODO: test network
-    }
-
-    /**
-     * Test the property 'chain'
-     */
-    @Test
-    public void chainTest() {
-        // TODO: test chain
     }
 
     /**

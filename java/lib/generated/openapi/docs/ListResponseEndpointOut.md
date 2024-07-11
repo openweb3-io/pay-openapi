@@ -1,13 +1,13 @@
 
 
-# ListResponseWebhookOut
+# ListResponseEndpointOut
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**List&lt;WebhookOut&gt;**](WebhookOut.md) |  | 
+**data** | [**List&lt;EndpointOut&gt;**](EndpointOut.md) |  | 
 **total** | **Integer** |  |  [optional]
 **hasNext** | **Boolean** |  |  [optional]
 **hasPrev** | **Boolean** |  |  [optional]

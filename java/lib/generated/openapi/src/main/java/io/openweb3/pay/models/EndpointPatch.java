@@ -29,10 +29,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * WebhookPatch
+ * EndpointPatch
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-09T17:47:29.721176+08:00[Asia/Shanghai]")
-public class WebhookPatch {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-11T15:16:01.125315+08:00[Asia/Shanghai]")
+public class EndpointPatch {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
   private String uid;
@@ -55,7 +55,7 @@ public class WebhookPatch {
 
   public static final String SERIALIZED_NAME_FILTER_TYPES = "filterTypes";
   @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
-  private List<String> filterTypes = new ArrayList<String>();
+  private List<String> filterTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DISABLED = "disabled";
   @SerializedName(SERIALIZED_NAME_DISABLED)
@@ -74,18 +74,18 @@ public class WebhookPatch {
   private Integer version;
 
 
-  public WebhookPatch uid(String uid) {
+  public EndpointPatch uid(String uid) {
     
     this.uid = uid;
     return this;
   }
 
    /**
-   * The webhook&#39;s UID
+   * The endpoint&#39;s UID
    * @return uid
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "unique-webhook-identifier", value = "The webhook's UID")
+  @ApiModelProperty(example = "unique-endpoint-identifier", value = "The endpoint's UID")
 
   public String getUid() {
     return uid;
@@ -97,18 +97,18 @@ public class WebhookPatch {
   }
 
 
-  public WebhookPatch description(String description) {
+  public EndpointPatch description(String description) {
     
     this.description = description;
     return this;
   }
 
    /**
-   * The webhook&#39;s description
+   * The endpoint&#39;s description
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "The description for webhook", value = "The webhook's description")
+  @ApiModelProperty(example = "The description for endpoint", value = "The endpoint's description")
 
   public String getDescription() {
     return description;
@@ -120,18 +120,18 @@ public class WebhookPatch {
   }
 
 
-  public WebhookPatch secret(String secret) {
+  public EndpointPatch secret(String secret) {
     
     this.secret = secret;
     return this;
   }
 
    /**
-   * The webhook&#39;s secret
+   * The endpoint&#39;s secret
    * @return secret
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "whsec_13afsaew2skae1lo3r", value = "The webhook's secret")
+  @ApiModelProperty(example = "whsec_13afsaew2skae1lo3r", value = "The endpoint's secret")
 
   public String getSecret() {
     return secret;
@@ -143,17 +143,17 @@ public class WebhookPatch {
   }
 
 
-  public WebhookPatch url(String url) {
+  public EndpointPatch url(String url) {
     
     this.url = url;
     return this;
   }
 
    /**
-   * The webhook endpoint url
+   * The endpoint endpoint url
    * @return url
   **/
-  @ApiModelProperty(example = "http://example.com/webhook", required = true, value = "The webhook endpoint url")
+  @ApiModelProperty(example = "http://example.com/endpoint", required = true, value = "The endpoint endpoint url")
 
   public String getUrl() {
     return url;
@@ -165,18 +165,18 @@ public class WebhookPatch {
   }
 
 
-  public WebhookPatch filter(String filter) {
+  public EndpointPatch filter(String filter) {
     
     this.filter = filter;
     return this;
   }
 
    /**
-   * The webhook endpoint url
+   * The endpoint endpoint url
    * @return filter
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"network\": \"mainnet\"}", value = "The webhook endpoint url")
+  @ApiModelProperty(example = "{\"network\": \"mainnet\"}", value = "The endpoint endpoint url")
 
   public String getFilter() {
     return filter;
@@ -188,22 +188,22 @@ public class WebhookPatch {
   }
 
 
-  public WebhookPatch filterTypes(List<String> filterTypes) {
+  public EndpointPatch filterTypes(List<String> filterTypes) {
     
     this.filterTypes = filterTypes;
     return this;
   }
 
-  public WebhookPatch addFilterTypesItem(String filterTypesItem) {
+  public EndpointPatch addFilterTypesItem(String filterTypesItem) {
     this.filterTypes.add(filterTypesItem);
     return this;
   }
 
    /**
-   * The webhook endpoint url
+   * The endpoint endpoint url
    * @return filterTypes
   **/
-  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The webhook endpoint url")
+  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The endpoint endpoint url")
 
   public List<String> getFilterTypes() {
     return filterTypes;
@@ -215,18 +215,18 @@ public class WebhookPatch {
   }
 
 
-  public WebhookPatch disabled(Boolean disabled) {
+  public EndpointPatch disabled(Boolean disabled) {
     
     this.disabled = disabled;
     return this;
   }
 
    /**
-   * indicate whether to disable the webhook endpoint
+   * indicate whether to disable the endpoint endpoint
    * @return disabled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "indicate whether to disable the webhook endpoint")
+  @ApiModelProperty(example = "false", value = "indicate whether to disable the endpoint endpoint")
 
   public Boolean getDisabled() {
     return disabled;
@@ -238,15 +238,15 @@ public class WebhookPatch {
   }
 
 
-  public WebhookPatch metadata(Map<String, String> metadata) {
+  public EndpointPatch metadata(Map<String, String> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public WebhookPatch putMetadataItem(String key, String metadataItem) {
+  public EndpointPatch putMetadataItem(String key, String metadataItem) {
     if (this.metadata == null) {
-      this.metadata = new HashMap<String, String>();
+      this.metadata = new HashMap<>();
     }
     this.metadata.put(key, metadataItem);
     return this;
@@ -269,15 +269,15 @@ public class WebhookPatch {
   }
 
 
-  public WebhookPatch headers(Map<String, String> headers) {
+  public EndpointPatch headers(Map<String, String> headers) {
     
     this.headers = headers;
     return this;
   }
 
-  public WebhookPatch putHeadersItem(String key, String headersItem) {
+  public EndpointPatch putHeadersItem(String key, String headersItem) {
     if (this.headers == null) {
-      this.headers = new HashMap<String, String>();
+      this.headers = new HashMap<>();
     }
     this.headers.put(key, headersItem);
     return this;
@@ -300,18 +300,18 @@ public class WebhookPatch {
   }
 
 
-  public WebhookPatch version(Integer version) {
+  public EndpointPatch version(Integer version) {
     
     this.version = version;
     return this;
   }
 
    /**
-   * webhook version
+   * endpoint version
    * @return version
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "webhook version")
+  @ApiModelProperty(value = "endpoint version")
 
   public Integer getVersion() {
     return version;
@@ -331,17 +331,17 @@ public class WebhookPatch {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookPatch webhookPatch = (WebhookPatch) o;
-    return Objects.equals(this.uid, webhookPatch.uid) &&
-        Objects.equals(this.description, webhookPatch.description) &&
-        Objects.equals(this.secret, webhookPatch.secret) &&
-        Objects.equals(this.url, webhookPatch.url) &&
-        Objects.equals(this.filter, webhookPatch.filter) &&
-        Objects.equals(this.filterTypes, webhookPatch.filterTypes) &&
-        Objects.equals(this.disabled, webhookPatch.disabled) &&
-        Objects.equals(this.metadata, webhookPatch.metadata) &&
-        Objects.equals(this.headers, webhookPatch.headers) &&
-        Objects.equals(this.version, webhookPatch.version);
+    EndpointPatch endpointPatch = (EndpointPatch) o;
+    return Objects.equals(this.uid, endpointPatch.uid) &&
+        Objects.equals(this.description, endpointPatch.description) &&
+        Objects.equals(this.secret, endpointPatch.secret) &&
+        Objects.equals(this.url, endpointPatch.url) &&
+        Objects.equals(this.filter, endpointPatch.filter) &&
+        Objects.equals(this.filterTypes, endpointPatch.filterTypes) &&
+        Objects.equals(this.disabled, endpointPatch.disabled) &&
+        Objects.equals(this.metadata, endpointPatch.metadata) &&
+        Objects.equals(this.headers, endpointPatch.headers) &&
+        Objects.equals(this.version, endpointPatch.version);
   }
 
   @Override
@@ -352,7 +352,7 @@ public class WebhookPatch {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookPatch {\n");
+    sb.append("class EndpointPatch {\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    secret: ").append(toIndentedString(secret)).append("\n");

@@ -29,10 +29,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * WebhookOut
+ * EndpointIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-09T17:47:29.721176+08:00[Asia/Shanghai]")
-public class WebhookOut {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-11T15:16:01.125315+08:00[Asia/Shanghai]")
+public class EndpointIn {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
   private String uid;
@@ -49,6 +49,10 @@ public class WebhookOut {
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
+  public static final String SERIALIZED_NAME_SECRET = "secret";
+  @SerializedName(SERIALIZED_NAME_SECRET)
+  private String secret;
+
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
   private String url;
@@ -59,7 +63,7 @@ public class WebhookOut {
 
   public static final String SERIALIZED_NAME_FILTER_TYPES = "filterTypes";
   @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
-  private List<String> filterTypes = new ArrayList<String>();
+  private List<String> filterTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DISABLED = "disabled";
   @SerializedName(SERIALIZED_NAME_DISABLED)
@@ -78,18 +82,18 @@ public class WebhookOut {
   private Integer version;
 
 
-  public WebhookOut uid(String uid) {
+  public EndpointIn uid(String uid) {
     
     this.uid = uid;
     return this;
   }
 
    /**
-   * The webhook&#39;s UID
+   * The endpoint&#39;s UID
    * @return uid
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "unique-webhook-identifier", value = "The webhook's UID")
+  @ApiModelProperty(example = "unique-endpoint-identifier", value = "The endpoint's UID")
 
   public String getUid() {
     return uid;
@@ -101,17 +105,17 @@ public class WebhookOut {
   }
 
 
-  public WebhookOut network(String network) {
+  public EndpointIn network(String network) {
     
     this.network = network;
     return this;
   }
 
    /**
-   * The chain network monitor by webhook
+   * The chain network monitor by endpoint
    * @return network
   **/
-  @ApiModelProperty(example = "mainnet", required = true, value = "The chain network monitor by webhook")
+  @ApiModelProperty(example = "mainnet", required = true, value = "The chain network monitor by endpoint")
 
   public String getNetwork() {
     return network;
@@ -123,7 +127,7 @@ public class WebhookOut {
   }
 
 
-  public WebhookOut chain(String chain) {
+  public EndpointIn chain(String chain) {
     
     this.chain = chain;
     return this;
@@ -145,18 +149,18 @@ public class WebhookOut {
   }
 
 
-  public WebhookOut description(String description) {
+  public EndpointIn description(String description) {
     
     this.description = description;
     return this;
   }
 
    /**
-   * The webhook&#39;s description
+   * The endpoint&#39;s description
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "The description for webhook", value = "The webhook's description")
+  @ApiModelProperty(example = "The description for endpoint", value = "The endpoint's description")
 
   public String getDescription() {
     return description;
@@ -168,17 +172,40 @@ public class WebhookOut {
   }
 
 
-  public WebhookOut url(String url) {
+  public EndpointIn secret(String secret) {
+    
+    this.secret = secret;
+    return this;
+  }
+
+   /**
+   * The endpoint&#39;s secret
+   * @return secret
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "whsec_13afsaew2skae1lo3r", value = "The endpoint's secret")
+
+  public String getSecret() {
+    return secret;
+  }
+
+
+  public void setSecret(String secret) {
+    this.secret = secret;
+  }
+
+
+  public EndpointIn url(String url) {
     
     this.url = url;
     return this;
   }
 
    /**
-   * The webhook endpoint url
+   * The endpoint endpoint url
    * @return url
   **/
-  @ApiModelProperty(example = "http://example.com/webhook", required = true, value = "The webhook endpoint url")
+  @ApiModelProperty(example = "http://example.com/endpoint", required = true, value = "The endpoint endpoint url")
 
   public String getUrl() {
     return url;
@@ -190,18 +217,18 @@ public class WebhookOut {
   }
 
 
-  public WebhookOut filter(String filter) {
+  public EndpointIn filter(String filter) {
     
     this.filter = filter;
     return this;
   }
 
    /**
-   * The webhook endpoint url
+   * The endpoint endpoint url
    * @return filter
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"network\": \"mainnet\"}", value = "The webhook endpoint url")
+  @ApiModelProperty(example = "{\"network\": \"mainnet\"}", value = "The endpoint endpoint url")
 
   public String getFilter() {
     return filter;
@@ -213,22 +240,22 @@ public class WebhookOut {
   }
 
 
-  public WebhookOut filterTypes(List<String> filterTypes) {
+  public EndpointIn filterTypes(List<String> filterTypes) {
     
     this.filterTypes = filterTypes;
     return this;
   }
 
-  public WebhookOut addFilterTypesItem(String filterTypesItem) {
+  public EndpointIn addFilterTypesItem(String filterTypesItem) {
     this.filterTypes.add(filterTypesItem);
     return this;
   }
 
    /**
-   * The webhook endpoint url
+   * The endpoint endpoint url
    * @return filterTypes
   **/
-  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The webhook endpoint url")
+  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The endpoint endpoint url")
 
   public List<String> getFilterTypes() {
     return filterTypes;
@@ -240,18 +267,18 @@ public class WebhookOut {
   }
 
 
-  public WebhookOut disabled(Boolean disabled) {
+  public EndpointIn disabled(Boolean disabled) {
     
     this.disabled = disabled;
     return this;
   }
 
    /**
-   * indicate whether to disable the webhook endpoint
+   * indicate whether to disable the endpoint endpoint
    * @return disabled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "indicate whether to disable the webhook endpoint")
+  @ApiModelProperty(example = "false", value = "indicate whether to disable the endpoint endpoint")
 
   public Boolean getDisabled() {
     return disabled;
@@ -263,15 +290,15 @@ public class WebhookOut {
   }
 
 
-  public WebhookOut metadata(Map<String, String> metadata) {
+  public EndpointIn metadata(Map<String, String> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public WebhookOut putMetadataItem(String key, String metadataItem) {
+  public EndpointIn putMetadataItem(String key, String metadataItem) {
     if (this.metadata == null) {
-      this.metadata = new HashMap<String, String>();
+      this.metadata = new HashMap<>();
     }
     this.metadata.put(key, metadataItem);
     return this;
@@ -294,15 +321,15 @@ public class WebhookOut {
   }
 
 
-  public WebhookOut headers(Map<String, String> headers) {
+  public EndpointIn headers(Map<String, String> headers) {
     
     this.headers = headers;
     return this;
   }
 
-  public WebhookOut putHeadersItem(String key, String headersItem) {
+  public EndpointIn putHeadersItem(String key, String headersItem) {
     if (this.headers == null) {
-      this.headers = new HashMap<String, String>();
+      this.headers = new HashMap<>();
     }
     this.headers.put(key, headersItem);
     return this;
@@ -325,18 +352,18 @@ public class WebhookOut {
   }
 
 
-  public WebhookOut version(Integer version) {
+  public EndpointIn version(Integer version) {
     
     this.version = version;
     return this;
   }
 
    /**
-   * webhook version
+   * endpoint version
    * @return version
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "webhook version")
+  @ApiModelProperty(value = "endpoint version")
 
   public Integer getVersion() {
     return version;
@@ -356,33 +383,35 @@ public class WebhookOut {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WebhookOut webhookOut = (WebhookOut) o;
-    return Objects.equals(this.uid, webhookOut.uid) &&
-        Objects.equals(this.network, webhookOut.network) &&
-        Objects.equals(this.chain, webhookOut.chain) &&
-        Objects.equals(this.description, webhookOut.description) &&
-        Objects.equals(this.url, webhookOut.url) &&
-        Objects.equals(this.filter, webhookOut.filter) &&
-        Objects.equals(this.filterTypes, webhookOut.filterTypes) &&
-        Objects.equals(this.disabled, webhookOut.disabled) &&
-        Objects.equals(this.metadata, webhookOut.metadata) &&
-        Objects.equals(this.headers, webhookOut.headers) &&
-        Objects.equals(this.version, webhookOut.version);
+    EndpointIn endpointIn = (EndpointIn) o;
+    return Objects.equals(this.uid, endpointIn.uid) &&
+        Objects.equals(this.network, endpointIn.network) &&
+        Objects.equals(this.chain, endpointIn.chain) &&
+        Objects.equals(this.description, endpointIn.description) &&
+        Objects.equals(this.secret, endpointIn.secret) &&
+        Objects.equals(this.url, endpointIn.url) &&
+        Objects.equals(this.filter, endpointIn.filter) &&
+        Objects.equals(this.filterTypes, endpointIn.filterTypes) &&
+        Objects.equals(this.disabled, endpointIn.disabled) &&
+        Objects.equals(this.metadata, endpointIn.metadata) &&
+        Objects.equals(this.headers, endpointIn.headers) &&
+        Objects.equals(this.version, endpointIn.version);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid, network, chain, description, url, filter, filterTypes, disabled, metadata, headers, version);
+    return Objects.hash(uid, network, chain, description, secret, url, filter, filterTypes, disabled, metadata, headers, version);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WebhookOut {\n");
+    sb.append("class EndpointIn {\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
     sb.append("    network: ").append(toIndentedString(network)).append("\n");
     sb.append("    chain: ").append(toIndentedString(chain)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    secret: ").append(toIndentedString(secret)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    filter: ").append(toIndentedString(filter)).append("\n");
     sb.append("    filterTypes: ").append(toIndentedString(filterTypes)).append("\n");

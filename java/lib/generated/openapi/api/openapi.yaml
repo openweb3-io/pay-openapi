@@ -388,10 +388,10 @@ paths:
                 }'
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/webhooks:
+  /api/v1/endpoints:
     get:
-      description: List webhooks.
-      operationId: v1.webhook.list
+      description: List endpoints.
+      operationId: v1.endpoint.list
       parameters:
       - description: Limit the number of returned items
         explode: true
@@ -420,7 +420,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse_WebhookOut_'
+                $ref: '#/components/schemas/ListResponse_EndpointOut_'
         "401":
           content:
             application/json:
@@ -457,30 +457,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/HttpErrorOut'
           description: Too Many Requests
-      summary: List webhooks
+      summary: List endpoints
       tags:
-      - Webhook
+      - Endpoint
       x-accepts: application/json
     post:
-      description: Create a webhook.
-      operationId: v1.webhook.create
+      description: Create a endpoint.
+      operationId: v1.endpoint.create
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/WebhookIn'
+              $ref: '#/components/schemas/EndpointIn'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WebhookOut'
+                $ref: '#/components/schemas/EndpointOut'
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WebhookOut'
+                $ref: '#/components/schemas/EndpointOut'
         "400":
           content:
             application/json:
@@ -523,9 +523,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HttpErrorOut'
           description: Too Many Requests
-      summary: Create webhook
+      summary: Create endpoint
       tags:
-      - Webhook
+      - Endpoint
       x-readme:
         code-samples:
         - name: JavaScript
@@ -666,32 +666,32 @@ paths:
                 }'
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/webhooks/{webhookId}:
+  /api/v1/endpoints/{endpointId}:
     delete:
-      description: delete the specified webhook.
-      operationId: v1.webhook.delete
+      description: delete the specified endpoint.
+      operationId: v1.endpoint.delete
       parameters:
-      - description: Specified the webhook id.
-        explode: true
+      - description: Specified the endpoint id.
+        explode: false
         in: path
-        name: webhookId
+        name: endpointId
         required: true
         schema:
-          description: Specified the webhook id.
+          description: Specified the endpoint id.
           example: wb_12345xsfei
           type: string
-        style: form
+        style: simple
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WebhookOut'
+                $ref: '#/components/schemas/EndpointOut'
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WebhookOut'
+                $ref: '#/components/schemas/EndpointOut'
         "401":
           content:
             application/json:
@@ -728,35 +728,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/HttpErrorOut'
           description: Too Many Requests
-      summary: Delete webhook
+      summary: Delete endpoint
       tags:
-      - Webhook
+      - Endpoint
       x-accepts: application/json
     get:
-      description: retrieve the specified webhook.
-      operationId: v1.webhook.retrieve
+      description: retrieve the specified endpoint.
+      operationId: v1.endpoint.retrieve
       parameters:
-      - description: Specified the webhook id.
-        explode: true
+      - description: Specified the endpoint id.
+        explode: false
         in: path
-        name: webhookId
+        name: endpointId
         required: true
         schema:
-          description: Specified the webhook id.
+          description: Specified the endpoint id.
           example: wb_12345xsfei
           type: string
-        style: form
+        style: simple
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WebhookOut'
+                $ref: '#/components/schemas/EndpointOut'
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WebhookOut'
+                $ref: '#/components/schemas/EndpointOut'
         "401":
           content:
             application/json:
@@ -793,41 +793,41 @@ paths:
               schema:
                 $ref: '#/components/schemas/HttpErrorOut'
           description: Too Many Requests
-      summary: Retrieve webhook
+      summary: Retrieve endpoint
       tags:
-      - Webhook
+      - Endpoint
       x-accepts: application/json
     patch:
-      description: update a specified webhook.
-      operationId: v1.webhook.patch
+      description: update a specified endpoint.
+      operationId: v1.endpoint.patch
       parameters:
-      - description: Specified the webhook id.
-        explode: true
+      - description: Specified the endpoint id.
+        explode: false
         in: path
-        name: webhookId
+        name: endpointId
         required: true
         schema:
-          description: Specified the webhook id.
+          description: Specified the endpoint id.
           example: wb_12345xsfei
           type: string
-        style: form
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/WebhookPatch'
+              $ref: '#/components/schemas/EndpointPatch'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WebhookOut'
+                $ref: '#/components/schemas/EndpointOut'
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/WebhookOut'
+                $ref: '#/components/schemas/EndpointOut'
         "401":
           content:
             application/json:
@@ -864,9 +864,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/HttpErrorOut'
           description: Too Many Requests
-      summary: update webhook
+      summary: update endpoint
       tags:
-      - Webhook
+      - Endpoint
       x-contentType: application/json
       x-accepts: application/json
 components:
@@ -1207,10 +1207,10 @@ components:
       required:
       - data
       type: object
-    WebhookIn:
+    EndpointIn:
       example:
         filter: '{"network": "mainnet"}'
-        uid: unique-webhook-identifier
+        uid: unique-endpoint-identifier
         headers:
           node: http://dashboard.com/node1
           tag: node
@@ -1218,25 +1218,25 @@ components:
         metadata:
           node: http://dashboard.com/node1
           tag: node
-        description: The description for webhook
+        description: The description for endpoint
         disabled: false
         secret: whsec_13afsaew2skae1lo3r
         filterTypes:
         - tx.created
         version: 0
-        url: http://example.com/webhook
+        url: http://example.com/endpoint
         network: mainnet
       properties:
         uid:
-          description: The webhook's UID
-          example: unique-webhook-identifier
+          description: The endpoint's UID
+          example: unique-endpoint-identifier
           maxLength: 256
           minLength: 1
           nullable: true
           pattern: ^[a-zA-Z0-9\-_.]+$
           type: string
         network:
-          description: The chain network monitor by webhook
+          description: The chain network monitor by endpoint
           example: mainnet
           maxLength: 256
           minLength: 1
@@ -1248,32 +1248,32 @@ components:
           minLength: 1
           type: string
         description:
-          description: The webhook's description
-          example: The description for webhook
+          description: The endpoint's description
+          example: The description for endpoint
           type: string
         secret:
-          description: The webhook's secret
+          description: The endpoint's secret
           example: whsec_13afsaew2skae1lo3r
           nullable: true
           type: string
         url:
-          description: The webhook endpoint url
-          example: http://example.com/webhook
+          description: The endpoint endpoint url
+          example: http://example.com/endpoint
           type: string
         filter:
-          description: The webhook endpoint url
+          description: The endpoint endpoint url
           example: '{"network": "mainnet"}'
           nullable: true
           type: string
         filterTypes:
-          description: The webhook endpoint url
+          description: The endpoint endpoint url
           example:
           - tx.created
           items:
             type: string
           type: array
         disabled:
-          description: indicate whether to disable the webhook endpoint
+          description: indicate whether to disable the endpoint endpoint
           example: false
           type: boolean
         metadata:
@@ -1297,7 +1297,7 @@ components:
           nullable: true
           type: object
         version:
-          description: webhook version
+          description: endpoint version
           type: integer
       required:
       - chain
@@ -1305,59 +1305,59 @@ components:
       - network
       - url
       type: object
-    WebhookPatch:
+    EndpointPatch:
       example:
         filter: '{"network": "mainnet"}'
-        uid: unique-webhook-identifier
+        uid: unique-endpoint-identifier
         headers:
           node: http://dashboard.com/node1
           tag: node
         metadata:
           node: http://dashboard.com/node1
           tag: node
-        description: The description for webhook
+        description: The description for endpoint
         disabled: false
         secret: whsec_13afsaew2skae1lo3r
         filterTypes:
         - tx.created
         version: 0
-        url: http://example.com/webhook
+        url: http://example.com/endpoint
       properties:
         uid:
-          description: The webhook's UID
-          example: unique-webhook-identifier
+          description: The endpoint's UID
+          example: unique-endpoint-identifier
           maxLength: 256
           minLength: 1
           nullable: true
           pattern: ^[a-zA-Z0-9\-_.]+$
           type: string
         description:
-          description: The webhook's description
-          example: The description for webhook
+          description: The endpoint's description
+          example: The description for endpoint
           type: string
         secret:
-          description: The webhook's secret
+          description: The endpoint's secret
           example: whsec_13afsaew2skae1lo3r
           nullable: true
           type: string
         url:
-          description: The webhook endpoint url
-          example: http://example.com/webhook
+          description: The endpoint endpoint url
+          example: http://example.com/endpoint
           type: string
         filter:
-          description: The webhook endpoint url
+          description: The endpoint endpoint url
           example: '{"network": "mainnet"}'
           nullable: true
           type: string
         filterTypes:
-          description: The webhook endpoint url
+          description: The endpoint endpoint url
           example:
           - tx.created
           items:
             type: string
           type: array
         disabled:
-          description: indicate whether to disable the webhook endpoint
+          description: indicate whether to disable the endpoint endpoint
           example: false
           type: boolean
         metadata:
@@ -1381,16 +1381,16 @@ components:
           nullable: true
           type: object
         version:
-          description: webhook version
+          description: endpoint version
           type: integer
       required:
       - filterTypes
       - url
       type: object
-    WebhookOut:
+    EndpointOut:
       example:
         filter: '{"network": "mainnet"}'
-        uid: unique-webhook-identifier
+        uid: unique-endpoint-identifier
         headers:
           node: http://dashboard.com/node1
           tag: node
@@ -1398,24 +1398,24 @@ components:
         metadata:
           node: http://dashboard.com/node1
           tag: node
-        description: The description for webhook
+        description: The description for endpoint
         disabled: false
         filterTypes:
         - tx.created
         version: 0
-        url: http://example.com/webhook
+        url: http://example.com/endpoint
         network: mainnet
       properties:
         uid:
-          description: The webhook's UID
-          example: unique-webhook-identifier
+          description: The endpoint's UID
+          example: unique-endpoint-identifier
           maxLength: 256
           minLength: 1
           nullable: true
           pattern: ^[a-zA-Z0-9\-_.]+$
           type: string
         network:
-          description: The chain network monitor by webhook
+          description: The chain network monitor by endpoint
           example: mainnet
           maxLength: 256
           minLength: 1
@@ -1427,26 +1427,26 @@ components:
           minLength: 1
           type: string
         description:
-          description: The webhook's description
-          example: The description for webhook
+          description: The endpoint's description
+          example: The description for endpoint
           type: string
         url:
-          description: The webhook endpoint url
-          example: http://example.com/webhook
+          description: The endpoint endpoint url
+          example: http://example.com/endpoint
           type: string
         filter:
-          description: The webhook endpoint url
+          description: The endpoint endpoint url
           example: '{"network": "mainnet"}'
           type: string
         filterTypes:
-          description: The webhook endpoint url
+          description: The endpoint endpoint url
           example:
           - tx.created
           items:
             type: string
           type: array
         disabled:
-          description: indicate whether to disable the webhook endpoint
+          description: indicate whether to disable the endpoint endpoint
           example: false
           type: boolean
         metadata:
@@ -1468,7 +1468,7 @@ components:
             tag: node
           type: object
         version:
-          description: webhook version
+          description: endpoint version
           type: integer
       required:
       - chain
@@ -1476,13 +1476,13 @@ components:
       - network
       - url
       type: object
-    ListResponse_WebhookOut_:
+    ListResponse_EndpointOut_:
       example:
         nextCursor: nextCursor
         total: 6
         data:
         - filter: '{"network": "mainnet"}'
-          uid: unique-webhook-identifier
+          uid: unique-endpoint-identifier
           headers:
             node: http://dashboard.com/node1
             tag: node
@@ -1490,15 +1490,15 @@ components:
           metadata:
             node: http://dashboard.com/node1
             tag: node
-          description: The description for webhook
+          description: The description for endpoint
           disabled: false
           filterTypes:
           - tx.created
           version: 0
-          url: http://example.com/webhook
+          url: http://example.com/endpoint
           network: mainnet
         - filter: '{"network": "mainnet"}'
-          uid: unique-webhook-identifier
+          uid: unique-endpoint-identifier
           headers:
             node: http://dashboard.com/node1
             tag: node
@@ -1506,12 +1506,12 @@ components:
           metadata:
             node: http://dashboard.com/node1
             tag: node
-          description: The description for webhook
+          description: The description for endpoint
           disabled: false
           filterTypes:
           - tx.created
           version: 0
-          url: http://example.com/webhook
+          url: http://example.com/endpoint
           network: mainnet
         hasPrev: true
         hasNext: true
@@ -1519,7 +1519,7 @@ components:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/WebhookOut'
+            $ref: '#/components/schemas/EndpointOut'
           type: array
         total:
           type: integer
@@ -1551,4 +1551,11 @@ x-readme:
   - rust
   - java
   - shell
+  parameter-ordering:
+  - path
+  - query
+  - header
+  - cookie
+  - body
+  - form
 

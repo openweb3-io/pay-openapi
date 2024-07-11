@@ -2,7 +2,7 @@ package io.openweb3.pay;
 
 import io.openweb3.pay.models.Ordering;
 
-public class WebhookListOptions  {
+public class EndpointListOptions  {
     private Ordering order;
     private String cursor;
     private Integer limit;

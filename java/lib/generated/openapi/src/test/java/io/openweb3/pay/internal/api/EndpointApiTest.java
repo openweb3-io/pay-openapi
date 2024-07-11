@@ -16,8 +16,8 @@ package io.openweb3.pay.internal.api;
 import io.openweb3.pay.internal.ApiException;
 import io.openweb3.pay.models.HTTPValidationError;
 import io.openweb3.pay.models.HttpErrorOut;
-import io.openweb3.pay.models.WebhookIn;
-import io.openweb3.pay.models.WebhookOut;
+import io.openweb3.pay.models.EndpointIn;
+import io.openweb3.pay.models.EndpointOut;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -27,74 +27,74 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for WebhookApi
+ * API tests for EndpointApi
  */
 @Ignore
-public class WebhookApiTest {
+public class EndpointApiTest {
 
-    private final WebhookApi api = new WebhookApi();
+    private final EndpointApi api = new EndpointApi();
 
     
     /**
-     * Create webhook
+     * Create endpoint
      *
-     * Create a webhook.
+     * Create a endpoint.
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void v1WebhookCreateTest() throws ApiException {
-        WebhookIn webhookIn = null;
-        WebhookOut response = api.v1WebhookCreate(webhookIn);
+    public void v1EndpointCreateTest() throws ApiException {
+        EndpointIn endpointIn = null;
+        EndpointOut response = api.v1EndpointCreate(endpointIn);
 
         // TODO: test validations
     }
     
     /**
-     * Delete webhook
+     * Delete endpoint
      *
-     * delete the specified webhook.
+     * delete the specified endpoint.
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void v1WebhookDeleteTest() throws ApiException {
-        String webhookId = null;
-        WebhookOut response = api.v1WebhookDelete(webhookId);
+    public void v1EndpointDeleteTest() throws ApiException {
+        String endpointId = null;
+        EndpointOut response = api.v1EndpointDelete(endpointId);
 
         // TODO: test validations
     }
     
     /**
-     * List webhooks
+     * List endpoints
      *
-     * retrieve the specified webhook.
+     * retrieve the specified endpoint.
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void v1WebhookRetrieveTest() throws ApiException {
-        String webhookId = null;
-        WebhookOut response = api.v1WebhookRetrieve(webhookId);
+    public void v1EndpointRetrieveTest() throws ApiException {
+        String endpointId = null;
+        EndpointOut response = api.v1EndpointRetrieve(endpointId);
 
         // TODO: test validations
     }
     
     /**
-     * update webhook
+     * update endpoint
      *
-     * update a specified webhook.
+     * update a specified endpoint.
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void v1WebhookUpdateTest() throws ApiException {
-        String webhookId = null;
-        WebhookOut response = api.v1WebhookUpdate(webhookId);
+    public void v1EndpointUpdateTest() throws ApiException {
+        String endpointId = null;
+        EndpointOut response = api.v1EndpointUpdate(endpointId);
 
         // TODO: test validations
     }

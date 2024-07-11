@@ -31,17 +31,17 @@ import org.junit.Test;
 
 
 /**
- * Model tests for WebhookPatch
+ * Model tests for EndpointIn
  */
-public class WebhookPatchTest {
-    private final WebhookPatch model = new WebhookPatch();
+public class EndpointInTest {
+    private final EndpointIn model = new EndpointIn();
 
     /**
-     * Model tests for WebhookPatch
+     * Model tests for EndpointIn
      */
     @Test
-    public void testWebhookPatch() {
-        // TODO: test WebhookPatch
+    public void testEndpointIn() {
+        // TODO: test EndpointIn
     }
 
     /**
@@ -50,6 +50,22 @@ public class WebhookPatchTest {
     @Test
     public void uidTest() {
         // TODO: test uid
+    }
+
+    /**
+     * Test the property 'network'
+     */
+    @Test
+    public void networkTest() {
+        // TODO: test network
+    }
+
+    /**
+     * Test the property 'chain'
+     */
+    @Test
+    public void chainTest() {
+        // TODO: test chain
     }
 
     /**

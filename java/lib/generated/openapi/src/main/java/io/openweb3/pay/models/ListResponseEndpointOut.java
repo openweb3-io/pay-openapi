@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.openweb3.pay.models.WebhookOut;
+import io.openweb3.pay.models.EndpointOut;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,13 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ListResponseWebhookOut
+ * ListResponseEndpointOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-09T17:47:29.721176+08:00[Asia/Shanghai]")
-public class ListResponseWebhookOut {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-11T15:16:01.125315+08:00[Asia/Shanghai]")
+public class ListResponseEndpointOut {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
-  private List<WebhookOut> data = new ArrayList<WebhookOut>();
+  private List<EndpointOut> data = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)
@@ -57,13 +57,13 @@ public class ListResponseWebhookOut {
   private String nextCursor;
 
 
-  public ListResponseWebhookOut data(List<WebhookOut> data) {
+  public ListResponseEndpointOut data(List<EndpointOut> data) {
     
     this.data = data;
     return this;
   }
 
-  public ListResponseWebhookOut addDataItem(WebhookOut dataItem) {
+  public ListResponseEndpointOut addDataItem(EndpointOut dataItem) {
     this.data.add(dataItem);
     return this;
   }
@@ -74,17 +74,17 @@ public class ListResponseWebhookOut {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public List<WebhookOut> getData() {
+  public List<EndpointOut> getData() {
     return data;
   }
 
 
-  public void setData(List<WebhookOut> data) {
+  public void setData(List<EndpointOut> data) {
     this.data = data;
   }
 
 
-  public ListResponseWebhookOut total(Integer total) {
+  public ListResponseEndpointOut total(Integer total) {
     
     this.total = total;
     return this;
@@ -107,7 +107,7 @@ public class ListResponseWebhookOut {
   }
 
 
-  public ListResponseWebhookOut hasNext(Boolean hasNext) {
+  public ListResponseEndpointOut hasNext(Boolean hasNext) {
     
     this.hasNext = hasNext;
     return this;
@@ -130,7 +130,7 @@ public class ListResponseWebhookOut {
   }
 
 
-  public ListResponseWebhookOut hasPrev(Boolean hasPrev) {
+  public ListResponseEndpointOut hasPrev(Boolean hasPrev) {
     
     this.hasPrev = hasPrev;
     return this;
@@ -153,7 +153,7 @@ public class ListResponseWebhookOut {
   }
 
 
-  public ListResponseWebhookOut preCursor(String preCursor) {
+  public ListResponseEndpointOut preCursor(String preCursor) {
     
     this.preCursor = preCursor;
     return this;
@@ -176,7 +176,7 @@ public class ListResponseWebhookOut {
   }
 
 
-  public ListResponseWebhookOut nextCursor(String nextCursor) {
+  public ListResponseEndpointOut nextCursor(String nextCursor) {
     
     this.nextCursor = nextCursor;
     return this;
@@ -207,13 +207,13 @@ public class ListResponseWebhookOut {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ListResponseWebhookOut listResponseWebhookOut = (ListResponseWebhookOut) o;
-    return Objects.equals(this.data, listResponseWebhookOut.data) &&
-        Objects.equals(this.total, listResponseWebhookOut.total) &&
-        Objects.equals(this.hasNext, listResponseWebhookOut.hasNext) &&
-        Objects.equals(this.hasPrev, listResponseWebhookOut.hasPrev) &&
-        Objects.equals(this.preCursor, listResponseWebhookOut.preCursor) &&
-        Objects.equals(this.nextCursor, listResponseWebhookOut.nextCursor);
+    ListResponseEndpointOut listResponseEndpointOut = (ListResponseEndpointOut) o;
+    return Objects.equals(this.data, listResponseEndpointOut.data) &&
+        Objects.equals(this.total, listResponseEndpointOut.total) &&
+        Objects.equals(this.hasNext, listResponseEndpointOut.hasNext) &&
+        Objects.equals(this.hasPrev, listResponseEndpointOut.hasPrev) &&
+        Objects.equals(this.preCursor, listResponseEndpointOut.preCursor) &&
+        Objects.equals(this.nextCursor, listResponseEndpointOut.nextCursor);
   }
 
   @Override
@@ -224,7 +224,7 @@ public class ListResponseWebhookOut {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ListResponseWebhookOut {\n");
+    sb.append("class ListResponseEndpointOut {\n");
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    hasNext: ").append(toIndentedString(hasNext)).append("\n");

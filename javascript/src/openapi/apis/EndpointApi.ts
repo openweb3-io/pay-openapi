@@ -6,34 +6,34 @@ import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
 import {isCodeInRange} from '../util';
 
+import { EndpointIn } from '../models/EndpointIn';
+import { EndpointOut } from '../models/EndpointOut';
+import { EndpointPatch } from '../models/EndpointPatch';
 import { HTTPValidationError } from '../models/HTTPValidationError';
 import { HttpErrorOut } from '../models/HttpErrorOut';
-import { ListResponseWebhookOut } from '../models/ListResponseWebhookOut';
-import { WebhookIn } from '../models/WebhookIn';
-import { WebhookOut } from '../models/WebhookOut';
-import { WebhookPatch } from '../models/WebhookPatch';
+import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 
 /**
  * no description
  */
-export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
+export class EndpointApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Create a webhook.
-     * Create webhook
-     * @param webhookIn 
+     * Create a endpoint.
+     * Create endpoint
+     * @param endpointIn 
      */
-    public async v1WebhookCreate(webhookIn: WebhookIn, _options?: Configuration): Promise<RequestContext> {
+    public async v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'webhookIn' is not null or undefined
-        if (webhookIn === null || webhookIn === undefined) {
-            throw new RequiredError('Required parameter webhookIn was null or undefined when calling v1WebhookCreate.');
+        // verify required parameter 'endpointIn' is not null or undefined
+        if (endpointIn === null || endpointIn === undefined) {
+            throw new RequiredError('Required parameter endpointIn was null or undefined when calling v1EndpointCreate.');
         }
 
 
         // Path Params
-        const localVarPath = '/api/v1/webhooks';
+        const localVarPath = '/api/v1/endpoints';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -54,7 +54,7 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(webhookIn, "WebhookIn", ""),
+            ObjectSerializer.serialize(endpointIn, "EndpointIn", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -70,22 +70,22 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * delete the specified webhook.
-     * Delete webhook
-     * @param webhookId Specified the webhook id.
+     * delete the specified endpoint.
+     * Delete endpoint
+     * @param endpointId Specified the endpoint id.
      */
-    public async v1WebhookDelete(webhookId: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1EndpointDelete(endpointId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'webhookId' is not null or undefined
-        if (webhookId === null || webhookId === undefined) {
-            throw new RequiredError('Required parameter webhookId was null or undefined when calling v1WebhookDelete.');
+        // verify required parameter 'endpointId' is not null or undefined
+        if (endpointId === null || endpointId === undefined) {
+            throw new RequiredError('Required parameter endpointId was null or undefined when calling v1EndpointDelete.');
         }
 
 
         // Path Params
-        const localVarPath = '/api/v1/webhooks/{webhookId}'
-            .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
+        const localVarPath = '/api/v1/endpoints/{endpointId}'
+            .replace('{' + 'endpointId' + '}', encodeURIComponent(String(endpointId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -113,18 +113,18 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * List webhooks.
-     * List webhooks
+     * List endpoints.
+     * List endpoints
      * @param limit Limit the number of returned items
      * @param cursor Specifying the start cursor position
      */
-    public async v1WebhookList(limit?: number, cursor?: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1EndpointList(limit?: number, cursor?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
 
 
         // Path Params
-        const localVarPath = '/api/v1/webhooks';
+        const localVarPath = '/api/v1/endpoints';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -158,29 +158,29 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * update a specified webhook.
-     * update webhook
-     * @param webhookId Specified the webhook id.
-     * @param webhookPatch 
+     * update a specified endpoint.
+     * update endpoint
+     * @param endpointId Specified the endpoint id.
+     * @param endpointPatch 
      */
-    public async v1WebhookPatch(webhookId: string, webhookPatch: WebhookPatch, _options?: Configuration): Promise<RequestContext> {
+    public async v1EndpointPatch(endpointId: string, endpointPatch: EndpointPatch, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'webhookId' is not null or undefined
-        if (webhookId === null || webhookId === undefined) {
-            throw new RequiredError('Required parameter webhookId was null or undefined when calling v1WebhookPatch.');
+        // verify required parameter 'endpointId' is not null or undefined
+        if (endpointId === null || endpointId === undefined) {
+            throw new RequiredError('Required parameter endpointId was null or undefined when calling v1EndpointPatch.');
         }
 
 
-        // verify required parameter 'webhookPatch' is not null or undefined
-        if (webhookPatch === null || webhookPatch === undefined) {
-            throw new RequiredError('Required parameter webhookPatch was null or undefined when calling v1WebhookPatch.');
+        // verify required parameter 'endpointPatch' is not null or undefined
+        if (endpointPatch === null || endpointPatch === undefined) {
+            throw new RequiredError('Required parameter endpointPatch was null or undefined when calling v1EndpointPatch.');
         }
 
 
         // Path Params
-        const localVarPath = '/api/v1/webhooks/{webhookId}'
-            .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
+        const localVarPath = '/api/v1/endpoints/{endpointId}'
+            .replace('{' + 'endpointId' + '}', encodeURIComponent(String(endpointId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -201,7 +201,7 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(webhookPatch, "WebhookPatch", ""),
+            ObjectSerializer.serialize(endpointPatch, "EndpointPatch", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -217,22 +217,22 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * retrieve the specified webhook.
-     * Retrieve webhook
-     * @param webhookId Specified the webhook id.
+     * retrieve the specified endpoint.
+     * Retrieve endpoint
+     * @param endpointId Specified the endpoint id.
      */
-    public async v1WebhookRetrieve(webhookId: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1EndpointRetrieve(endpointId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'webhookId' is not null or undefined
-        if (webhookId === null || webhookId === undefined) {
-            throw new RequiredError('Required parameter webhookId was null or undefined when calling v1WebhookRetrieve.');
+        // verify required parameter 'endpointId' is not null or undefined
+        if (endpointId === null || endpointId === undefined) {
+            throw new RequiredError('Required parameter endpointId was null or undefined when calling v1EndpointRetrieve.');
         }
 
 
         // Path Params
-        const localVarPath = '/api/v1/webhooks/{webhookId}'
-            .replace('{' + 'webhookId' + '}', encodeURIComponent(String(webhookId)));
+        const localVarPath = '/api/v1/endpoints/{endpointId}'
+            .replace('{' + 'endpointId' + '}', encodeURIComponent(String(endpointId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -261,30 +261,30 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
 
 }
 
-export class WebhookApiResponseProcessor {
+export class EndpointApiResponseProcessor {
 
     /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to v1WebhookCreate
+     * @params response Response returned by the server for a request to v1EndpointCreate
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async v1WebhookCreate(response: ResponseContext): Promise<WebhookOut > {
+     public async v1EndpointCreate(response: ResponseContext): Promise<EndpointOut > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -339,10 +339,10 @@ export class WebhookApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
 
@@ -354,24 +354,24 @@ export class WebhookApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to v1WebhookDelete
+     * @params response Response returned by the server for a request to v1EndpointDelete
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async v1WebhookDelete(response: ResponseContext): Promise<WebhookOut > {
+     public async v1EndpointDelete(response: ResponseContext): Promise<EndpointOut > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -419,10 +419,10 @@ export class WebhookApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
 
@@ -434,17 +434,17 @@ export class WebhookApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to v1WebhookList
+     * @params response Response returned by the server for a request to v1EndpointList
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async v1WebhookList(response: ResponseContext): Promise<ListResponseWebhookOut > {
+     public async v1EndpointList(response: ResponseContext): Promise<ListResponseEndpointOut > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ListResponseWebhookOut = ObjectSerializer.deserialize(
+            const body: ListResponseEndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListResponseWebhookOut", ""
-            ) as ListResponseWebhookOut;
+                "ListResponseEndpointOut", ""
+            ) as ListResponseEndpointOut;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -492,10 +492,10 @@ export class WebhookApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ListResponseWebhookOut = ObjectSerializer.deserialize(
+            const body: ListResponseEndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListResponseWebhookOut", ""
-            ) as ListResponseWebhookOut;
+                "ListResponseEndpointOut", ""
+            ) as ListResponseEndpointOut;
             return body;
         }
 
@@ -507,24 +507,24 @@ export class WebhookApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to v1WebhookPatch
+     * @params response Response returned by the server for a request to v1EndpointPatch
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async v1WebhookPatch(response: ResponseContext): Promise<WebhookOut > {
+     public async v1EndpointPatch(response: ResponseContext): Promise<EndpointOut > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -572,10 +572,10 @@ export class WebhookApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
 
@@ -587,24 +587,24 @@ export class WebhookApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to v1WebhookRetrieve
+     * @params response Response returned by the server for a request to v1EndpointRetrieve
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async v1WebhookRetrieve(response: ResponseContext): Promise<WebhookOut > {
+     public async v1EndpointRetrieve(response: ResponseContext): Promise<EndpointOut > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -652,10 +652,10 @@ export class WebhookApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: WebhookOut = ObjectSerializer.deserialize(
+            const body: EndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "WebhookOut", ""
-            ) as WebhookOut;
+                "EndpointOut", ""
+            ) as EndpointOut;
             return body;
         }
 

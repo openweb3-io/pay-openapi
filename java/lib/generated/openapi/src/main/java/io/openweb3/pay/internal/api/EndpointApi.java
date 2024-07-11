@@ -27,12 +27,12 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import io.openweb3.pay.models.EndpointIn;
+import io.openweb3.pay.models.EndpointOut;
+import io.openweb3.pay.models.EndpointPatch;
 import io.openweb3.pay.models.HTTPValidationError;
 import io.openweb3.pay.models.HttpErrorOut;
-import io.openweb3.pay.models.ListResponseWebhookOut;
-import io.openweb3.pay.models.WebhookIn;
-import io.openweb3.pay.models.WebhookOut;
-import io.openweb3.pay.models.WebhookPatch;
+import io.openweb3.pay.models.ListResponseEndpointOut;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -40,14 +40,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WebhookApi {
+public class EndpointApi {
     private ApiClient localVarApiClient;
 
-    public WebhookApi() {
+    public EndpointApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public WebhookApi(ApiClient apiClient) {
+    public EndpointApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -60,12 +60,13 @@ public class WebhookApi {
     }
 
     /**
-     * Build call for v1WebhookCreate
-     * @param webhookIn  (required)
+     * Build call for v1EndpointCreate
+     * @param endpointIn  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -79,11 +80,11 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhookCreateCall(WebhookIn webhookIn, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = webhookIn;
+    public okhttp3.Call v1EndpointCreateCall(EndpointIn endpointIn, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = endpointIn;
 
         // create path and map variables
-        String localVarPath = "/api/v1/webhooks";
+        String localVarPath = "/api/v1/endpoints";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -110,26 +111,27 @@ public class WebhookApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WebhookCreateValidateBeforeCall(WebhookIn webhookIn, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1EndpointCreateValidateBeforeCall(EndpointIn endpointIn, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'webhookIn' is set
-        if (webhookIn == null) {
-            throw new ApiException("Missing the required parameter 'webhookIn' when calling v1WebhookCreate(Async)");
+        // verify the required parameter 'endpointIn' is set
+        if (endpointIn == null) {
+            throw new ApiException("Missing the required parameter 'endpointIn' when calling v1EndpointCreate(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1WebhookCreateCall(webhookIn, _callback);
+        okhttp3.Call localVarCall = v1EndpointCreateCall(endpointIn, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Create webhook
-     * Create a webhook.
-     * @param webhookIn  (required)
-     * @return WebhookOut
+     * Create endpoint
+     * Create a endpoint.
+     * @param endpointIn  (required)
+     * @return EndpointOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -143,18 +145,19 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public WebhookOut v1WebhookCreate(WebhookIn webhookIn) throws ApiException {
-        ApiResponse<WebhookOut> localVarResp = v1WebhookCreateWithHttpInfo(webhookIn);
+    public EndpointOut v1EndpointCreate(EndpointIn endpointIn) throws ApiException {
+        ApiResponse<EndpointOut> localVarResp = v1EndpointCreateWithHttpInfo(endpointIn);
         return localVarResp.getData();
     }
 
     /**
-     * Create webhook
-     * Create a webhook.
-     * @param webhookIn  (required)
-     * @return ApiResponse&lt;WebhookOut&gt;
+     * Create endpoint
+     * Create a endpoint.
+     * @param endpointIn  (required)
+     * @return ApiResponse&lt;EndpointOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -168,20 +171,21 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<WebhookOut> v1WebhookCreateWithHttpInfo(WebhookIn webhookIn) throws ApiException {
-        okhttp3.Call localVarCall = v1WebhookCreateValidateBeforeCall(webhookIn, null);
-        Type localVarReturnType = new TypeToken<WebhookOut>(){}.getType();
+    public ApiResponse<EndpointOut> v1EndpointCreateWithHttpInfo(EndpointIn endpointIn) throws ApiException {
+        okhttp3.Call localVarCall = v1EndpointCreateValidateBeforeCall(endpointIn, null);
+        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Create webhook (asynchronously)
-     * Create a webhook.
-     * @param webhookIn  (required)
+     * Create endpoint (asynchronously)
+     * Create a endpoint.
+     * @param endpointIn  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -195,20 +199,21 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhookCreateAsync(WebhookIn webhookIn, final ApiCallback<WebhookOut> _callback) throws ApiException {
+    public okhttp3.Call v1EndpointCreateAsync(EndpointIn endpointIn, final ApiCallback<EndpointOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WebhookCreateValidateBeforeCall(webhookIn, _callback);
-        Type localVarReturnType = new TypeToken<WebhookOut>(){}.getType();
+        okhttp3.Call localVarCall = v1EndpointCreateValidateBeforeCall(endpointIn, _callback);
+        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for v1WebhookDelete
-     * @param webhookId Specified the webhook id. (required)
+     * Build call for v1EndpointDelete
+     * @param endpointId Specified the endpoint id. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -221,12 +226,12 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhookDeleteCall(String webhookId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1EndpointDeleteCall(String endpointId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/webhooks/{webhookId}"
-            .replaceAll("\\{" + "webhookId" + "\\}", localVarApiClient.escapeString(webhookId.toString()));
+        String localVarPath = "/api/v1/endpoints/{endpointId}"
+            .replaceAll("\\{" + "endpointId" + "\\}", localVarApiClient.escapeString(endpointId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -253,26 +258,27 @@ public class WebhookApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WebhookDeleteValidateBeforeCall(String webhookId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1EndpointDeleteValidateBeforeCall(String endpointId, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'webhookId' is set
-        if (webhookId == null) {
-            throw new ApiException("Missing the required parameter 'webhookId' when calling v1WebhookDelete(Async)");
+        // verify the required parameter 'endpointId' is set
+        if (endpointId == null) {
+            throw new ApiException("Missing the required parameter 'endpointId' when calling v1EndpointDelete(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1WebhookDeleteCall(webhookId, _callback);
+        okhttp3.Call localVarCall = v1EndpointDeleteCall(endpointId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Delete webhook
-     * delete the specified webhook.
-     * @param webhookId Specified the webhook id. (required)
-     * @return WebhookOut
+     * Delete endpoint
+     * delete the specified endpoint.
+     * @param endpointId Specified the endpoint id. (required)
+     * @return EndpointOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -285,18 +291,19 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public WebhookOut v1WebhookDelete(String webhookId) throws ApiException {
-        ApiResponse<WebhookOut> localVarResp = v1WebhookDeleteWithHttpInfo(webhookId);
+    public EndpointOut v1EndpointDelete(String endpointId) throws ApiException {
+        ApiResponse<EndpointOut> localVarResp = v1EndpointDeleteWithHttpInfo(endpointId);
         return localVarResp.getData();
     }
 
     /**
-     * Delete webhook
-     * delete the specified webhook.
-     * @param webhookId Specified the webhook id. (required)
-     * @return ApiResponse&lt;WebhookOut&gt;
+     * Delete endpoint
+     * delete the specified endpoint.
+     * @param endpointId Specified the endpoint id. (required)
+     * @return ApiResponse&lt;EndpointOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -309,20 +316,21 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<WebhookOut> v1WebhookDeleteWithHttpInfo(String webhookId) throws ApiException {
-        okhttp3.Call localVarCall = v1WebhookDeleteValidateBeforeCall(webhookId, null);
-        Type localVarReturnType = new TypeToken<WebhookOut>(){}.getType();
+    public ApiResponse<EndpointOut> v1EndpointDeleteWithHttpInfo(String endpointId) throws ApiException {
+        okhttp3.Call localVarCall = v1EndpointDeleteValidateBeforeCall(endpointId, null);
+        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Delete webhook (asynchronously)
-     * delete the specified webhook.
-     * @param webhookId Specified the webhook id. (required)
+     * Delete endpoint (asynchronously)
+     * delete the specified endpoint.
+     * @param endpointId Specified the endpoint id. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -335,21 +343,22 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhookDeleteAsync(String webhookId, final ApiCallback<WebhookOut> _callback) throws ApiException {
+    public okhttp3.Call v1EndpointDeleteAsync(String endpointId, final ApiCallback<EndpointOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WebhookDeleteValidateBeforeCall(webhookId, _callback);
-        Type localVarReturnType = new TypeToken<WebhookOut>(){}.getType();
+        okhttp3.Call localVarCall = v1EndpointDeleteValidateBeforeCall(endpointId, _callback);
+        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for v1WebhookList
+     * Build call for v1EndpointList
      * @param limit Limit the number of returned items (optional, default to 20)
      * @param cursor Specifying the start cursor position (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -361,11 +370,11 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhookListCall(Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1EndpointListCall(Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/webhooks";
+        String localVarPath = "/api/v1/endpoints";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -400,22 +409,23 @@ public class WebhookApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WebhookListValidateBeforeCall(Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1EndpointListValidateBeforeCall(Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = v1WebhookListCall(limit, cursor, _callback);
+        okhttp3.Call localVarCall = v1EndpointListCall(limit, cursor, _callback);
         return localVarCall;
 
     }
 
     /**
-     * List webhooks
-     * List webhooks.
+     * List endpoints
+     * List endpoints.
      * @param limit Limit the number of returned items (optional, default to 20)
      * @param cursor Specifying the start cursor position (optional)
-     * @return ListResponseWebhookOut
+     * @return ListResponseEndpointOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -427,19 +437,20 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ListResponseWebhookOut v1WebhookList(Integer limit, String cursor) throws ApiException {
-        ApiResponse<ListResponseWebhookOut> localVarResp = v1WebhookListWithHttpInfo(limit, cursor);
+    public ListResponseEndpointOut v1EndpointList(Integer limit, String cursor) throws ApiException {
+        ApiResponse<ListResponseEndpointOut> localVarResp = v1EndpointListWithHttpInfo(limit, cursor);
         return localVarResp.getData();
     }
 
     /**
-     * List webhooks
-     * List webhooks.
+     * List endpoints
+     * List endpoints.
      * @param limit Limit the number of returned items (optional, default to 20)
      * @param cursor Specifying the start cursor position (optional)
-     * @return ApiResponse&lt;ListResponseWebhookOut&gt;
+     * @return ApiResponse&lt;ListResponseEndpointOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -451,21 +462,22 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListResponseWebhookOut> v1WebhookListWithHttpInfo(Integer limit, String cursor) throws ApiException {
-        okhttp3.Call localVarCall = v1WebhookListValidateBeforeCall(limit, cursor, null);
-        Type localVarReturnType = new TypeToken<ListResponseWebhookOut>(){}.getType();
+    public ApiResponse<ListResponseEndpointOut> v1EndpointListWithHttpInfo(Integer limit, String cursor) throws ApiException {
+        okhttp3.Call localVarCall = v1EndpointListValidateBeforeCall(limit, cursor, null);
+        Type localVarReturnType = new TypeToken<ListResponseEndpointOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * List webhooks (asynchronously)
-     * List webhooks.
+     * List endpoints (asynchronously)
+     * List endpoints.
      * @param limit Limit the number of returned items (optional, default to 20)
      * @param cursor Specifying the start cursor position (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -477,21 +489,22 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhookListAsync(Integer limit, String cursor, final ApiCallback<ListResponseWebhookOut> _callback) throws ApiException {
+    public okhttp3.Call v1EndpointListAsync(Integer limit, String cursor, final ApiCallback<ListResponseEndpointOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WebhookListValidateBeforeCall(limit, cursor, _callback);
-        Type localVarReturnType = new TypeToken<ListResponseWebhookOut>(){}.getType();
+        okhttp3.Call localVarCall = v1EndpointListValidateBeforeCall(limit, cursor, _callback);
+        Type localVarReturnType = new TypeToken<ListResponseEndpointOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for v1WebhookPatch
-     * @param webhookId Specified the webhook id. (required)
-     * @param webhookPatch  (required)
+     * Build call for v1EndpointPatch
+     * @param endpointId Specified the endpoint id. (required)
+     * @param endpointPatch  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -504,12 +517,12 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhookPatchCall(String webhookId, WebhookPatch webhookPatch, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = webhookPatch;
+    public okhttp3.Call v1EndpointPatchCall(String endpointId, EndpointPatch endpointPatch, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = endpointPatch;
 
         // create path and map variables
-        String localVarPath = "/api/v1/webhooks/{webhookId}"
-            .replaceAll("\\{" + "webhookId" + "\\}", localVarApiClient.escapeString(webhookId.toString()));
+        String localVarPath = "/api/v1/endpoints/{endpointId}"
+            .replaceAll("\\{" + "endpointId" + "\\}", localVarApiClient.escapeString(endpointId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -536,32 +549,33 @@ public class WebhookApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WebhookPatchValidateBeforeCall(String webhookId, WebhookPatch webhookPatch, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1EndpointPatchValidateBeforeCall(String endpointId, EndpointPatch endpointPatch, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'webhookId' is set
-        if (webhookId == null) {
-            throw new ApiException("Missing the required parameter 'webhookId' when calling v1WebhookPatch(Async)");
+        // verify the required parameter 'endpointId' is set
+        if (endpointId == null) {
+            throw new ApiException("Missing the required parameter 'endpointId' when calling v1EndpointPatch(Async)");
         }
         
-        // verify the required parameter 'webhookPatch' is set
-        if (webhookPatch == null) {
-            throw new ApiException("Missing the required parameter 'webhookPatch' when calling v1WebhookPatch(Async)");
+        // verify the required parameter 'endpointPatch' is set
+        if (endpointPatch == null) {
+            throw new ApiException("Missing the required parameter 'endpointPatch' when calling v1EndpointPatch(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1WebhookPatchCall(webhookId, webhookPatch, _callback);
+        okhttp3.Call localVarCall = v1EndpointPatchCall(endpointId, endpointPatch, _callback);
         return localVarCall;
 
     }
 
     /**
-     * update webhook
-     * update a specified webhook.
-     * @param webhookId Specified the webhook id. (required)
-     * @param webhookPatch  (required)
-     * @return WebhookOut
+     * update endpoint
+     * update a specified endpoint.
+     * @param endpointId Specified the endpoint id. (required)
+     * @param endpointPatch  (required)
+     * @return EndpointOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -574,19 +588,20 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public WebhookOut v1WebhookPatch(String webhookId, WebhookPatch webhookPatch) throws ApiException {
-        ApiResponse<WebhookOut> localVarResp = v1WebhookPatchWithHttpInfo(webhookId, webhookPatch);
+    public EndpointOut v1EndpointPatch(String endpointId, EndpointPatch endpointPatch) throws ApiException {
+        ApiResponse<EndpointOut> localVarResp = v1EndpointPatchWithHttpInfo(endpointId, endpointPatch);
         return localVarResp.getData();
     }
 
     /**
-     * update webhook
-     * update a specified webhook.
-     * @param webhookId Specified the webhook id. (required)
-     * @param webhookPatch  (required)
-     * @return ApiResponse&lt;WebhookOut&gt;
+     * update endpoint
+     * update a specified endpoint.
+     * @param endpointId Specified the endpoint id. (required)
+     * @param endpointPatch  (required)
+     * @return ApiResponse&lt;EndpointOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -599,21 +614,22 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<WebhookOut> v1WebhookPatchWithHttpInfo(String webhookId, WebhookPatch webhookPatch) throws ApiException {
-        okhttp3.Call localVarCall = v1WebhookPatchValidateBeforeCall(webhookId, webhookPatch, null);
-        Type localVarReturnType = new TypeToken<WebhookOut>(){}.getType();
+    public ApiResponse<EndpointOut> v1EndpointPatchWithHttpInfo(String endpointId, EndpointPatch endpointPatch) throws ApiException {
+        okhttp3.Call localVarCall = v1EndpointPatchValidateBeforeCall(endpointId, endpointPatch, null);
+        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * update webhook (asynchronously)
-     * update a specified webhook.
-     * @param webhookId Specified the webhook id. (required)
-     * @param webhookPatch  (required)
+     * update endpoint (asynchronously)
+     * update a specified endpoint.
+     * @param endpointId Specified the endpoint id. (required)
+     * @param endpointPatch  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -626,20 +642,21 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhookPatchAsync(String webhookId, WebhookPatch webhookPatch, final ApiCallback<WebhookOut> _callback) throws ApiException {
+    public okhttp3.Call v1EndpointPatchAsync(String endpointId, EndpointPatch endpointPatch, final ApiCallback<EndpointOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WebhookPatchValidateBeforeCall(webhookId, webhookPatch, _callback);
-        Type localVarReturnType = new TypeToken<WebhookOut>(){}.getType();
+        okhttp3.Call localVarCall = v1EndpointPatchValidateBeforeCall(endpointId, endpointPatch, _callback);
+        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for v1WebhookRetrieve
-     * @param webhookId Specified the webhook id. (required)
+     * Build call for v1EndpointRetrieve
+     * @param endpointId Specified the endpoint id. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -652,12 +669,12 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhookRetrieveCall(String webhookId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1EndpointRetrieveCall(String endpointId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/webhooks/{webhookId}"
-            .replaceAll("\\{" + "webhookId" + "\\}", localVarApiClient.escapeString(webhookId.toString()));
+        String localVarPath = "/api/v1/endpoints/{endpointId}"
+            .replaceAll("\\{" + "endpointId" + "\\}", localVarApiClient.escapeString(endpointId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -684,26 +701,27 @@ public class WebhookApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WebhookRetrieveValidateBeforeCall(String webhookId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1EndpointRetrieveValidateBeforeCall(String endpointId, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'webhookId' is set
-        if (webhookId == null) {
-            throw new ApiException("Missing the required parameter 'webhookId' when calling v1WebhookRetrieve(Async)");
+        // verify the required parameter 'endpointId' is set
+        if (endpointId == null) {
+            throw new ApiException("Missing the required parameter 'endpointId' when calling v1EndpointRetrieve(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1WebhookRetrieveCall(webhookId, _callback);
+        okhttp3.Call localVarCall = v1EndpointRetrieveCall(endpointId, _callback);
         return localVarCall;
 
     }
 
     /**
-     * Retrieve webhook
-     * retrieve the specified webhook.
-     * @param webhookId Specified the webhook id. (required)
-     * @return WebhookOut
+     * Retrieve endpoint
+     * retrieve the specified endpoint.
+     * @param endpointId Specified the endpoint id. (required)
+     * @return EndpointOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -716,18 +734,19 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public WebhookOut v1WebhookRetrieve(String webhookId) throws ApiException {
-        ApiResponse<WebhookOut> localVarResp = v1WebhookRetrieveWithHttpInfo(webhookId);
+    public EndpointOut v1EndpointRetrieve(String endpointId) throws ApiException {
+        ApiResponse<EndpointOut> localVarResp = v1EndpointRetrieveWithHttpInfo(endpointId);
         return localVarResp.getData();
     }
 
     /**
-     * Retrieve webhook
-     * retrieve the specified webhook.
-     * @param webhookId Specified the webhook id. (required)
-     * @return ApiResponse&lt;WebhookOut&gt;
+     * Retrieve endpoint
+     * retrieve the specified endpoint.
+     * @param endpointId Specified the endpoint id. (required)
+     * @return ApiResponse&lt;EndpointOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -740,20 +759,21 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<WebhookOut> v1WebhookRetrieveWithHttpInfo(String webhookId) throws ApiException {
-        okhttp3.Call localVarCall = v1WebhookRetrieveValidateBeforeCall(webhookId, null);
-        Type localVarReturnType = new TypeToken<WebhookOut>(){}.getType();
+    public ApiResponse<EndpointOut> v1EndpointRetrieveWithHttpInfo(String endpointId) throws ApiException {
+        okhttp3.Call localVarCall = v1EndpointRetrieveValidateBeforeCall(endpointId, null);
+        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Retrieve webhook (asynchronously)
-     * retrieve the specified webhook.
-     * @param webhookId Specified the webhook id. (required)
+     * Retrieve endpoint (asynchronously)
+     * retrieve the specified endpoint.
+     * @param endpointId Specified the endpoint id. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -766,10 +786,10 @@ public class WebhookApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhookRetrieveAsync(String webhookId, final ApiCallback<WebhookOut> _callback) throws ApiException {
+    public okhttp3.Call v1EndpointRetrieveAsync(String endpointId, final ApiCallback<EndpointOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WebhookRetrieveValidateBeforeCall(webhookId, _callback);
-        Type localVarReturnType = new TypeToken<WebhookOut>(){}.getType();
+        okhttp3.Call localVarCall = v1EndpointRetrieveValidateBeforeCall(endpointId, _callback);
+        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

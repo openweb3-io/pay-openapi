@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { WebhookOut } from './WebhookOut';
+import { EndpointOut } from './EndpointOut';
 import { HttpFile } from '../http/http';
 
-export class ListResponseWebhookOut {
-    'data': Array<WebhookOut>;
+export class ListResponseEndpointOut {
+    'data': Array<EndpointOut>;
     'total'?: number;
     'hasNext'?: boolean;
     'hasPrev'?: boolean;
@@ -27,7 +27,7 @@ export class ListResponseWebhookOut {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<WebhookOut>",
+            "type": "Array<EndpointOut>",
             "format": ""
         },
         {
@@ -62,7 +62,7 @@ export class ListResponseWebhookOut {
         }    ];
 
     static getAttributeTypeMap() {
-        return ListResponseWebhookOut.attributeTypeMap;
+        return ListResponseEndpointOut.attributeTypeMap;
     }
     
     public constructor() {

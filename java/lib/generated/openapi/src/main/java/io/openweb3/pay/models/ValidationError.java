@@ -30,11 +30,11 @@ import java.util.List;
  * Validation errors have their own schema to provide context for invalid requests eg. mismatched types and out of bounds values. There may be any number of these per 422 UNPROCESSABLE ENTITY error.
  */
 @ApiModel(description = "Validation errors have their own schema to provide context for invalid requests eg. mismatched types and out of bounds values. There may be any number of these per 422 UNPROCESSABLE ENTITY error.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-09T17:47:29.721176+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-11T15:16:01.125315+08:00[Asia/Shanghai]")
 public class ValidationError {
   public static final String SERIALIZED_NAME_LOC = "loc";
   @SerializedName(SERIALIZED_NAME_LOC)
-  private List<String> loc = new ArrayList<String>();
+  private List<String> loc = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MSG = "msg";
   @SerializedName(SERIALIZED_NAME_MSG)

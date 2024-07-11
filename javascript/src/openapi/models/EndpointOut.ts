@@ -12,33 +12,37 @@
 
 import { HttpFile } from '../http/http';
 
-export class WebhookPatch {
+export class EndpointOut {
     /**
-    * The webhook's UID
+    * The endpoint's UID
     */
     'uid'?: string;
     /**
-    * The webhook's description
+    * The chain network monitor by endpoint
+    */
+    'network': string;
+    /**
+    * Blockchain code
+    */
+    'chain': string;
+    /**
+    * The endpoint's description
     */
     'description'?: string;
     /**
-    * The webhook's secret
-    */
-    'secret'?: string;
-    /**
-    * The webhook endpoint url
+    * The endpoint endpoint url
     */
     'url': string;
     /**
-    * The webhook endpoint url
+    * The endpoint endpoint url
     */
     'filter'?: string;
     /**
-    * The webhook endpoint url
+    * The endpoint endpoint url
     */
     'filterTypes': Array<string>;
     /**
-    * indicate whether to disable the webhook endpoint
+    * indicate whether to disable the endpoint endpoint
     */
     'disabled'?: boolean;
     /**
@@ -50,7 +54,7 @@ export class WebhookPatch {
     */
     'headers'?: { [key: string]: string; };
     /**
-    * webhook version
+    * endpoint version
     */
     'version'?: number;
 
@@ -64,14 +68,20 @@ export class WebhookPatch {
             "format": ""
         },
         {
-            "name": "description",
-            "baseName": "description",
+            "name": "network",
+            "baseName": "network",
             "type": "string",
             "format": ""
         },
         {
-            "name": "secret",
-            "baseName": "secret",
+            "name": "chain",
+            "baseName": "chain",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "description",
+            "baseName": "description",
             "type": "string",
             "format": ""
         },
@@ -119,7 +129,7 @@ export class WebhookPatch {
         }    ];
 
     static getAttributeTypeMap() {
-        return WebhookPatch.attributeTypeMap;
+        return EndpointOut.attributeTypeMap;
     }
     
     public constructor() {

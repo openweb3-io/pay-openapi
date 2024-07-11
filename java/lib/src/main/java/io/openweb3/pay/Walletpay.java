@@ -9,25 +9,21 @@ import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.RSAPrivateKeySpec;
 import java.util.Base64;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 
-import io.openweb3.pay.exceptions.WalletpaySigningException;
+import io.openweb3.pay.exceptions.SigningException;
 import java.io.IOException;
 
 public final class Walletpay {
 	public static final String VERSION = "0.1.0";
-	private static final String HMAC_SHA256 = "HmacSHA256";
 	private final Order order;
 	private final Account account;
+	private final Endpoint endpoint;
 
 	public Walletpay(final String apikey, final String privateKey) {
 		this(apikey, privateKey, new WalletpayOptions());
@@ -57,7 +53,7 @@ public final class Walletpay {
                 String signature = null;
                 try {
                     signature = calculateSignature(privateKey, body, uri, timestamp);
-                } catch (WalletpaySigningException e) {
+                } catch (SigningException e) {
                     throw new RuntimeException(e);
                 }
                 if (signature != null) {
@@ -82,6 +78,7 @@ public final class Walletpay {
 
 		this.order = new Order();
 		this.account = new Account();
+		this.endpoint = new Endpoint();
 	}
 
 	private Interceptor getProgressInterceptor() {
@@ -102,15 +99,7 @@ public final class Walletpay {
 		};
 	}
 
-	public Order getOrder() {
-		return order;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-    private static String calculateSignature(final String privateKey, final String body, final String uri, final String timestamp) throws WalletpaySigningException {
+    private static String calculateSignature(final String privateKey, final String body, final String uri, final String timestamp) throws SigningException {
 		try {
 			String content = String.format("%s%s%s", body, uri, timestamp);
 			Signature sign = Signature.getInstance("SHA256withRSA");
@@ -134,7 +123,7 @@ public final class Walletpay {
 			e.printStackTrace();
 			return null;
 		} catch (InvalidKeySpecException | SignatureException | InvalidKeyException e) {
-            throw new RuntimeException(e);
+            throw new SigningException(e.getMessage());
         }
     }
 
@@ -148,4 +137,17 @@ public final class Walletpay {
 			return hex;
 		}
 	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public Endpoint getEndpoint() {
+		return endpoint;
+	}
+	
 }

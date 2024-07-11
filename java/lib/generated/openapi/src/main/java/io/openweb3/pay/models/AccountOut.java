@@ -23,12 +23,12 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 /**
  * AccountOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-09T17:47:29.721176+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-11T15:16:01.125315+08:00[Asia/Shanghai]")
 public class AccountOut {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -44,11 +44,11 @@ public class AccountOut {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private Date createdAt;
+  private OffsetDateTime createdAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private Date updatedAt;
+  private OffsetDateTime updatedAt;
 
 
   public AccountOut id(String id) {
@@ -117,7 +117,7 @@ public class AccountOut {
   }
 
 
-  public AccountOut createdAt(Date createdAt) {
+  public AccountOut createdAt(OffsetDateTime createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -129,17 +129,17 @@ public class AccountOut {
   **/
   @ApiModelProperty(required = true, value = "The order's created time")
 
-  public Date getCreatedAt() {
+  public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
 
-  public void setCreatedAt(Date createdAt) {
+  public void setCreatedAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public AccountOut updatedAt(Date updatedAt) {
+  public AccountOut updatedAt(OffsetDateTime updatedAt) {
     
     this.updatedAt = updatedAt;
     return this;
@@ -151,12 +151,12 @@ public class AccountOut {
   **/
   @ApiModelProperty(required = true, value = "The order's updated time")
 
-  public Date getUpdatedAt() {
+  public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
 
 
-  public void setUpdatedAt(Date updatedAt) {
+  public void setUpdatedAt(OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
   }
 

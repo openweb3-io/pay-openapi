@@ -456,10 +456,10 @@
                 }
             }
         },
-        "/api/v1/webhooks" : {
+        "/api/v1/endpoints" : {
             "get": {
-                "description": "List webhooks.",
-                "operationId": "v1.webhook.list",
+                "description": "List endpoints.",
+                "operationId": "v1.endpoint.list",
                 "parameters": [
                     {
                         "description": "Limit the number of returned items",
@@ -491,7 +491,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ListResponse_WebhookOut_"
+                                    "$ref": "#/components/schemas/ListResponse_EndpointOut_"
                                 }
                             }
                         },
@@ -558,19 +558,19 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "List webhooks",
+                "summary": "List endpoints",
                 "tags": [
-                    "Webhook"
+                    "Endpoint"
                 ]
             },
             "post": {
-                "description": "Create a webhook.",
-                "operationId": "v1.webhook.create",
+                "description": "Create a endpoint.",
+                "operationId": "v1.endpoint.create",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/WebhookIn"
+                                "$ref": "#/components/schemas/EndpointIn"
                             }
                         }
                     },
@@ -581,7 +581,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WebhookOut"
+                                    "$ref": "#/components/schemas/EndpointOut"
                                 }
                             }
                         },
@@ -591,7 +591,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WebhookOut"
+                                    "$ref": "#/components/schemas/EndpointOut"
                                 }
                             }
                         },
@@ -668,9 +668,9 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "Create webhook",
+                "summary": "Create endpoint",
                 "tags": [
-                    "Webhook"
+                    "Endpoint"
                 ],
                 "x-readme": {
                     "code-samples": [
@@ -738,18 +738,18 @@
                 }
             }
         },
-        "/api/v1/webhooks/{webhookId}": {
+        "/api/v1/endpoints/{endpointId}": {
             "get": {
-                "description": "retrieve the specified webhook.",
-                "operationId": "v1.webhook.retrieve",
+                "description": "retrieve the specified endpoint.",
+                "operationId": "v1.endpoint.retrieve",
                 "parameters": [
                     {
-                        "description": "Specified the webhook id.",
+                        "description": "Specified the endpoint id.",
                         "in": "path",
-                        "name": "webhookId",
+                        "name": "endpointId",
                         "required": true,
                         "schema": {
-                            "description": "Specified the webhook id.",
+                            "description": "Specified the endpoint id.",
                             "example": "wb_12345xsfei",
                             "type": "string"
                         },
@@ -761,7 +761,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WebhookOut"
+                                    "$ref": "#/components/schemas/EndpointOut"
                                 }
                             }
                         },
@@ -771,7 +771,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WebhookOut"
+                                    "$ref": "#/components/schemas/EndpointOut"
                                 }
                             }
                         },
@@ -838,22 +838,22 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "Retrieve webhook",
+                "summary": "Retrieve endpoint",
                 "tags": [
-                    "Webhook"
+                    "Endpoint"
                 ]
             },            
             "patch": {
-                "description": "update a specified webhook.",
-                "operationId": "v1.webhook.patch",
+                "description": "update a specified endpoint.",
+                "operationId": "v1.endpoint.patch",
                 "parameters": [
                     {
-                        "description": "Specified the webhook id.",
+                        "description": "Specified the endpoint id.",
                         "in": "path",
-                        "name": "webhookId",
+                        "name": "endpointId",
                         "required": true,
                         "schema": {
-                            "description": "Specified the webhook id.",
+                            "description": "Specified the endpoint id.",
                             "example": "wb_12345xsfei",
                             "type": "string"
                         },
@@ -864,7 +864,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/WebhookPatch"
+                                "$ref": "#/components/schemas/EndpointPatch"
                             }
                         }
                     },
@@ -875,7 +875,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WebhookOut"
+                                    "$ref": "#/components/schemas/EndpointOut"
                                 }
                             }
                         },
@@ -885,7 +885,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WebhookOut"
+                                    "$ref": "#/components/schemas/EndpointOut"
                                 }
                             }
                         },
@@ -952,22 +952,22 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "update webhook",
+                "summary": "update endpoint",
                 "tags": [
-                    "Webhook"
+                    "Endpoint"
                 ]
             },             
             "delete": {
-                "description": "delete the specified webhook.",
-                "operationId": "v1.webhook.delete",
+                "description": "delete the specified endpoint.",
+                "operationId": "v1.endpoint.delete",
                 "parameters": [
                     {
-                        "description": "Specified the webhook id.",
+                        "description": "Specified the endpoint id.",
                         "in": "path",
-                        "name": "webhookId",
+                        "name": "endpointId",
                         "required": true,
                         "schema": {
-                            "description": "Specified the webhook id.",
+                            "description": "Specified the endpoint id.",
                             "example": "wb_12345xsfei",
                             "type": "string"
                         },
@@ -979,7 +979,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WebhookOut"
+                                    "$ref": "#/components/schemas/EndpointOut"
                                 }
                             }
                         },
@@ -989,7 +989,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/WebhookOut"
+                                    "$ref": "#/components/schemas/EndpointOut"
                                 }
                             }
                         },
@@ -1056,9 +1056,9 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "Delete webhook",
+                "summary": "Delete endpoint",
                 "tags": [
-                    "Webhook"
+                    "Endpoint"
                 ]
             }
         }
@@ -1368,11 +1368,11 @@
                 ],
                 "type": "object"
             },
-            "WebhookIn": {
+            "EndpointIn": {
                 "properties": {
                     "uid": {
-                        "description": "The webhook's UID",
-                        "example": "unique-webhook-identifier",
+                        "description": "The endpoint's UID",
+                        "example": "unique-endpoint-identifier",
                         "maxLength": 256,
                         "minLength": 1,
                         "nullable": true,
@@ -1381,7 +1381,7 @@
                     },
                     "network": {
                         "type": "string",
-                        "description": "The chain network monitor by webhook",
+                        "description": "The chain network monitor by endpoint",
                         "maxLength": 256,
                         "minLength": 1,
                         "example": "mainnet"
@@ -1394,29 +1394,29 @@
                         "example": "ton"
                     },
                     "description": {
-                        "description": "The webhook's description",
-                        "example": "The description for webhook",
+                        "description": "The endpoint's description",
+                        "example": "The description for endpoint",
                         "type": "string"
                     },
                     "secret": {
-                        "description": "The webhook's secret",
+                        "description": "The endpoint's secret",
                         "example": "whsec_13afsaew2skae1lo3r",
                         "nullable": true,
                         "type": "string"
                     },
                     "url": {
-                        "description": "The webhook endpoint url",
-                        "example": "http://example.com/webhook",
+                        "description": "The endpoint endpoint url",
+                        "example": "http://example.com/endpoint",
                         "type": "string"
                     },
                     "filter": {
-                        "description": "The webhook endpoint url",
+                        "description": "The endpoint endpoint url",
                         "example": "{\"network\": \"mainnet\"}",
                         "nullable": true,
                         "type": "string"
                     },
                     "filterTypes": {
-                        "description": "The webhook endpoint url",
+                        "description": "The endpoint endpoint url",
                         "example": [
                             "tx.created"
                         ],
@@ -1426,7 +1426,7 @@
                         "type": "array"
                     },
                     "disabled":{
-                        "description": "indicate whether to disable the webhook endpoint",
+                        "description": "indicate whether to disable the endpoint endpoint",
                         "example": "false",
                         "type": "boolean"
                     },
@@ -1457,7 +1457,7 @@
                         }
                     },
                     "version": {
-                        "description": "webhook version",
+                        "description": "endpoint version",
                         "type": "integer"
                     }
                 },
@@ -1469,11 +1469,11 @@
                 ],
                 "type": "object"
             },
-            "WebhookPatch": {
+            "EndpointPatch": {
                 "properties": {
                     "uid": {
-                        "description": "The webhook's UID",
-                        "example": "unique-webhook-identifier",
+                        "description": "The endpoint's UID",
+                        "example": "unique-endpoint-identifier",
                         "maxLength": 256,
                         "minLength": 1,
                         "nullable": true,
@@ -1481,29 +1481,29 @@
                         "type": "string"
                     },
                     "description": {
-                        "description": "The webhook's description",
-                        "example": "The description for webhook",
+                        "description": "The endpoint's description",
+                        "example": "The description for endpoint",
                         "type": "string"
                     },
                     "secret": {
-                        "description": "The webhook's secret",
+                        "description": "The endpoint's secret",
                         "example": "whsec_13afsaew2skae1lo3r",
                         "nullable": true,
                         "type": "string"
                     },
                     "url": {
-                        "description": "The webhook endpoint url",
-                        "example": "http://example.com/webhook",
+                        "description": "The endpoint endpoint url",
+                        "example": "http://example.com/endpoint",
                         "type": "string"
                     },
                     "filter": {
-                        "description": "The webhook endpoint url",
+                        "description": "The endpoint endpoint url",
                         "example": "{\"network\": \"mainnet\"}",
                         "type": "string",
                         "nullable": true
                     },
                     "filterTypes": {
-                        "description": "The webhook endpoint url",
+                        "description": "The endpoint endpoint url",
                         "example": [
                             "tx.created"
                         ],
@@ -1513,7 +1513,7 @@
                         "type": "array"
                     },
                     "disabled":{
-                        "description": "indicate whether to disable the webhook endpoint",
+                        "description": "indicate whether to disable the endpoint endpoint",
                         "example": "false",
                         "type": "boolean"
                     },
@@ -1544,7 +1544,7 @@
                         }
                     },
                     "version": {
-                        "description": "webhook version",
+                        "description": "endpoint version",
                         "type": "integer"
                     }
                 },
@@ -1554,11 +1554,11 @@
                 ],
                 "type":"object"
             },
-            "WebhookOut": {
+            "EndpointOut": {
                 "properties": {
                     "uid": {
-                        "description": "The webhook's UID",
-                        "example": "unique-webhook-identifier",
+                        "description": "The endpoint's UID",
+                        "example": "unique-endpoint-identifier",
                         "maxLength": 256,
                         "minLength": 1,
                         "nullable": true,
@@ -1567,7 +1567,7 @@
                     },
                     "network": {
                         "type": "string",
-                        "description": "The chain network monitor by webhook",
+                        "description": "The chain network monitor by endpoint",
                         "maxLength": 256,
                         "minLength": 1,
                         "example": "mainnet"
@@ -1580,22 +1580,22 @@
                         "example": "ton"
                     },
                     "description": {
-                        "description": "The webhook's description",
-                        "example": "The description for webhook",
+                        "description": "The endpoint's description",
+                        "example": "The description for endpoint",
                         "type": "string"
                     },
                     "url": {
-                        "description": "The webhook endpoint url",
-                        "example": "http://example.com/webhook",
+                        "description": "The endpoint endpoint url",
+                        "example": "http://example.com/endpoint",
                         "type": "string"
                     },
                     "filter": {
-                        "description": "The webhook endpoint url",
+                        "description": "The endpoint endpoint url",
                         "example": "{\"network\": \"mainnet\"}",
                         "type": "string"
                     },
                     "filterTypes": {
-                        "description": "The webhook endpoint url",
+                        "description": "The endpoint endpoint url",
                         "example": [
                             "tx.created"
                         ],
@@ -1605,7 +1605,7 @@
                         "type": "array"
                     },
                     "disabled":{
-                        "description": "indicate whether to disable the webhook endpoint",
+                        "description": "indicate whether to disable the endpoint endpoint",
                         "example": "false",
                         "type": "boolean"
                     },
@@ -1634,7 +1634,7 @@
                         }
                     },
                     "version": {
-                        "description": "webhook version",
+                        "description": "endpoint version",
                         "type": "integer"
                     }
                 },
@@ -1646,11 +1646,11 @@
                 ],
                 "type": "object"
             },
-            "ListResponse_WebhookOut_": {
+            "ListResponse_EndpointOut_": {
                 "properties": {
                     "data": {
                         "items": {
-                            "$ref": "#/components/schemas/WebhookOut"
+                            "$ref": "#/components/schemas/EndpointOut"
                         },
                         "type": "array"
                     },

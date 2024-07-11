@@ -52,7 +52,6 @@ Add this dependency to your project's POM:
   <groupId>io.openweb3.pay</groupId>
   <artifactId>walletpay</artifactId>
   <version>0.1.0</version>
-  <scope>compile</scope>
 </dependency>
 ```
 

@@ -4,18 +4,18 @@ import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
 import { AccountOut } from '../models/AccountOut';
+import { EndpointIn } from '../models/EndpointIn';
+import { EndpointOut } from '../models/EndpointOut';
+import { EndpointPatch } from '../models/EndpointPatch';
 import { HTTPValidationError } from '../models/HTTPValidationError';
 import { HttpErrorOut } from '../models/HttpErrorOut';
 import { ListResponseAccountOut } from '../models/ListResponseAccountOut';
+import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
-import { ListResponseWebhookOut } from '../models/ListResponseWebhookOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
 import { ValidationError } from '../models/ValidationError';
-import { WebhookIn } from '../models/WebhookIn';
-import { WebhookOut } from '../models/WebhookOut';
-import { WebhookPatch } from '../models/WebhookPatch';
 
 import { AccountApiRequestFactory, AccountApiResponseProcessor} from "../apis/AccountApi";
 export class ObservableAccountApi {
@@ -55,6 +55,146 @@ export class ObservableAccountApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1AccountList(rsp)));
+            }));
+    }
+ 
+}
+
+import { EndpointApiRequestFactory, EndpointApiResponseProcessor} from "../apis/EndpointApi";
+export class ObservableEndpointApi {
+    private requestFactory: EndpointApiRequestFactory;
+    private responseProcessor: EndpointApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: EndpointApiRequestFactory,
+        responseProcessor?: EndpointApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new EndpointApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new EndpointApiResponseProcessor();
+    }
+
+    /**
+     * Create a endpoint.
+     * Create endpoint
+     * @param endpointIn 
+     */
+    public v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Observable<EndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointCreate(endpointIn, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointCreate(rsp)));
+            }));
+    }
+ 
+    /**
+     * delete the specified endpoint.
+     * Delete endpoint
+     * @param endpointId Specified the endpoint id.
+     */
+    public v1EndpointDelete(endpointId: string, _options?: Configuration): Observable<EndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointDelete(endpointId, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointDelete(rsp)));
+            }));
+    }
+ 
+    /**
+     * List endpoints.
+     * List endpoints
+     * @param limit Limit the number of returned items
+     * @param cursor Specifying the start cursor position
+     */
+    public v1EndpointList(limit?: number, cursor?: string, _options?: Configuration): Observable<ListResponseEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointList(limit, cursor, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointList(rsp)));
+            }));
+    }
+ 
+    /**
+     * update a specified endpoint.
+     * update endpoint
+     * @param endpointId Specified the endpoint id.
+     * @param endpointPatch 
+     */
+    public v1EndpointPatch(endpointId: string, endpointPatch: EndpointPatch, _options?: Configuration): Observable<EndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointPatch(endpointId, endpointPatch, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointPatch(rsp)));
+            }));
+    }
+ 
+    /**
+     * retrieve the specified endpoint.
+     * Retrieve endpoint
+     * @param endpointId Specified the endpoint id.
+     */
+    public v1EndpointRetrieve(endpointId: string, _options?: Configuration): Observable<EndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointRetrieve(endpointId, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointRetrieve(rsp)));
             }));
     }
  
@@ -124,146 +264,6 @@ export class ObservableOrderApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrderList(rsp)));
-            }));
-    }
- 
-}
-
-import { WebhookApiRequestFactory, WebhookApiResponseProcessor} from "../apis/WebhookApi";
-export class ObservableWebhookApi {
-    private requestFactory: WebhookApiRequestFactory;
-    private responseProcessor: WebhookApiResponseProcessor;
-    private configuration: Configuration;
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: WebhookApiRequestFactory,
-        responseProcessor?: WebhookApiResponseProcessor
-    ) {
-        this.configuration = configuration;
-        this.requestFactory = requestFactory || new WebhookApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new WebhookApiResponseProcessor();
-    }
-
-    /**
-     * Create a webhook.
-     * Create webhook
-     * @param webhookIn 
-     */
-    public v1WebhookCreate(webhookIn: WebhookIn, _options?: Configuration): Observable<WebhookOut> {
-        const requestContextPromise = this.requestFactory.v1WebhookCreate(webhookIn, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1WebhookCreate(rsp)));
-            }));
-    }
- 
-    /**
-     * delete the specified webhook.
-     * Delete webhook
-     * @param webhookId Specified the webhook id.
-     */
-    public v1WebhookDelete(webhookId: string, _options?: Configuration): Observable<WebhookOut> {
-        const requestContextPromise = this.requestFactory.v1WebhookDelete(webhookId, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1WebhookDelete(rsp)));
-            }));
-    }
- 
-    /**
-     * List webhooks.
-     * List webhooks
-     * @param limit Limit the number of returned items
-     * @param cursor Specifying the start cursor position
-     */
-    public v1WebhookList(limit?: number, cursor?: string, _options?: Configuration): Observable<ListResponseWebhookOut> {
-        const requestContextPromise = this.requestFactory.v1WebhookList(limit, cursor, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1WebhookList(rsp)));
-            }));
-    }
- 
-    /**
-     * update a specified webhook.
-     * update webhook
-     * @param webhookId Specified the webhook id.
-     * @param webhookPatch 
-     */
-    public v1WebhookPatch(webhookId: string, webhookPatch: WebhookPatch, _options?: Configuration): Observable<WebhookOut> {
-        const requestContextPromise = this.requestFactory.v1WebhookPatch(webhookId, webhookPatch, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1WebhookPatch(rsp)));
-            }));
-    }
- 
-    /**
-     * retrieve the specified webhook.
-     * Retrieve webhook
-     * @param webhookId Specified the webhook id.
-     */
-    public v1WebhookRetrieve(webhookId: string, _options?: Configuration): Observable<WebhookOut> {
-        const requestContextPromise = this.requestFactory.v1WebhookRetrieve(webhookId, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1WebhookRetrieve(rsp)));
             }));
     }
  

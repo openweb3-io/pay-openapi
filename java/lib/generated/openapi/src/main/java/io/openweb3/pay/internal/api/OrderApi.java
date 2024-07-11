@@ -64,7 +64,8 @@ public class OrderApi {
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -128,7 +129,8 @@ public class OrderApi {
      * @param orderIn  (required)
      * @return OrderOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -153,7 +155,8 @@ public class OrderApi {
      * @param orderIn  (required)
      * @return ApiResponse&lt;OrderOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -180,7 +183,8 @@ public class OrderApi {
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -210,7 +214,8 @@ public class OrderApi {
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -286,7 +291,8 @@ public class OrderApi {
      * @param channel Channel of the order (optional)
      * @return ListResponseOrderOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -312,7 +318,8 @@ public class OrderApi {
      * @param channel Channel of the order (optional)
      * @return ApiResponse&lt;ListResponseOrderOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
@@ -340,7 +347,8 @@ public class OrderApi {
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-    <table border="1">
+     *  Response Details: 
+     <table  border="1">
         <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>

@@ -3,18 +3,18 @@ import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
 import { AccountOut } from '../models/AccountOut';
+import { EndpointIn } from '../models/EndpointIn';
+import { EndpointOut } from '../models/EndpointOut';
+import { EndpointPatch } from '../models/EndpointPatch';
 import { HTTPValidationError } from '../models/HTTPValidationError';
 import { HttpErrorOut } from '../models/HttpErrorOut';
 import { ListResponseAccountOut } from '../models/ListResponseAccountOut';
+import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
-import { ListResponseWebhookOut } from '../models/ListResponseWebhookOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
 import { ValidationError } from '../models/ValidationError';
-import { WebhookIn } from '../models/WebhookIn';
-import { WebhookOut } from '../models/WebhookOut';
-import { WebhookPatch } from '../models/WebhookPatch';
 import { ObservableAccountApi } from './ObservableAPI';
 
 import { AccountApiRequestFactory, AccountApiResponseProcessor} from "../apis/AccountApi";
@@ -37,6 +37,77 @@ export class PromiseAccountApi {
      */
     public v1AccountList(limit?: number, offset?: number, _options?: Configuration): Promise<ListResponseAccountOut> {
         const result = this.api.v1AccountList(limit, offset, _options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
+import { ObservableEndpointApi } from './ObservableAPI';
+
+import { EndpointApiRequestFactory, EndpointApiResponseProcessor} from "../apis/EndpointApi";
+export class PromiseEndpointApi {
+    private api: ObservableEndpointApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: EndpointApiRequestFactory,
+        responseProcessor?: EndpointApiResponseProcessor
+    ) {
+        this.api = new ObservableEndpointApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create a endpoint.
+     * Create endpoint
+     * @param endpointIn 
+     */
+    public v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Promise<EndpointOut> {
+        const result = this.api.v1EndpointCreate(endpointIn, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * delete the specified endpoint.
+     * Delete endpoint
+     * @param endpointId Specified the endpoint id.
+     */
+    public v1EndpointDelete(endpointId: string, _options?: Configuration): Promise<EndpointOut> {
+        const result = this.api.v1EndpointDelete(endpointId, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * List endpoints.
+     * List endpoints
+     * @param limit Limit the number of returned items
+     * @param cursor Specifying the start cursor position
+     */
+    public v1EndpointList(limit?: number, cursor?: string, _options?: Configuration): Promise<ListResponseEndpointOut> {
+        const result = this.api.v1EndpointList(limit, cursor, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * update a specified endpoint.
+     * update endpoint
+     * @param endpointId Specified the endpoint id.
+     * @param endpointPatch 
+     */
+    public v1EndpointPatch(endpointId: string, endpointPatch: EndpointPatch, _options?: Configuration): Promise<EndpointOut> {
+        const result = this.api.v1EndpointPatch(endpointId, endpointPatch, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * retrieve the specified endpoint.
+     * Retrieve endpoint
+     * @param endpointId Specified the endpoint id.
+     */
+    public v1EndpointRetrieve(endpointId: string, _options?: Configuration): Promise<EndpointOut> {
+        const result = this.api.v1EndpointRetrieve(endpointId, _options);
         return result.toPromise();
     }
 
@@ -79,77 +150,6 @@ export class PromiseOrderApi {
      */
     public v1OrderList(limit?: number, offset?: number, chain?: string, channel?: string, _options?: Configuration): Promise<ListResponseOrderOut> {
         const result = this.api.v1OrderList(limit, offset, chain, channel, _options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
-import { ObservableWebhookApi } from './ObservableAPI';
-
-import { WebhookApiRequestFactory, WebhookApiResponseProcessor} from "../apis/WebhookApi";
-export class PromiseWebhookApi {
-    private api: ObservableWebhookApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: WebhookApiRequestFactory,
-        responseProcessor?: WebhookApiResponseProcessor
-    ) {
-        this.api = new ObservableWebhookApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Create a webhook.
-     * Create webhook
-     * @param webhookIn 
-     */
-    public v1WebhookCreate(webhookIn: WebhookIn, _options?: Configuration): Promise<WebhookOut> {
-        const result = this.api.v1WebhookCreate(webhookIn, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * delete the specified webhook.
-     * Delete webhook
-     * @param webhookId Specified the webhook id.
-     */
-    public v1WebhookDelete(webhookId: string, _options?: Configuration): Promise<WebhookOut> {
-        const result = this.api.v1WebhookDelete(webhookId, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * List webhooks.
-     * List webhooks
-     * @param limit Limit the number of returned items
-     * @param cursor Specifying the start cursor position
-     */
-    public v1WebhookList(limit?: number, cursor?: string, _options?: Configuration): Promise<ListResponseWebhookOut> {
-        const result = this.api.v1WebhookList(limit, cursor, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * update a specified webhook.
-     * update webhook
-     * @param webhookId Specified the webhook id.
-     * @param webhookPatch 
-     */
-    public v1WebhookPatch(webhookId: string, webhookPatch: WebhookPatch, _options?: Configuration): Promise<WebhookOut> {
-        const result = this.api.v1WebhookPatch(webhookId, webhookPatch, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * retrieve the specified webhook.
-     * Retrieve webhook
-     * @param webhookId Specified the webhook id.
-     */
-    public v1WebhookRetrieve(webhookId: string, _options?: Configuration): Promise<WebhookOut> {
-        const result = this.api.v1WebhookRetrieve(webhookId, _options);
         return result.toPromise();
     }
 

@@ -12,13 +12,13 @@
 
 import { HttpFile } from '../http/http';
 
-export class WebhookIn {
+export class EndpointIn {
     /**
-    * The webhook's UID
+    * The endpoint's UID
     */
     'uid'?: string;
     /**
-    * The chain network monitor by webhook
+    * The chain network monitor by endpoint
     */
     'network': string;
     /**
@@ -26,27 +26,27 @@ export class WebhookIn {
     */
     'chain': string;
     /**
-    * The webhook's description
+    * The endpoint's description
     */
     'description'?: string;
     /**
-    * The webhook's secret
+    * The endpoint's secret
     */
     'secret'?: string;
     /**
-    * The webhook endpoint url
+    * The endpoint endpoint url
     */
     'url': string;
     /**
-    * The webhook endpoint url
+    * The endpoint endpoint url
     */
     'filter'?: string;
     /**
-    * The webhook endpoint url
+    * The endpoint endpoint url
     */
     'filterTypes': Array<string>;
     /**
-    * indicate whether to disable the webhook endpoint
+    * indicate whether to disable the endpoint endpoint
     */
     'disabled'?: boolean;
     /**
@@ -58,7 +58,7 @@ export class WebhookIn {
     */
     'headers'?: { [key: string]: string; };
     /**
-    * webhook version
+    * endpoint version
     */
     'version'?: number;
 
@@ -139,7 +139,7 @@ export class WebhookIn {
         }    ];
 
     static getAttributeTypeMap() {
-        return WebhookIn.attributeTypeMap;
+        return EndpointIn.attributeTypeMap;
     }
     
     public constructor() {
