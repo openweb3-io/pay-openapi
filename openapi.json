@@ -558,7 +558,7 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "List webhook endpoints",
+                "summary": "List endpoints",
                 "tags": [
                     "Webhook Endpoint"
                 ]
