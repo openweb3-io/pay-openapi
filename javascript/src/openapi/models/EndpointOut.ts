@@ -30,19 +30,19 @@ export class EndpointOut {
     */
     'description'?: string;
     /**
-    * The endpoint endpoint url
+    * The webhook endpoint url
     */
     'url': string;
     /**
-    * The endpoint endpoint url
+    * The webhook endpoint url
     */
     'filter'?: string;
     /**
-    * The endpoint endpoint url
+    * The webhook endpoint url
     */
     'filterTypes': Array<string>;
     /**
-    * indicate whether to disable the endpoint endpoint
+    * indicate whether to disable the webhook endpoint
     */
     'disabled'?: boolean;
     /**

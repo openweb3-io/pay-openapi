@@ -202,10 +202,10 @@ public class EndpointIn {
   }
 
    /**
-   * The endpoint endpoint url
+   * The webhook endpoint url
    * @return url
   **/
-  @ApiModelProperty(example = "http://example.com/endpoint", required = true, value = "The endpoint endpoint url")
+  @ApiModelProperty(example = "http://example.com/endpoint", required = true, value = "The webhook endpoint url")
 
   public String getUrl() {
     return url;
@@ -224,11 +224,11 @@ public class EndpointIn {
   }
 
    /**
-   * The endpoint endpoint url
+   * The webhook endpoint url
    * @return filter
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"network\": \"mainnet\"}", value = "The endpoint endpoint url")
+  @ApiModelProperty(example = "{\"network\": \"mainnet\"}", value = "The webhook endpoint url")
 
   public String getFilter() {
     return filter;
@@ -252,10 +252,10 @@ public class EndpointIn {
   }
 
    /**
-   * The endpoint endpoint url
+   * The webhook endpoint url
    * @return filterTypes
   **/
-  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The endpoint endpoint url")
+  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The webhook endpoint url")
 
   public List<String> getFilterTypes() {
     return filterTypes;
@@ -274,11 +274,11 @@ public class EndpointIn {
   }
 
    /**
-   * indicate whether to disable the endpoint endpoint
+   * indicate whether to disable the webhook endpoint
    * @return disabled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "false", value = "indicate whether to disable the endpoint endpoint")
+  @ApiModelProperty(example = "false", value = "indicate whether to disable the webhook endpoint")
 
   public Boolean getDisabled() {
     return disabled;

@@ -558,13 +558,13 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "List endpoints",
+                "summary": "List webhook endpoints",
                 "tags": [
-                    "Endpoint"
+                    "Webhook Endpoint"
                 ]
             },
             "post": {
-                "description": "Create a endpoint.",
+                "description": "Create a webhook endpoint.",
                 "operationId": "v1.endpoint.create",
                 "requestBody": {
                     "content": {
@@ -668,9 +668,9 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "Create endpoint",
+                "summary": "Create a webhook endpoint",
                 "tags": [
-                    "Endpoint"
+                    "Webhook Endpoint"
                 ],
                 "x-readme": {
                     "code-samples": [
@@ -740,16 +740,16 @@
         },
         "/api/v1/endpoints/{endpointId}": {
             "get": {
-                "description": "retrieve the specified endpoint.",
+                "description": "retrieve a specified webhook endpoint.",
                 "operationId": "v1.endpoint.retrieve",
                 "parameters": [
                     {
-                        "description": "Specified the endpoint id.",
+                        "description": "Specified the webhook endpoint id.",
                         "in": "path",
                         "name": "endpointId",
                         "required": true,
                         "schema": {
-                            "description": "Specified the endpoint id.",
+                            "description": "Specified the webhook endpoint id.",
                             "example": "wb_12345xsfei",
                             "type": "string"
                         },
@@ -838,13 +838,13 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "Retrieve endpoint",
+                "summary": "Retrieve a webhook endpoint",
                 "tags": [
-                    "Endpoint"
+                    "Webhook Endpoint"
                 ]
             },            
             "patch": {
-                "description": "update a specified endpoint.",
+                "description": "update a specified webhook endpoint.",
                 "operationId": "v1.endpoint.patch",
                 "parameters": [
                     {
@@ -952,13 +952,13 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "update endpoint",
+                "summary": "update a webhook endpoint",
                 "tags": [
-                    "Endpoint"
+                    "Webhook Endpoint"
                 ]
             },             
             "delete": {
-                "description": "delete the specified endpoint.",
+                "description": "delete the specified webhook endpoint.",
                 "operationId": "v1.endpoint.delete",
                 "parameters": [
                     {
@@ -1058,7 +1058,7 @@
                 },
                 "summary": "Delete endpoint",
                 "tags": [
-                    "Endpoint"
+                    "Webhook Endpoint"
                 ]
             }
         }
@@ -1405,18 +1405,18 @@
                         "type": "string"
                     },
                     "url": {
-                        "description": "The endpoint endpoint url",
+                        "description": "The webhook endpoint url",
                         "example": "http://example.com/endpoint",
                         "type": "string"
                     },
                     "filter": {
-                        "description": "The endpoint endpoint url",
+                        "description": "The webhook endpoint url",
                         "example": "{\"network\": \"mainnet\"}",
                         "nullable": true,
                         "type": "string"
                     },
                     "filterTypes": {
-                        "description": "The endpoint endpoint url",
+                        "description": "The webhook endpoint url",
                         "example": [
                             "tx.created"
                         ],
@@ -1426,7 +1426,7 @@
                         "type": "array"
                     },
                     "disabled":{
-                        "description": "indicate whether to disable the endpoint endpoint",
+                        "description": "indicate whether to disable the webhook endpoint",
                         "example": "false",
                         "type": "boolean"
                     },
@@ -1492,18 +1492,18 @@
                         "type": "string"
                     },
                     "url": {
-                        "description": "The endpoint endpoint url",
+                        "description": "The webhook endpoint url",
                         "example": "http://example.com/endpoint",
                         "type": "string"
                     },
                     "filter": {
-                        "description": "The endpoint endpoint url",
+                        "description": "The webhook endpoint url",
                         "example": "{\"network\": \"mainnet\"}",
                         "type": "string",
                         "nullable": true
                     },
                     "filterTypes": {
-                        "description": "The endpoint endpoint url",
+                        "description": "The webhook endpoint url",
                         "example": [
                             "tx.created"
                         ],
@@ -1513,7 +1513,7 @@
                         "type": "array"
                     },
                     "disabled":{
-                        "description": "indicate whether to disable the endpoint endpoint",
+                        "description": "indicate whether to disable the webhook endpoint",
                         "example": "false",
                         "type": "boolean"
                     },
@@ -1585,17 +1585,17 @@
                         "type": "string"
                     },
                     "url": {
-                        "description": "The endpoint endpoint url",
+                        "description": "The webhook endpoint url",
                         "example": "http://example.com/endpoint",
                         "type": "string"
                     },
                     "filter": {
-                        "description": "The endpoint endpoint url",
+                        "description": "The webhook endpoint url",
                         "example": "{\"network\": \"mainnet\"}",
                         "type": "string"
                     },
                     "filterTypes": {
-                        "description": "The endpoint endpoint url",
+                        "description": "The webhook endpoint url",
                         "example": [
                             "tx.created"
                         ],
@@ -1605,7 +1605,7 @@
                         "type": "array"
                     },
                     "disabled":{
-                        "description": "indicate whether to disable the endpoint endpoint",
+                        "description": "indicate whether to disable the webhook endpoint",
                         "example": "false",
                         "type": "boolean"
                     },

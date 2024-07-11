@@ -1257,23 +1257,23 @@ components:
           nullable: true
           type: string
         url:
-          description: The endpoint endpoint url
+          description: The webhook endpoint url
           example: http://example.com/endpoint
           type: string
         filter:
-          description: The endpoint endpoint url
+          description: The webhook endpoint url
           example: '{"network": "mainnet"}'
           nullable: true
           type: string
         filterTypes:
-          description: The endpoint endpoint url
+          description: The webhook endpoint url
           example:
           - tx.created
           items:
             type: string
           type: array
         disabled:
-          description: indicate whether to disable the endpoint endpoint
+          description: indicate whether to disable the webhook endpoint
           example: false
           type: boolean
         metadata:
@@ -1341,23 +1341,23 @@ components:
           nullable: true
           type: string
         url:
-          description: The endpoint endpoint url
+          description: The webhook endpoint url
           example: http://example.com/endpoint
           type: string
         filter:
-          description: The endpoint endpoint url
+          description: The webhook endpoint url
           example: '{"network": "mainnet"}'
           nullable: true
           type: string
         filterTypes:
-          description: The endpoint endpoint url
+          description: The webhook endpoint url
           example:
           - tx.created
           items:
             type: string
           type: array
         disabled:
-          description: indicate whether to disable the endpoint endpoint
+          description: indicate whether to disable the webhook endpoint
           example: false
           type: boolean
         metadata:
@@ -1431,22 +1431,22 @@ components:
           example: The description for endpoint
           type: string
         url:
-          description: The endpoint endpoint url
+          description: The webhook endpoint url
           example: http://example.com/endpoint
           type: string
         filter:
-          description: The endpoint endpoint url
+          description: The webhook endpoint url
           example: '{"network": "mainnet"}'
           type: string
         filterTypes:
-          description: The endpoint endpoint url
+          description: The webhook endpoint url
           example:
           - tx.created
           items:
             type: string
           type: array
         disabled:
-          description: indicate whether to disable the endpoint endpoint
+          description: indicate whether to disable the webhook endpoint
           example: false
           type: boolean
         metadata:
