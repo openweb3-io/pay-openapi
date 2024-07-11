@@ -668,7 +668,7 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "Create a webhook endpoint",
+                "summary": "Create endpoint",
                 "tags": [
                     "Webhook Endpoint"
                 ],
@@ -838,7 +838,7 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "Retrieve a webhook endpoint",
+                "summary": "Retrieve endpoint",
                 "tags": [
                     "Webhook Endpoint"
                 ]
@@ -952,7 +952,7 @@
                         "description": "Too Many Requests"
                     }
                 },
-                "summary": "update a webhook endpoint",
+                "summary": "update endpoint",
                 "tags": [
                     "Webhook Endpoint"
                 ]
