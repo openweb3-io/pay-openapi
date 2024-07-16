@@ -1,0 +1,561 @@
+openapi: 3.0.2
+info:
+  title: Wallet Pay API Documentations
+  version: "1.0"
+servers:
+- url: https://api.wallet-pay.openweb3.io
+security:
+- ApiKeyAuth: []
+paths:
+  /api/v1/pay/orders:
+    get:
+      description: List orders.
+      operationId: v1.order.list
+      parameters:
+      - description: Limit the number of returned items
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 20
+          description: Limit the number of returned items
+          example: 100
+          format: uint64
+          minimum: 0
+          type: integer
+        style: form
+      - description: Specifying the page index
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          description: Specifying the page index
+          example: 0
+          type: integer
+        style: form
+      - description: Optional wallet id
+        explode: true
+        in: query
+        name: wallet_id
+        required: false
+        schema:
+          description: Optional wallet id
+          example: wallet_id
+          nullable: true
+          type: string
+        style: form
+      - description: Optional account id
+        explode: true
+        in: query
+        name: account_id
+        required: false
+        schema:
+          description: Optional account id
+          example: account_id
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListResponse_OrderOut_'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: List Orders
+      tags:
+      - Order
+      x-accepts: application/json
+    post:
+      description: Create a new order.
+      operationId: v1.order.create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderIn'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderOut'
+          description: OK
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderOut'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: Create Order
+      tags:
+      - Order
+      x-readme:
+        code-samples:
+        - name: JavaScript
+          language: node
+          code: |-
+            const orderOut = await pay.order.create({
+                provider: "telegram",
+                wallet: "wallet",
+                description: "My first order",
+                uid: "unique-order-identifier",
+                currency: "USDT",
+                amount: "1"
+            });
+        - name: TypeScript
+          language: node
+          code: |-
+            const orderOut = await pay.order.create({
+                provider: "telegram",
+                wallet: "wallet",
+                description: "My first order",
+                uid: "unique-order-identifier",
+                currency: "USDT",
+                amount: "1"});
+        - name: Python
+          language: python
+          code: |-
+            order_out = pay.order.create(OrderIn(
+                provider="telegram",
+                wallet="wallet",
+                description="My first order",
+                uid="unique-order-identifier",
+                currency: "USDT",
+                amount: "1"
+            ), None)
+        - name: Python (Async)
+          language: python
+          code: |-
+            order_out = await pay.order.create(OrderIn(
+                provider="telegram",
+                wallet="wallet",
+                description="My first order",
+                uid="unique-order-identifier",
+                currency: "USDT",
+                amount: "1"
+            ), None)
+        - name: Go
+          language: go
+          code: |-
+            orderOut, err := payClient.Order.Create(ctx, &OrderIn{
+                Provider: "telegram",
+                Wallet: "wallet",
+                Description: "My first order",
+                Uid: "unique-order-identifier",
+                Currency: "USDT",
+                Amount: "1"
+            })
+        - name: Kotlin
+          language: kotlin
+          code: |-
+            val orderOut = pay.order.create(OrderIn()
+                .provider("telegram")
+                .wallet("wallet")
+                .description("My first order")
+                .uid("unique-order-identifier")
+                .currency("USDT")
+                .amount("1")
+            )
+        - name: Java
+          language: java
+          code: |-
+            OrderOut orderOut = pay.getOrder().create(new OrderIn()
+                .provider("telegram")
+                .wallet("wallet")
+                .description("My first order")
+                .uid("unique-order-identifier")
+                .currency("USDT")
+                .amount("1")
+            )
+        - name: Ruby
+          language: ruby
+          code: |-
+            order_out = pay.order.create(Pay::OrderIn.new({
+                "provider": "telegram",
+                "wallet": "wallet",
+                "description": "My first order",
+                "uid": "unique-order-identifier",
+                "currency": "USDT",
+                "amount": "1"
+            }))
+        - name: Rust
+          language: rust
+          code: |-
+            let order_out = pay.order().create(OrderIn {
+                provider: "telegram",
+                wallet: "wallet",
+                description: "My first order",
+                uid: Some("unique-order-identifier".to_string()),
+                currency: "USDT",
+                amount: "1"
+            }, None).await?;
+        - name: C#
+          language: csharp
+          code: |-
+            var orderOut = await pay.Order.CreateAsync(new OrderIn{
+                provider: "telegram",
+                wallet: "wallet",
+                description: "My first order",
+                uid: "unique-order-identifier",
+                currency: "USDT",
+                amount: "1"
+            })
+        - name: CLI
+          language: shell
+          code: |-
+            pay order create '{
+                "provider": "telegram",
+                "wallet": "wallet",
+                "description": "My first order",
+                "uid": "unique-order-identifier",
+                "currency": "USDT",
+                "amount": "1"
+            }'
+        - name: cURL
+          language: shell
+          code: |-
+            curl -X 'POST' \
+              'https://api.wallet-pay.openweb3.io/api/v1/orders' \
+              -H 'X-API-KEY: API_KEY' \
+              -H 'Accept: application/json' \
+              -H 'Content-Type: application/json' \
+              -d '{
+                    "provider": "telegram",
+                    "wallet": "wallet",
+                    "description": "My first order",
+                    "uid": "unique-order-identifier",
+                    "currency": "USDT",
+                    "amount": "1"
+                }'
+      x-contentType: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    HttpErrorOut:
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      title: HttpError
+      type: object
+    OrderIn:
+      example:
+        uid: unique-order-identifier
+        note: userid_example
+        amount: "0.0012345"
+        wallet_id: wallet_id
+        metadata:
+          key: metadata
+        user_id: userid_example
+        currency: USDT
+        expiration: 600
+      properties:
+        uid:
+          description: Optional unique identifier for the order
+          example: unique-order-identifier
+          maxLength: 256
+          minLength: 1
+          nullable: true
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+        currency:
+          description: Currency code
+          example: USDT
+          maxLength: 256
+          minLength: 1
+          type: string
+        amount:
+          description: Big decimal string representation. Note that the max precision
+            (number of digits after decimal point) depends on the currencyCode. E.g.
+            for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's
+            also min order amount for creating an order. It's 0.000001 BTC / 0.01
+            USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.
+          example: "0.0012345"
+          maxLength: 256
+          minLength: 1
+          type: string
+        wallet_id:
+          description: wallet id
+          example: wallet_id
+          maxLength: 256
+          minLength: 1
+          type: string
+        user_id:
+          description: Optional user identifier
+          example: userid_example
+          maxLength: 256
+          minLength: 1
+          type: string
+        note:
+          description: Optional user identifier
+          example: userid_example
+          maxLength: 256
+          minLength: 1
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          default: {}
+          description: Optional metadata
+          type: object
+        expiration:
+          description: The expiration seconds
+          example: 600
+          type: integer
+      required:
+      - amount
+      - currency
+      - wallet_id
+      type: object
+    OrderOut:
+      example:
+        note: userid_example
+        amount: "1"
+        metadata:
+          key: metadata
+        created_at: 2000-01-23T04:56:07.000+00:00
+        expired_at: 2000-01-23T04:56:07.000+00:00
+        failed_message: failed_message
+        uid: unique-order-identifier
+        wallet_id: wallet_id
+        payed_at: 2000-01-23T04:56:07.000+00:00
+        user_id: user_id
+        currency: USDT
+        expiration: 600
+        id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+        failed_at: 2000-01-23T04:56:07.000+00:00
+        status: PENDING
+      properties:
+        id:
+          description: The order's ID
+          example: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          type: string
+        uid:
+          description: The order's UID
+          example: unique-order-identifier
+          maxLength: 256
+          minLength: 1
+          nullable: true
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+        currency:
+          description: Currency code
+          example: USDT
+          maxLength: 256
+          minLength: 1
+          type: string
+        amount:
+          description: Big decimal string representation. Note that the max precision
+            (number of digits after decimal point) depends on the currencyCode. E.g.
+            for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's
+            also min order amount for creating an order. It's 0.000001 BTC / 0.01
+            USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.
+          example: "1"
+          maxLength: 256
+          minLength: 1
+          type: string
+        user_id:
+          description: The order's creator
+          nullable: true
+          type: string
+        wallet_id:
+          description: wallet id
+          example: wallet_id
+          maxLength: 256
+          minLength: 1
+          type: string
+        note:
+          description: Optional user identifier
+          example: userid_example
+          maxLength: 256
+          minLength: 1
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+        expiration:
+          description: The expiration seconds
+          example: 600
+          type: integer
+        status:
+          description: The order's status
+          enum:
+          - PENDING
+          - PAID
+          - FAILED
+          - EXPIRED
+          - COMPLETED
+          type: string
+        failed_message:
+          description: The message when order failed
+          type: string
+        created_at:
+          description: The order's creation time
+          format: date-time
+          type: string
+        payed_at:
+          description: The order's paid time
+          format: date-time
+          type: string
+        expired_at:
+          description: The order's expiration time
+          format: date-time
+          type: string
+        failed_at:
+          description: The order's failure time
+          format: date-time
+          type: string
+      required:
+      - amount
+      - createdAt
+      - currency
+      - expiration
+      - id
+      - note
+      - status
+      - wallet_id
+      type: object
+    ListResponse_OrderOut_:
+      example:
+        total: 0
+        data:
+        - note: userid_example
+          amount: "1"
+          metadata:
+            key: metadata
+          created_at: 2000-01-23T04:56:07.000+00:00
+          expired_at: 2000-01-23T04:56:07.000+00:00
+          failed_message: failed_message
+          uid: unique-order-identifier
+          wallet_id: wallet_id
+          payed_at: 2000-01-23T04:56:07.000+00:00
+          user_id: user_id
+          currency: USDT
+          expiration: 600
+          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          failed_at: 2000-01-23T04:56:07.000+00:00
+          status: PENDING
+        - note: userid_example
+          amount: "1"
+          metadata:
+            key: metadata
+          created_at: 2000-01-23T04:56:07.000+00:00
+          expired_at: 2000-01-23T04:56:07.000+00:00
+          failed_message: failed_message
+          uid: unique-order-identifier
+          wallet_id: wallet_id
+          payed_at: 2000-01-23T04:56:07.000+00:00
+          user_id: user_id
+          currency: USDT
+          expiration: 600
+          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          failed_at: 2000-01-23T04:56:07.000+00:00
+          status: PENDING
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/OrderOut'
+          type: array
+        total:
+          type: integer
+      required:
+      - data
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      in: header
+      name: x-api-key
+      type: apiKey
+x-readme:
+  samples-languages:
+  - python
+  - node
+  - csharp
+  - java
+  - go
+  - kotlin
+  - ruby
+  - rust
+  - java
+  - shell
+  parameter-ordering:
+  - path
+  - query
+  - header
+  - cookie
+  - body
+  - form
+

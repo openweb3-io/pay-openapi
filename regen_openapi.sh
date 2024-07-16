@@ -2,15 +2,18 @@
 
 set -ex
 
-if [ -n "$1" ]; then
-    curl "$1" | python -m json.tool > openapi.json
+if [ $# -ne 1 ]; then
+    echo "ERROR: need to specify a project name"
+    exit 1
 fi
 
-yarn openapi-generator-cli generate -i openapi.json -g typescript -o javascript/src/openapi -c javascript/openapi-generator-config.json -t javascript/templates --type-mappings=set=Array
+pkg=$1
+
+yarn openapi-generator-cli generate -i openapi-${pkg}.json -g typescript -o ${pkg}/javascript/src/openapi -c ${pkg}/javascript/openapi-generator-config.json -t ${pkg}/javascript/templates --type-mappings=set=Array
 
 # yarn openapi-generator-cli generate -i openapi.json -g go -o go/internal/openapi -c go/openapi-generator-config.json -t go/templates
 
-yarn openapi-generator-cli generate -i openapi.json -g java -o java/lib/generated/openapi -c java/openapi-generator-config.json -t java/templates
+yarn openapi-generator-cli generate -i openapi-${pkg}.json -g java -o ${pkg}/java/lib/generated/openapi -c ${pkg}/java/openapi-generator-config.json -t ${pkg}/java/templates
 
 # yarn openapi-generator-cli generate -i openapi.json -g kotlin -o kotlin/lib/generated/openapi -c kotlin/openapi-generator-config.json -t kotlin/templates
 

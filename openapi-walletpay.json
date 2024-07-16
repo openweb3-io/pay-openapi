@@ -1,0 +1,539 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Wallet-Pay API Documentations",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.wallet-pay.openweb3.io"
+        }
+    ],
+    "security": [
+        {
+            "ApiKeyAuth": []
+        }
+    ],
+    "x-readme": {
+        "samples-languages": [
+            "python",
+            "node",
+            "csharp",
+            "java",
+            "go",
+            "kotlin",
+            "ruby",
+            "rust",
+            "java",
+            "shell"
+        ],
+        "parameter-ordering": [
+            "path", 
+            "query", 
+            "header", 
+            "cookie", 
+            "body", 
+            "form"
+        ]
+    },
+    "paths":
+      {
+        "/api/v1/pay/orders": {
+            "get": {
+                "description": "List orders.",
+                "operationId": "v1.order.list",
+                "parameters": [
+                    {
+                        "description": "Limit the number of returned items",
+                        "in": "query",
+                        "name": "size",
+                        "schema": {
+                            "description": "Limit the number of returned items",
+                            "format": "uint64",
+                            "minimum": 0,
+                            "default": 20,
+                            "example": 100,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specifying the page index",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "description": "Specifying the page index",
+                            "example": 0,
+                            "default": 0,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Optional wallet id",
+                        "in": "query",
+                        "name": "wallet_id",
+                        "schema": {
+                            "description": "Optional wallet id",
+                            "example": "wallet_id",
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Optional account id",
+                        "in": "query",
+                        "name": "account_id",
+                        "schema": {
+                            "description": "Optional account id",
+                            "example": "account_id",
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse_OrderOut_"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "List Orders",
+                "tags": [
+                    "Order"
+                ]
+            },
+            "post": {
+                "description": "Create a new order.",
+                "operationId": "v1.order.create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderIn"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderOut"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderOut"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Create Order",
+                "tags": [
+                    "Order"
+                ],
+                "x-readme": {
+                    "code-samples": [
+                        {
+                            "name": "JavaScript",
+                            "language": "node",
+                            "code": "const orderOut = await pay.order.create({\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n});"
+                        },
+                        {
+                            "name": "TypeScript",
+                            "language": "node",
+                            "code": "const orderOut = await pay.order.create({\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"});"
+                        },
+                        {
+                            "name": "Python",
+                            "language": "python",
+                            "code": "order_out = pay.order.create(OrderIn(\n    provider=\"telegram\",\n    wallet=\"wallet\",\n    description=\"My first order\",\n    uid=\"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n), None)"
+                        },
+                        {
+                            "name": "Python (Async)",
+                            "language": "python",
+                            "code": "order_out = await pay.order.create(OrderIn(\n    provider=\"telegram\",\n    wallet=\"wallet\",\n    description=\"My first order\",\n    uid=\"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n), None)"
+                        },
+                        {
+                            "name": "Go",
+                            "language": "go",
+                            "code": "orderOut, err := payClient.Order.Create(ctx, &OrderIn{\n    Provider: \"telegram\",\n    Wallet: \"wallet\",\n    Description: \"My first order\",\n    Uid: \"unique-order-identifier\",\n    Currency: \"USDT\",\n    Amount: \"1\"\n})"
+                        },
+                        {
+                            "name": "Kotlin",
+                            "language": "kotlin",
+                            "code": "val orderOut = pay.order.create(OrderIn()\n    .provider(\"telegram\")\n    .wallet(\"wallet\")\n    .description(\"My first order\")\n    .uid(\"unique-order-identifier\")\n    .currency(\"USDT\")\n    .amount(\"1\")\n)"
+                        },
+                        {
+                            "name": "Java",
+                            "language": "java",
+                            "code": "OrderOut orderOut = pay.getOrder().create(new OrderIn()\n    .provider(\"telegram\")\n    .wallet(\"wallet\")\n    .description(\"My first order\")\n    .uid(\"unique-order-identifier\")\n    .currency(\"USDT\")\n    .amount(\"1\")\n)"
+                        },
+                        {
+                            "name": "Ruby",
+                            "language": "ruby",
+                            "code": "order_out = pay.order.create(Pay::OrderIn.new({\n    \"provider\": \"telegram\",\n    \"wallet\": \"wallet\",\n    \"description\": \"My first order\",\n    \"uid\": \"unique-order-identifier\",\n    \"currency\": \"USDT\",\n    \"amount\": \"1\"\n}))"
+                        },
+                        {
+                            "name": "Rust",
+                            "language": "rust",
+                            "code": "let order_out = pay.order().create(OrderIn {\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: Some(\"unique-order-identifier\".to_string()),\n    currency: \"USDT\",\n    amount: \"1\"\n}, None).await?;"
+                        },
+                        {
+                            "name": "C#",
+                            "language": "csharp",
+                            "code": "var orderOut = await pay.Order.CreateAsync(new OrderIn{\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n})"
+                        },
+                        {
+                            "name": "CLI",
+                            "language": "shell",
+                            "code": "pay order create '{\n    \"provider\": \"telegram\",\n    \"wallet\": \"wallet\",\n    \"description\": \"My first order\",\n    \"uid\": \"unique-order-identifier\",\n    \"currency\": \"USDT\",\n    \"amount\": \"1\"\n}'"
+                        },
+                        {
+                            "name": "cURL",
+                            "language": "shell",
+                            "code": "curl -X 'POST' \\\n  'https://api.wallet-pay.openweb3.io/api/v1/orders' \\\n  -H 'X-API-KEY: API_KEY' \\\n  -H 'Accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n        \"provider\": \"telegram\",\n        \"wallet\": \"wallet\",\n        \"description\": \"My first order\",\n        \"uid\": \"unique-order-identifier\",\n        \"currency\": \"USDT\",\n        \"amount\": \"1\"\n    }'"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "HttpErrorOut": {
+                "properties": {
+                    "error": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "error"
+                ],
+                "title": "HttpError",
+                "type": "object"
+            },
+            "OrderIn": {
+                "properties": {
+                    "uid": {
+                        "description": "Optional unique identifier for the order",
+                        "example": "unique-order-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "example": "USDT",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Big decimal string representation. Note that the max precision (number of digits after decimal point) depends on the currencyCode. E.g. for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's also min order amount for creating an order. It's 0.000001 BTC / 0.01 USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.",
+                        "example": "0.0012345",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "wallet_id": {
+                        "description": "wallet id",
+                        "example": "wallet_id",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "user_id": {
+                        "description": "Optional user identifier",
+                        "example": "userid_example",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "note": {
+                        "description": "Optional user identifier",
+                        "example": "userid_example",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata"
+                    },
+                    "expiration": {
+                        "description": "The expiration seconds",
+                        "example": "600",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "wallet_id",
+                    "currency",
+                    "amount"
+                ],
+                "type": "object"
+            },
+            "OrderOut": {
+                "properties": {
+                    "id": {
+                        "description": "The order's ID",
+                        "example": "1brOrx2ZWZBpBUvZwXKQmoEYga2",
+                        "type": "string"
+                    },
+                    "uid": {
+                        "description": "The order's UID",
+                        "example": "unique-order-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "example": "USDT",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Big decimal string representation. Note that the max precision (number of digits after decimal point) depends on the currencyCode. E.g. for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's also min order amount for creating an order. It's 0.000001 BTC / 0.01 USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.",
+                        "example": "1",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "description": "The order's creator",
+                        "nullable": true
+                    },
+                    "wallet_id": {
+                        "description": "wallet id",
+                        "example": "wallet_id",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "note": {
+                        "description": "Optional user identifier",
+                        "example": "userid_example",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "type": "object"
+                    },
+                    "expiration": {
+                        "description": "The expiration seconds",
+                        "example": "600",
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["PENDING", "PAID", "FAILED", "EXPIRED", "COMPLETED"],
+                        "description": "The order's status"
+                    },
+                    "failed_message": {
+                        "type": "string",
+                        "description": "The message when order failed"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The order's creation time"
+                    },
+                    "payed_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The order's paid time"
+                    },
+                    "expired_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The order's expiration time"
+                    },
+                    "failed_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The order's failure time"
+                    }
+                },
+                "required": [
+                    "id",
+                    "currency",
+                    "amount",
+                    "wallet_id",
+                    "note",
+                    "expiration",
+                    "status",
+                    "createdAt"
+                ],
+                "type": "object"
+            },
+            "ListResponse_OrderOut_": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/OrderOut"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "x-api-key"
+            }
+        }
+    }
+}

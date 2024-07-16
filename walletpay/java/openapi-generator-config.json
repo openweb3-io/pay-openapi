@@ -1,0 +1,5 @@
+{
+  "apiPackage": "io.openweb3.walletpay.internal.api",
+  "modelPackage": "io.openweb3.walletpay.models",
+  "dateLibrary": "java8"
+}
