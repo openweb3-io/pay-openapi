@@ -30,7 +30,7 @@ const VERSION = "0.2.0";
 
 class UserAgentMiddleware implements Middleware {
   public pre(context: RequestContext): Promise<RequestContext> {
-    context.setHeaderParam("User-Agent", `walletpay-libs/${VERSION}/javascript`);
+    context.setHeaderParam("User-Agent", `pay-libs/${VERSION}/javascript`);
     return Promise.resolve(context);
   }
 
@@ -72,18 +72,18 @@ class SignatureMiddleware implements Middleware {
   }
 }
 
-export interface walletpayOptions {
+export interface payOptions {
   debug?: boolean;
   serverUrl?: string;
 }
 
-export class walletpay {
+export class pay {
   public readonly _configuration: Configuration;
   public readonly Order: Order;
   public readonly Account: Account;
   public readonly Endpoint: Endpoint;
 
-  public constructor(apikey: string, privateKey: string, options: walletpayOptions = {}) {
+  public constructor(apikey: string, privateKey: string, options: payOptions = {}) {
     const baseUrl: string = options.serverUrl ?? "https://api.pay.openweb3.io";
 
     const baseServer = new ServerConfiguration<any>(baseUrl, {});

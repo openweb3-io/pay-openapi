@@ -130,7 +130,7 @@ public class ApiClient {
         setUserAgent("OpenAPI-Generator/1.0/java");
         Random randomGenerator = new Random();
         long randomId = randomGenerator.nextLong();
-        addDefaultHeader("walletpay-req-id", String.valueOf(Math.abs(randomId)));
+        addDefaultHeader("pay-req-id", String.valueOf(Math.abs(randomId)));
 
         authentications = new HashMap<String, Authentication>();
     }
@@ -950,7 +950,7 @@ public class ApiClient {
                 Thread.currentThread().interrupt();
             }
             retryCount++;
-            call = httpClient.newCall(call.request().newBuilder().header("walletpay-retry-count", String.valueOf(retryCount)).build());
+            call = httpClient.newCall(call.request().newBuilder().header("pay-retry-count", String.valueOf(retryCount)).build());
             sleepTime = sleepTime * 2;
         }
         throw new ApiException("failed to execute api call");

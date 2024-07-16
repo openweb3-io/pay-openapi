@@ -253,7 +253,7 @@ paths:
         - name: JavaScript
           language: node
           code: |-
-            const orderOut = await walletpay.order.create({
+            const orderOut = await pay.order.create({
                 provider: "telegram",
                 wallet: "wallet",
                 description: "My first order",
@@ -264,7 +264,7 @@ paths:
         - name: TypeScript
           language: node
           code: |-
-            const orderOut = await walletpay.order.create({
+            const orderOut = await pay.order.create({
                 provider: "telegram",
                 wallet: "wallet",
                 description: "My first order",
@@ -274,7 +274,7 @@ paths:
         - name: Python
           language: python
           code: |-
-            order_out = walletpay.order.create(OrderIn(
+            order_out = pay.order.create(OrderIn(
                 provider="telegram",
                 wallet="wallet",
                 description="My first order",
@@ -285,7 +285,7 @@ paths:
         - name: Python (Async)
           language: python
           code: |-
-            order_out = await walletpay.order.create(OrderIn(
+            order_out = await pay.order.create(OrderIn(
                 provider="telegram",
                 wallet="wallet",
                 description="My first order",
@@ -296,7 +296,7 @@ paths:
         - name: Go
           language: go
           code: |-
-            orderOut, err := walletpayClient.Order.Create(ctx, &OrderIn{
+            orderOut, err := payClient.Order.Create(ctx, &OrderIn{
                 Provider: "telegram",
                 Wallet: "wallet",
                 Description: "My first order",
@@ -307,7 +307,7 @@ paths:
         - name: Kotlin
           language: kotlin
           code: |-
-            val orderOut = walletpay.order.create(OrderIn()
+            val orderOut = pay.order.create(OrderIn()
                 .provider("telegram")
                 .wallet("wallet")
                 .description("My first order")
@@ -318,7 +318,7 @@ paths:
         - name: Java
           language: java
           code: |-
-            OrderOut orderOut = walletpay.getOrder().create(new OrderIn()
+            OrderOut orderOut = pay.getOrder().create(new OrderIn()
                 .provider("telegram")
                 .wallet("wallet")
                 .description("My first order")
@@ -329,7 +329,7 @@ paths:
         - name: Ruby
           language: ruby
           code: |-
-            order_out = walletpay.order.create(Walletpay::OrderIn.new({
+            order_out = pay.order.create(Pay::OrderIn.new({
                 "provider": "telegram",
                 "wallet": "wallet",
                 "description": "My first order",
@@ -340,7 +340,7 @@ paths:
         - name: Rust
           language: rust
           code: |-
-            let order_out = walletpay.order().create(OrderIn {
+            let order_out = pay.order().create(OrderIn {
                 provider: "telegram",
                 wallet: "wallet",
                 description: "My first order",
@@ -351,7 +351,7 @@ paths:
         - name: C#
           language: csharp
           code: |-
-            var orderOut = await walletpay.Order.CreateAsync(new OrderIn{
+            var orderOut = await pay.Order.CreateAsync(new OrderIn{
                 provider: "telegram",
                 wallet: "wallet",
                 description: "My first order",
@@ -362,7 +362,7 @@ paths:
         - name: CLI
           language: shell
           code: |-
-            walletpay order create '{
+            pay order create '{
                 "provider": "telegram",
                 "wallet": "wallet",
                 "description": "My first order",
@@ -531,7 +531,7 @@ paths:
         - name: JavaScript
           language: node
           code: |-
-            const orderOut = await walletpay.order.create({
+            const orderOut = await pay.order.create({
                 provider: "telegram",
                 wallet: "wallet",
                 description: "My first order",
@@ -542,7 +542,7 @@ paths:
         - name: TypeScript
           language: node
           code: |-
-            const orderOut = await walletpay.order.create({
+            const orderOut = await pay.order.create({
                 provider: "telegram",
                 wallet: "wallet",
                 description: "My first order",
@@ -552,7 +552,7 @@ paths:
         - name: Python
           language: python
           code: |-
-            order_out = walletpay.order.create(OrderIn(
+            order_out = pay.order.create(OrderIn(
                 provider="telegram",
                 wallet="wallet",
                 description="My first order",
@@ -563,7 +563,7 @@ paths:
         - name: Python (Async)
           language: python
           code: |-
-            order_out = await walletpay.order.create(OrderIn(
+            order_out = await pay.order.create(OrderIn(
                 provider="telegram",
                 wallet="wallet",
                 description="My first order",
@@ -574,7 +574,7 @@ paths:
         - name: Go
           language: go
           code: |-
-            orderOut, err := walletpayClient.Order.Create(ctx, &OrderIn{
+            orderOut, err := payClient.Order.Create(ctx, &OrderIn{
                 Provider: "telegram",
                 Wallet: "wallet",
                 Description: "My first order",
@@ -585,7 +585,7 @@ paths:
         - name: Kotlin
           language: kotlin
           code: |-
-            val orderOut = walletpay.order.create(OrderIn()
+            val orderOut = pay.order.create(OrderIn()
                 .provider("telegram")
                 .wallet("wallet")
                 .description("My first order")
@@ -596,7 +596,7 @@ paths:
         - name: Java
           language: java
           code: |-
-            OrderOut orderOut = walletpay.getOrder().create(new OrderIn()
+            OrderOut orderOut = pay.getOrder().create(new OrderIn()
                 .provider("telegram")
                 .wallet("wallet")
                 .description("My first order")
@@ -607,7 +607,7 @@ paths:
         - name: Ruby
           language: ruby
           code: |-
-            order_out = walletpay.order.create(Walletpay::OrderIn.new({
+            order_out = pay.order.create(Pay::OrderIn.new({
                 "provider": "telegram",
                 "wallet": "wallet",
                 "description": "My first order",
@@ -618,7 +618,7 @@ paths:
         - name: Rust
           language: rust
           code: |-
-            let order_out = walletpay.order().create(OrderIn {
+            let order_out = pay.order().create(OrderIn {
                 provider: "telegram",
                 wallet: "wallet",
                 description: "My first order",
@@ -629,7 +629,7 @@ paths:
         - name: C#
           language: csharp
           code: |-
-            var orderOut = await walletpay.Order.CreateAsync(new OrderIn{
+            var orderOut = await pay.Order.CreateAsync(new OrderIn{
                 provider: "telegram",
                 wallet: "wallet",
                 description: "My first order",
@@ -640,7 +640,7 @@ paths:
         - name: CLI
           language: shell
           code: |-
-            walletpay order create '{
+            pay order create '{
                 "provider": "telegram",
                 "wallet": "wallet",
                 "description": "My first order",

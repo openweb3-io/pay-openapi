@@ -1,17 +1,17 @@
 <h1 align="center">
     <a style="text-decoration: none" href="https://pay.openweb3.io">
       <img width="120" src="" />
-      <p align="center">walletpay - Wallet Pay as a service</p>
+      <p align="center">pay - Wallet Pay as a service</p>
     </a>
 </h1>
 <h2 align="center">
   <a href="https://pay.openweb3.io">Website</a> | <a href="https://docs.pay.openweb3.io">Documentation</a> | <a href="https://pay.openweb3.io/slack">Community Slack</a>
 <h2>
 
-Typescript/Javascript library for interacting with the walletpay API and verifying walletpay signatures
+Typescript/Javascript library for interacting with the pay API and verifying pay signatures
 
-![GitHub tag](https://img.shields.io/github/tag/walletpay/walletpays.svg)
-[![NPM version](https://img.shields.io/npm/v/walletpay.svg)](https://www.npmjs.com/package/walletpay)
+![GitHub tag](https://img.shields.io/github/tag/pay/pays.svg)
+[![NPM version](https://img.shields.io/npm/v/pay.svg)](https://www.npmjs.com/package/pay)
 
 [![Join our slack](https://img.shields.io/badge/Slack-join%20the%20community-blue?logo=slack&style=social)](https://pay.openweb3.io/slack/)
 
@@ -52,10 +52,10 @@ yarn add @openweb3-io/pay
 # Usage
 
 ```js
-import { Walletpay } from "@openweb3-io/pay";
+import { Pay } from "@openweb3-io/pay";
 
-const walletpay = new Walletpay("API-KEY", "RSA PRIVATE KEY");
-const order = await walletpay.Order.create({ channel: "ton-connect", chain:"ton", amount: "0.11", currency: "USDT"});
+const pay = new Pay("API-KEY", "RSA PRIVATE KEY");
+const order = await pay.Order.create({ channel: "ton-connect", chain:"ton", amount: "0.11", currency: "USDT"});
 ```
 # Development
 

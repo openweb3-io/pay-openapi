@@ -33,7 +33,7 @@ export class AccountApiRequestFactory extends BaseAPIRequestFactory {
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
         const randomId = Math.floor(Math.random() * Math.pow(2, 32))
-        requestContext.setHeaderParam("walletpay-req-id", randomId.toString())
+        requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
         if (limit !== undefined) {

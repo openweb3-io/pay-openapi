@@ -1,5 +1,5 @@
 {
-  "npmName": "walletpay",
+  "npmName": "pay",
   "useObjectParameters": true,
   "supportsES6": true
 }

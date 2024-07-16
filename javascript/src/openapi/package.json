@@ -1,7 +1,7 @@
 {
-  "name": "walletpay",
+  "name": "pay",
   "version": "1.0",
-  "description": "OpenAPI client for walletpay",
+  "description": "OpenAPI client for pay",
   "author": "OpenAPI-Generator Contributors",
   "keywords": [
     "fetch",

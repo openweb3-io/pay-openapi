@@ -1,17 +1,17 @@
 <h1 align="center">
     <a style="text-decoration: none" href="https://pay.openweb3.io">
       <img width="120" src="" />
-      <p align="center">walletpay - walletpays as a service</p>
+      <p align="center">pay - pays as a service</p>
     </a>
 </h1>
 <h2 align="center">
   <a href="https://pay.openweb3.io">Website</a> | <a href="https://docs.pay.openweb3.io">Documentation</a> | <a href="https://pay.openweb3.io/slack">Community Slack</a>
 <h2>
 
-Java library for interacting with the walletpay API and verifying walletpay signatures
+Java library for interacting with the pay API and verifying pay signatures
 
-![GitHub tag](https://img.shields.io/github/tag/walletpay/walletpays.svg)
-[![Maven Central (Java)](https://img.shields.io/maven-central/v/io.openweb3.pay/walletpay?label=maven-central%20(java))](https://search.maven.org/artifact/io.openweb3.pay/walletpay)
+![GitHub tag](https://img.shields.io/github/tag/pay/pays.svg)
+[![Maven Central (Java)](https://img.shields.io/maven-central/v/io.openweb3.pay/pay?label=maven-central%20(java))](https://search.maven.org/artifact/io.openweb3.pay/pay)
 
 [![Join our slack](https://img.shields.io/badge/Slack-join%20the%20community-blue?logo=slack&style=social)](https://pay.openweb3.io/slack/)
 
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>io.openweb3.pay</groupId>
-  <artifactId>walletpay</artifactId>
+  <artifactId>pay</artifactId>
   <version>0.1.0</version>
 </dependency>
 ```
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "io.openweb3.pay:walletpay:0.1.0"
+implementation "io.openweb3.pay:pay:0.1.0"
 ```
 
 # Development

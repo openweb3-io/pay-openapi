@@ -49,7 +49,7 @@ jar {
 
 javadoc {
     source = sourceSets.main.allJava
-    excludes = [ "com/walletpay/**/*" ]
+    excludes = [ "com/pay/**/*" ]
 }
 
 apply from: "deploy.gradle"
