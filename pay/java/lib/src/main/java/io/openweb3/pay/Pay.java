@@ -8,7 +8,6 @@ import io.openweb3.pay.internal.auth.ApiKeyAuth;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
@@ -19,17 +18,19 @@ import java.util.Base64;
 import io.openweb3.pay.exceptions.SigningException;
 import java.io.IOException;
 
+
 public final class Pay {
 	public static final String VERSION = "0.2.0";
 	private final Order order;
 	private final Account account;
 	private final Endpoint endpoint;
 
-	public Pay(final String apikey, final String privateKey) {
-		this(apikey, privateKey, new PayOptions());
+
+	public Pay(final String apikey, final String privateKeyPath) {
+		this(apikey, privateKeyPath, new PayOptions());
 	}
 
-	public Pay(final String apikey, final String privateKey, final PayOptions options) {
+	public Pay(final String apikey, final String privateKeyPath, final PayOptions options) {
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addNetworkInterceptor(getProgressInterceptor());
 		builder.addInterceptor(new Interceptor() {
@@ -52,7 +53,7 @@ public final class Pay {
 				// 计算请求的 SHA-256 签名
                 String signature = null;
                 try {
-                    signature = calculateSignature(privateKey, body, uri, timestamp);
+                    signature = calculateSignature(privateKeyPath, body, uri, timestamp);
                 } catch (SigningException e) {
                     throw new RuntimeException(e);
                 }
@@ -99,17 +100,13 @@ public final class Pay {
 		};
 	}
 
-    private static String calculateSignature(final String privateKey, final String body, final String uri, final String timestamp) throws SigningException {
+    private static String calculateSignature(final String privateKeyPath, final String body, final String uri, final String timestamp) throws SigningException {
 		try {
 			String content = String.format("%s%s%s", body, uri, timestamp);
 			Signature sign = Signature.getInstance("SHA256withRSA");
 
-			String stripPrivateKey = privateKey;
-			if (privateKey.startsWith("-----BEGIN")) {
-				stripPrivateKey = privateKey.replace("-----BEGIN PRIVATE KEY-----", "")
-						.replace("-----END PRIVATE KEY-----", "")
-						.replaceAll("\\s", ""); // 移除所有空白字符
-			}
+			String stripPrivateKey = Utils.getStringFromFile(privateKeyPath);
+			stripPrivateKey = stripPrivateKey.replaceAll("(-+BEGIN PUBLIC KEY-+\\r?\\n|-+END PUBLIC KEY-+\\r?\\n?)", ""); // 移除所有空白字符
 
 			Base64.Decoder decoder = Base64.getDecoder();
 			PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(decoder.decode(stripPrivateKey));
@@ -118,25 +115,18 @@ public final class Pay {
 
 			sign.initSign(pvt);
 			sign.update(content.getBytes(StandardCharsets.UTF_8));
-			return toHex(sign.sign());
+			return Utils.toHex(sign.sign());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			return null;
 		} catch (InvalidKeySpecException | SignatureException | InvalidKeyException e) {
             throw new SigningException(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
-	private static String toHex(byte[] array) {
-		BigInteger bi = new BigInteger(1, array);
-		String hex = bi.toString(16);
-		int paddingLength = (array.length * 2) - hex.length();
-		if (paddingLength > 0) {
-			return String.format("%0" + paddingLength + "d", 0) + hex;
-		} else {
-			return hex;
-		}
-	}
+
 
 	public Order getOrder() {
 		return order;

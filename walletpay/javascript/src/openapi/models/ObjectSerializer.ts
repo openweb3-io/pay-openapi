@@ -1,12 +1,20 @@
+export * from './EndpointIn';
+export * from './EndpointOut';
 export * from './HttpErrorOut';
+export * from './ListResponseEndpointOut';
 export * from './ListResponseOrderOut';
 export * from './OrderIn';
 export * from './OrderOut';
+export * from './Ordering';
 
+import { EndpointIn } from './EndpointIn';
+import { EndpointOut } from './EndpointOut';
 import { HttpErrorOut } from './HttpErrorOut';
+import { ListResponseEndpointOut } from './ListResponseEndpointOut';
 import { ListResponseOrderOut } from './ListResponseOrderOut';
 import { OrderIn } from './OrderIn';
 import { OrderOut         , OrderOutStatusEnum        } from './OrderOut';
+import { Ordering } from './Ordering';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -28,10 +36,14 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
                  
 let enumsMap: Set<string> = new Set<string>([
     "OrderOutStatusEnum",
+    "Ordering",
 ]);
 
 let typeMap: {[index: string]: any} = {
+    "EndpointIn": EndpointIn,
+    "EndpointOut": EndpointOut,
     "HttpErrorOut": HttpErrorOut,
+    "ListResponseEndpointOut": ListResponseEndpointOut,
     "ListResponseOrderOut": ListResponseOrderOut,
     "OrderIn": OrderIn,
     "OrderOut": OrderOut,

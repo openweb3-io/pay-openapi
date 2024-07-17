@@ -391,68 +391,7 @@
                     "Order"
                 ],
                 "x-readme": {
-                    "code-samples": [
-                        {
-                            "name": "JavaScript",
-                            "language": "node",
-                            "code": "const orderOut = await pay.order.create({\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n});"
-                        },
-                        {
-                            "name": "TypeScript",
-                            "language": "node",
-                            "code": "const orderOut = await pay.order.create({\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"});"
-                        },
-                        {
-                            "name": "Python",
-                            "language": "python",
-                            "code": "order_out = pay.order.create(OrderIn(\n    provider=\"telegram\",\n    wallet=\"wallet\",\n    description=\"My first order\",\n    uid=\"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n), None)"
-                        },
-                        {
-                            "name": "Python (Async)",
-                            "language": "python",
-                            "code": "order_out = await pay.order.create(OrderIn(\n    provider=\"telegram\",\n    wallet=\"wallet\",\n    description=\"My first order\",\n    uid=\"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n), None)"
-                        },
-                        {
-                            "name": "Go",
-                            "language": "go",
-                            "code": "orderOut, err := payClient.Order.Create(ctx, &OrderIn{\n    Provider: \"telegram\",\n    Wallet: \"wallet\",\n    Description: \"My first order\",\n    Uid: \"unique-order-identifier\",\n    Currency: \"USDT\",\n    Amount: \"1\"\n})"
-                        },
-                        {
-                            "name": "Kotlin",
-                            "language": "kotlin",
-                            "code": "val orderOut = pay.order.create(OrderIn()\n    .provider(\"telegram\")\n    .wallet(\"wallet\")\n    .description(\"My first order\")\n    .uid(\"unique-order-identifier\")\n    .currency(\"USDT\")\n    .amount(\"1\")\n)"
-                        },
-                        {
-                            "name": "Java",
-                            "language": "java",
-                            "code": "OrderOut orderOut = pay.getOrder().create(new OrderIn()\n    .provider(\"telegram\")\n    .wallet(\"wallet\")\n    .description(\"My first order\")\n    .uid(\"unique-order-identifier\")\n    .currency(\"USDT\")\n    .amount(\"1\")\n)"
-                        },
-                        {
-                            "name": "Ruby",
-                            "language": "ruby",
-                            "code": "order_out = pay.order.create(Pay::OrderIn.new({\n    \"provider\": \"telegram\",\n    \"wallet\": \"wallet\",\n    \"description\": \"My first order\",\n    \"uid\": \"unique-order-identifier\",\n    \"currency\": \"USDT\",\n    \"amount\": \"1\"\n}))"
-                        },
-                        {
-                            "name": "Rust",
-                            "language": "rust",
-                            "code": "let order_out = pay.order().create(OrderIn {\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: Some(\"unique-order-identifier\".to_string()),\n    currency: \"USDT\",\n    amount: \"1\"\n}, None).await?;"
-                        },
-                        {
-                            "name": "C#",
-                            "language": "csharp",
-                            "code": "var orderOut = await pay.Order.CreateAsync(new OrderIn{\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n})"
-                        },
-                        {
-                            "name": "CLI",
-                            "language": "shell",
-                            "code": "pay order create '{\n    \"provider\": \"telegram\",\n    \"wallet\": \"wallet\",\n    \"description\": \"My first order\",\n    \"uid\": \"unique-order-identifier\",\n    \"currency\": \"USDT\",\n    \"amount\": \"1\"\n}'"
-                        },
-                        {
-                            "name": "cURL",
-                            "language": "shell",
-                            "code": "curl -X 'POST' \\\n  'https://api.pay.openweb3.io/api/v1/orders' \\\n  -H 'X-API-KEY: API_KEY' \\\n  -H 'Accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n        \"provider\": \"telegram\",\n        \"wallet\": \"wallet\",\n        \"description\": \"My first order\",\n        \"uid\": \"unique-order-identifier\",\n        \"currency\": \"USDT\",\n        \"amount\": \"1\"\n    }'"
-                        }
-                    ]
+                    "code-samples": []
                 }
             }
         },
@@ -673,68 +612,7 @@
                     "Webhook Endpoint"
                 ],
                 "x-readme": {
-                    "code-samples": [
-                        {
-                            "name": "JavaScript",
-                            "language": "node",
-                            "code": "const orderOut = await pay.order.create({\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n});"
-                        },
-                        {
-                            "name": "TypeScript",
-                            "language": "node",
-                            "code": "const orderOut = await pay.order.create({\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"});"
-                        },
-                        {
-                            "name": "Python",
-                            "language": "python",
-                            "code": "order_out = pay.order.create(OrderIn(\n    provider=\"telegram\",\n    wallet=\"wallet\",\n    description=\"My first order\",\n    uid=\"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n), None)"
-                        },
-                        {
-                            "name": "Python (Async)",
-                            "language": "python",
-                            "code": "order_out = await pay.order.create(OrderIn(\n    provider=\"telegram\",\n    wallet=\"wallet\",\n    description=\"My first order\",\n    uid=\"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n), None)"
-                        },
-                        {
-                            "name": "Go",
-                            "language": "go",
-                            "code": "orderOut, err := payClient.Order.Create(ctx, &OrderIn{\n    Provider: \"telegram\",\n    Wallet: \"wallet\",\n    Description: \"My first order\",\n    Uid: \"unique-order-identifier\",\n    Currency: \"USDT\",\n    Amount: \"1\"\n})"
-                        },
-                        {
-                            "name": "Kotlin",
-                            "language": "kotlin",
-                            "code": "val orderOut = pay.order.create(OrderIn()\n    .provider(\"telegram\")\n    .wallet(\"wallet\")\n    .description(\"My first order\")\n    .uid(\"unique-order-identifier\")\n    .currency(\"USDT\")\n    .amount(\"1\")\n)"
-                        },
-                        {
-                            "name": "Java",
-                            "language": "java",
-                            "code": "OrderOut orderOut = pay.getOrder().create(new OrderIn()\n    .provider(\"telegram\")\n    .wallet(\"wallet\")\n    .description(\"My first order\")\n    .uid(\"unique-order-identifier\")\n    .currency(\"USDT\")\n    .amount(\"1\")\n)"
-                        },
-                        {
-                            "name": "Ruby",
-                            "language": "ruby",
-                            "code": "order_out = pay.order.create(Pay::OrderIn.new({\n    \"provider\": \"telegram\",\n    \"wallet\": \"wallet\",\n    \"description\": \"My first order\",\n    \"uid\": \"unique-order-identifier\",\n    \"currency\": \"USDT\",\n    \"amount\": \"1\"\n}))"
-                        },
-                        {
-                            "name": "Rust",
-                            "language": "rust",
-                            "code": "let order_out = pay.order().create(OrderIn {\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: Some(\"unique-order-identifier\".to_string()),\n    currency: \"USDT\",\n    amount: \"1\"\n}, None).await?;"
-                        },
-                        {
-                            "name": "C#",
-                            "language": "csharp",
-                            "code": "var orderOut = await pay.Order.CreateAsync(new OrderIn{\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n})"
-                        },
-                        {
-                            "name": "CLI",
-                            "language": "shell",
-                            "code": "pay order create '{\n    \"provider\": \"telegram\",\n    \"wallet\": \"wallet\",\n    \"description\": \"My first order\",\n    \"uid\": \"unique-order-identifier\",\n    \"currency\": \"USDT\",\n    \"amount\": \"1\"\n}'"
-                        },
-                        {
-                            "name": "cURL",
-                            "language": "shell",
-                            "code": "curl -X 'POST' \\\n  'https://api.pay.openweb3.io/api/v1/orders' \\\n  -H 'X-API-KEY: API_KEY' \\\n  -H 'Accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n        \"provider\": \"telegram\",\n        \"wallet\": \"wallet\",\n        \"description\": \"My first order\",\n        \"uid\": \"unique-order-identifier\",\n        \"currency\": \"USDT\",\n        \"amount\": \"1\"\n    }'"
-                        }
-                    ]
+                    "code-samples": []
                 }
             }
         },

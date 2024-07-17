@@ -261,69 +261,316 @@
                     "Order"
                 ],
                 "x-readme": {
-                    "code-samples": [
-                        {
-                            "name": "JavaScript",
-                            "language": "node",
-                            "code": "const orderOut = await pay.order.create({\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n});"
-                        },
-                        {
-                            "name": "TypeScript",
-                            "language": "node",
-                            "code": "const orderOut = await pay.order.create({\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"});"
-                        },
-                        {
-                            "name": "Python",
-                            "language": "python",
-                            "code": "order_out = pay.order.create(OrderIn(\n    provider=\"telegram\",\n    wallet=\"wallet\",\n    description=\"My first order\",\n    uid=\"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n), None)"
-                        },
-                        {
-                            "name": "Python (Async)",
-                            "language": "python",
-                            "code": "order_out = await pay.order.create(OrderIn(\n    provider=\"telegram\",\n    wallet=\"wallet\",\n    description=\"My first order\",\n    uid=\"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n), None)"
-                        },
-                        {
-                            "name": "Go",
-                            "language": "go",
-                            "code": "orderOut, err := payClient.Order.Create(ctx, &OrderIn{\n    Provider: \"telegram\",\n    Wallet: \"wallet\",\n    Description: \"My first order\",\n    Uid: \"unique-order-identifier\",\n    Currency: \"USDT\",\n    Amount: \"1\"\n})"
-                        },
-                        {
-                            "name": "Kotlin",
-                            "language": "kotlin",
-                            "code": "val orderOut = pay.order.create(OrderIn()\n    .provider(\"telegram\")\n    .wallet(\"wallet\")\n    .description(\"My first order\")\n    .uid(\"unique-order-identifier\")\n    .currency(\"USDT\")\n    .amount(\"1\")\n)"
-                        },
-                        {
-                            "name": "Java",
-                            "language": "java",
-                            "code": "OrderOut orderOut = pay.getOrder().create(new OrderIn()\n    .provider(\"telegram\")\n    .wallet(\"wallet\")\n    .description(\"My first order\")\n    .uid(\"unique-order-identifier\")\n    .currency(\"USDT\")\n    .amount(\"1\")\n)"
-                        },
-                        {
-                            "name": "Ruby",
-                            "language": "ruby",
-                            "code": "order_out = pay.order.create(Pay::OrderIn.new({\n    \"provider\": \"telegram\",\n    \"wallet\": \"wallet\",\n    \"description\": \"My first order\",\n    \"uid\": \"unique-order-identifier\",\n    \"currency\": \"USDT\",\n    \"amount\": \"1\"\n}))"
-                        },
-                        {
-                            "name": "Rust",
-                            "language": "rust",
-                            "code": "let order_out = pay.order().create(OrderIn {\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: Some(\"unique-order-identifier\".to_string()),\n    currency: \"USDT\",\n    amount: \"1\"\n}, None).await?;"
-                        },
-                        {
-                            "name": "C#",
-                            "language": "csharp",
-                            "code": "var orderOut = await pay.Order.CreateAsync(new OrderIn{\n    provider: \"telegram\",\n    wallet: \"wallet\",\n    description: \"My first order\",\n    uid: \"unique-order-identifier\",\n    currency: \"USDT\",\n    amount: \"1\"\n})"
-                        },
-                        {
-                            "name": "CLI",
-                            "language": "shell",
-                            "code": "pay order create '{\n    \"provider\": \"telegram\",\n    \"wallet\": \"wallet\",\n    \"description\": \"My first order\",\n    \"uid\": \"unique-order-identifier\",\n    \"currency\": \"USDT\",\n    \"amount\": \"1\"\n}'"
-                        },
-                        {
-                            "name": "cURL",
-                            "language": "shell",
-                            "code": "curl -X 'POST' \\\n  'https://api.wallet-pay.openweb3.io/api/v1/orders' \\\n  -H 'X-API-KEY: API_KEY' \\\n  -H 'Accept: application/json' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n        \"provider\": \"telegram\",\n        \"wallet\": \"wallet\",\n        \"description\": \"My first order\",\n        \"uid\": \"unique-order-identifier\",\n        \"currency\": \"USDT\",\n        \"amount\": \"1\"\n    }'"
-                        }
-                    ]
+                    "code-samples": []
                 }
+            }
+        },
+        "/api/v1/webhooks/endpoints" : {
+            "get": {
+                "description": "List endpoints.",
+                "operationId": "v1.endpoint.list",
+                "parameters": [
+                    {
+                        "description": "Limit the number of returned items",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "description": "Limit the number of returned items",
+                            "format": "uint64",
+                            "minimum": 0,
+                            "default": 20,
+                            "example": 100,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specifying the start cursor position",
+                        "in": "query",
+                        "name": "cursor",
+                        "schema": {
+                            "description": "Specifying the start cursor position",
+                            "type": "string"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "The sorting order of the returned items",
+                        "in": "query",
+                        "name": "order",
+                        "schema": {
+                            "$ref": "#/components/schemas/Ordering",
+                            "description": "The sorting order of the returned items",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse_EndpointOut_"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "List endpoints",
+                "tags": [
+                    "Webhook Endpoint"
+                ]
+            },
+            "post": {
+                "description": "Create a webhook endpoint.",
+                "operationId": "v1.endpoint.create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EndpointIn"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Create endpoint",
+                "tags": [
+                    "Webhook Endpoint"
+                ],
+                "x-readme": {
+                    "code-samples": []
+                }
+            }
+        },
+        "/api/v1/webhooks/endpoints/{endpointId}": {          
+            "delete": {
+                "description": "delete the specified webhook endpoint.",
+                "operationId": "v1.endpoint.delete",
+                "parameters": [
+                    {
+                        "description": "Specified the endpoint id.",
+                        "in": "path",
+                        "name": "endpointId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the endpoint id.",
+                            "example": "wb_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Delete endpoint",
+                "tags": [
+                    "Webhook Endpoint"
+                ]
             }
         }
     },
@@ -340,6 +587,14 @@
                 ],
                 "title": "HttpError",
                 "type": "object"
+            },
+            "Ordering": {
+                "description": "Defines the ordering in a listing of results.",
+                "enum": [
+                    "asc",
+                    "desc"
+                ],
+                "type": "string"
             },
             "OrderIn": {
                 "properties": {
@@ -512,7 +767,7 @@
             },
             "ListResponse_OrderOut_": {
                 "properties": {
-                    "data": {
+                    "items": {
                         "items": {
                             "$ref": "#/components/schemas/OrderOut"
                         },
@@ -520,6 +775,144 @@
                     },
                     "total": {
                         "type": "integer"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "type": "object"
+            },
+            "EndpointIn": {
+                "properties": {
+                    "description": {
+                        "description": "The endpoint's description",
+                        "example": "The description for endpoint",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "The webhook endpoint url",
+                        "example": "http://example.com/endpoint",
+                        "type": "string"
+                    },
+                    "filter_types": {
+                        "description": "The webhook endpoint url",
+                        "example": [
+                            "tx.created"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "disabled":{
+                        "description": "indicate whether to disable the webhook endpoint",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "nullable": true,
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    },
+                    "headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "nullable": true,
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    }
+                },
+                "required": [
+                    "url",
+                    "filter_types"
+                ],
+                "type": "object"
+            },
+            "EndpointOut": {
+                "properties": {
+                    "description": {
+                        "description": "The endpoint's description",
+                        "example": "The description for endpoint",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "The webhook endpoint url",
+                        "example": "http://example.com/endpoint",
+                        "type": "string"
+                    },
+                    "filter_types": {
+                        "description": "The webhook endpoint url",
+                        "example": [
+                            "tx.created"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "disabled":{
+                        "description": "indicate whether to disable the webhook endpoint",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    },
+                    "headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    }
+                },
+                "required": [
+                    "url",
+                    "filter_types"
+                ],
+                "type": "object"
+            },
+            "ListResponse_EndpointOut_": {
+                "properties": {
+                    "items": {
+                        "items": {
+                            "$ref": "#/components/schemas/EndpointOut"
+                        },
+                        "type": "array"
+                    },
+                    "prev_cursor": {
+                        "type": "string"
+                    },
+                    "next_cursor": {
+                        "type": "string"
                     }
                 },
                 "required": [

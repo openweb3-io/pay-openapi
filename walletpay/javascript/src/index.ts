@@ -9,6 +9,12 @@ import {
   Middleware,
   RequestContext,
   ResponseContext,
+  WebhookEndpointApi,
+  EndpointIn,
+  EndpointOut,
+  Ordering,
+  ListResponseEndpointOut,
+
 } from "./openapi/index";
 export * from "./openapi/models/all";
 export * from "./openapi/apis/exception";
@@ -68,6 +74,7 @@ export interface walletpayOptions {
 export class walletpay {
   public readonly _configuration: Configuration;
   public readonly Order: Order;
+  public readonly Endpoint: Endpoint;
 
   public constructor(apikey: string, privateKey: string, options: walletpayOptions = {}) {
     const baseUrl: string = options.serverUrl ?? "https://api.wallet-pay.openweb3.io";
@@ -84,6 +91,7 @@ export class walletpay {
 
     this._configuration = config;
     this.Order = new Order(config);
+    this.Endpoint = new Endpoint(config);
   }
 }
 export interface PostOptions {
@@ -112,4 +120,32 @@ class Order {
   public create(orderIn: OrderIn, options?: PostOptions): Promise<OrderOut> {
     return this.api.v1OrderCreate({ orderIn, ...options });
   }
+}
+
+
+export interface EndpointListOptions {
+  order?: Ordering;
+  cursor?: string;
+  limit?: number;
+}
+
+class Endpoint {
+  private readonly api: WebhookEndpointApi;
+
+  public constructor(config: Configuration) {
+    this.api = new WebhookEndpointApi(config);
+  }
+
+  public create(endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
+    return this.api.v1EndpointCreate({ endpointIn, ...options });
+  }
+
+  public delete(endpointId: string): Promise<EndpointOut> {
+    return this.api.v1EndpointDelete({ endpointId });
+  }
+
+  public list(options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
+    return this.api.v1EndpointList({ ...options });
+  }
+  
 }

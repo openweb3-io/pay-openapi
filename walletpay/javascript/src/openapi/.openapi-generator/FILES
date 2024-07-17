@@ -1,6 +1,7 @@
 .gitignore
 README.md
 apis/OrderApi.ts
+apis/WebhookEndpointApi.ts
 apis/baseapi.ts
 apis/exception.ts
 auth/auth.ts
@@ -10,11 +11,15 @@ http/http.ts
 http/isomorphic-fetch.ts
 index.ts
 middleware.ts
+models/EndpointIn.ts
+models/EndpointOut.ts
 models/HttpErrorOut.ts
+models/ListResponseEndpointOut.ts
 models/ListResponseOrderOut.ts
 models/ObjectSerializer.ts
 models/OrderIn.ts
 models/OrderOut.ts
+models/Ordering.ts
 models/all.ts
 package.json
 rxjsStub.ts
