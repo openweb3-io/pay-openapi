@@ -36,7 +36,7 @@ public final class Webhook {
         this.publicKeyPath = publicKeyPath;
 	}
 
-	public void verify(final String payload, final HttpHeaders headers) throws Exception {
+	public boolean verify(final String payload, final HttpHeaders headers) throws VerificationException {
 		Optional<String> msgId = headers.firstValue(X_MSG_ID_KEY);
 		Optional<String> msgSignature = headers.firstValue(X_MSG_SIGNATURE_KEY);
 		Optional<String> msgTimestamp = headers.firstValue(X_MSG_TIMESTAMP_KEY);
@@ -50,12 +50,12 @@ public final class Webhook {
 				throw new VerificationException("Missing required headers");
 			}
 		}
-		
-		if (verifyData(payload, msgSignature.get(), this.getPubKey())) {
-			return ;
-		}
 
-		throw new VerificationException("No matching signature found");
+		try {
+			return verifyData(payload, msgSignature.get(), this.getPubKey());
+		} catch (Exception e) {
+			throw new VerificationException("Signature verify failed");
+		}
 	}
 
     private PublicKey getPubKey() throws Exception {
