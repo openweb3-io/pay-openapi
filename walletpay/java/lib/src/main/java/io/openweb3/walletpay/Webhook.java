@@ -36,27 +36,22 @@ public final class Webhook {
         this.publicKeyPath = publicKeyPath;
 	}
 
-	public boolean verify(final String payload, final HttpHeaders headers) throws VerificationException {
-		Optional<String> msgId = headers.firstValue(X_MSG_ID_KEY);
-		Optional<String> msgSignature = headers.firstValue(X_MSG_SIGNATURE_KEY);
-		Optional<String> msgTimestamp = headers.firstValue(X_MSG_TIMESTAMP_KEY);
-
-		if (msgId.isEmpty() || msgSignature.isEmpty() || msgTimestamp.isEmpty()) {
-			// fallback to unbranded
-			msgId = headers.firstValue(UNBRANDED_MSG_ID_KEY);
-			msgSignature = headers.firstValue(UNBRANDED_MSG_SIGNATURE_KEY);
-			msgTimestamp = headers.firstValue(UNBRANDED_MSG_TIMESTAMP_KEY);
-			if (msgId.isEmpty() || msgSignature.isEmpty() || msgTimestamp.isEmpty()) {
-				throw new VerificationException("Missing required headers");
-			}
-		}
-
+	public boolean verify(final String payload, final String signature) throws VerificationException {
 		try {
-			return verifyData(payload, msgSignature.get(), this.getPubKey());
+			return verifyData(payload, signature, this.getPubKey());
 		} catch (Exception e) {
 			throw new VerificationException("Signature verify failed");
 		}
 	}
+
+    private static boolean verifyData(String dataString, String signatureString, PublicKey publicKey)
+            throws NoSuchAlgorithmException, InvalidKeyException, SignatureException, UnsupportedEncodingException {
+        byte[] signatureBytes = Base64.getDecoder().decode(signatureString);
+        Signature signature = Signature.getInstance("SHA256withRSA");
+        signature.initVerify(publicKey);
+        signature.update(dataString.getBytes(StandardCharsets.UTF_8));
+        return signature.verify(signatureBytes);
+    }
 
     private PublicKey getPubKey() throws Exception {
         String pubKeyString = Utils.getStringFromFile(this.publicKeyPath);
@@ -69,14 +64,4 @@ public final class Webhook {
 
         return keyFactory.generatePublic(spec);
     }
-
-    public static boolean verifyData(String dataString, String signatureString, PublicKey publicKey)
-            throws NoSuchAlgorithmException, InvalidKeyException, SignatureException, UnsupportedEncodingException {
-        byte[] signatureBytes = Base64.getDecoder().decode(signatureString);
-        Signature signature = Signature.getInstance("SHA256withRSA");
-        signature.initVerify(publicKey);
-        signature.update(dataString.getBytes(StandardCharsets.UTF_8));
-        return signature.verify(signatureBytes);
-    }
-
 }
