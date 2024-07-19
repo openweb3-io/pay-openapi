@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * EndpointOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:15:59.958199+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:47:46.628821+08:00[Asia/Shanghai]")
 public class EndpointOut {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -115,10 +115,10 @@ public class EndpointOut {
   }
 
    /**
-   * The webhook endpoint url
+   * The webhook endpoint expected event types
    * @return filterTypes
   **/
-  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The webhook endpoint url")
+  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The webhook endpoint expected event types")
 
   public List<String> getFilterTypes() {
     return filterTypes;
@@ -199,11 +199,11 @@ public class EndpointOut {
   }
 
    /**
-   * Optional metadata
+   * Optional headers
    * @return headers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"node\":\"http://dashboard.com/node1\",\"tag\":\"node\"}", value = "Optional metadata")
+  @ApiModelProperty(example = "{\"x-user-id\":\"user1\",\"x-org-id\":\"org_xdwfeees1xfeg\"}", value = "Optional headers")
 
   public Map<String, String> getHeaders() {
     return headers;

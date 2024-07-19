@@ -7,7 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error** | **String** |  | 
+**msg** | **String** |  | 
+**code** | **Integer** |  |  [optional]
 
 
 

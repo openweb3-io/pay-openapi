@@ -14,17 +14,13 @@ import { HttpFile } from '../http/http';
 
 export class EndpointIn {
     /**
-    * The endpoint's description
+    * The webhook endpoint expected event types
     */
-    'description'?: string;
+    'filterTypes': Array<string>;
     /**
     * The webhook endpoint url
     */
     'url': string;
-    /**
-    * The webhook endpoint url
-    */
-    'filterTypes': Array<string>;
     /**
     * indicate whether to disable the webhook endpoint
     */
@@ -34,29 +30,27 @@ export class EndpointIn {
     */
     'metadata'?: { [key: string]: string; };
     /**
-    * Optional metadata
+    * Optional headers
     */
     'headers'?: { [key: string]: string; };
+    /**
+    * The endpoint's description
+    */
+    'description'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "description",
-            "baseName": "description",
-            "type": "string",
+            "name": "filterTypes",
+            "baseName": "filter_types",
+            "type": "Array<string>",
             "format": ""
         },
         {
             "name": "url",
             "baseName": "url",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "filterTypes",
-            "baseName": "filter_types",
-            "type": "Array<string>",
             "format": ""
         },
         {
@@ -75,6 +69,12 @@ export class EndpointIn {
             "name": "headers",
             "baseName": "headers",
             "type": "{ [key: string]: string; }",
+            "format": ""
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string",
             "format": ""
         }    ];
 

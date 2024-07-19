@@ -26,7 +26,7 @@ export class OrderIn {
     */
     'amount': string;
     /**
-    * Optional user identifier
+    * Optional order note
     */
     'note'?: string;
     /**

@@ -36,16 +36,16 @@ export class OrderOut {
     /**
     * wallet id
     */
-    'walletId': string;
+    'walletId'?: string;
     /**
-    * Optional user identifier
+    * Optional order notes
     */
-    'note': string;
+    'note'?: string;
     'metadata'?: { [key: string]: string; };
     /**
     * The expiration seconds
     */
-    'expiration': number;
+    'expiration'?: number;
     /**
     * The order's status
     */

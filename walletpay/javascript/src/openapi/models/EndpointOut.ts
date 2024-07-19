@@ -22,7 +22,7 @@ export class EndpointOut {
     */
     'url': string;
     /**
-    * The webhook endpoint url
+    * The webhook endpoint expected event types
     */
     'filterTypes': Array<string>;
     /**
@@ -34,7 +34,7 @@ export class EndpointOut {
     */
     'metadata'?: { [key: string]: string; };
     /**
-    * Optional metadata
+    * Optional headers
     */
     'headers'?: { [key: string]: string; };
 

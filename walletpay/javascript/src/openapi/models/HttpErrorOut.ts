@@ -13,15 +13,22 @@
 import { HttpFile } from '../http/http';
 
 export class HttpErrorOut {
-    'error': string;
+    'msg': string;
+    'code'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "error",
-            "baseName": "error",
+            "name": "msg",
+            "baseName": "msg",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "code",
+            "baseName": "code",
+            "type": "number",
             "format": ""
         }    ];
 

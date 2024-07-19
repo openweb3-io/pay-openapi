@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * OrderOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:15:59.958199+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:47:46.628821+08:00[Asia/Shanghai]")
 public class OrderOut {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -269,7 +269,8 @@ public class OrderOut {
    * wallet id
    * @return walletId
   **/
-  @ApiModelProperty(example = "wallet_id", required = true, value = "wallet id")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "wallet_id", value = "wallet id")
 
   public String getWalletId() {
     return walletId;
@@ -288,10 +289,11 @@ public class OrderOut {
   }
 
    /**
-   * Optional user identifier
+   * Optional order notes
    * @return note
   **/
-  @ApiModelProperty(example = "userid_example", required = true, value = "Optional user identifier")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "note example", value = "Optional order notes")
 
   public String getNote() {
     return note;
@@ -344,7 +346,8 @@ public class OrderOut {
    * The expiration seconds
    * @return expiration
   **/
-  @ApiModelProperty(example = "600", required = true, value = "The expiration seconds")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "600", value = "The expiration seconds")
 
   public Integer getExpiration() {
     return expiration;

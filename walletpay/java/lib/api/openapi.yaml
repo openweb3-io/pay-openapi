@@ -366,10 +366,13 @@ components:
   schemas:
     HttpErrorOut:
       properties:
-        error:
+        msg:
           type: string
+        code:
+          nullable: true
+          type: integer
       required:
-      - error
+      - msg
       title: HttpError
       type: object
     Ordering:
@@ -381,7 +384,7 @@ components:
     OrderIn:
       example:
         uid: unique-order-identifier
-        note: userid_example
+        note: note example
         amount: "0.0012345"
         metadata:
           key: metadata
@@ -413,8 +416,8 @@ components:
           minLength: 1
           type: string
         note:
-          description: Optional user identifier
-          example: userid_example
+          description: Optional order note
+          example: note example
           maxLength: 256
           minLength: 1
           type: string
@@ -435,7 +438,7 @@ components:
       type: object
     OrderOut:
       example:
-        note: userid_example
+        note: note example
         amount: "1"
         metadata:
           key: metadata
@@ -491,8 +494,8 @@ components:
           minLength: 1
           type: string
         note:
-          description: Optional user identifier
-          example: userid_example
+          description: Optional order notes
+          example: note example
           maxLength: 256
           minLength: 1
           type: string
@@ -536,17 +539,14 @@ components:
       - amount
       - createdAt
       - currency
-      - expiration
       - id
-      - note
       - status
-      - wallet_id
       type: object
     ListResponse_OrderOut_:
       example:
         total: 0
         items:
-        - note: userid_example
+        - note: note example
           amount: "1"
           metadata:
             key: metadata
@@ -562,7 +562,7 @@ components:
           id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
           failed_at: 2000-01-23T04:56:07.000+00:00
           status: PENDING
-        - note: userid_example
+        - note: note example
           amount: "1"
           metadata:
             key: metadata
@@ -591,8 +591,8 @@ components:
     EndpointIn:
       example:
         headers:
-          node: http://dashboard.com/node1
-          tag: node
+          x-user-id: user1
+          x-org-id: org_xdwfeees1xfeg
         metadata:
           node: http://dashboard.com/node1
           tag: node
@@ -602,21 +602,17 @@ components:
         disabled: false
         url: http://example.com/endpoint
       properties:
-        description:
-          description: The endpoint's description
-          example: The description for endpoint
-          type: string
-        url:
-          description: The webhook endpoint url
-          example: http://example.com/endpoint
-          type: string
         filter_types:
-          description: The webhook endpoint url
+          description: The webhook endpoint expected event types
           example:
           - tx.created
           items:
             type: string
           type: array
+        url:
+          description: The webhook endpoint url
+          example: http://example.com/endpoint
+          type: string
         disabled:
           description: indicate whether to disable the webhook endpoint
           example: false
@@ -635,12 +631,16 @@ components:
           additionalProperties:
             type: string
           default: {}
-          description: Optional metadata
+          description: Optional headers
           example:
-            node: http://dashboard.com/node1
-            tag: node
+            x-user-id: user1
+            x-org-id: org_xdwfeees1xfeg
           nullable: true
           type: object
+        description:
+          description: The endpoint's description
+          example: The description for endpoint
+          type: string
       required:
       - filter_types
       - url
@@ -648,8 +648,8 @@ components:
     EndpointOut:
       example:
         headers:
-          node: http://dashboard.com/node1
-          tag: node
+          x-user-id: user1
+          x-org-id: org_xdwfeees1xfeg
         metadata:
           node: http://dashboard.com/node1
           tag: node
@@ -668,7 +668,7 @@ components:
           example: http://example.com/endpoint
           type: string
         filter_types:
-          description: The webhook endpoint url
+          description: The webhook endpoint expected event types
           example:
           - tx.created
           items:
@@ -691,10 +691,10 @@ components:
           additionalProperties:
             type: string
           default: {}
-          description: Optional metadata
+          description: Optional headers
           example:
-            node: http://dashboard.com/node1
-            tag: node
+            x-user-id: user1
+            x-org-id: org_xdwfeees1xfeg
           type: object
       required:
       - filter_types
@@ -706,8 +706,8 @@ components:
         next_cursor: next_cursor
         items:
         - headers:
-            node: http://dashboard.com/node1
-            tag: node
+            x-user-id: user1
+            x-org-id: org_xdwfeees1xfeg
           metadata:
             node: http://dashboard.com/node1
             tag: node
@@ -717,8 +717,8 @@ components:
           disabled: false
           url: http://example.com/endpoint
         - headers:
-            node: http://dashboard.com/node1
-            tag: node
+            x-user-id: user1
+            x-org-id: org_xdwfeees1xfeg
           metadata:
             node: http://dashboard.com/node1
             tag: node

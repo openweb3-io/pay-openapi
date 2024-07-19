@@ -31,19 +31,15 @@ import java.util.Map;
 /**
  * EndpointIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:15:59.958199+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:47:46.628821+08:00[Asia/Shanghai]")
 public class EndpointIn {
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  private String description;
+  public static final String SERIALIZED_NAME_FILTER_TYPES = "filter_types";
+  @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
+  private List<String> filterTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
   private String url;
-
-  public static final String SERIALIZED_NAME_FILTER_TYPES = "filter_types";
-  @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
-  private List<String> filterTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DISABLED = "disabled";
   @SerializedName(SERIALIZED_NAME_DISABLED)
@@ -57,27 +53,35 @@ public class EndpointIn {
   @SerializedName(SERIALIZED_NAME_HEADERS)
   private Map<String, String> headers = null;
 
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
 
-  public EndpointIn description(String description) {
+
+  public EndpointIn filterTypes(List<String> filterTypes) {
     
-    this.description = description;
+    this.filterTypes = filterTypes;
+    return this;
+  }
+
+  public EndpointIn addFilterTypesItem(String filterTypesItem) {
+    this.filterTypes.add(filterTypesItem);
     return this;
   }
 
    /**
-   * The endpoint&#39;s description
-   * @return description
+   * The webhook endpoint expected event types
+   * @return filterTypes
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "The description for endpoint", value = "The endpoint's description")
+  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The webhook endpoint expected event types")
 
-  public String getDescription() {
-    return description;
+  public List<String> getFilterTypes() {
+    return filterTypes;
   }
 
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setFilterTypes(List<String> filterTypes) {
+    this.filterTypes = filterTypes;
   }
 
 
@@ -100,33 +104,6 @@ public class EndpointIn {
 
   public void setUrl(String url) {
     this.url = url;
-  }
-
-
-  public EndpointIn filterTypes(List<String> filterTypes) {
-    
-    this.filterTypes = filterTypes;
-    return this;
-  }
-
-  public EndpointIn addFilterTypesItem(String filterTypesItem) {
-    this.filterTypes.add(filterTypesItem);
-    return this;
-  }
-
-   /**
-   * The webhook endpoint url
-   * @return filterTypes
-  **/
-  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The webhook endpoint url")
-
-  public List<String> getFilterTypes() {
-    return filterTypes;
-  }
-
-
-  public void setFilterTypes(List<String> filterTypes) {
-    this.filterTypes = filterTypes;
   }
 
 
@@ -199,11 +176,11 @@ public class EndpointIn {
   }
 
    /**
-   * Optional metadata
+   * Optional headers
    * @return headers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"node\":\"http://dashboard.com/node1\",\"tag\":\"node\"}", value = "Optional metadata")
+  @ApiModelProperty(example = "{\"x-user-id\":\"user1\",\"x-org-id\":\"org_xdwfeees1xfeg\"}", value = "Optional headers")
 
   public Map<String, String> getHeaders() {
     return headers;
@@ -212,6 +189,29 @@ public class EndpointIn {
 
   public void setHeaders(Map<String, String> headers) {
     this.headers = headers;
+  }
+
+
+  public EndpointIn description(String description) {
+    
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * The endpoint&#39;s description
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "The description for endpoint", value = "The endpoint's description")
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 
@@ -224,29 +224,29 @@ public class EndpointIn {
       return false;
     }
     EndpointIn endpointIn = (EndpointIn) o;
-    return Objects.equals(this.description, endpointIn.description) &&
+    return Objects.equals(this.filterTypes, endpointIn.filterTypes) &&
         Objects.equals(this.url, endpointIn.url) &&
-        Objects.equals(this.filterTypes, endpointIn.filterTypes) &&
         Objects.equals(this.disabled, endpointIn.disabled) &&
         Objects.equals(this.metadata, endpointIn.metadata) &&
-        Objects.equals(this.headers, endpointIn.headers);
+        Objects.equals(this.headers, endpointIn.headers) &&
+        Objects.equals(this.description, endpointIn.description);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, url, filterTypes, disabled, metadata, headers);
+    return Objects.hash(filterTypes, url, disabled, metadata, headers, description);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EndpointIn {\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    filterTypes: ").append(toIndentedString(filterTypes)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
   }

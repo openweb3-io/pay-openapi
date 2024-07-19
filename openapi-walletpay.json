@@ -578,12 +578,16 @@
         "schemas": {
             "HttpErrorOut": {
                 "properties": {
-                    "error": {
+                    "msg": {
                         "type": "string"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "nullable": true
                     }
                 },
                 "required": [
-                    "error"
+                    "msg"
                 ],
                 "title": "HttpError",
                 "type": "object"
@@ -622,8 +626,8 @@
                         "type": "string"
                     },
                     "note": {
-                        "description": "Optional user identifier",
-                        "example": "userid_example",
+                        "description": "Optional order note",
+                        "example": "note example",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
@@ -692,8 +696,8 @@
                         "type": "string"
                     },
                     "note": {
-                        "description": "Optional user identifier",
-                        "example": "userid_example",
+                        "description": "Optional order notes",
+                        "example": "note example",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
@@ -743,9 +747,6 @@
                     "id",
                     "currency",
                     "amount",
-                    "wallet_id",
-                    "note",
-                    "expiration",
                     "status",
                     "createdAt"
                 ],
@@ -770,18 +771,8 @@
             },
             "EndpointIn": {
                 "properties": {
-                    "description": {
-                        "description": "The endpoint's description",
-                        "example": "The description for endpoint",
-                        "type": "string"
-                    },
-                    "url": {
-                        "description": "The webhook endpoint url",
-                        "example": "http://example.com/endpoint",
-                        "type": "string"
-                    },
                     "filter_types": {
-                        "description": "The webhook endpoint url",
+                        "description": "The webhook endpoint expected event types",
                         "example": [
                             "tx.created"
                         ],
@@ -789,6 +780,11 @@
                             "type": "string"
                         },
                         "type": "array"
+                    },
+                    "url": {
+                        "description": "The webhook endpoint url",
+                        "example": "http://example.com/endpoint",
+                        "type": "string"
                     },
                     "disabled":{
                         "description": "indicate whether to disable the webhook endpoint",
@@ -815,11 +811,16 @@
                         "default": {},
                         "type": "object",
                         "nullable": true,
-                        "description": "Optional metadata",
+                        "description": "Optional headers",
                         "example": {
-                            "node": "http://dashboard.com/node1",
-                            "tag": "node"
+                            "x-user-id": "user1",
+                            "x-org-id": "org_xdwfeees1xfeg"
                         }
+                    },
+                    "description": {
+                        "description": "The endpoint's description",
+                        "example": "The description for endpoint",
+                        "type": "string"
                     }
                 },
                 "required": [
@@ -841,7 +842,7 @@
                         "type": "string"
                     },
                     "filter_types": {
-                        "description": "The webhook endpoint url",
+                        "description": "The webhook endpoint expected event types",
                         "example": [
                             "tx.created"
                         ],
@@ -873,10 +874,10 @@
                         },
                         "default": {},
                         "type": "object",
-                        "description": "Optional metadata",
+                        "description": "Optional headers",
                         "example": {
-                            "node": "http://dashboard.com/node1",
-                            "tag": "node"
+                            "x-user-id": "user1",
+                            "x-org-id": "org_xdwfeees1xfeg"
                         }
                     }
                 },

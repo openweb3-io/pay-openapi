@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * OrderIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:15:59.958199+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:47:46.628821+08:00[Asia/Shanghai]")
 public class OrderIn {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
@@ -131,11 +131,11 @@ public class OrderIn {
   }
 
    /**
-   * Optional user identifier
+   * Optional order note
    * @return note
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "userid_example", value = "Optional user identifier")
+  @ApiModelProperty(example = "note example", value = "Optional order note")
 
   public String getNote() {
     return note;

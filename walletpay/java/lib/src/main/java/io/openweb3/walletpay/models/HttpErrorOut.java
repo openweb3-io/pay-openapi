@@ -27,32 +27,59 @@ import java.io.IOException;
 /**
  * HttpErrorOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:15:59.958199+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:47:46.628821+08:00[Asia/Shanghai]")
 public class HttpErrorOut {
-  public static final String SERIALIZED_NAME_ERROR = "error";
-  @SerializedName(SERIALIZED_NAME_ERROR)
-  private String error;
+  public static final String SERIALIZED_NAME_MSG = "msg";
+  @SerializedName(SERIALIZED_NAME_MSG)
+  private String msg;
+
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
+  private Integer code;
 
 
-  public HttpErrorOut error(String error) {
+  public HttpErrorOut msg(String msg) {
     
-    this.error = error;
+    this.msg = msg;
     return this;
   }
 
    /**
-   * Get error
-   * @return error
+   * Get msg
+   * @return msg
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public String getError() {
-    return error;
+  public String getMsg() {
+    return msg;
   }
 
 
-  public void setError(String error) {
-    this.error = error;
+  public void setMsg(String msg) {
+    this.msg = msg;
+  }
+
+
+  public HttpErrorOut code(Integer code) {
+    
+    this.code = code;
+    return this;
+  }
+
+   /**
+   * Get code
+   * @return code
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Integer getCode() {
+    return code;
+  }
+
+
+  public void setCode(Integer code) {
+    this.code = code;
   }
 
 
@@ -65,19 +92,21 @@ public class HttpErrorOut {
       return false;
     }
     HttpErrorOut httpErrorOut = (HttpErrorOut) o;
-    return Objects.equals(this.error, httpErrorOut.error);
+    return Objects.equals(this.msg, httpErrorOut.msg) &&
+        Objects.equals(this.code, httpErrorOut.code);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(error);
+    return Objects.hash(msg, code);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HttpErrorOut {\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("    msg: ").append(toIndentedString(msg)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("}");
     return sb.toString();
   }
