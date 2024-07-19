@@ -26,14 +26,6 @@ export class OrderIn {
     */
     'amount': string;
     /**
-    * wallet id
-    */
-    'walletId': string;
-    /**
-    * Optional user identifier
-    */
-    'userId'?: string;
-    /**
     * Optional user identifier
     */
     'note'?: string;
@@ -64,18 +56,6 @@ export class OrderIn {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "walletId",
-            "baseName": "wallet_id",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "userId",
-            "baseName": "user_id",
             "type": "string",
             "format": ""
         },

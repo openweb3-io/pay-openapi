@@ -499,7 +499,7 @@
                 },
                 "summary": "List endpoints",
                 "tags": [
-                    "Webhook Endpoint"
+                    "Endpoint"
                 ]
             },
             "post": {
@@ -609,7 +609,7 @@
                 },
                 "summary": "Create endpoint",
                 "tags": [
-                    "Webhook Endpoint"
+                    "Endpoint"
                 ],
                 "x-readme": {
                     "code-samples": []
@@ -718,7 +718,7 @@
                 },
                 "summary": "Retrieve endpoint",
                 "tags": [
-                    "Webhook Endpoint"
+                    "Endpoint"
                 ]
             },            
             "patch": {
@@ -832,7 +832,7 @@
                 },
                 "summary": "update endpoint",
                 "tags": [
-                    "Webhook Endpoint"
+                    "Endpoint"
                 ]
             },             
             "delete": {
@@ -936,7 +936,7 @@
                 },
                 "summary": "Delete endpoint",
                 "tags": [
-                    "Webhook Endpoint"
+                    "Endpoint"
                 ]
             }
         }

@@ -60,7 +60,7 @@ export class PromiseEndpointApi {
     }
 
     /**
-     * Create a endpoint.
+     * Create a webhook endpoint.
      * Create endpoint
      * @param endpointIn 
      */
@@ -70,7 +70,7 @@ export class PromiseEndpointApi {
     }
 
     /**
-     * delete the specified endpoint.
+     * delete the specified webhook endpoint.
      * Delete endpoint
      * @param endpointId Specified the endpoint id.
      */
@@ -91,7 +91,7 @@ export class PromiseEndpointApi {
     }
 
     /**
-     * update a specified endpoint.
+     * update a specified webhook endpoint.
      * update endpoint
      * @param endpointId Specified the endpoint id.
      * @param endpointPatch 
@@ -102,9 +102,9 @@ export class PromiseEndpointApi {
     }
 
     /**
-     * retrieve the specified endpoint.
+     * retrieve a specified webhook endpoint.
      * Retrieve endpoint
-     * @param endpointId Specified the endpoint id.
+     * @param endpointId Specified the webhook endpoint id.
      */
     public v1EndpointRetrieve(endpointId: string, _options?: Configuration): Promise<EndpointOut> {
         const result = this.api.v1EndpointRetrieve(endpointId, _options);

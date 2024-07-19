@@ -13,7 +13,7 @@ yarn openapi-generator-cli generate -i openapi-${pkg}.json -g typescript -o ${pk
 
 # yarn openapi-generator-cli generate -i openapi.json -g go -o go/internal/openapi -c go/openapi-generator-config.json -t go/templates
 
-yarn openapi-generator-cli generate -i openapi-${pkg}.json -g java -o ${pkg}/java/lib/generated/openapi -c ${pkg}/java/openapi-generator-config.json -t ${pkg}/java/templates
+yarn openapi-generator-cli generate -i openapi-${pkg}.json -g java -o ${pkg}/java/lib -c ${pkg}/java/openapi-generator-config.json -t ${pkg}/java/templates
 
 # yarn openapi-generator-cli generate -i openapi.json -g kotlin -o kotlin/lib/generated/openapi -c kotlin/openapi-generator-config.json -t kotlin/templates
 

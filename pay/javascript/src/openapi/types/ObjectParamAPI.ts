@@ -105,7 +105,7 @@ export interface EndpointApiV1EndpointPatchRequest {
 
 export interface EndpointApiV1EndpointRetrieveRequest {
     /**
-     * Specified the endpoint id.
+     * Specified the webhook endpoint id.
      * @type string
      * @memberof EndpointApiv1EndpointRetrieve
      */
@@ -120,7 +120,7 @@ export class ObjectEndpointApi {
     }
 
     /**
-     * Create a endpoint.
+     * Create a webhook endpoint.
      * Create endpoint
      * @param param the request object
      */
@@ -129,7 +129,7 @@ export class ObjectEndpointApi {
     }
 
     /**
-     * delete the specified endpoint.
+     * delete the specified webhook endpoint.
      * Delete endpoint
      * @param param the request object
      */
@@ -147,7 +147,7 @@ export class ObjectEndpointApi {
     }
 
     /**
-     * update a specified endpoint.
+     * update a specified webhook endpoint.
      * update endpoint
      * @param param the request object
      */
@@ -156,7 +156,7 @@ export class ObjectEndpointApi {
     }
 
     /**
-     * retrieve the specified endpoint.
+     * retrieve a specified webhook endpoint.
      * Retrieve endpoint
      * @param param the request object
      */

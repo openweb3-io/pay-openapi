@@ -1,0 +1,766 @@
+openapi: 3.0.2
+info:
+  title: Wallet-Pay API Documentations
+  version: "1.0"
+servers:
+- url: https://api.wallet-pay.openweb3.io
+security:
+- ApiKeyAuth: []
+paths:
+  /api/v1/pay/orders:
+    get:
+      description: List orders.
+      operationId: v1.order.list
+      parameters:
+      - description: Limit the number of returned items
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 20
+          description: Limit the number of returned items
+          example: 100
+          format: uint64
+          minimum: 0
+          type: integer
+        style: form
+      - description: Specifying the page index
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          description: Specifying the page index
+          example: 0
+          type: integer
+        style: form
+      - description: Optional wallet id
+        explode: true
+        in: query
+        name: wallet_id
+        required: false
+        schema:
+          description: Optional wallet id
+          example: wallet_id
+          nullable: true
+          type: string
+        style: form
+      - description: Optional account id
+        explode: true
+        in: query
+        name: account_id
+        required: false
+        schema:
+          description: Optional account id
+          example: account_id
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListResponse_OrderOut_'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: List Orders
+      tags:
+      - Order
+      x-accepts: application/json
+    post:
+      description: Create a new order.
+      operationId: v1.order.create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderIn'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderOut'
+          description: OK
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderOut'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: Create Order
+      tags:
+      - Order
+      x-readme:
+        code-samples: []
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/webhooks/endpoints:
+    get:
+      description: List endpoints.
+      operationId: v1.endpoint.list
+      parameters:
+      - description: Limit the number of returned items
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          description: Limit the number of returned items
+          example: 100
+          format: uint64
+          minimum: 0
+          type: integer
+        style: form
+      - description: Specifying the start cursor position
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          description: Specifying the start cursor position
+          type: string
+        style: form
+      - description: The sorting order of the returned items
+        explode: true
+        in: query
+        name: order
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ordering'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListResponse_EndpointOut_'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: List endpoints
+      tags:
+      - Webhook Endpoint
+      x-accepts: application/json
+    post:
+      description: Create a webhook endpoint.
+      operationId: v1.endpoint.create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndpointIn'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointOut'
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointOut'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: Create endpoint
+      tags:
+      - Webhook Endpoint
+      x-readme:
+        code-samples: []
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/webhooks/endpoints/{endpointId}:
+    delete:
+      description: delete the specified webhook endpoint.
+      operationId: v1.endpoint.delete
+      parameters:
+      - description: Specified the endpoint id.
+        explode: false
+        in: path
+        name: endpointId
+        required: true
+        schema:
+          description: Specified the endpoint id.
+          example: wb_12345xsfei
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointOut'
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointOut'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: Delete endpoint
+      tags:
+      - Webhook Endpoint
+      x-accepts: application/json
+components:
+  schemas:
+    HttpErrorOut:
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      title: HttpError
+      type: object
+    Ordering:
+      description: Defines the ordering in a listing of results.
+      enum:
+      - asc
+      - desc
+      type: string
+    OrderIn:
+      example:
+        uid: unique-order-identifier
+        note: userid_example
+        amount: "0.0012345"
+        metadata:
+          key: metadata
+        currency: USDT
+        expiration: 600
+      properties:
+        uid:
+          description: Optional unique identifier for the order
+          example: unique-order-identifier
+          maxLength: 256
+          minLength: 1
+          nullable: true
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+        currency:
+          description: Currency code
+          example: USDT
+          maxLength: 256
+          minLength: 1
+          type: string
+        amount:
+          description: Big decimal string representation. Note that the max precision
+            (number of digits after decimal point) depends on the currencyCode. E.g.
+            for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's
+            also min order amount for creating an order. It's 0.000001 BTC / 0.01
+            USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.
+          example: "0.0012345"
+          maxLength: 256
+          minLength: 1
+          type: string
+        note:
+          description: Optional user identifier
+          example: userid_example
+          maxLength: 256
+          minLength: 1
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          default: {}
+          description: Optional metadata
+          nullable: true
+          type: object
+        expiration:
+          description: The expiration seconds
+          example: 600
+          type: integer
+      required:
+      - amount
+      - currency
+      type: object
+    OrderOut:
+      example:
+        note: userid_example
+        amount: "1"
+        metadata:
+          key: metadata
+        created_at: 2000-01-23T04:56:07.000+00:00
+        expired_at: 2000-01-23T04:56:07.000+00:00
+        failed_message: failed_message
+        uid: unique-order-identifier
+        wallet_id: wallet_id
+        payed_at: 2000-01-23T04:56:07.000+00:00
+        user_id: user_id
+        currency: USDT
+        expiration: 600
+        id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+        failed_at: 2000-01-23T04:56:07.000+00:00
+        status: PENDING
+      properties:
+        id:
+          description: The order's ID
+          example: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          type: string
+        uid:
+          description: The order's UID
+          example: unique-order-identifier
+          maxLength: 256
+          minLength: 1
+          nullable: true
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+        currency:
+          description: Currency code
+          example: USDT
+          maxLength: 256
+          minLength: 1
+          type: string
+        amount:
+          description: Big decimal string representation. Note that the max precision
+            (number of digits after decimal point) depends on the currencyCode. E.g.
+            for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's
+            also min order amount for creating an order. It's 0.000001 BTC / 0.01
+            USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.
+          example: "1"
+          maxLength: 256
+          minLength: 1
+          type: string
+        user_id:
+          description: The order's creator
+          nullable: true
+          type: string
+        wallet_id:
+          description: wallet id
+          example: wallet_id
+          maxLength: 256
+          minLength: 1
+          type: string
+        note:
+          description: Optional user identifier
+          example: userid_example
+          maxLength: 256
+          minLength: 1
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+        expiration:
+          description: The expiration seconds
+          example: 600
+          type: integer
+        status:
+          description: The order's status
+          enum:
+          - PENDING
+          - PAID
+          - FAILED
+          - EXPIRED
+          - COMPLETED
+          type: string
+        failed_message:
+          description: The message when order failed
+          type: string
+        created_at:
+          description: The order's creation time
+          format: date-time
+          type: string
+        payed_at:
+          description: The order's paid time
+          format: date-time
+          type: string
+        expired_at:
+          description: The order's expiration time
+          format: date-time
+          type: string
+        failed_at:
+          description: The order's failure time
+          format: date-time
+          type: string
+      required:
+      - amount
+      - createdAt
+      - currency
+      - expiration
+      - id
+      - note
+      - status
+      - wallet_id
+      type: object
+    ListResponse_OrderOut_:
+      example:
+        total: 0
+        items:
+        - note: userid_example
+          amount: "1"
+          metadata:
+            key: metadata
+          created_at: 2000-01-23T04:56:07.000+00:00
+          expired_at: 2000-01-23T04:56:07.000+00:00
+          failed_message: failed_message
+          uid: unique-order-identifier
+          wallet_id: wallet_id
+          payed_at: 2000-01-23T04:56:07.000+00:00
+          user_id: user_id
+          currency: USDT
+          expiration: 600
+          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          failed_at: 2000-01-23T04:56:07.000+00:00
+          status: PENDING
+        - note: userid_example
+          amount: "1"
+          metadata:
+            key: metadata
+          created_at: 2000-01-23T04:56:07.000+00:00
+          expired_at: 2000-01-23T04:56:07.000+00:00
+          failed_message: failed_message
+          uid: unique-order-identifier
+          wallet_id: wallet_id
+          payed_at: 2000-01-23T04:56:07.000+00:00
+          user_id: user_id
+          currency: USDT
+          expiration: 600
+          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          failed_at: 2000-01-23T04:56:07.000+00:00
+          status: PENDING
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/OrderOut'
+          type: array
+        total:
+          type: integer
+      required:
+      - data
+      type: object
+    EndpointIn:
+      example:
+        headers:
+          node: http://dashboard.com/node1
+          tag: node
+        metadata:
+          node: http://dashboard.com/node1
+          tag: node
+        description: The description for endpoint
+        filter_types:
+        - tx.created
+        disabled: false
+        url: http://example.com/endpoint
+      properties:
+        description:
+          description: The endpoint's description
+          example: The description for endpoint
+          type: string
+        url:
+          description: The webhook endpoint url
+          example: http://example.com/endpoint
+          type: string
+        filter_types:
+          description: The webhook endpoint url
+          example:
+          - tx.created
+          items:
+            type: string
+          type: array
+        disabled:
+          description: indicate whether to disable the webhook endpoint
+          example: false
+          type: boolean
+        metadata:
+          additionalProperties:
+            type: string
+          default: {}
+          description: Optional metadata
+          example:
+            node: http://dashboard.com/node1
+            tag: node
+          nullable: true
+          type: object
+        headers:
+          additionalProperties:
+            type: string
+          default: {}
+          description: Optional metadata
+          example:
+            node: http://dashboard.com/node1
+            tag: node
+          nullable: true
+          type: object
+      required:
+      - filter_types
+      - url
+      type: object
+    EndpointOut:
+      example:
+        headers:
+          node: http://dashboard.com/node1
+          tag: node
+        metadata:
+          node: http://dashboard.com/node1
+          tag: node
+        description: The description for endpoint
+        filter_types:
+        - tx.created
+        disabled: false
+        url: http://example.com/endpoint
+      properties:
+        description:
+          description: The endpoint's description
+          example: The description for endpoint
+          type: string
+        url:
+          description: The webhook endpoint url
+          example: http://example.com/endpoint
+          type: string
+        filter_types:
+          description: The webhook endpoint url
+          example:
+          - tx.created
+          items:
+            type: string
+          type: array
+        disabled:
+          description: indicate whether to disable the webhook endpoint
+          example: false
+          type: boolean
+        metadata:
+          additionalProperties:
+            type: string
+          default: {}
+          description: Optional metadata
+          example:
+            node: http://dashboard.com/node1
+            tag: node
+          type: object
+        headers:
+          additionalProperties:
+            type: string
+          default: {}
+          description: Optional metadata
+          example:
+            node: http://dashboard.com/node1
+            tag: node
+          type: object
+      required:
+      - filter_types
+      - url
+      type: object
+    ListResponse_EndpointOut_:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        items:
+        - headers:
+            node: http://dashboard.com/node1
+            tag: node
+          metadata:
+            node: http://dashboard.com/node1
+            tag: node
+          description: The description for endpoint
+          filter_types:
+          - tx.created
+          disabled: false
+          url: http://example.com/endpoint
+        - headers:
+            node: http://dashboard.com/node1
+            tag: node
+          metadata:
+            node: http://dashboard.com/node1
+            tag: node
+          description: The description for endpoint
+          filter_types:
+          - tx.created
+          disabled: false
+          url: http://example.com/endpoint
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/EndpointOut'
+          type: array
+        prev_cursor:
+          type: string
+        next_cursor:
+          type: string
+      required:
+      - data
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      in: header
+      name: x-api-key
+      type: apiKey
+x-readme:
+  samples-languages:
+  - python
+  - node
+  - csharp
+  - java
+  - go
+  - kotlin
+  - ruby
+  - rust
+  - java
+  - shell
+  parameter-ordering:
+  - path
+  - query
+  - header
+  - cookie
+  - body
+  - form
+

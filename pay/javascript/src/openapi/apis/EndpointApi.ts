@@ -19,7 +19,7 @@ import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 export class EndpointApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Create a endpoint.
+     * Create a webhook endpoint.
      * Create endpoint
      * @param endpointIn 
      */
@@ -70,7 +70,7 @@ export class EndpointApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * delete the specified endpoint.
+     * delete the specified webhook endpoint.
      * Delete endpoint
      * @param endpointId Specified the endpoint id.
      */
@@ -158,7 +158,7 @@ export class EndpointApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * update a specified endpoint.
+     * update a specified webhook endpoint.
      * update endpoint
      * @param endpointId Specified the endpoint id.
      * @param endpointPatch 
@@ -217,9 +217,9 @@ export class EndpointApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * retrieve the specified endpoint.
+     * retrieve a specified webhook endpoint.
      * Retrieve endpoint
-     * @param endpointId Specified the endpoint id.
+     * @param endpointId Specified the webhook endpoint id.
      */
     public async v1EndpointRetrieve(endpointId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;

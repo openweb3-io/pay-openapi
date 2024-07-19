@@ -621,20 +621,6 @@
                         "minLength": 1,
                         "type": "string"
                     },
-                    "wallet_id": {
-                        "description": "wallet id",
-                        "example": "wallet_id",
-                        "maxLength": 256,
-                        "minLength": 1,
-                        "type": "string"
-                    },
-                    "user_id": {
-                        "description": "Optional user identifier",
-                        "example": "userid_example",
-                        "maxLength": 256,
-                        "minLength": 1,
-                        "type": "string"
-                    },
                     "note": {
                         "description": "Optional user identifier",
                         "example": "userid_example",
@@ -648,6 +634,7 @@
                         },
                         "default": {},
                         "type": "object",
+                        "nullable": true,
                         "description": "Optional metadata"
                     },
                     "expiration": {
@@ -657,7 +644,6 @@
                     }
                 },
                 "required": [
-                    "wallet_id",
                     "currency",
                     "amount"
                 ],
