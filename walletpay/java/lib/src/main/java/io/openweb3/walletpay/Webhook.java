@@ -20,16 +20,6 @@ import java.security.spec.X509EncodedKeySpec;
 import io.openweb3.walletpay.exceptions.VerificationException;
 
 public final class Webhook {
-	static final String X_MSG_ID_KEY = "x-id";
-	static final String X_MSG_SIGNATURE_KEY = "x-signature";
-	static final String X_MSG_TIMESTAMP_KEY = "x-timestamp";
-	static final String UNBRANDED_MSG_ID_KEY = "webhook-id";
-	static final String UNBRANDED_MSG_SIGNATURE_KEY = "webhook-signature";
-	static final String UNBRANDED_MSG_TIMESTAMP_KEY = "webhook-timestamp";
-	private static final String HMAC_SHA256 = "HmacSHA256";
-	private static final int TOLERANCE_IN_SECONDS = 5 * 60; // 5 minutes
-	private static final long SECOND_IN_MS = 1000L;
-
     private final String publicKeyPath;
 
 	public Webhook(final String publicKeyPath) {
@@ -46,6 +36,7 @@ public final class Webhook {
 
     private static boolean verifyData(String dataString, String signatureString, PublicKey publicKey)
             throws NoSuchAlgorithmException, InvalidKeyException, SignatureException, UnsupportedEncodingException {
+        signatureString = signatureString.replace("[\r\n]", "");
         byte[] signatureBytes = Base64.getDecoder().decode(signatureString);
         Signature signature = Signature.getInstance("SHA256withRSA");
         signature.initVerify(publicKey);
@@ -55,7 +46,7 @@ public final class Webhook {
 
     private PublicKey getPubKey() throws Exception {
         String pubKeyString = Utils.getStringFromFile(this.publicKeyPath);
-        pubKeyString = pubKeyString.replaceAll("(-+BEGIN PUBLIC KEY-+\\r?\\n|-+END PUBLIC KEY-+\\r?\\n?)", "");
+        pubKeyString = pubKeyString.replaceAll("(-+BEGIN PUBLIC KEY-+\\r?\\n|-+END PUBLIC KEY-+\\r?\\n?|\\r|\\n)", "");
         byte[] keyBytes = Base64.getDecoder().decode(pubKeyString.getBytes(StandardCharsets.UTF_8));
 
         // generate public key

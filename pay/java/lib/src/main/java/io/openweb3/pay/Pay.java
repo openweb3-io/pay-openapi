@@ -106,7 +106,8 @@ public final class Pay {
 			Signature sign = Signature.getInstance("SHA256withRSA");
 
 			String stripPrivateKey = Utils.getStringFromFile(privateKeyPath);
-			stripPrivateKey = stripPrivateKey.replaceAll("(-+BEGIN PUBLIC KEY-+\\r?\\n|-+END PUBLIC KEY-+\\r?\\n?)", ""); // 移除所有空白字符
+			// 开头行和结束行，以及所有换行字符
+			stripPrivateKey = stripPrivateKey.replaceAll("(-+BEGIN.*-+\\r?\\n|-+END.*-+\\r?\\n?|\\n|\\r)", ""); 
 
 			Base64.Decoder decoder = Base64.getDecoder();
 			PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(decoder.decode(stripPrivateKey));

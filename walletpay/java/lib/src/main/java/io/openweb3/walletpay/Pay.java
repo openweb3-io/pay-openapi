@@ -99,13 +99,14 @@ public final class Pay {
 		};
 	}
 
-    private static String calculateSignature(final String privateKey, final String body, final String uri, final String timestamp) throws SigningException {
+    private static String calculateSignature(final String privateKeyPath, final String body, final String uri, final String timestamp) throws SigningException {
 		try {
 			String content = String.format("%s%s%s", body, uri, timestamp);
 			Signature sign = Signature.getInstance("SHA256withRSA");
 
-			String stripPrivateKey = privateKey;
-			stripPrivateKey = privateKey.replaceAll("(-+BEGIN PUBLIC KEY-+\\r?\\n|-+END PUBLIC KEY-+\\r?\\n?)", ""); // 移除所有空白字符
+			String stripPrivateKey = Utils.getStringFromFile(privateKeyPath);
+			// 开头行和结束行，以及所有换行字符
+			stripPrivateKey = stripPrivateKey.replaceAll("(-+BEGIN.*-+\\r?\\n|-+END.*-+\\r?\\n?|\\n|\\r)", ""); 
 
 			Base64.Decoder decoder = Base64.getDecoder();
 			PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(decoder.decode(stripPrivateKey));
@@ -114,12 +115,14 @@ public final class Pay {
 
 			sign.initSign(pvt);
 			sign.update(content.getBytes(StandardCharsets.UTF_8));
-			return Utils.toHex(sign.sign());
+			return Base64.getEncoder().encodeToString(sign.sign()).replace("[\n\r]", "");
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			return null;
 		} catch (InvalidKeySpecException | SignatureException | InvalidKeyException e) {
             throw new SigningException(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
