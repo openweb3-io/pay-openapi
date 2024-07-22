@@ -130,4 +130,8 @@ public final class Pay {
 	public Order getOrder() {
 		return order;
 	}
+
+	public Endpoint getEndpoint() {
+		return endpoint;
+	}
 }
