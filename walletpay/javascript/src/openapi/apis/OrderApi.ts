@@ -19,10 +19,17 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Create a new order.
      * Create Order
+     * @param appId Specified the app id.
      * @param orderIn 
      */
-    public async v1OrderCreate(orderIn: OrderIn, _options?: Configuration): Promise<RequestContext> {
+    public async v1OrderCreate(appId: string, orderIn: OrderIn, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new RequiredError('Required parameter appId was null or undefined when calling v1OrderCreate.');
+        }
+
 
         // verify required parameter 'orderIn' is not null or undefined
         if (orderIn === null || orderIn === undefined) {
@@ -31,7 +38,8 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/pay/orders';
+        const localVarPath = '/api/v1/apps/{appId}/orders'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -70,20 +78,28 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * List orders.
      * List Orders
+     * @param appId Specified the app id.
      * @param size Limit the number of returned items
      * @param page Specifying the page index
      * @param walletId Optional wallet id
      * @param accountId Optional account id
      */
-    public async v1OrderList(size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1OrderList(appId: string, size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new RequiredError('Required parameter appId was null or undefined when calling v1OrderList.');
+        }
+
 
 
 
 
 
         // Path Params
-        const localVarPath = '/api/v1/pay/orders';
+        const localVarPath = '/api/v1/apps/{appId}/orders'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

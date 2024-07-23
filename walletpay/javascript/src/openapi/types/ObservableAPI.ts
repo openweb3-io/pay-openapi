@@ -31,10 +31,11 @@ export class ObservableOrderApi {
     /**
      * Create a new order.
      * Create Order
+     * @param appId Specified the app id.
      * @param orderIn 
      */
-    public v1OrderCreate(orderIn: OrderIn, _options?: Configuration): Observable<OrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderCreate(orderIn, _options);
+    public v1OrderCreate(appId: string, orderIn: OrderIn, _options?: Configuration): Observable<OrderOut> {
+        const requestContextPromise = this.requestFactory.v1OrderCreate(appId, orderIn, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -55,13 +56,14 @@ export class ObservableOrderApi {
     /**
      * List orders.
      * List Orders
+     * @param appId Specified the app id.
      * @param size Limit the number of returned items
      * @param page Specifying the page index
      * @param walletId Optional wallet id
      * @param accountId Optional account id
      */
-    public v1OrderList(size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Observable<ListResponseOrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderList(size, page, walletId, accountId, _options);
+    public v1OrderList(appId: string, size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Observable<ListResponseOrderOut> {
+        const requestContextPromise = this.requestFactory.v1OrderList(appId, size, page, walletId, accountId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);

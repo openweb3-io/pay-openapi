@@ -16,6 +16,12 @@ import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderA
 
 export interface OrderApiV1OrderCreateRequest {
     /**
+     * Specified the app id.
+     * @type string
+     * @memberof OrderApiv1OrderCreate
+     */
+    appId: string
+    /**
      * 
      * @type OrderIn
      * @memberof OrderApiv1OrderCreate
@@ -24,6 +30,12 @@ export interface OrderApiV1OrderCreateRequest {
 }
 
 export interface OrderApiV1OrderListRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof OrderApiv1OrderList
+     */
+    appId: string
     /**
      * Limit the number of returned items
      * @type number
@@ -63,7 +75,7 @@ export class ObjectOrderApi {
      * @param param the request object
      */
     public v1OrderCreate(param: OrderApiV1OrderCreateRequest, options?: Configuration): Promise<OrderOut> {
-        return this.api.v1OrderCreate(param.orderIn,  options).toPromise();
+        return this.api.v1OrderCreate(param.appId, param.orderIn,  options).toPromise();
     }
 
     /**
@@ -72,7 +84,7 @@ export class ObjectOrderApi {
      * @param param the request object
      */
     public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ListResponseOrderOut> {
-        return this.api.v1OrderList(param.size, param.page, param.walletId, param.accountId,  options).toPromise();
+        return this.api.v1OrderList(param.appId, param.size, param.page, param.walletId, param.accountId,  options).toPromise();
     }
 
 }

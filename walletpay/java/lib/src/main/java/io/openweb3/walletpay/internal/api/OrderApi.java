@@ -59,6 +59,7 @@ public class OrderApi {
 
     /**
      * Build call for v1OrderCreate
+     * @param appId Specified the app id. (required)
      * @param orderIn  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -76,11 +77,12 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderCreateCall(OrderIn orderIn, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1OrderCreateCall(String appId, OrderIn orderIn, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = orderIn;
 
         // create path and map variables
-        String localVarPath = "/api/v1/pay/orders";
+        String localVarPath = "/api/v1/apps/{appId}/orders"
+            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -107,7 +109,12 @@ public class OrderApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1OrderCreateValidateBeforeCall(OrderIn orderIn, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1OrderCreateValidateBeforeCall(String appId, OrderIn orderIn, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'appId' is set
+        if (appId == null) {
+            throw new ApiException("Missing the required parameter 'appId' when calling v1OrderCreate(Async)");
+        }
         
         // verify the required parameter 'orderIn' is set
         if (orderIn == null) {
@@ -115,7 +122,7 @@ public class OrderApi {
         }
         
 
-        okhttp3.Call localVarCall = v1OrderCreateCall(orderIn, _callback);
+        okhttp3.Call localVarCall = v1OrderCreateCall(appId, orderIn, _callback);
         return localVarCall;
 
     }
@@ -123,6 +130,7 @@ public class OrderApi {
     /**
      * Create Order
      * Create a new order.
+     * @param appId Specified the app id. (required)
      * @param orderIn  (required)
      * @return OrderOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -139,14 +147,15 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public OrderOut v1OrderCreate(OrderIn orderIn) throws ApiException {
-        ApiResponse<OrderOut> localVarResp = v1OrderCreateWithHttpInfo(orderIn);
+    public OrderOut v1OrderCreate(String appId, OrderIn orderIn) throws ApiException {
+        ApiResponse<OrderOut> localVarResp = v1OrderCreateWithHttpInfo(appId, orderIn);
         return localVarResp.getData();
     }
 
     /**
      * Create Order
      * Create a new order.
+     * @param appId Specified the app id. (required)
      * @param orderIn  (required)
      * @return ApiResponse&lt;OrderOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -163,8 +172,8 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<OrderOut> v1OrderCreateWithHttpInfo(OrderIn orderIn) throws ApiException {
-        okhttp3.Call localVarCall = v1OrderCreateValidateBeforeCall(orderIn, null);
+    public ApiResponse<OrderOut> v1OrderCreateWithHttpInfo(String appId, OrderIn orderIn) throws ApiException {
+        okhttp3.Call localVarCall = v1OrderCreateValidateBeforeCall(appId, orderIn, null);
         Type localVarReturnType = new TypeToken<OrderOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -172,6 +181,7 @@ public class OrderApi {
     /**
      * Create Order (asynchronously)
      * Create a new order.
+     * @param appId Specified the app id. (required)
      * @param orderIn  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -189,15 +199,16 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderCreateAsync(OrderIn orderIn, final ApiCallback<OrderOut> _callback) throws ApiException {
+    public okhttp3.Call v1OrderCreateAsync(String appId, OrderIn orderIn, final ApiCallback<OrderOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1OrderCreateValidateBeforeCall(orderIn, _callback);
+        okhttp3.Call localVarCall = v1OrderCreateValidateBeforeCall(appId, orderIn, _callback);
         Type localVarReturnType = new TypeToken<OrderOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for v1OrderList
+     * @param appId Specified the app id. (required)
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param walletId Optional wallet id (optional)
@@ -216,11 +227,12 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderListCall(Integer size, Integer page, String walletId, String accountId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1OrderListCall(String appId, Integer size, Integer page, String walletId, String accountId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/pay/orders";
+        String localVarPath = "/api/v1/apps/{appId}/orders"
+            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -263,10 +275,15 @@ public class OrderApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1OrderListValidateBeforeCall(Integer size, Integer page, String walletId, String accountId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1OrderListValidateBeforeCall(String appId, Integer size, Integer page, String walletId, String accountId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'appId' is set
+        if (appId == null) {
+            throw new ApiException("Missing the required parameter 'appId' when calling v1OrderList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = v1OrderListCall(size, page, walletId, accountId, _callback);
+        okhttp3.Call localVarCall = v1OrderListCall(appId, size, page, walletId, accountId, _callback);
         return localVarCall;
 
     }
@@ -274,6 +291,7 @@ public class OrderApi {
     /**
      * List Orders
      * List orders.
+     * @param appId Specified the app id. (required)
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param walletId Optional wallet id (optional)
@@ -291,14 +309,15 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ListResponseOrderOut v1OrderList(Integer size, Integer page, String walletId, String accountId) throws ApiException {
-        ApiResponse<ListResponseOrderOut> localVarResp = v1OrderListWithHttpInfo(size, page, walletId, accountId);
+    public ListResponseOrderOut v1OrderList(String appId, Integer size, Integer page, String walletId, String accountId) throws ApiException {
+        ApiResponse<ListResponseOrderOut> localVarResp = v1OrderListWithHttpInfo(appId, size, page, walletId, accountId);
         return localVarResp.getData();
     }
 
     /**
      * List Orders
      * List orders.
+     * @param appId Specified the app id. (required)
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param walletId Optional wallet id (optional)
@@ -316,8 +335,8 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListResponseOrderOut> v1OrderListWithHttpInfo(Integer size, Integer page, String walletId, String accountId) throws ApiException {
-        okhttp3.Call localVarCall = v1OrderListValidateBeforeCall(size, page, walletId, accountId, null);
+    public ApiResponse<ListResponseOrderOut> v1OrderListWithHttpInfo(String appId, Integer size, Integer page, String walletId, String accountId) throws ApiException {
+        okhttp3.Call localVarCall = v1OrderListValidateBeforeCall(appId, size, page, walletId, accountId, null);
         Type localVarReturnType = new TypeToken<ListResponseOrderOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -325,6 +344,7 @@ public class OrderApi {
     /**
      * List Orders (asynchronously)
      * List orders.
+     * @param appId Specified the app id. (required)
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param walletId Optional wallet id (optional)
@@ -343,9 +363,9 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderListAsync(Integer size, Integer page, String walletId, String accountId, final ApiCallback<ListResponseOrderOut> _callback) throws ApiException {
+    public okhttp3.Call v1OrderListAsync(String appId, Integer size, Integer page, String walletId, String accountId, final ApiCallback<ListResponseOrderOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1OrderListValidateBeforeCall(size, page, walletId, accountId, _callback);
+        okhttp3.Call localVarCall = v1OrderListValidateBeforeCall(appId, size, page, walletId, accountId, _callback);
         Type localVarReturnType = new TypeToken<ListResponseOrderOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

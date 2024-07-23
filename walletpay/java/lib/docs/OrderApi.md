@@ -4,13 +4,13 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1OrderCreate**](OrderApi.md#v1OrderCreate) | **POST** /api/v1/pay/orders | Create Order
-[**v1OrderList**](OrderApi.md#v1OrderList) | **GET** /api/v1/pay/orders | List Orders
+[**v1OrderCreate**](OrderApi.md#v1OrderCreate) | **POST** /api/v1/apps/{appId}/orders | Create Order
+[**v1OrderList**](OrderApi.md#v1OrderList) | **GET** /api/v1/apps/{appId}/orders | List Orders
 
 
 <a name="v1OrderCreate"></a>
 # **v1OrderCreate**
-> OrderOut v1OrderCreate(orderIn)
+> OrderOut v1OrderCreate(appId, orderIn)
 
 Create Order
 
@@ -38,9 +38,10 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     OrderApi apiInstance = new OrderApi(defaultClient);
+    String appId = "app_12345xsfei"; // String | Specified the app id.
     OrderIn orderIn = new OrderIn(); // OrderIn | 
     try {
-      OrderOut result = apiInstance.v1OrderCreate(orderIn);
+      OrderOut result = apiInstance.v1OrderCreate(appId, orderIn);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderApi#v1OrderCreate");
@@ -57,6 +58,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **appId** | **String**| Specified the app id. |
  **orderIn** | [**OrderIn**](OrderIn.md)|  |
 
 ### Return type
@@ -86,7 +88,7 @@ Name | Type | Description  | Notes
 
 <a name="v1OrderList"></a>
 # **v1OrderList**
-> ListResponseOrderOut v1OrderList(size, page, walletId, accountId)
+> ListResponseOrderOut v1OrderList(appId, size, page, walletId, accountId)
 
 List Orders
 
@@ -114,12 +116,13 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     OrderApi apiInstance = new OrderApi(defaultClient);
+    String appId = "app_12345xsfei"; // String | Specified the app id.
     Integer size = 20; // Integer | Limit the number of returned items
     Integer page = 0; // Integer | Specifying the page index
     String walletId = "wallet_id"; // String | Optional wallet id
     String accountId = "account_id"; // String | Optional account id
     try {
-      ListResponseOrderOut result = apiInstance.v1OrderList(size, page, walletId, accountId);
+      ListResponseOrderOut result = apiInstance.v1OrderList(appId, size, page, walletId, accountId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderApi#v1OrderList");
@@ -136,6 +139,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **appId** | **String**| Specified the app id. |
  **size** | **Integer**| Limit the number of returned items | [optional] [default to 20]
  **page** | **Integer**| Specifying the page index | [optional] [default to 0]
  **walletId** | **String**| Optional wallet id | [optional]

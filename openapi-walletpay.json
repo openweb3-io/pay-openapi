@@ -38,11 +38,23 @@
     },
     "paths":
       {
-        "/api/v1/pay/orders": {
+        "/api/v1/apps/{appId}/orders": {
             "get": {
                 "description": "List orders.",
                 "operationId": "v1.order.list",
                 "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
                     {
                         "description": "Limit the number of returned items",
                         "in": "query",
@@ -164,6 +176,20 @@
             "post": {
                 "description": "Create a new order.",
                 "operationId": "v1.order.create",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {

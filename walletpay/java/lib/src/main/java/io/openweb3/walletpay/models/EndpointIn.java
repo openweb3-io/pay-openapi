@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * EndpointIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-19T12:47:46.628821+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-23T21:06:31.170889+08:00[Asia/Shanghai]")
 public class EndpointIn {
   public static final String SERIALIZED_NAME_FILTER_TYPES = "filter_types";
   @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
