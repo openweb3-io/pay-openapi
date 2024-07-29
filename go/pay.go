@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/openweb3-io/wallet-pay-openapi/go/internal/openapi"
-	"github.com/openweb3-io/wallet-pay-openapi/go/internal/version"
+	"github.com/openweb3-io/pay-openapi/go/internal/openapi"
+	"github.com/openweb3-io/pay-openapi/go/internal/version"
 )
 
 type (
