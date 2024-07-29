@@ -1583,10 +1583,9 @@
                     }
                 },
                 "required": [
-                    "chain",
-                    "network",
+                    "id",
                     "url",
-                    "filterTypes"
+                    "eventTypes"
                 ],
                 "type": "object"
             },

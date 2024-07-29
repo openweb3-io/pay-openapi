@@ -1225,9 +1225,8 @@ components:
           format: date-time
           type: string
       required:
-      - chain
-      - filterTypes
-      - network
+      - eventTypes
+      - id
       - url
       type: object
     ListResponse_EndpointOut_:

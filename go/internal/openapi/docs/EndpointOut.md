@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The endpoint&#39;s ID | [optional] 
+**Id** | **string** | The endpoint&#39;s ID | 
 **Uid** | Pointer to **NullableString** | The endpoint&#39;s UID | [optional] 
 **Description** | Pointer to **string** | The endpoint&#39;s description | [optional] 
 **Url** | **string** | The webhook endpoint url | 
 **Filter** | Pointer to **string** | The webhook endpoint url | [optional] 
-**EventTypes** | Pointer to **[]string** | The webhook endpoint eventTypes | [optional] 
+**EventTypes** | **[]string** | The webhook endpoint eventTypes | 
 **Disabled** | Pointer to **bool** | indicate whether to disable the webhook endpoint | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | Optional metadata | [optional] [default to {}]
 **Headers** | Pointer to **map[string]string** | Optional metadata | [optional] [default to {}]
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewEndpointOut
 
-`func NewEndpointOut(url string, ) *EndpointOut`
+`func NewEndpointOut(id string, url string, eventTypes []string, ) *EndpointOut`
 
 NewEndpointOut instantiates a new EndpointOut object
 This constructor will assign default values to properties that have it defined,
@@ -53,11 +53,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *EndpointOut) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetUid
 
@@ -183,11 +178,6 @@ and a boolean to check if the value has been set.
 
 SetEventTypes sets EventTypes field to given value.
 
-### HasEventTypes
-
-`func (o *EndpointOut) HasEventTypes() bool`
-
-HasEventTypes returns a boolean if a field has been set.
 
 ### GetDisabled
 

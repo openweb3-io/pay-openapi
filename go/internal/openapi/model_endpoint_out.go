@@ -18,7 +18,7 @@ import (
 // EndpointOut struct for EndpointOut
 type EndpointOut struct {
 	// The endpoint's ID
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	// The endpoint's UID
 	Uid NullableString `json:"uid,omitempty"`
 	// The endpoint's description
@@ -28,7 +28,7 @@ type EndpointOut struct {
 	// The webhook endpoint url
 	Filter *string `json:"filter,omitempty"`
 	// The webhook endpoint eventTypes
-	EventTypes *[]string `json:"eventTypes,omitempty"`
+	EventTypes []string `json:"eventTypes"`
 	// indicate whether to disable the webhook endpoint
 	Disabled *bool `json:"disabled,omitempty"`
 	// Optional metadata
@@ -43,9 +43,11 @@ type EndpointOut struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointOut(url string) *EndpointOut {
+func NewEndpointOut(id string, url string, eventTypes []string) *EndpointOut {
 	this := EndpointOut{}
+	this.Id = id
 	this.Url = url
+	this.EventTypes = eventTypes
 	return &this
 }
 
@@ -57,36 +59,28 @@ func NewEndpointOutWithDefaults() *EndpointOut {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *EndpointOut) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *EndpointOut) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *EndpointOut) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *EndpointOut) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetUid returns the Uid field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -219,36 +213,28 @@ func (o *EndpointOut) SetFilter(v string) {
 	o.Filter = &v
 }
 
-// GetEventTypes returns the EventTypes field value if set, zero value otherwise.
+// GetEventTypes returns the EventTypes field value
 func (o *EndpointOut) GetEventTypes() []string {
-	if o == nil || o.EventTypes == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.EventTypes
+
+	return o.EventTypes
 }
 
-// GetEventTypesOk returns a tuple with the EventTypes field value if set, nil otherwise
+// GetEventTypesOk returns a tuple with the EventTypes field value
 // and a boolean to check if the value has been set.
 func (o *EndpointOut) GetEventTypesOk() (*[]string, bool) {
-	if o == nil || o.EventTypes == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.EventTypes, true
+	return &o.EventTypes, true
 }
 
-// HasEventTypes returns a boolean if a field has been set.
-func (o *EndpointOut) HasEventTypes() bool {
-	if o != nil && o.EventTypes != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEventTypes gets a reference to the given []string and assigns it to the EventTypes field.
+// SetEventTypes sets field value
 func (o *EndpointOut) SetEventTypes(v []string) {
-	o.EventTypes = &v
+	o.EventTypes = v
 }
 
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
@@ -383,7 +369,7 @@ func (o *EndpointOut) SetCreatedAt(v time.Time) {
 
 func (o EndpointOut) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if true {
 		toSerialize["id"] = o.Id
 	}
 	if o.Uid.IsSet() {
@@ -398,7 +384,7 @@ func (o EndpointOut) MarshalJSON() ([]byte, error) {
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
-	if o.EventTypes != nil {
+	if true {
 		toSerialize["eventTypes"] = o.EventTypes
 	}
 	if o.Disabled != nil {

@@ -17,7 +17,7 @@ export class EndpointOut {
     /**
     * The endpoint's ID
     */
-    'id'?: string;
+    'id': string;
     /**
     * The endpoint's UID
     */
@@ -37,7 +37,7 @@ export class EndpointOut {
     /**
     * The webhook endpoint eventTypes
     */
-    'eventTypes'?: Array<string>;
+    'eventTypes': Array<string>;
     /**
     * indicate whether to disable the webhook endpoint
     */

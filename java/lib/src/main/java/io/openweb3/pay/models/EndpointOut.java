@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * EndpointOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-29T14:50:22.360469+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-29T16:32:55.820573+08:00[Asia/Shanghai]")
 public class EndpointOut {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -56,7 +56,7 @@ public class EndpointOut {
 
   public static final String SERIALIZED_NAME_EVENT_TYPES = "eventTypes";
   @SerializedName(SERIALIZED_NAME_EVENT_TYPES)
-  private List<String> eventTypes = null;
+  private List<String> eventTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DISABLED = "disabled";
   @SerializedName(SERIALIZED_NAME_DISABLED)
@@ -85,8 +85,7 @@ public class EndpointOut {
    * The endpoint&#39;s ID
    * @return id
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "1brOrx2ZWZBpBUvZwXKQmoEYga2", value = "The endpoint's ID")
+  @ApiModelProperty(example = "1brOrx2ZWZBpBUvZwXKQmoEYga2", required = true, value = "The endpoint's ID")
 
   public String getId() {
     return id;
@@ -196,9 +195,6 @@ public class EndpointOut {
   }
 
   public EndpointOut addEventTypesItem(String eventTypesItem) {
-    if (this.eventTypes == null) {
-      this.eventTypes = new ArrayList<>();
-    }
     this.eventTypes.add(eventTypesItem);
     return this;
   }
@@ -207,8 +203,7 @@ public class EndpointOut {
    * The webhook endpoint eventTypes
    * @return eventTypes
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "[\"order_paid\"]", value = "The webhook endpoint eventTypes")
+  @ApiModelProperty(example = "[\"order_paid\"]", required = true, value = "The webhook endpoint eventTypes")
 
   public List<String> getEventTypes() {
     return eventTypes;
