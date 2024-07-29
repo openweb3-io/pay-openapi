@@ -61,14 +61,6 @@ public class EndpointPatchTest {
     }
 
     /**
-     * Test the property 'secret'
-     */
-    @Test
-    public void secretTest() {
-        // TODO: test secret
-    }
-
-    /**
      * Test the property 'url'
      */
     @Test
@@ -77,19 +69,11 @@ public class EndpointPatchTest {
     }
 
     /**
-     * Test the property 'filter'
+     * Test the property 'eventTypes'
      */
     @Test
-    public void filterTest() {
-        // TODO: test filter
-    }
-
-    /**
-     * Test the property 'filterTypes'
-     */
-    @Test
-    public void filterTypesTest() {
-        // TODO: test filterTypes
+    public void eventTypesTest() {
+        // TODO: test eventTypes
     }
 
     /**
@@ -114,14 +98,6 @@ public class EndpointPatchTest {
     @Test
     public void headersTest() {
         // TODO: test headers
-    }
-
-    /**
-     * Test the property 'version'
-     */
-    @Test
-    public void versionTest() {
-        // TODO: test version
     }
 
 }

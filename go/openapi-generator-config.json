@@ -1,0 +1,9 @@
+{
+    "packageName": "openapi",
+    "isGoSubmodule": true,
+    "enumClassPrefix": true,
+    "additionalProperties": {
+        "withGoCodegenTests": true,
+        "withCustomMiddlewareFunction": true
+    }
+}

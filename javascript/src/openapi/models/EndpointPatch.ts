@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { AnyType } from './AnyType';
 import { HttpFile } from '../http/http';
 
 export class EndpointPatch {
@@ -22,21 +23,13 @@ export class EndpointPatch {
     */
     'description'?: string;
     /**
-    * The endpoint's secret
-    */
-    'secret'?: string;
-    /**
     * The webhook endpoint url
     */
-    'url': string;
+    'url'?: string;
     /**
-    * The webhook endpoint url
+    * The webhook endpoint associated event types
     */
-    'filter'?: string;
-    /**
-    * The webhook endpoint url
-    */
-    'filterTypes': Array<string>;
+    'eventTypes'?: Array<string>;
     /**
     * indicate whether to disable the webhook endpoint
     */
@@ -44,15 +37,11 @@ export class EndpointPatch {
     /**
     * Optional metadata
     */
-    'metadata'?: { [key: string]: string; };
+    'metadata'?: { [key: string]: AnyType; };
     /**
-    * Optional metadata
+    * Optional headers
     */
     'headers'?: { [key: string]: string; };
-    /**
-    * endpoint version
-    */
-    'version'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -70,26 +59,14 @@ export class EndpointPatch {
             "format": ""
         },
         {
-            "name": "secret",
-            "baseName": "secret",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "url",
             "baseName": "url",
             "type": "string",
             "format": ""
         },
         {
-            "name": "filter",
-            "baseName": "filter",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "filterTypes",
-            "baseName": "filterTypes",
+            "name": "eventTypes",
+            "baseName": "eventTypes",
             "type": "Array<string>",
             "format": ""
         },
@@ -102,19 +79,13 @@ export class EndpointPatch {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "{ [key: string]: string; }",
+            "type": "{ [key: string]: AnyType; }",
             "format": ""
         },
         {
             "name": "headers",
             "baseName": "headers",
             "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "version",
-            "baseName": "version",
-            "type": "number",
             "format": ""
         }    ];
 

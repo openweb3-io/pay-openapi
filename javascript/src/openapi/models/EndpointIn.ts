@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { AnyType } from './AnyType';
 import { HttpFile } from '../http/http';
 
 export class EndpointIn {
@@ -18,33 +19,17 @@ export class EndpointIn {
     */
     'uid'?: string;
     /**
-    * The chain network monitor by endpoint
-    */
-    'network': string;
-    /**
-    * Blockchain code
-    */
-    'chain': string;
-    /**
     * The endpoint's description
     */
     'description'?: string;
-    /**
-    * The endpoint's secret
-    */
-    'secret'?: string;
     /**
     * The webhook endpoint url
     */
     'url': string;
     /**
-    * The webhook endpoint url
+    * The webhook endpoint associated event types
     */
-    'filter'?: string;
-    /**
-    * The webhook endpoint url
-    */
-    'filterTypes': Array<string>;
+    'eventTypes': Array<string>;
     /**
     * indicate whether to disable the webhook endpoint
     */
@@ -52,15 +37,11 @@ export class EndpointIn {
     /**
     * Optional metadata
     */
-    'metadata'?: { [key: string]: string; };
+    'metadata'?: { [key: string]: AnyType; };
     /**
-    * Optional metadata
+    * Optional headers
     */
     'headers'?: { [key: string]: string; };
-    /**
-    * endpoint version
-    */
-    'version'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -72,26 +53,8 @@ export class EndpointIn {
             "format": ""
         },
         {
-            "name": "network",
-            "baseName": "network",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "chain",
-            "baseName": "chain",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "description",
             "baseName": "description",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "secret",
-            "baseName": "secret",
             "type": "string",
             "format": ""
         },
@@ -102,14 +65,8 @@ export class EndpointIn {
             "format": ""
         },
         {
-            "name": "filter",
-            "baseName": "filter",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "filterTypes",
-            "baseName": "filterTypes",
+            "name": "eventTypes",
+            "baseName": "eventTypes",
             "type": "Array<string>",
             "format": ""
         },
@@ -122,19 +79,13 @@ export class EndpointIn {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "{ [key: string]: string; }",
+            "type": "{ [key: string]: AnyType; }",
             "format": ""
         },
         {
             "name": "headers",
             "baseName": "headers",
             "type": "{ [key: string]: string; }",
-            "format": ""
-        },
-        {
-            "name": "version",
-            "baseName": "version",
-            "type": "number",
             "format": ""
         }    ];
 

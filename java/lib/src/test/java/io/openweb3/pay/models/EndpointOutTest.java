@@ -21,6 +21,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,27 +46,19 @@ public class EndpointOutTest {
     }
 
     /**
+     * Test the property 'id'
+     */
+    @Test
+    public void idTest() {
+        // TODO: test id
+    }
+
+    /**
      * Test the property 'uid'
      */
     @Test
     public void uidTest() {
         // TODO: test uid
-    }
-
-    /**
-     * Test the property 'network'
-     */
-    @Test
-    public void networkTest() {
-        // TODO: test network
-    }
-
-    /**
-     * Test the property 'chain'
-     */
-    @Test
-    public void chainTest() {
-        // TODO: test chain
     }
 
     /**
@@ -93,11 +86,11 @@ public class EndpointOutTest {
     }
 
     /**
-     * Test the property 'filterTypes'
+     * Test the property 'eventTypes'
      */
     @Test
-    public void filterTypesTest() {
-        // TODO: test filterTypes
+    public void eventTypesTest() {
+        // TODO: test eventTypes
     }
 
     /**
@@ -125,11 +118,11 @@ public class EndpointOutTest {
     }
 
     /**
-     * Test the property 'version'
+     * Test the property 'createdAt'
      */
     @Test
-    public void versionTest() {
-        // TODO: test version
+    public void createdAtTest() {
+        // TODO: test createdAt
     }
 
 }

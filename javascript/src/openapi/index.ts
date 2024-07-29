@@ -7,5 +7,5 @@ export * from "./apis/exception";
 export * from "./servers";
 
 export { PromiseMiddleware as Middleware } from './middleware';
-export { AccountApiV1AccountListRequest, ObjectAccountApi as AccountApi,  EndpointApiV1EndpointCreateRequest, EndpointApiV1EndpointDeleteRequest, EndpointApiV1EndpointListRequest, EndpointApiV1EndpointPatchRequest, EndpointApiV1EndpointRetrieveRequest, ObjectEndpointApi as EndpointApi,  OrderApiV1OrderCreateRequest, OrderApiV1OrderListRequest, ObjectOrderApi as OrderApi } from './types/ObjectParamAPI';
+export { EndpointApiV1EndpointCreateRequest, EndpointApiV1EndpointDeleteRequest, EndpointApiV1EndpointGetRequest, EndpointApiV1EndpointListRequest, EndpointApiV1EndpointPatchRequest, ObjectEndpointApi as EndpointApi,  InvoiceApiV1InvoiceCreateRequest, InvoiceApiV1InvoiceGetRequest, InvoiceApiV1InvoiceListRequest, ObjectInvoiceApi as InvoiceApi } from './types/ObjectParamAPI';
 

@@ -2,60 +2,30 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
-import { AccountOut } from '../models/AccountOut';
 import { EndpointIn } from '../models/EndpointIn';
 import { EndpointOut } from '../models/EndpointOut';
 import { EndpointPatch } from '../models/EndpointPatch';
 import { HTTPValidationError } from '../models/HTTPValidationError';
 import { HttpErrorOut } from '../models/HttpErrorOut';
-import { ListResponseAccountOut } from '../models/ListResponseAccountOut';
+import { InvoiceIn } from '../models/InvoiceIn';
+import { InvoiceOut } from '../models/InvoiceOut';
+import { Invoiceing } from '../models/Invoiceing';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
-import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
-import { OrderIn } from '../models/OrderIn';
-import { OrderOut } from '../models/OrderOut';
+import { ListResponseInvoiceOut } from '../models/ListResponseInvoiceOut';
 import { Ordering } from '../models/Ordering';
 import { ValidationError } from '../models/ValidationError';
-
-import { ObservableAccountApi } from "./ObservableAPI";
-import { AccountApiRequestFactory, AccountApiResponseProcessor} from "../apis/AccountApi";
-
-export interface AccountApiV1AccountListRequest {
-    /**
-     * Limit the number of returned items
-     * @type number
-     * @memberof AccountApiv1AccountList
-     */
-    limit?: number
-    /**
-     * Specifying the amount of excluded from a response the first N items
-     * @type number
-     * @memberof AccountApiv1AccountList
-     */
-    offset?: number
-}
-
-export class ObjectAccountApi {
-    private api: ObservableAccountApi
-
-    public constructor(configuration: Configuration, requestFactory?: AccountApiRequestFactory, responseProcessor?: AccountApiResponseProcessor) {
-        this.api = new ObservableAccountApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * List accounts.
-     * List Accounts
-     * @param param the request object
-     */
-    public v1AccountList(param: AccountApiV1AccountListRequest, options?: Configuration): Promise<ListResponseAccountOut> {
-        return this.api.v1AccountList(param.limit, param.offset,  options).toPromise();
-    }
-
-}
+import { WebhookMessage } from '../models/WebhookMessage';
 
 import { ObservableEndpointApi } from "./ObservableAPI";
 import { EndpointApiRequestFactory, EndpointApiResponseProcessor} from "../apis/EndpointApi";
 
 export interface EndpointApiV1EndpointCreateRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof EndpointApiv1EndpointCreate
+     */
+    appId: string
     /**
      * 
      * @type EndpointIn
@@ -66,6 +36,12 @@ export interface EndpointApiV1EndpointCreateRequest {
 
 export interface EndpointApiV1EndpointDeleteRequest {
     /**
+     * Specified the app id.
+     * @type string
+     * @memberof EndpointApiv1EndpointDelete
+     */
+    appId: string
+    /**
      * Specified the endpoint id.
      * @type string
      * @memberof EndpointApiv1EndpointDelete
@@ -73,7 +49,28 @@ export interface EndpointApiV1EndpointDeleteRequest {
     endpointId: string
 }
 
+export interface EndpointApiV1EndpointGetRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof EndpointApiv1EndpointGet
+     */
+    appId: string
+    /**
+     * Specified the webhook endpoint id.
+     * @type string
+     * @memberof EndpointApiv1EndpointGet
+     */
+    endpointId: string
+}
+
 export interface EndpointApiV1EndpointListRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof EndpointApiv1EndpointList
+     */
+    appId: string
     /**
      * Limit the number of returned items
      * @type number
@@ -86,9 +83,21 @@ export interface EndpointApiV1EndpointListRequest {
      * @memberof EndpointApiv1EndpointList
      */
     cursor?: string
+    /**
+     * The sorting order of the returned items
+     * @type Ordering
+     * @memberof EndpointApiv1EndpointList
+     */
+    ordering?: Ordering
 }
 
 export interface EndpointApiV1EndpointPatchRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof EndpointApiv1EndpointPatch
+     */
+    appId: string
     /**
      * Specified the endpoint id.
      * @type string
@@ -101,15 +110,6 @@ export interface EndpointApiV1EndpointPatchRequest {
      * @memberof EndpointApiv1EndpointPatch
      */
     endpointPatch: EndpointPatch
-}
-
-export interface EndpointApiV1EndpointRetrieveRequest {
-    /**
-     * Specified the webhook endpoint id.
-     * @type string
-     * @memberof EndpointApiv1EndpointRetrieve
-     */
-    endpointId: string
 }
 
 export class ObjectEndpointApi {
@@ -125,7 +125,7 @@ export class ObjectEndpointApi {
      * @param param the request object
      */
     public v1EndpointCreate(param: EndpointApiV1EndpointCreateRequest, options?: Configuration): Promise<EndpointOut> {
-        return this.api.v1EndpointCreate(param.endpointIn,  options).toPromise();
+        return this.api.v1EndpointCreate(param.appId, param.endpointIn,  options).toPromise();
     }
 
     /**
@@ -134,7 +134,16 @@ export class ObjectEndpointApi {
      * @param param the request object
      */
     public v1EndpointDelete(param: EndpointApiV1EndpointDeleteRequest, options?: Configuration): Promise<EndpointOut> {
-        return this.api.v1EndpointDelete(param.endpointId,  options).toPromise();
+        return this.api.v1EndpointDelete(param.appId, param.endpointId,  options).toPromise();
+    }
+
+    /**
+     * retrieve a specified webhook endpoint.
+     * Get endpoint
+     * @param param the request object
+     */
+    public v1EndpointGet(param: EndpointApiV1EndpointGetRequest, options?: Configuration): Promise<EndpointOut> {
+        return this.api.v1EndpointGet(param.appId, param.endpointId,  options).toPromise();
     }
 
     /**
@@ -143,91 +152,118 @@ export class ObjectEndpointApi {
      * @param param the request object
      */
     public v1EndpointList(param: EndpointApiV1EndpointListRequest, options?: Configuration): Promise<ListResponseEndpointOut> {
-        return this.api.v1EndpointList(param.limit, param.cursor,  options).toPromise();
+        return this.api.v1EndpointList(param.appId, param.limit, param.cursor, param.ordering,  options).toPromise();
     }
 
     /**
      * update a specified webhook endpoint.
-     * update endpoint
+     * Patch endpoint
      * @param param the request object
      */
     public v1EndpointPatch(param: EndpointApiV1EndpointPatchRequest, options?: Configuration): Promise<EndpointOut> {
-        return this.api.v1EndpointPatch(param.endpointId, param.endpointPatch,  options).toPromise();
-    }
-
-    /**
-     * retrieve a specified webhook endpoint.
-     * Retrieve endpoint
-     * @param param the request object
-     */
-    public v1EndpointRetrieve(param: EndpointApiV1EndpointRetrieveRequest, options?: Configuration): Promise<EndpointOut> {
-        return this.api.v1EndpointRetrieve(param.endpointId,  options).toPromise();
+        return this.api.v1EndpointPatch(param.appId, param.endpointId, param.endpointPatch,  options).toPromise();
     }
 
 }
 
-import { ObservableOrderApi } from "./ObservableAPI";
-import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderApi";
+import { ObservableInvoiceApi } from "./ObservableAPI";
+import { InvoiceApiRequestFactory, InvoiceApiResponseProcessor} from "../apis/InvoiceApi";
 
-export interface OrderApiV1OrderCreateRequest {
+export interface InvoiceApiV1InvoiceCreateRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof InvoiceApiv1InvoiceCreate
+     */
+    appId: string
     /**
      * 
-     * @type OrderIn
-     * @memberof OrderApiv1OrderCreate
+     * @type InvoiceIn
+     * @memberof InvoiceApiv1InvoiceCreate
      */
-    orderIn: OrderIn
+    invoiceIn: InvoiceIn
 }
 
-export interface OrderApiV1OrderListRequest {
+export interface InvoiceApiV1InvoiceGetRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof InvoiceApiv1InvoiceGet
+     */
+    appId: string
+    /**
+     * Specified the invoice id or invoice uid.
+     * @type string
+     * @memberof InvoiceApiv1InvoiceGet
+     */
+    idOrUid: string
+}
+
+export interface InvoiceApiV1InvoiceListRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof InvoiceApiv1InvoiceList
+     */
+    appId: string
     /**
      * Limit the number of returned items
      * @type number
-     * @memberof OrderApiv1OrderList
+     * @memberof InvoiceApiv1InvoiceList
      */
     limit?: number
     /**
-     * Specifying the amount of excluded from a response the first N orders
+     * Specifying the amount of excluded from a response the first N invoices
      * @type number
-     * @memberof OrderApiv1OrderList
+     * @memberof InvoiceApiv1InvoiceList
      */
     offset?: number
     /**
-     * Optional order blockchain code
+     * Optional invoice user id
      * @type string
-     * @memberof OrderApiv1OrderList
+     * @memberof InvoiceApiv1InvoiceList
      */
-    chain?: string
+    userId?: string
     /**
-     * Channel of the order
+     * Channel of the invoice
      * @type string
-     * @memberof OrderApiv1OrderList
+     * @memberof InvoiceApiv1InvoiceList
      */
     channel?: string
 }
 
-export class ObjectOrderApi {
-    private api: ObservableOrderApi
+export class ObjectInvoiceApi {
+    private api: ObservableInvoiceApi
 
-    public constructor(configuration: Configuration, requestFactory?: OrderApiRequestFactory, responseProcessor?: OrderApiResponseProcessor) {
-        this.api = new ObservableOrderApi(configuration, requestFactory, responseProcessor);
+    public constructor(configuration: Configuration, requestFactory?: InvoiceApiRequestFactory, responseProcessor?: InvoiceApiResponseProcessor) {
+        this.api = new ObservableInvoiceApi(configuration, requestFactory, responseProcessor);
     }
 
     /**
-     * Create a new order.
-     * Create Order
+     * Create a new invoice.
+     * Create invoice
      * @param param the request object
      */
-    public v1OrderCreate(param: OrderApiV1OrderCreateRequest, options?: Configuration): Promise<OrderOut> {
-        return this.api.v1OrderCreate(param.orderIn,  options).toPromise();
+    public v1InvoiceCreate(param: InvoiceApiV1InvoiceCreateRequest, options?: Configuration): Promise<InvoiceOut> {
+        return this.api.v1InvoiceCreate(param.appId, param.invoiceIn,  options).toPromise();
     }
 
     /**
-     * List orders.
-     * List Orders
+     * retrieve a specified webhook endpoint.
+     * Get invoice
      * @param param the request object
      */
-    public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ListResponseOrderOut> {
-        return this.api.v1OrderList(param.limit, param.offset, param.chain, param.channel,  options).toPromise();
+    public v1InvoiceGet(param: InvoiceApiV1InvoiceGetRequest, options?: Configuration): Promise<InvoiceOut> {
+        return this.api.v1InvoiceGet(param.appId, param.idOrUid,  options).toPromise();
+    }
+
+    /**
+     * List invoices.
+     * List invoices
+     * @param param the request object
+     */
+    public v1InvoiceList(param: InvoiceApiV1InvoiceListRequest, options?: Configuration): Promise<ListResponseInvoiceOut> {
+        return this.api.v1InvoiceList(param.appId, param.limit, param.offset, param.userId, param.channel,  options).toPromise();
     }
 
 }

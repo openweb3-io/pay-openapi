@@ -14,60 +14,60 @@ public final class Endpoint {
 		api = new EndpointApi();
 	}
 
-	public ListResponseEndpointOut list(final EndpointListOptions options) throws ApiException {
+	public ListResponseEndpointOut list(final String appId, final EndpointListOptions options) throws ApiException {
 		try {
-			return api.v1EndpointList(options.getLimit(),  options.getCursor());
+			return api.v1EndpointList(appId, options.getLimit(), options.getCursor(), options.getOrdering());
 		} catch (io.openweb3.pay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
-	public EndpointOut create(final EndpointIn EndpointIn) throws ApiException {
-		return this.create(EndpointIn, new PostOptions());
+	public EndpointOut create(final String appId, final EndpointIn EndpointIn) throws ApiException {
+		return this.create(appId, EndpointIn, new PostOptions());
 	}
 
-	public EndpointOut create(final EndpointIn EndpointIn, final PostOptions options) throws ApiException {
+	public EndpointOut create(final String appId, final EndpointIn EndpointIn, final PostOptions options) throws ApiException {
 		try {
-			return api.v1EndpointCreate(EndpointIn);
+			return api.v1EndpointCreate(appId, EndpointIn);
 		} catch (io.openweb3.pay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
-	public EndpointOut getOrCreate(final EndpointIn EndpointIn) throws ApiException {
-		return this.getOrCreate(EndpointIn, new PostOptions());
+	public EndpointOut getOrCreate(final String appId, final EndpointIn EndpointIn) throws ApiException {
+		return this.getOrCreate(appId, EndpointIn, new PostOptions());
 	}
 
-	public EndpointOut getOrCreate(final EndpointIn EndpointIn, final PostOptions options) throws ApiException {
+	public EndpointOut getOrCreate(final String appId, final EndpointIn EndpointIn, final PostOptions options) throws ApiException {
 		try {
-			return api.v1EndpointCreate(EndpointIn);
+			return api.v1EndpointCreate(appId, EndpointIn);
 		} catch (io.openweb3.pay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
-	// retrieve 
-	public EndpointOut retrieve(final String endpointId) throws ApiException {
+	// get
+	public EndpointOut get(final String appId, final String endpointId) throws ApiException {
 		try {
-			return api.v1EndpointRetrieve(endpointId);
+			return api.v1EndpointGet(appId, endpointId);
 		} catch (io.openweb3.pay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
 	// update
-	public EndpointOut patch(final String endpointId, final EndpointPatch endpointPatch) throws ApiException {
+	public EndpointOut patch(final String appId, final String endpointId, final EndpointPatch endpointPatch) throws ApiException {
 		try {
-			return api.v1EndpointPatch(endpointId, endpointPatch);
+			return api.v1EndpointPatch(appId, endpointId, endpointPatch);
 		} catch (io.openweb3.pay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
 	// delete
-	public EndpointOut delete(final String endpointId) throws ApiException {
+	public EndpointOut delete(final String appId, final String endpointId) throws ApiException {
 		try {
-			return api.v1EndpointDelete(endpointId);
+			return api.v1EndpointDelete(appId, endpointId);
 		} catch (io.openweb3.pay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

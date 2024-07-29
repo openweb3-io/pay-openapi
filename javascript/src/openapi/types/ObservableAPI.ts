@@ -3,62 +3,19 @@ import * as models from '../models/all';
 import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
-import { AccountOut } from '../models/AccountOut';
 import { EndpointIn } from '../models/EndpointIn';
 import { EndpointOut } from '../models/EndpointOut';
 import { EndpointPatch } from '../models/EndpointPatch';
 import { HTTPValidationError } from '../models/HTTPValidationError';
 import { HttpErrorOut } from '../models/HttpErrorOut';
-import { ListResponseAccountOut } from '../models/ListResponseAccountOut';
+import { InvoiceIn } from '../models/InvoiceIn';
+import { InvoiceOut } from '../models/InvoiceOut';
+import { Invoiceing } from '../models/Invoiceing';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
-import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
-import { OrderIn } from '../models/OrderIn';
-import { OrderOut } from '../models/OrderOut';
+import { ListResponseInvoiceOut } from '../models/ListResponseInvoiceOut';
 import { Ordering } from '../models/Ordering';
 import { ValidationError } from '../models/ValidationError';
-
-import { AccountApiRequestFactory, AccountApiResponseProcessor} from "../apis/AccountApi";
-export class ObservableAccountApi {
-    private requestFactory: AccountApiRequestFactory;
-    private responseProcessor: AccountApiResponseProcessor;
-    private configuration: Configuration;
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: AccountApiRequestFactory,
-        responseProcessor?: AccountApiResponseProcessor
-    ) {
-        this.configuration = configuration;
-        this.requestFactory = requestFactory || new AccountApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new AccountApiResponseProcessor();
-    }
-
-    /**
-     * List accounts.
-     * List Accounts
-     * @param limit Limit the number of returned items
-     * @param offset Specifying the amount of excluded from a response the first N items
-     */
-    public v1AccountList(limit?: number, offset?: number, _options?: Configuration): Observable<ListResponseAccountOut> {
-        const requestContextPromise = this.requestFactory.v1AccountList(limit, offset, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1AccountList(rsp)));
-            }));
-    }
- 
-}
+import { WebhookMessage } from '../models/WebhookMessage';
 
 import { EndpointApiRequestFactory, EndpointApiResponseProcessor} from "../apis/EndpointApi";
 export class ObservableEndpointApi {
@@ -79,10 +36,11 @@ export class ObservableEndpointApi {
     /**
      * Create a webhook endpoint.
      * Create endpoint
+     * @param appId Specified the app id.
      * @param endpointIn 
      */
-    public v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Observable<EndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointCreate(endpointIn, _options);
+    public v1EndpointCreate(appId: string, endpointIn: EndpointIn, _options?: Configuration): Observable<EndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointCreate(appId, endpointIn, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -103,10 +61,11 @@ export class ObservableEndpointApi {
     /**
      * delete the specified webhook endpoint.
      * Delete endpoint
+     * @param appId Specified the app id.
      * @param endpointId Specified the endpoint id.
      */
-    public v1EndpointDelete(endpointId: string, _options?: Configuration): Observable<EndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointDelete(endpointId, _options);
+    public v1EndpointDelete(appId: string, endpointId: string, _options?: Configuration): Observable<EndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointDelete(appId, endpointId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -125,13 +84,40 @@ export class ObservableEndpointApi {
     }
  
     /**
+     * retrieve a specified webhook endpoint.
+     * Get endpoint
+     * @param appId Specified the app id.
+     * @param endpointId Specified the webhook endpoint id.
+     */
+    public v1EndpointGet(appId: string, endpointId: string, _options?: Configuration): Observable<EndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointGet(appId, endpointId, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointGet(rsp)));
+            }));
+    }
+ 
+    /**
      * List endpoints.
      * List endpoints
+     * @param appId Specified the app id.
      * @param limit Limit the number of returned items
      * @param cursor Specifying the start cursor position
+     * @param ordering The sorting order of the returned items
      */
-    public v1EndpointList(limit?: number, cursor?: string, _options?: Configuration): Observable<ListResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointList(limit, cursor, _options);
+    public v1EndpointList(appId: string, limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Observable<ListResponseEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointList(appId, limit, cursor, ordering, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -151,12 +137,13 @@ export class ObservableEndpointApi {
  
     /**
      * update a specified webhook endpoint.
-     * update endpoint
+     * Patch endpoint
+     * @param appId Specified the app id.
      * @param endpointId Specified the endpoint id.
      * @param endpointPatch 
      */
-    public v1EndpointPatch(endpointId: string, endpointPatch: EndpointPatch, _options?: Configuration): Observable<EndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointPatch(endpointId, endpointPatch, _options);
+    public v1EndpointPatch(appId: string, endpointId: string, endpointPatch: EndpointPatch, _options?: Configuration): Observable<EndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointPatch(appId, endpointId, endpointPatch, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -174,55 +161,32 @@ export class ObservableEndpointApi {
             }));
     }
  
-    /**
-     * retrieve a specified webhook endpoint.
-     * Retrieve endpoint
-     * @param endpointId Specified the webhook endpoint id.
-     */
-    public v1EndpointRetrieve(endpointId: string, _options?: Configuration): Observable<EndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointRetrieve(endpointId, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointRetrieve(rsp)));
-            }));
-    }
- 
 }
 
-import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderApi";
-export class ObservableOrderApi {
-    private requestFactory: OrderApiRequestFactory;
-    private responseProcessor: OrderApiResponseProcessor;
+import { InvoiceApiRequestFactory, InvoiceApiResponseProcessor} from "../apis/InvoiceApi";
+export class ObservableInvoiceApi {
+    private requestFactory: InvoiceApiRequestFactory;
+    private responseProcessor: InvoiceApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: OrderApiRequestFactory,
-        responseProcessor?: OrderApiResponseProcessor
+        requestFactory?: InvoiceApiRequestFactory,
+        responseProcessor?: InvoiceApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new OrderApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new OrderApiResponseProcessor();
+        this.requestFactory = requestFactory || new InvoiceApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new InvoiceApiResponseProcessor();
     }
 
     /**
-     * Create a new order.
-     * Create Order
-     * @param orderIn 
+     * Create a new invoice.
+     * Create invoice
+     * @param appId Specified the app id.
+     * @param invoiceIn 
      */
-    public v1OrderCreate(orderIn: OrderIn, _options?: Configuration): Observable<OrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderCreate(orderIn, _options);
+    public v1InvoiceCreate(appId: string, invoiceIn: InvoiceIn, _options?: Configuration): Observable<InvoiceOut> {
+        const requestContextPromise = this.requestFactory.v1InvoiceCreate(appId, invoiceIn, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -236,20 +200,18 @@ export class ObservableOrderApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrderCreate(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1InvoiceCreate(rsp)));
             }));
     }
  
     /**
-     * List orders.
-     * List Orders
-     * @param limit Limit the number of returned items
-     * @param offset Specifying the amount of excluded from a response the first N orders
-     * @param chain Optional order blockchain code
-     * @param channel Channel of the order
+     * retrieve a specified webhook endpoint.
+     * Get invoice
+     * @param appId Specified the app id.
+     * @param idOrUid Specified the invoice id or invoice uid.
      */
-    public v1OrderList(limit?: number, offset?: number, chain?: string, channel?: string, _options?: Configuration): Observable<ListResponseOrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderList(limit, offset, chain, channel, _options);
+    public v1InvoiceGet(appId: string, idOrUid: string, _options?: Configuration): Observable<InvoiceOut> {
+        const requestContextPromise = this.requestFactory.v1InvoiceGet(appId, idOrUid, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -263,7 +225,35 @@ export class ObservableOrderApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrderList(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1InvoiceGet(rsp)));
+            }));
+    }
+ 
+    /**
+     * List invoices.
+     * List invoices
+     * @param appId Specified the app id.
+     * @param limit Limit the number of returned items
+     * @param offset Specifying the amount of excluded from a response the first N invoices
+     * @param userId Optional invoice user id
+     * @param channel Channel of the invoice
+     */
+    public v1InvoiceList(appId: string, limit?: number, offset?: number, userId?: string, channel?: string, _options?: Configuration): Observable<ListResponseInvoiceOut> {
+        const requestContextPromise = this.requestFactory.v1InvoiceList(appId, limit, offset, userId, channel, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1InvoiceList(rsp)));
             }));
     }
  

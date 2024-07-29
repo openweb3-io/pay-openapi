@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * EndpointPatch
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T23:45:04.809116+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-29T14:50:22.360469+08:00[Asia/Shanghai]")
 public class EndpointPatch {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
@@ -41,21 +41,13 @@ public class EndpointPatch {
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
-  public static final String SERIALIZED_NAME_SECRET = "secret";
-  @SerializedName(SERIALIZED_NAME_SECRET)
-  private String secret;
-
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
   private String url;
 
-  public static final String SERIALIZED_NAME_FILTER = "filter";
-  @SerializedName(SERIALIZED_NAME_FILTER)
-  private String filter;
-
-  public static final String SERIALIZED_NAME_FILTER_TYPES = "filterTypes";
-  @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
-  private List<String> filterTypes = new ArrayList<>();
+  public static final String SERIALIZED_NAME_EVENT_TYPES = "eventTypes";
+  @SerializedName(SERIALIZED_NAME_EVENT_TYPES)
+  private List<String> eventTypes = null;
 
   public static final String SERIALIZED_NAME_DISABLED = "disabled";
   @SerializedName(SERIALIZED_NAME_DISABLED)
@@ -63,15 +55,11 @@ public class EndpointPatch {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, String> metadata = null;
+  private Map<String, Object> metadata = null;
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
   private Map<String, String> headers = null;
-
-  public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
-  private Integer version;
 
 
   public EndpointPatch uid(String uid) {
@@ -120,29 +108,6 @@ public class EndpointPatch {
   }
 
 
-  public EndpointPatch secret(String secret) {
-    
-    this.secret = secret;
-    return this;
-  }
-
-   /**
-   * The endpoint&#39;s secret
-   * @return secret
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "whsec_13afsaew2skae1lo3r", value = "The endpoint's secret")
-
-  public String getSecret() {
-    return secret;
-  }
-
-
-  public void setSecret(String secret) {
-    this.secret = secret;
-  }
-
-
   public EndpointPatch url(String url) {
     
     this.url = url;
@@ -153,7 +118,8 @@ public class EndpointPatch {
    * The webhook endpoint url
    * @return url
   **/
-  @ApiModelProperty(example = "http://example.com/endpoint", required = true, value = "The webhook endpoint url")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "http://example.com/endpoint", value = "The webhook endpoint url")
 
   public String getUrl() {
     return url;
@@ -165,53 +131,34 @@ public class EndpointPatch {
   }
 
 
-  public EndpointPatch filter(String filter) {
+  public EndpointPatch eventTypes(List<String> eventTypes) {
     
-    this.filter = filter;
+    this.eventTypes = eventTypes;
+    return this;
+  }
+
+  public EndpointPatch addEventTypesItem(String eventTypesItem) {
+    if (this.eventTypes == null) {
+      this.eventTypes = new ArrayList<>();
+    }
+    this.eventTypes.add(eventTypesItem);
     return this;
   }
 
    /**
-   * The webhook endpoint url
-   * @return filter
+   * The webhook endpoint associated event types
+   * @return eventTypes
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"network\": \"mainnet\"}", value = "The webhook endpoint url")
+  @ApiModelProperty(example = "[\"order_paid\"]", value = "The webhook endpoint associated event types")
 
-  public String getFilter() {
-    return filter;
+  public List<String> getEventTypes() {
+    return eventTypes;
   }
 
 
-  public void setFilter(String filter) {
-    this.filter = filter;
-  }
-
-
-  public EndpointPatch filterTypes(List<String> filterTypes) {
-    
-    this.filterTypes = filterTypes;
-    return this;
-  }
-
-  public EndpointPatch addFilterTypesItem(String filterTypesItem) {
-    this.filterTypes.add(filterTypesItem);
-    return this;
-  }
-
-   /**
-   * The webhook endpoint url
-   * @return filterTypes
-  **/
-  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The webhook endpoint url")
-
-  public List<String> getFilterTypes() {
-    return filterTypes;
-  }
-
-
-  public void setFilterTypes(List<String> filterTypes) {
-    this.filterTypes = filterTypes;
+  public void setEventTypes(List<String> eventTypes) {
+    this.eventTypes = eventTypes;
   }
 
 
@@ -238,13 +185,13 @@ public class EndpointPatch {
   }
 
 
-  public EndpointPatch metadata(Map<String, String> metadata) {
+  public EndpointPatch metadata(Map<String, Object> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public EndpointPatch putMetadataItem(String key, String metadataItem) {
+  public EndpointPatch putMetadataItem(String key, Object metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -259,12 +206,12 @@ public class EndpointPatch {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "{\"node\":\"http://dashboard.com/node1\",\"tag\":\"node\"}", value = "Optional metadata")
 
-  public Map<String, String> getMetadata() {
+  public Map<String, Object> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, String> metadata) {
+  public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
   }
 
@@ -284,11 +231,11 @@ public class EndpointPatch {
   }
 
    /**
-   * Optional metadata
+   * Optional headers
    * @return headers
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "{\"node\":\"http://dashboard.com/node1\",\"tag\":\"node\"}", value = "Optional metadata")
+  @ApiModelProperty(example = "{\"x-tag\":\"sheoo\"}", value = "Optional headers")
 
   public Map<String, String> getHeaders() {
     return headers;
@@ -297,29 +244,6 @@ public class EndpointPatch {
 
   public void setHeaders(Map<String, String> headers) {
     this.headers = headers;
-  }
-
-
-  public EndpointPatch version(Integer version) {
-    
-    this.version = version;
-    return this;
-  }
-
-   /**
-   * endpoint version
-   * @return version
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "endpoint version")
-
-  public Integer getVersion() {
-    return version;
-  }
-
-
-  public void setVersion(Integer version) {
-    this.version = version;
   }
 
 
@@ -334,19 +258,16 @@ public class EndpointPatch {
     EndpointPatch endpointPatch = (EndpointPatch) o;
     return Objects.equals(this.uid, endpointPatch.uid) &&
         Objects.equals(this.description, endpointPatch.description) &&
-        Objects.equals(this.secret, endpointPatch.secret) &&
         Objects.equals(this.url, endpointPatch.url) &&
-        Objects.equals(this.filter, endpointPatch.filter) &&
-        Objects.equals(this.filterTypes, endpointPatch.filterTypes) &&
+        Objects.equals(this.eventTypes, endpointPatch.eventTypes) &&
         Objects.equals(this.disabled, endpointPatch.disabled) &&
         Objects.equals(this.metadata, endpointPatch.metadata) &&
-        Objects.equals(this.headers, endpointPatch.headers) &&
-        Objects.equals(this.version, endpointPatch.version);
+        Objects.equals(this.headers, endpointPatch.headers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid, description, secret, url, filter, filterTypes, disabled, metadata, headers, version);
+    return Objects.hash(uid, description, url, eventTypes, disabled, metadata, headers);
   }
 
   @Override
@@ -355,14 +276,11 @@ public class EndpointPatch {
     sb.append("class EndpointPatch {\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    secret: ").append(toIndentedString(secret)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
-    sb.append("    filter: ").append(toIndentedString(filter)).append("\n");
-    sb.append("    filterTypes: ").append(toIndentedString(filterTypes)).append("\n");
+    sb.append("    eventTypes: ").append(toIndentedString(eventTypes)).append("\n");
     sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("}");
     return sb.toString();
   }

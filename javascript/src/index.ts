@@ -2,12 +2,10 @@ import {
   ServerConfiguration,
   Configuration,
   createConfiguration,
-  OrderApi,
-  OrderIn,
-  OrderOut,
-  ListResponseOrderOut,
-  AccountApi,
-  ListResponseAccountOut,
+  InvoiceApi,
+  InvoiceIn,
+  InvoiceOut,
+  ListResponseInvoiceOut,
   Middleware,
   RequestContext,
   ResponseContext,
@@ -79,8 +77,7 @@ export interface payOptions {
 
 export class pay {
   public readonly _configuration: Configuration;
-  public readonly Order: Order;
-  public readonly Account: Account;
+  public readonly Invoice: Invoice;
   public readonly Endpoint: Endpoint;
 
   public constructor(apikey: string, privateKey: string, options: payOptions = {}) {
@@ -97,8 +94,7 @@ export class pay {
     });
 
     this._configuration = config;
-    this.Order = new Order(config);
-    this.Account = new Account(config);
+    this.Invoice = new Invoice(config);
     this.Endpoint = new Endpoint(config);
   }
 }
@@ -111,45 +107,33 @@ interface ListOptions {
   limit?: number;
 }
 
-export interface OrderListOptions extends ListOptions {
-  order?: Ordering;
-}
-
-export interface AccountListOptions extends ListOptions {
-  order?: Ordering;
+export interface InvoiceListOptions extends ListOptions {
+  ordering?: Ordering;
 }
 
 export interface EndpointListOptions {
-  order?: Ordering;
+  ordering?: Ordering;
   cursor?: string;
   limit?: number;
 }
 
-class Order {
-  private readonly api: OrderApi;
+class Invoice{
+  private readonly api: InvoiceApi;
 
   public constructor(config: Configuration) {
-    this.api = new OrderApi(config);
+    this.api = new InvoiceApi(config);
   }
 
-  public list(options?: OrderListOptions): Promise<ListResponseOrderOut> {
-    return this.api.v1OrderList({ ...options });
+  public list(appId:string, options?: InvoiceListOptions): Promise<ListResponseInvoiceOut> {
+    return this.api.v1InvoiceList({ appId, ...options });
   }
 
-  public create(orderIn: OrderIn, options?: PostOptions): Promise<OrderOut> {
-    return this.api.v1OrderCreate({ orderIn, ...options });
-  }
-}
-
-class Account {
-  private readonly api: AccountApi;
-
-  public constructor(config: Configuration) {
-    this.api = new AccountApi(config);
+  public create(appId: string, invoiceIn: InvoiceIn, options?: PostOptions): Promise<InvoiceOut> {
+    return this.api.v1InvoiceCreate({ appId, invoiceIn, ...options });
   }
 
-  public list(options?: AccountListOptions): Promise<ListResponseAccountOut> {
-    return this.api.v1AccountList({ ...options });
+  public get(appId: string, idOrUid: string): Promise<InvoiceOut> {
+    return this.api.v1InvoiceGet({ appId, idOrUid });
   }
 }
 
@@ -160,27 +144,28 @@ class Endpoint {
     this.api = new EndpointApi(config);
   }
 
-  public create(endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
-    return this.api.v1EndpointCreate({ endpointIn, ...options });
+  public create(appId: string, endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
+    return this.api.v1EndpointCreate({ appId, endpointIn, ...options });
   }
 
-  public update(
+  public patch(
+    appId: string,
     endpointId: string,
     endpointPatch: EndpointPatch,
     options?: PostOptions
   ): Promise<EndpointOut> {
-    return this.api.v1EndpointPatch({ endpointId, endpointPatch, ...options });
+    return this.api.v1EndpointPatch({ appId, endpointId, endpointPatch, ...options });
   }
 
-  public delete(endpointId: string): Promise<EndpointOut> {
-    return this.api.v1EndpointDelete({ endpointId });
+  public delete(appId: string, endpointId: string): Promise<EndpointOut> {
+    return this.api.v1EndpointDelete({ appId, endpointId });
   }
 
-  public retrieve(endpointId: string): Promise<EndpointOut> {
-    return this.api.v1EndpointRetrieve({ endpointId });
+  public get(appId: string, endpointId: string): Promise<EndpointOut> {
+    return this.api.v1EndpointGet({appId, endpointId });
   }
-  public list(options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
-    return this.api.v1EndpointList({ ...options });
+  public list(appId: string, options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
+    return this.api.v1EndpointList({ appId, ...options });
   }
 }
 
@@ -326,5 +311,5 @@ export class Webhook {
 
 export interface WebhookMessage {
   event_type: string;
-  payload: OrderOut;
+  payload: InvoiceOut;
 }

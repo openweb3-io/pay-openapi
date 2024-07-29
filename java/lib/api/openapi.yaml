@@ -7,11 +7,21 @@ servers:
 security:
 - ApiKeyAuth: []
 paths:
-  /api/v1/accounts:
+  /api/v1/apps/{appId}/invoices:
     get:
-      description: List accounts.
-      operationId: v1.account.list
+      description: List invoices.
+      operationId: v1.invoice.list
       parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       - description: Limit the number of returned items
         explode: true
         in: query
@@ -26,7 +36,7 @@ paths:
           type: integer
         style: form
       - description: Specifying the amount of excluded from a response the first N
-          items
+          invoices
         explode: true
         in: query
         name: offset
@@ -34,106 +44,29 @@ paths:
         schema:
           default: 0
           description: Specifying the amount of excluded from a response the first
-            N items
+            N invoices
           example: 0
           type: integer
         style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListResponse_AccountOut_'
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HttpErrorOut'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HttpErrorOut'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HttpErrorOut'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HttpErrorOut'
-          description: Conflict
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HttpErrorOut'
-          description: Too Many Requests
-      summary: List Accounts
-      tags:
-      - Account
-      x-accepts: application/json
-  /api/v1/orders:
-    get:
-      description: List orders.
-      operationId: v1.order.list
-      parameters:
-      - description: Limit the number of returned items
+      - description: Optional invoice user id
         explode: true
         in: query
-        name: limit
+        name: userId
         required: false
         schema:
-          default: 20
-          description: Limit the number of returned items
-          example: 100
-          format: uint64
-          minimum: 0
-          type: integer
-        style: form
-      - description: Specifying the amount of excluded from a response the first N
-          orders
-        explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          default: 0
-          description: Specifying the amount of excluded from a response the first
-            N orders
-          example: 0
-          type: integer
-        style: form
-      - description: Optional order blockchain code
-        explode: true
-        in: query
-        name: chain
-        required: false
-        schema:
-          description: Blockchain of the order
-          example: ton
+          description: Optional invoice user id
+          example: userid
           nullable: true
           type: string
         style: form
-      - description: Channel of the order
+      - description: Channel of the invoice
         explode: true
         in: query
         name: channel
         required: false
         schema:
-          description: Channel of the order
-          example: ton-connect
+          description: Channel of the invoice
+          example: ton.0.mainnet
           nullable: true
           type: string
         style: form
@@ -142,7 +75,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse_OrderOut_'
+                $ref: '#/components/schemas/ListResponse_InvoiceOut_'
         "401":
           content:
             application/json:
@@ -179,30 +112,41 @@ paths:
               schema:
                 $ref: '#/components/schemas/HttpErrorOut'
           description: Too Many Requests
-      summary: List Orders
+      summary: List invoices
       tags:
-      - Order
+      - Invoice
       x-accepts: application/json
     post:
-      description: Create a new order.
-      operationId: v1.order.create
+      description: Create a new invoice.
+      operationId: v1.invoice.create
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OrderIn'
+              $ref: '#/components/schemas/InvoiceIn'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderOut'
+                $ref: '#/components/schemas/InvoiceOut'
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderOut'
+                $ref: '#/components/schemas/InvoiceOut'
         "400":
           content:
             application/json:
@@ -245,18 +189,112 @@ paths:
               schema:
                 $ref: '#/components/schemas/HttpErrorOut'
           description: Too Many Requests
-      summary: Create Order
+      summary: Create invoice
       tags:
-      - Order
+      - Invoice
       x-readme:
         code-samples: []
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/endpoints:
+  /api/v1/apps/{appId}/invoices/{idOrUid}:
+    get:
+      description: retrieve a specified webhook endpoint.
+      operationId: v1.invoice.get
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
+      - description: Specified the invoice id or invoice uid.
+        explode: false
+        in: path
+        name: idOrUid
+        required: true
+        schema:
+          description: Specified the invoice id or invoice uid.
+          example: 7e5c7e13-0573-472e-9e34-fe779c618faf
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceOut'
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceOut'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: Get invoice
+      tags:
+      - Invoice
+      x-readme:
+        code-samples: []
+      x-accepts: application/json
+  /api/v1/apps/{appId}/endpoints:
     get:
       description: List endpoints.
       operationId: v1.endpoint.list
       parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       - description: Limit the number of returned items
         explode: true
         in: query
@@ -278,6 +316,14 @@ paths:
         schema:
           description: Specifying the start cursor position
           type: string
+        style: form
+      - description: The sorting order of the returned items
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          $ref: '#/components/schemas/Ordering'
         style: form
       responses:
         "200":
@@ -328,6 +374,17 @@ paths:
     post:
       description: Create a webhook endpoint.
       operationId: v1.endpoint.create
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -394,11 +451,21 @@ paths:
         code-samples: []
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/endpoints/{endpointId}:
+  /api/v1/apps/{appId}/endpoints/{endpointId}:
     delete:
       description: delete the specified webhook endpoint.
       operationId: v1.endpoint.delete
       parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       - description: Specified the endpoint id.
         explode: false
         in: path
@@ -462,8 +529,18 @@ paths:
       x-accepts: application/json
     get:
       description: retrieve a specified webhook endpoint.
-      operationId: v1.endpoint.retrieve
+      operationId: v1.endpoint.get
       parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       - description: Specified the webhook endpoint id.
         explode: false
         in: path
@@ -521,7 +598,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HttpErrorOut'
           description: Too Many Requests
-      summary: Retrieve endpoint
+      summary: Get endpoint
       tags:
       - Endpoint
       x-accepts: application/json
@@ -529,6 +606,16 @@ paths:
       description: update a specified webhook endpoint.
       operationId: v1.endpoint.patch
       parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       - description: Specified the endpoint id.
         explode: false
         in: path
@@ -592,7 +679,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HttpErrorOut'
           description: Too Many Requests
-      summary: update endpoint
+      summary: Patch endpoint
       tags:
       - Endpoint
       x-contentType: application/json
@@ -643,54 +730,46 @@ components:
       - msg
       - type
       type: object
-    Ordering:
+    Invoiceing:
       description: Defines the ordering in a listing of results.
       enum:
       - asc
       - desc
       type: string
-    OrderIn:
+    InvoiceIn:
       example:
-        uid: unique-order-identifier
-        metadata:
-          key: metadata
-        chain: ton
+        uid: unique-invoice-identifier
+        note: note example
         amount: "0.0012345"
+        metadata:
+          key: ""
+        extra:
+          key: ""
         channel: ton-connect
         currency: USDT
-        userId: userid_example
+        expiration: 600
+        userId: userid
       properties:
-        metadata:
-          additionalProperties:
-            type: string
-          default: {}
-          description: Optional metadata
-          type: object
-        userId:
-          description: Optional user identifier
-          example: userid_example
-          maxLength: 256
-          minLength: 1
-          type: string
-        channel:
-          description: Order channel
-          example: ton-connect
-          maxLength: 256
-          minLength: 1
-          type: string
-        chain:
-          description: Blockchain code
-          example: ton
-          maxLength: 256
-          minLength: 1
-          type: string
         uid:
-          description: Optional unique identifier for the order
-          example: unique-order-identifier
+          description: Optional unique identifier for the invoice
+          example: unique-invoice-identifier
           maxLength: 256
           minLength: 1
           nullable: true
           pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+        userId:
+          description: Optional user id
+          example: userid
+          maxLength: 256
+          minLength: 1
+          nullable: true
+          type: string
+        channel:
+          description: Invoice channel
+          example: ton-connect
+          maxLength: 256
+          minLength: 1
           type: string
         currency:
           description: Currency code
@@ -702,66 +781,83 @@ components:
           description: Big decimal string representation. Note that the max precision
             (number of digits after decimal point) depends on the currencyCode. E.g.
             for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's
-            also min order amount for creating an order. It's 0.000001 BTC / 0.01
+            also min invoice amount for creating an invoice. It's 0.000001 BTC / 0.01
             USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.
           example: "0.0012345"
           maxLength: 256
           minLength: 1
           type: string
+        metadata:
+          additionalProperties: {}
+          default: {}
+          description: Optional metadata
+          nullable: true
+          type: object
+        extra:
+          additionalProperties: {}
+          default: {}
+          description: Optional metadata
+          nullable: true
+          type: object
+        note:
+          description: Optional order note
+          example: note example
+          maxLength: 256
+          minLength: 1
+          nullable: true
+          type: string
+        expiration:
+          description: The expiration seconds
+          example: 600
+          type: integer
       required:
       - amount
-      - chain
       - channel
       - currency
       type: object
-    OrderOut:
+    InvoiceOut:
       example:
-        metadata:
-          key: metadata
-        chain: ton
+        note: note example
         amount: "1"
-        credentials: credentials
+        metadata:
+          key: ""
+        credentials:
+          key: ""
         channel: ton-connect
         failedMessage: failedMessage
         userId: userId
-        uid: unique-order-identifier
+        uid: unique-invoice-identifier
         createdAt: 2000-01-23T04:56:07.000+00:00
+        expiredAt: 2000-01-23T04:56:07.000+00:00
         failedAt: 2000-01-23T04:56:07.000+00:00
         canceledAt: 2000-01-23T04:56:07.000+00:00
+        extra:
+          key: ""
         paidAt: 2000-01-23T04:56:07.000+00:00
         currency: USDT
+        expiration: 600
         id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-        status: 0
+        status: PENDING
       properties:
         id:
-          description: The order's ID
+          description: The invoice's ID
           example: 1brOrx2ZWZBpBUvZwXKQmoEYga2
           type: string
-        metadata:
-          additionalProperties:
-            type: string
-          type: object
-        userId:
-          description: The order's creator
-          nullable: true
-          type: string
         uid:
-          description: The order's UID
-          example: unique-order-identifier
+          description: The invoice's UID
+          example: unique-invoice-identifier
           maxLength: 256
           minLength: 1
           nullable: true
           pattern: ^[a-zA-Z0-9\-_.]+$
           type: string
-        channel:
-          description: Order channel
-          example: ton-connect
-          maxLength: 256
-          minLength: 1
+        userId:
+          description: The invoice's creator
+          nullable: true
           type: string
-        chain:
-          description: Blockchain code
-          example: ton
+        channel:
+          description: Invoice channel
+          example: ton-connect
           maxLength: 256
           minLength: 1
           type: string
@@ -775,45 +871,76 @@ components:
           description: Big decimal string representation. Note that the max precision
             (number of digits after decimal point) depends on the currencyCode. E.g.
             for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's
-            also min order amount for creating an order. It's 0.000001 BTC / 0.01
+            also min invoice amount for creating an invoice. It's 0.000001 BTC / 0.01
             USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.
           example: "1"
           maxLength: 256
           minLength: 1
           type: string
         credentials:
-          description: The payment token from payment channel
+          additionalProperties: {}
+          description: Optional credentials
+          nullable: true
+          type: object
+        metadata:
+          additionalProperties: {}
+          default: {}
+          description: Optional metadata
+          nullable: true
+          type: object
+        extra:
+          additionalProperties: {}
+          default: {}
+          description: Optional metadata
+          nullable: true
+          type: object
+        note:
+          description: invoice note
+          example: note example
+          maxLength: 256
+          minLength: 1
+          type: string
+        expiration:
+          description: The expiration seconds
+          example: 600
+          type: integer
+        status:
+          description: The invoice's status
+          enum:
+          - PENDING
+          - PAID
+          - FAILED
+          - EXPIRED
+          - COMPLETED
+          type: string
+        failedMessage:
+          description: The message when invoice failed
           type: string
         createdAt:
-          description: The order's creation time
+          description: The invoice's creation time
           format: date-time
           type: string
         paidAt:
-          description: The order's paid time
-          format: date-time
-          type: string
-        status:
-          description: |-
-            The order's status
-            0 - processing
-            1 - paid
-            2 - failed
-            3 - canceled
-          type: integer
-        failedMessage:
-          description: The message when order failed
-          type: string
-        canceledAt:
-          description: The order's cancel time
+          description: The invoice's paid time
           format: date-time
           type: string
         failedAt:
-          description: The order's failure time
+          description: The invoice's failure time
           format: date-time
+          nullable: true
+          type: string
+        canceledAt:
+          description: The invoice's cancel time
+          format: date-time
+          nullable: true
+          type: string
+        expiredAt:
+          description: The invoice's expiration time
+          format: date-time
+          nullable: true
           type: string
       required:
       - amount
-      - chain
       - channel
       - createdAt
       - currency
@@ -822,138 +949,92 @@ components:
       - metadata
       - status
       type: object
-    ListResponse_OrderOut_:
-      example:
-        total: 6
-        data:
-        - metadata:
-            key: metadata
-          chain: ton
-          amount: "1"
-          credentials: credentials
-          channel: ton-connect
-          failedMessage: failedMessage
-          userId: userId
-          uid: unique-order-identifier
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          failedAt: 2000-01-23T04:56:07.000+00:00
-          canceledAt: 2000-01-23T04:56:07.000+00:00
-          paidAt: 2000-01-23T04:56:07.000+00:00
-          currency: USDT
-          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          status: 0
-        - metadata:
-            key: metadata
-          chain: ton
-          amount: "1"
-          credentials: credentials
-          channel: ton-connect
-          failedMessage: failedMessage
-          userId: userId
-          uid: unique-order-identifier
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          failedAt: 2000-01-23T04:56:07.000+00:00
-          canceledAt: 2000-01-23T04:56:07.000+00:00
-          paidAt: 2000-01-23T04:56:07.000+00:00
-          currency: USDT
-          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          status: 0
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/OrderOut'
-          type: array
-        total:
-          type: integer
-      required:
-      - data
-      type: object
-    AccountOut:
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        amount: "0.1"
-        currency: USDT
-        id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-        updatedAt: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          description: The order's ID
-          example: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          type: string
-        currency:
-          description: Currency code
-          example: USDT
-          maxLength: 256
-          minLength: 1
-          type: string
-        amount:
-          description: Big decimal string representation. Note that the max precision
-            (number of digits after decimal point) depends on the currencyCode. E.g.
-            for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's
-            also min order amount for creating an order. It's 0.000001 BTC / 0.01
-            USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.
-          example: "0.1"
-          maxLength: 256
-          minLength: 1
-          type: string
-        createdAt:
-          description: The order's created time
-          format: date-time
-          type: string
-        updatedAt:
-          description: The order's updated time
-          format: date-time
-          type: string
-      required:
-      - amount
-      - createdAt
-      - currency
-      - id
-      - updatedAt
-      type: object
-    ListResponse_AccountOut_:
+    ListResponse_InvoiceOut_:
       example:
         total: 0
         data:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          amount: "0.1"
+        - note: note example
+          amount: "1"
+          metadata:
+            key: ""
+          credentials:
+            key: ""
+          channel: ton-connect
+          failedMessage: failedMessage
+          userId: userId
+          uid: unique-invoice-identifier
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          expiredAt: 2000-01-23T04:56:07.000+00:00
+          failedAt: 2000-01-23T04:56:07.000+00:00
+          canceledAt: 2000-01-23T04:56:07.000+00:00
+          extra:
+            key: ""
+          paidAt: 2000-01-23T04:56:07.000+00:00
           currency: USDT
+          expiration: 600
           id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          amount: "0.1"
+          status: PENDING
+        - note: note example
+          amount: "1"
+          metadata:
+            key: ""
+          credentials:
+            key: ""
+          channel: ton-connect
+          failedMessage: failedMessage
+          userId: userId
+          uid: unique-invoice-identifier
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          expiredAt: 2000-01-23T04:56:07.000+00:00
+          failedAt: 2000-01-23T04:56:07.000+00:00
+          canceledAt: 2000-01-23T04:56:07.000+00:00
+          extra:
+            key: ""
+          paidAt: 2000-01-23T04:56:07.000+00:00
           currency: USDT
+          expiration: 600
           id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          updatedAt: 2000-01-23T04:56:07.000+00:00
+          status: PENDING
       properties:
         data:
           items:
-            $ref: '#/components/schemas/AccountOut'
+            $ref: '#/components/schemas/InvoiceOut'
           type: array
         total:
           type: integer
       required:
       - data
       type: object
+    Ordering:
+      description: Defines the ordering in a listing of results.
+      enum:
+      - asc
+      - desc
+      type: string
+    WebhookMessage:
+      description: The request body of the webhook POST request.
+      properties:
+        event_type:
+          description: Message event type
+          example: order.paid
+          maxLength: 256
+          minLength: 1
+          type: string
+        payload:
+          $ref: '#/components/schemas/InvoiceOut'
     EndpointIn:
       example:
-        filter: '{"network": "mainnet"}'
         uid: unique-endpoint-identifier
         headers:
-          node: http://dashboard.com/node1
-          tag: node
-        chain: ton
+          x-tag: sheoo
         metadata:
           node: http://dashboard.com/node1
           tag: node
         description: The description for endpoint
         disabled: false
-        secret: whsec_13afsaew2skae1lo3r
-        filterTypes:
-        - tx.created
-        version: 0
+        eventTypes:
+        - order_paid
         url: http://example.com/endpoint
-        network: mainnet
       properties:
         uid:
           description: The endpoint's UID
@@ -963,40 +1044,19 @@ components:
           nullable: true
           pattern: ^[a-zA-Z0-9\-_.]+$
           type: string
-        network:
-          description: The chain network monitor by endpoint
-          example: mainnet
-          maxLength: 256
-          minLength: 1
-          type: string
-        chain:
-          description: Blockchain code
-          example: ton
-          maxLength: 256
-          minLength: 1
-          type: string
         description:
           description: The endpoint's description
           example: The description for endpoint
-          type: string
-        secret:
-          description: The endpoint's secret
-          example: whsec_13afsaew2skae1lo3r
           nullable: true
           type: string
         url:
           description: The webhook endpoint url
           example: http://example.com/endpoint
           type: string
-        filter:
-          description: The webhook endpoint url
-          example: '{"network": "mainnet"}'
-          nullable: true
-          type: string
-        filterTypes:
-          description: The webhook endpoint url
+        eventTypes:
+          description: The webhook endpoint associated event types
           example:
-          - tx.created
+          - order_paid
           items:
             type: string
           type: array
@@ -1005,8 +1065,7 @@ components:
           example: false
           type: boolean
         metadata:
-          additionalProperties:
-            type: string
+          additionalProperties: {}
           default: {}
           description: Optional metadata
           example:
@@ -1018,37 +1077,27 @@ components:
           additionalProperties:
             type: string
           default: {}
-          description: Optional metadata
+          description: Optional headers
           example:
-            node: http://dashboard.com/node1
-            tag: node
+            x-tag: sheoo
           nullable: true
           type: object
-        version:
-          description: endpoint version
-          type: integer
       required:
-      - chain
-      - filterTypes
-      - network
+      - eventTypes
       - url
       type: object
     EndpointPatch:
       example:
-        filter: '{"network": "mainnet"}'
         uid: unique-endpoint-identifier
         headers:
-          node: http://dashboard.com/node1
-          tag: node
+          x-tag: sheoo
         metadata:
           node: http://dashboard.com/node1
           tag: node
         description: The description for endpoint
         disabled: false
-        secret: whsec_13afsaew2skae1lo3r
-        filterTypes:
-        - tx.created
-        version: 0
+        eventTypes:
+        - order_paid
         url: http://example.com/endpoint
       properties:
         uid:
@@ -1062,25 +1111,17 @@ components:
         description:
           description: The endpoint's description
           example: The description for endpoint
-          type: string
-        secret:
-          description: The endpoint's secret
-          example: whsec_13afsaew2skae1lo3r
           nullable: true
           type: string
         url:
           description: The webhook endpoint url
           example: http://example.com/endpoint
-          type: string
-        filter:
-          description: The webhook endpoint url
-          example: '{"network": "mainnet"}'
           nullable: true
           type: string
-        filterTypes:
-          description: The webhook endpoint url
+        eventTypes:
+          description: The webhook endpoint associated event types
           example:
-          - tx.created
+          - order_paid
           items:
             type: string
           type: array
@@ -1089,8 +1130,7 @@ components:
           example: false
           type: boolean
         metadata:
-          additionalProperties:
-            type: string
+          additionalProperties: {}
           default: {}
           description: Optional metadata
           example:
@@ -1102,18 +1142,11 @@ components:
           additionalProperties:
             type: string
           default: {}
-          description: Optional metadata
+          description: Optional headers
           example:
-            node: http://dashboard.com/node1
-            tag: node
+            x-tag: sheoo
           nullable: true
           type: object
-        version:
-          description: endpoint version
-          type: integer
-      required:
-      - filterTypes
-      - url
       type: object
     EndpointOut:
       example:
@@ -1122,18 +1155,21 @@ components:
         headers:
           node: http://dashboard.com/node1
           tag: node
-        chain: ton
+        createdAt: 2000-01-23T04:56:07.000+00:00
         metadata:
           node: http://dashboard.com/node1
           tag: node
         description: The description for endpoint
         disabled: false
-        filterTypes:
-        - tx.created
-        version: 0
+        id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+        eventTypes:
+        - order_paid
         url: http://example.com/endpoint
-        network: mainnet
       properties:
+        id:
+          description: The endpoint's ID
+          example: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          type: string
         uid:
           description: The endpoint's UID
           example: unique-endpoint-identifier
@@ -1141,18 +1177,6 @@ components:
           minLength: 1
           nullable: true
           pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
-        network:
-          description: The chain network monitor by endpoint
-          example: mainnet
-          maxLength: 256
-          minLength: 1
-          type: string
-        chain:
-          description: Blockchain code
-          example: ton
-          maxLength: 256
-          minLength: 1
           type: string
         description:
           description: The endpoint's description
@@ -1166,10 +1190,10 @@ components:
           description: The webhook endpoint url
           example: '{"network": "mainnet"}'
           type: string
-        filterTypes:
-          description: The webhook endpoint url
+        eventTypes:
+          description: The webhook endpoint eventTypes
           example:
-          - tx.created
+          - order_paid
           items:
             type: string
           type: array
@@ -1178,13 +1202,13 @@ components:
           example: false
           type: boolean
         metadata:
-          additionalProperties:
-            type: string
+          additionalProperties: {}
           default: {}
           description: Optional metadata
           example:
             node: http://dashboard.com/node1
             tag: node
+          nullable: true
           type: object
         headers:
           additionalProperties:
@@ -1194,10 +1218,12 @@ components:
           example:
             node: http://dashboard.com/node1
             tag: node
+          nullable: true
           type: object
-        version:
-          description: endpoint version
-          type: integer
+        createdAt:
+          description: The endpoint's creation time
+          format: date-time
+          type: string
       required:
       - chain
       - filterTypes
@@ -1207,40 +1233,38 @@ components:
     ListResponse_EndpointOut_:
       example:
         nextCursor: nextCursor
-        total: 6
+        total: 0
         data:
         - filter: '{"network": "mainnet"}'
           uid: unique-endpoint-identifier
           headers:
             node: http://dashboard.com/node1
             tag: node
-          chain: ton
+          createdAt: 2000-01-23T04:56:07.000+00:00
           metadata:
             node: http://dashboard.com/node1
             tag: node
           description: The description for endpoint
           disabled: false
-          filterTypes:
-          - tx.created
-          version: 0
+          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          eventTypes:
+          - order_paid
           url: http://example.com/endpoint
-          network: mainnet
         - filter: '{"network": "mainnet"}'
           uid: unique-endpoint-identifier
           headers:
             node: http://dashboard.com/node1
             tag: node
-          chain: ton
+          createdAt: 2000-01-23T04:56:07.000+00:00
           metadata:
             node: http://dashboard.com/node1
             tag: node
           description: The description for endpoint
           disabled: false
-          filterTypes:
-          - tx.created
-          version: 0
+          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          eventTypes:
+          - order_paid
           url: http://example.com/endpoint
-          network: mainnet
         hasPrev: true
         hasNext: true
         preCursor: preCursor

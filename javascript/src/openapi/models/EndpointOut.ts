@@ -10,21 +10,18 @@
  * Do not edit the class manually.
  */
 
+import { AnyType } from './AnyType';
 import { HttpFile } from '../http/http';
 
 export class EndpointOut {
     /**
+    * The endpoint's ID
+    */
+    'id'?: string;
+    /**
     * The endpoint's UID
     */
     'uid'?: string;
-    /**
-    * The chain network monitor by endpoint
-    */
-    'network': string;
-    /**
-    * Blockchain code
-    */
-    'chain': string;
     /**
     * The endpoint's description
     */
@@ -38,9 +35,9 @@ export class EndpointOut {
     */
     'filter'?: string;
     /**
-    * The webhook endpoint url
+    * The webhook endpoint eventTypes
     */
-    'filterTypes': Array<string>;
+    'eventTypes'?: Array<string>;
     /**
     * indicate whether to disable the webhook endpoint
     */
@@ -48,34 +45,28 @@ export class EndpointOut {
     /**
     * Optional metadata
     */
-    'metadata'?: { [key: string]: string; };
+    'metadata'?: { [key: string]: AnyType; };
     /**
     * Optional metadata
     */
     'headers'?: { [key: string]: string; };
     /**
-    * endpoint version
+    * The endpoint's creation time
     */
-    'version'?: number;
+    'createdAt'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "id",
+            "baseName": "id",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "uid",
             "baseName": "uid",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "network",
-            "baseName": "network",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "chain",
-            "baseName": "chain",
             "type": "string",
             "format": ""
         },
@@ -98,8 +89,8 @@ export class EndpointOut {
             "format": ""
         },
         {
-            "name": "filterTypes",
-            "baseName": "filterTypes",
+            "name": "eventTypes",
+            "baseName": "eventTypes",
             "type": "Array<string>",
             "format": ""
         },
@@ -112,7 +103,7 @@ export class EndpointOut {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "{ [key: string]: string; }",
+            "type": "{ [key: string]: AnyType; }",
             "format": ""
         },
         {
@@ -122,10 +113,10 @@ export class EndpointOut {
             "format": ""
         },
         {
-            "name": "version",
-            "baseName": "version",
-            "type": "number",
-            "format": ""
+            "name": "createdAt",
+            "baseName": "createdAt",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {

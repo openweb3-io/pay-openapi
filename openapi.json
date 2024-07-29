@@ -1,0 +1,1631 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Pay API Documentations",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.pay.openweb3.io"
+        }
+    ],
+    "security": [
+        {
+            "ApiKeyAuth": []
+        }
+    ],
+    "x-readme": {
+        "samples-languages": [
+            "python",
+            "node",
+            "csharp",
+            "java",
+            "go",
+            "kotlin",
+            "ruby",
+            "rust",
+            "java",
+            "shell"
+        ],
+        "parameter-ordering": [
+            "path", 
+            "query", 
+            "header", 
+            "cookie", 
+            "body", 
+            "form"
+        ]
+    },
+    "paths":
+      {
+         "/api/v1/apps/{appId}/invoices": {
+            "get": {
+                "description": "List invoices.",
+                "operationId": "v1.invoice.list",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
+                    {
+                        "description": "Limit the number of returned items",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "description": "Limit the number of returned items",
+                            "format": "uint64",
+                            "minimum": 0,
+                            "default": 20,
+                            "example": 100,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specifying the amount of excluded from a response the first N invoices",
+                        "in": "query",
+                        "name": "offset",
+                        "schema": {
+                            "description": "Specifying the amount of excluded from a response the first N invoices",
+                            "example": 0,
+                            "default": 0,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Optional invoice user id",
+                        "in": "query",
+                        "name": "userId",
+                        "schema": {
+                            "description": "Optional invoice user id",
+                            "example": "userid",
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Channel of the invoice",
+                        "in": "query",
+                        "name": "channel",
+                        "schema": {
+                            "description": "Channel of the invoice",
+                            "example": "ton.0.mainnet",
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse_InvoiceOut_"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "List invoices",
+                "tags": [
+                    "Invoice"
+                ]
+            },
+            "post": {
+                "description": "Create a new invoice.",
+                "operationId": "v1.invoice.create",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvoiceIn"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Create invoice",
+                "tags": [
+                    "Invoice"
+                ],
+                "x-readme": {
+                    "code-samples": []
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/invoices/{idOrUid}": {
+           "get": {
+            "description": "retrieve a specified webhook endpoint.",
+            "operationId": "v1.invoice.get",
+            "parameters": [
+                {
+                    "description": "Specified the app id.",
+                    "in": "path",
+                    "name": "appId",
+                    "required": true,
+                    "schema": {
+                        "description": "Specified the app id.",
+                        "example": "app_12345xsfei",
+                        "type": "string"
+                    },
+                    "style": "simple"
+                },
+                {
+                    "description": "Specified the invoice id or invoice uid.",
+                    "in": "path",
+                    "name": "idOrUid",
+                    "required": true,
+                    "schema": {
+                        "description": "Specified the invoice id or invoice uid.",
+                        "example": "7e5c7e13-0573-472e-9e34-fe779c618faf",
+                        "type": "string"
+                    },
+                    "style": "simple"
+                }
+            ],
+            "responses": {
+                "200": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvoiceOut"
+                            }
+                        }
+                    },
+                    "description": ""
+                },
+                "201": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvoiceOut"
+                            }
+                        }
+                    },
+                    "description": ""
+                },
+                "400": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HttpErrorOut"
+                            }
+                        }
+                    },
+                    "description": "Bad request"
+                },
+                "401": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HttpErrorOut"
+                            }
+                        }
+                    },
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HttpErrorOut"
+                            }
+                        }
+                    },
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HttpErrorOut"
+                            }
+                        }
+                    },
+                    "description": "Not Found"
+                },
+                "409": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HttpErrorOut"
+                            }
+                        }
+                    },
+                    "description": "Conflict"
+                },
+                "422": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    },
+                    "description": "Validation Error"
+                },
+                "429": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HttpErrorOut"
+                            }
+                        }
+                    },
+                    "description": "Too Many Requests"
+                }
+            },
+            "summary": "Get invoice",
+            "tags": [
+                "Invoice"
+            ],
+            "x-readme": {
+                "code-samples": []
+            }
+           }
+        },
+        "/api/v1/apps/{appId}/endpoints" : {
+            "get": {
+                "description": "List endpoints.",
+                "operationId": "v1.endpoint.list",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
+                    {
+                        "description": "Limit the number of returned items",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "description": "Limit the number of returned items",
+                            "format": "uint64",
+                            "minimum": 0,
+                            "default": 20,
+                            "example": 100,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specifying the start cursor position",
+                        "in": "query",
+                        "name": "cursor",
+                        "schema": {
+                            "description": "Specifying the start cursor position",
+                            "type": "string"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "The sorting order of the returned items",
+                        "in": "query",
+                        "name": "ordering",
+                        "schema": {
+                            "$ref": "#/components/schemas/Ordering",
+                            "description": "The sorting order of the returned items",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListResponse_EndpointOut_"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "List endpoints",
+                "tags": [
+                    "Endpoint"
+                ]
+            },
+            "post": {
+                "description": "Create a webhook endpoint.",
+                "operationId": "v1.endpoint.create",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EndpointIn"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Create endpoint",
+                "tags": [
+                    "Endpoint"
+                ],
+                "x-readme": {
+                    "code-samples": []
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/endpoints/{endpointId}": {
+            "get": {
+                "description": "retrieve a specified webhook endpoint.",
+                "operationId": "v1.endpoint.get",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
+                    {
+                        "description": "Specified the webhook endpoint id.",
+                        "in": "path",
+                        "name": "endpointId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the webhook endpoint id.",
+                            "example": "wb_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Get endpoint",
+                "tags": [
+                    "Endpoint"
+                ]
+            },            
+            "patch": {
+                "description": "update a specified webhook endpoint.",
+                "operationId": "v1.endpoint.patch",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
+                    {
+                        "description": "Specified the endpoint id.",
+                        "in": "path",
+                        "name": "endpointId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the endpoint id.",
+                            "example": "wb_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EndpointPatch"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Patch endpoint",
+                "tags": [
+                    "Endpoint"
+                ]
+            },             
+            "delete": {
+                "description": "delete the specified webhook endpoint.",
+                "operationId": "v1.endpoint.delete",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
+                    {
+                        "description": "Specified the endpoint id.",
+                        "in": "path",
+                        "name": "endpointId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the endpoint id.",
+                            "example": "wb_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EndpointOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        },
+                        "description": "Validation Error"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Delete endpoint",
+                "tags": [
+                    "Endpoint"
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "detail"
+                ],
+                "type": "object"
+            },
+            "HttpErrorOut": {
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "detail": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "code",
+                    "detail"
+                ],
+                "title": "HttpError",
+                "type": "object"
+            },
+            "ValidationError": {
+                "description": "Validation errors have their own schema to provide context for invalid requests eg. mismatched types and out of bounds values. There may be any number of these per 422 UNPROCESSABLE ENTITY error.",
+                "properties": {
+                    "loc": {
+                        "description": "The location as a [`Vec`] of [`String`]s -- often in the form `[\"body\", \"field_name\"]`, `[\"query\", \"field_name\"]`, etc. They may, however, be arbitrarily deep.",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "msg": {
+                        "description": "The message accompanying the validation error item.",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "The type of error, often \"type_error\" or \"value_error\", but sometimes with more context like as \"value_error.number.not_ge\"",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "Invoiceing": {
+                "description": "Defines the ordering in a listing of results.",
+                "enum": [
+                    "asc",
+                    "desc"
+                ],
+                "type": "string"
+            },
+            "InvoiceIn": {
+                "properties": {
+                    "uid": {
+                        "description": "Optional unique identifier for the invoice",
+                        "example": "unique-invoice-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "userId": {
+                        "description": "Optional user id",
+                        "example": "userid",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "channel": {
+                        "type": "string",
+                        "description": "Invoice channel",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "example": "ton-connect"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "example": "USDT",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Big decimal string representation. Note that the max precision (number of digits after decimal point) depends on the currencyCode. E.g. for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's also min invoice amount for creating an invoice. It's 0.000001 BTC / 0.01 USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.",
+                        "example": "0.0012345",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "nullable": true
+                    },
+                    "extra": {
+                        "additionalProperties": {
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "nullable": true
+                    },
+                    "note": {
+                        "description": "Optional order note",
+                        "example": "note example",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string",
+                        "nullable": true
+
+                    },
+                    "expiration": {
+                        "description": "The expiration seconds",
+                        "example": "600",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "channel",
+                    "currency",
+                    "amount"
+                ],
+                "type": "object"
+            },
+            "InvoiceOut": {
+                "properties": {
+                    "id": {
+                        "description": "The invoice's ID",
+                        "example": "1brOrx2ZWZBpBUvZwXKQmoEYga2",
+                        "type": "string"
+                    },
+                    "uid": {
+                        "description": "The invoice's UID",
+                        "example": "unique-invoice-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "The invoice's creator",
+                        "nullable": true
+                    },
+                    "channel": {
+                        "type": "string",
+                        "description": "Invoice channel",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "example": "ton-connect"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "example": "USDT",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Big decimal string representation. Note that the max precision (number of digits after decimal point) depends on the currencyCode. E.g. for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's also min invoice amount for creating an invoice. It's 0.000001 BTC / 0.01 USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.",
+                        "example": "1",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "credentials": {
+                        "additionalProperties": {
+                        },
+                        "type": "object",
+                        "description": "Optional credentials",
+                        "nullable": true
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "nullable": true
+                    },
+                    "extra": {
+                        "additionalProperties": {
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "nullable": true
+                    },
+                    "note": {
+                        "description": "invoice note",
+                        "example": "note example",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "expiration": {
+                        "description": "The expiration seconds",
+                        "example": "600",
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["PENDING", "PAID", "FAILED", "EXPIRED", "COMPLETED"],
+                        "description": "The invoice's status"
+                    },
+                    "failedMessage": {
+                        "type": "string",
+                        "description": "The message when invoice failed"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The invoice's creation time"
+                    },
+                    "paidAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The invoice's paid time"
+                    },
+                    "failedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The invoice's failure time",
+                        "nullable": true
+                    },
+                    "canceledAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The invoice's cancel time",
+                        "nullable": true
+                    },
+                    "expiredAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The invoice's expiration time",
+                        "nullable": true
+                    }
+                },
+                "required": [
+                    "id",
+                    "channel",
+                    "metadata",
+                    "description",
+                    "currency",
+                    "amount",
+                    "status",
+                    "createdAt"
+                ],
+                "type": "object"
+            },
+            "ListResponse_InvoiceOut_": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/InvoiceOut"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "type": "object"
+            },
+            "Ordering": {
+                "description": "Defines the ordering in a listing of results.",
+                "enum": [
+                    "asc",
+                    "desc"
+                ],
+                "type": "string"
+            },
+            "WebhookMessage": {
+                "description": "The request body of the webhook POST request.",
+                "properties": {
+                    "event_type": {
+                        "description": "Message event type",
+                        "type": "string",
+                        "example": "order.paid",
+                        "maxLength": 256,
+                        "minLength": 1
+                    },
+                    "payload": {
+                        "$ref": "#/components/schemas/InvoiceOut"
+                    }
+                }
+            },
+            "EndpointIn": {
+                "properties": {
+                    "uid": {
+                        "description": "The endpoint's UID",
+                        "example": "unique-endpoint-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "The endpoint's description",
+                        "example": "The description for endpoint",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "url": {
+                        "description": "The webhook endpoint url",
+                        "example": "http://example.com/endpoint",
+                        "type": "string"
+                    },
+                    "eventTypes": {
+                        "description": "The webhook endpoint associated event types",
+                        "example": [
+                            "order_paid"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "disabled":{
+                        "description": "indicate whether to disable the webhook endpoint",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                        },
+                        "default": {},
+                        "type": "object",
+                        "nullable": true,
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    },
+                    "headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "nullable": true,
+                        "description": "Optional headers",
+                        "example": {
+                            "x-tag": "sheoo"
+                        }
+                    }
+                },
+                "required": [
+                    "url",
+                    "eventTypes"
+                ],
+                "type": "object"
+            },
+            "EndpointPatch": {
+                "properties": {
+                    "uid": {
+                        "description": "The endpoint's UID",
+                        "example": "unique-endpoint-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "The endpoint's description",
+                        "example": "The description for endpoint",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "url": {
+                        "description": "The webhook endpoint url",
+                        "example": "http://example.com/endpoint",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "eventTypes": {
+                        "description": "The webhook endpoint associated event types",
+                        "example": [
+                            "order_paid"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "disabled":{
+                        "description": "indicate whether to disable the webhook endpoint",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                        },
+                        "default": {},
+                        "type": "object",
+                        "nullable": true,
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        }
+                    },
+                    "headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "nullable": true,
+                        "description": "Optional headers",
+                        "example": {
+                            "x-tag": "sheoo"
+                        }
+                    }
+                },
+                "type":"object"
+            },
+            "EndpointOut": {
+                "properties": {
+                    "id": {
+                        "description": "The endpoint's ID",
+                        "example": "1brOrx2ZWZBpBUvZwXKQmoEYga2",
+                        "type": "string"
+                    },
+                    "uid": {
+                        "description": "The endpoint's UID",
+                        "example": "unique-endpoint-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "The endpoint's description",
+                        "example": "The description for endpoint",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "The webhook endpoint url",
+                        "example": "http://example.com/endpoint",
+                        "type": "string"
+                    },
+                    "filter": {
+                        "description": "The webhook endpoint url",
+                        "example": "{\"network\": \"mainnet\"}",
+                        "type": "string"
+                    },
+                    "eventTypes": {
+                        "description": "The webhook endpoint eventTypes",
+                        "example": [
+                            "order_paid"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "disabled":{
+                        "description": "indicate whether to disable the webhook endpoint",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "metadata": {
+                        "additionalProperties": {
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        },
+                        "nullable": true
+                    },
+                    "headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "default": {},
+                        "type": "object",
+                        "description": "Optional metadata",
+                        "example": {
+                            "node": "http://dashboard.com/node1",
+                            "tag": "node"
+                        },
+                        "nullable": true
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The endpoint's creation time"
+                    }
+                },
+                "required": [
+                    "chain",
+                    "network",
+                    "url",
+                    "filterTypes"
+                ],
+                "type": "object"
+            },
+            "ListResponse_EndpointOut_": {
+                "properties": {
+                    "data": {
+                        "items": {
+                            "$ref": "#/components/schemas/EndpointOut"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "type": "integer"
+                    },
+                    "hasNext": {
+                        "type": "boolean"
+                    },
+                    "hasPrev": {
+                        "type": "boolean"
+                    },
+                    "preCursor": {
+                        "type": "string"
+                    },
+                    "nextCursor": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "x-api-key"
+            }
+        }
+    }
+}

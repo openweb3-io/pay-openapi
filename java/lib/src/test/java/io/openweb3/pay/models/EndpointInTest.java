@@ -53,35 +53,11 @@ public class EndpointInTest {
     }
 
     /**
-     * Test the property 'network'
-     */
-    @Test
-    public void networkTest() {
-        // TODO: test network
-    }
-
-    /**
-     * Test the property 'chain'
-     */
-    @Test
-    public void chainTest() {
-        // TODO: test chain
-    }
-
-    /**
      * Test the property 'description'
      */
     @Test
     public void descriptionTest() {
         // TODO: test description
-    }
-
-    /**
-     * Test the property 'secret'
-     */
-    @Test
-    public void secretTest() {
-        // TODO: test secret
     }
 
     /**
@@ -93,19 +69,11 @@ public class EndpointInTest {
     }
 
     /**
-     * Test the property 'filter'
+     * Test the property 'eventTypes'
      */
     @Test
-    public void filterTest() {
-        // TODO: test filter
-    }
-
-    /**
-     * Test the property 'filterTypes'
-     */
-    @Test
-    public void filterTypesTest() {
-        // TODO: test filterTypes
+    public void eventTypesTest() {
+        // TODO: test eventTypes
     }
 
     /**
@@ -130,14 +98,6 @@ public class EndpointInTest {
     @Test
     public void headersTest() {
         // TODO: test headers
-    }
-
-    /**
-     * Test the property 'version'
-     */
-    @Test
-    public void versionTest() {
-        // TODO: test version
     }
 
 }

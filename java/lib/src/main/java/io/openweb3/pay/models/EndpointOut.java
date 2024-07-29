@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,19 +32,15 @@ import java.util.Map;
 /**
  * EndpointOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T23:45:04.809116+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-29T14:50:22.360469+08:00[Asia/Shanghai]")
 public class EndpointOut {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
   private String uid;
-
-  public static final String SERIALIZED_NAME_NETWORK = "network";
-  @SerializedName(SERIALIZED_NAME_NETWORK)
-  private String network;
-
-  public static final String SERIALIZED_NAME_CHAIN = "chain";
-  @SerializedName(SERIALIZED_NAME_CHAIN)
-  private String chain;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -57,9 +54,9 @@ public class EndpointOut {
   @SerializedName(SERIALIZED_NAME_FILTER)
   private String filter;
 
-  public static final String SERIALIZED_NAME_FILTER_TYPES = "filterTypes";
-  @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
-  private List<String> filterTypes = new ArrayList<>();
+  public static final String SERIALIZED_NAME_EVENT_TYPES = "eventTypes";
+  @SerializedName(SERIALIZED_NAME_EVENT_TYPES)
+  private List<String> eventTypes = null;
 
   public static final String SERIALIZED_NAME_DISABLED = "disabled";
   @SerializedName(SERIALIZED_NAME_DISABLED)
@@ -67,15 +64,38 @@ public class EndpointOut {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, String> metadata = null;
+  private Map<String, Object> metadata = null;
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
   private Map<String, String> headers = null;
 
-  public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
-  private Integer version;
+  public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private OffsetDateTime createdAt;
+
+
+  public EndpointOut id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The endpoint&#39;s ID
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1brOrx2ZWZBpBUvZwXKQmoEYga2", value = "The endpoint's ID")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
 
   public EndpointOut uid(String uid) {
@@ -98,50 +118,6 @@ public class EndpointOut {
 
   public void setUid(String uid) {
     this.uid = uid;
-  }
-
-
-  public EndpointOut network(String network) {
-    
-    this.network = network;
-    return this;
-  }
-
-   /**
-   * The chain network monitor by endpoint
-   * @return network
-  **/
-  @ApiModelProperty(example = "mainnet", required = true, value = "The chain network monitor by endpoint")
-
-  public String getNetwork() {
-    return network;
-  }
-
-
-  public void setNetwork(String network) {
-    this.network = network;
-  }
-
-
-  public EndpointOut chain(String chain) {
-    
-    this.chain = chain;
-    return this;
-  }
-
-   /**
-   * Blockchain code
-   * @return chain
-  **/
-  @ApiModelProperty(example = "ton", required = true, value = "Blockchain code")
-
-  public String getChain() {
-    return chain;
-  }
-
-
-  public void setChain(String chain) {
-    this.chain = chain;
   }
 
 
@@ -213,30 +189,34 @@ public class EndpointOut {
   }
 
 
-  public EndpointOut filterTypes(List<String> filterTypes) {
+  public EndpointOut eventTypes(List<String> eventTypes) {
     
-    this.filterTypes = filterTypes;
+    this.eventTypes = eventTypes;
     return this;
   }
 
-  public EndpointOut addFilterTypesItem(String filterTypesItem) {
-    this.filterTypes.add(filterTypesItem);
+  public EndpointOut addEventTypesItem(String eventTypesItem) {
+    if (this.eventTypes == null) {
+      this.eventTypes = new ArrayList<>();
+    }
+    this.eventTypes.add(eventTypesItem);
     return this;
   }
 
    /**
-   * The webhook endpoint url
-   * @return filterTypes
+   * The webhook endpoint eventTypes
+   * @return eventTypes
   **/
-  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The webhook endpoint url")
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "[\"order_paid\"]", value = "The webhook endpoint eventTypes")
 
-  public List<String> getFilterTypes() {
-    return filterTypes;
+  public List<String> getEventTypes() {
+    return eventTypes;
   }
 
 
-  public void setFilterTypes(List<String> filterTypes) {
-    this.filterTypes = filterTypes;
+  public void setEventTypes(List<String> eventTypes) {
+    this.eventTypes = eventTypes;
   }
 
 
@@ -263,13 +243,13 @@ public class EndpointOut {
   }
 
 
-  public EndpointOut metadata(Map<String, String> metadata) {
+  public EndpointOut metadata(Map<String, Object> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public EndpointOut putMetadataItem(String key, String metadataItem) {
+  public EndpointOut putMetadataItem(String key, Object metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -284,12 +264,12 @@ public class EndpointOut {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "{\"node\":\"http://dashboard.com/node1\",\"tag\":\"node\"}", value = "Optional metadata")
 
-  public Map<String, String> getMetadata() {
+  public Map<String, Object> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, String> metadata) {
+  public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
   }
 
@@ -325,26 +305,26 @@ public class EndpointOut {
   }
 
 
-  public EndpointOut version(Integer version) {
+  public EndpointOut createdAt(OffsetDateTime createdAt) {
     
-    this.version = version;
+    this.createdAt = createdAt;
     return this;
   }
 
    /**
-   * endpoint version
-   * @return version
+   * The endpoint&#39;s creation time
+   * @return createdAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "endpoint version")
+  @ApiModelProperty(value = "The endpoint's creation time")
 
-  public Integer getVersion() {
-    return version;
+  public OffsetDateTime getCreatedAt() {
+    return createdAt;
   }
 
 
-  public void setVersion(Integer version) {
-    this.version = version;
+  public void setCreatedAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
   }
 
 
@@ -357,39 +337,37 @@ public class EndpointOut {
       return false;
     }
     EndpointOut endpointOut = (EndpointOut) o;
-    return Objects.equals(this.uid, endpointOut.uid) &&
-        Objects.equals(this.network, endpointOut.network) &&
-        Objects.equals(this.chain, endpointOut.chain) &&
+    return Objects.equals(this.id, endpointOut.id) &&
+        Objects.equals(this.uid, endpointOut.uid) &&
         Objects.equals(this.description, endpointOut.description) &&
         Objects.equals(this.url, endpointOut.url) &&
         Objects.equals(this.filter, endpointOut.filter) &&
-        Objects.equals(this.filterTypes, endpointOut.filterTypes) &&
+        Objects.equals(this.eventTypes, endpointOut.eventTypes) &&
         Objects.equals(this.disabled, endpointOut.disabled) &&
         Objects.equals(this.metadata, endpointOut.metadata) &&
         Objects.equals(this.headers, endpointOut.headers) &&
-        Objects.equals(this.version, endpointOut.version);
+        Objects.equals(this.createdAt, endpointOut.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid, network, chain, description, url, filter, filterTypes, disabled, metadata, headers, version);
+    return Objects.hash(id, uid, description, url, filter, eventTypes, disabled, metadata, headers, createdAt);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EndpointOut {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
-    sb.append("    network: ").append(toIndentedString(network)).append("\n");
-    sb.append("    chain: ").append(toIndentedString(chain)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    filter: ").append(toIndentedString(filter)).append("\n");
-    sb.append("    filterTypes: ").append(toIndentedString(filterTypes)).append("\n");
+    sb.append("    eventTypes: ").append(toIndentedString(eventTypes)).append("\n");
     sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

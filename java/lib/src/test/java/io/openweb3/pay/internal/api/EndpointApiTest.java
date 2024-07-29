@@ -20,6 +20,7 @@ import io.openweb3.pay.models.EndpointPatch;
 import io.openweb3.pay.models.HTTPValidationError;
 import io.openweb3.pay.models.HttpErrorOut;
 import io.openweb3.pay.models.ListResponseEndpointOut;
+import io.openweb3.pay.models.Ordering;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -47,8 +48,9 @@ public class EndpointApiTest {
      */
     @Test
     public void v1EndpointCreateTest() throws ApiException {
+        String appId = null;
         EndpointIn endpointIn = null;
-        EndpointOut response = api.v1EndpointCreate(endpointIn);
+        EndpointOut response = api.v1EndpointCreate(appId, endpointIn);
 
         // TODO: test validations
     }
@@ -63,8 +65,26 @@ public class EndpointApiTest {
      */
     @Test
     public void v1EndpointDeleteTest() throws ApiException {
+        String appId = null;
         String endpointId = null;
-        EndpointOut response = api.v1EndpointDelete(endpointId);
+        EndpointOut response = api.v1EndpointDelete(appId, endpointId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get endpoint
+     *
+     * retrieve a specified webhook endpoint.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void v1EndpointGetTest() throws ApiException {
+        String appId = null;
+        String endpointId = null;
+        EndpointOut response = api.v1EndpointGet(appId, endpointId);
 
         // TODO: test validations
     }
@@ -79,15 +99,17 @@ public class EndpointApiTest {
      */
     @Test
     public void v1EndpointListTest() throws ApiException {
+        String appId = null;
         Integer limit = null;
         String cursor = null;
-        ListResponseEndpointOut response = api.v1EndpointList(limit, cursor);
+        Ordering ordering = null;
+        ListResponseEndpointOut response = api.v1EndpointList(appId, limit, cursor, ordering);
 
         // TODO: test validations
     }
     
     /**
-     * update endpoint
+     * Patch endpoint
      *
      * update a specified webhook endpoint.
      *
@@ -96,25 +118,10 @@ public class EndpointApiTest {
      */
     @Test
     public void v1EndpointPatchTest() throws ApiException {
+        String appId = null;
         String endpointId = null;
         EndpointPatch endpointPatch = null;
-        EndpointOut response = api.v1EndpointPatch(endpointId, endpointPatch);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Retrieve endpoint
-     *
-     * retrieve a specified webhook endpoint.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void v1EndpointRetrieveTest() throws ApiException {
-        String endpointId = null;
-        EndpointOut response = api.v1EndpointRetrieve(endpointId);
+        EndpointOut response = api.v1EndpointPatch(appId, endpointId, endpointPatch);
 
         // TODO: test validations
     }
