@@ -28,7 +28,7 @@ public final class Pay {
 		this(apikey, privateKeyPath, new PayOptions());
 	}
 
-	public Pay(final String apikey, final String privateKeyPath, final PayOptions options) {
+	public Pay(final String apikey, final String privateKey, final PayOptions options) {
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addNetworkInterceptor(getProgressInterceptor());
 		builder.addInterceptor(new Interceptor() {
@@ -51,7 +51,8 @@ public final class Pay {
 				// 计算请求的 SHA-256 签名
                 String signature = null;
                 try {
-                    signature = calculateSignature(privateKeyPath, body, uri, timestamp);
+					String content = String.format("%s%s%s", body, uri, timestamp);
+                    signature = calculateSignature(privateKey, content);
                 } catch (SigningException e) {
                     throw new RuntimeException(e);
                 }
@@ -96,24 +97,24 @@ public final class Pay {
 			}
 		};
 	}
-
-    private static String calculateSignature(final String privateKeyPath, final String body, final String uri, final String timestamp) throws SigningException {
+	private static String calculateSignature(final String privateKey, final String content) throws SigningException {
 		try {
-			String content = String.format("%s%s%s", body, uri, timestamp);
 			Signature sign = Signature.getInstance("SHA256withRSA");
 
-			String stripPrivateKey = Utils.getStringFromFile(privateKeyPath);
 			// 开头行和结束行，以及所有换行字符
-			stripPrivateKey = stripPrivateKey.replaceAll("(-+BEGIN.*-+\\r?\\n|-+END.*-+\\r?\\n?|\\n|\\r)", ""); 
+			String stripPrivateKey = privateKey.replaceAll("(-+BEGIN.*-+\\r?\\n|-+END.*-+\\r?\\n?|\\n|\\r)", ""); 
 
 			Base64.Decoder decoder = Base64.getDecoder();
-			PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(decoder.decode(stripPrivateKey));
+            byte[] pkcs1Bytes = decoder.decode(stripPrivateKey);
+            byte[] pkcs8Bytes = convertPkcs1ToPkcs8(pkcs1Bytes);
+			PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(pkcs8Bytes);
 			KeyFactory kf = KeyFactory.getInstance("RSA");
 			RSAPrivateKey pvt = (RSAPrivateKey)kf.generatePrivate(ks);
 
 			sign.initSign(pvt);
 			sign.update(content.getBytes(StandardCharsets.UTF_8));
-			return Utils.toHex(sign.sign());
+            byte[] data = sign.sign();
+            return Base64.getEncoder().encodeToString(data);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			return null;
@@ -124,6 +125,25 @@ public final class Pay {
         }
     }
 
+        /**
+     * 将 PKCS#1 格式的私钥字节数组转换为 PKCS#8 格式
+     * @param pkcs1Bytes PKCS#1 格式的私钥字节数组
+     * @return PKCS#8 格式的私钥字节数组
+     * @throws GeneralSecurityException
+     */
+    private static byte[] convertPkcs1ToPkcs8(byte[] pkcs1Bytes) throws GeneralSecurityException {
+        // PKCS#1 格式的私钥字节数组转换为 PKCS#8 格式
+        int pkcs1Length = pkcs1Bytes.length;
+        int totalLength = pkcs1Length + 22;
+        byte[] pkcs8Header = new byte[] {
+            0x30, (byte) 0x82, (byte) ((totalLength >> 8) & 0xff), (byte) (totalLength & 0xff),
+            0x2, 0x1, 0x0, 0x30, 0xd, 0x6, 0x9, 0x2a, (byte) 0x86, 0x48, (byte) 0x86, (byte) 0xf7, 0xd, 0x1, 0x1, 0x1, 0x5, 0x0, 0x4, (byte) 0x82, (byte) ((pkcs1Length >> 8) & 0xff), (byte) (pkcs1Length & 0xff)
+        };
+        byte[] pkcs8Bytes = new byte[pkcs8Header.length + pkcs1Bytes.length];
+        System.arraycopy(pkcs8Header, 0, pkcs8Bytes, 0, pkcs8Header.length);
+        System.arraycopy(pkcs1Bytes, 0, pkcs8Bytes, pkcs8Header.length, pkcs1Bytes.length);
+        return pkcs8Bytes;
+    }
 
 
 	public Invoice getInvoice() {
