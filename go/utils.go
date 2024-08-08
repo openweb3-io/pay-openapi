@@ -17,8 +17,8 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"errors"
-	"time"
 	"log"
+	"time"
 
 	"encoding/base64"
 	"github.com/openweb3-io/pay-openapi/go/internal/openapi"
@@ -49,16 +49,15 @@ func PtrString(v string) *string { return &v }
 func PtrTime(v time.Time) *time.Time { return &v }
 
 type (
-	NullableBool = openapi.NullableBool
-	NullableInt = openapi.NullableInt
-	NullableInt32 = openapi.NullableInt32
-	NullableInt64 = openapi.NullableInt64
+	NullableBool    = openapi.NullableBool
+	NullableInt     = openapi.NullableInt
+	NullableInt32   = openapi.NullableInt32
+	NullableInt64   = openapi.NullableInt64
 	NullableFloat32 = openapi.NullableFloat32
 	NullableFloat64 = openapi.NullableFloat64
-	NullableString = openapi.NullableString
-	NullableTime = openapi.NullableTime
+	NullableString  = openapi.NullableString
+	NullableTime    = openapi.NullableTime
 )
-
 
 func NewNullableBool(val *bool) *NullableBool {
 	return openapi.NewNullableBool(val)
@@ -78,7 +77,6 @@ func NewNullableFloat32(val *float32) *NullableFloat32 {
 	return openapi.NewNullableFloat32(val)
 }
 
-
 func NewNullableFloat64(val *float64) *NullableFloat64 {
 	return openapi.NewNullableFloat64(val)
 }
@@ -86,7 +84,6 @@ func NewNullableFloat64(val *float64) *NullableFloat64 {
 func NewNullableString(val *string) *NullableString {
 	return openapi.NewNullableString(val)
 }
-
 
 func NewNullableTime(val *time.Time) *NullableTime {
 	return openapi.NewNullableTime(val)

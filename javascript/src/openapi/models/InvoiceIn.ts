@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { AnyType } from './AnyType';
 import { HttpFile } from '../http/http';
 
 export class InvoiceIn {
@@ -37,11 +36,11 @@ export class InvoiceIn {
     /**
     * Optional metadata
     */
-    'metadata'?: { [key: string]: AnyType; };
+    'metadata'?: { [key: string]: any; };
     /**
     * Optional metadata
     */
-    'extra'?: { [key: string]: AnyType; };
+    'extra'?: { [key: string]: any; };
     /**
     * Optional order note
     */
@@ -87,13 +86,13 @@ export class InvoiceIn {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "{ [key: string]: AnyType; }",
+            "type": "{ [key: string]: any; }",
             "format": ""
         },
         {
             "name": "extra",
             "baseName": "extra",
-            "type": "{ [key: string]: AnyType; }",
+            "type": "{ [key: string]: any; }",
             "format": ""
         },
         {

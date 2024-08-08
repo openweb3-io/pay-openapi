@@ -1,5 +1,9 @@
 {
   "npmName": "pay",
   "useObjectParameters": true,
-  "supportsES6": true
+  "supportsES6": true,
+  "typeMappings": {
+    "AnyType": "any",
+    "URI": "string"
+  }
 }

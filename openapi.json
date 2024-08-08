@@ -1119,7 +1119,7 @@
                 ],
                 "type": "object"
             },
-            "Invoiceing": {
+            "Ordering": {
                 "description": "Defines the ordering in a listing of results.",
                 "enum": [
                     "asc",
@@ -1349,14 +1349,6 @@
                 ],
                 "type": "object"
             },
-            "Ordering": {
-                "description": "Defines the ordering in a listing of results.",
-                "enum": [
-                    "asc",
-                    "desc"
-                ],
-                "type": "string"
-            },
             "WebhookMessage": {
                 "description": "The request body of the webhook POST request.",
                 "properties": {
@@ -1391,6 +1383,7 @@
                     },
                     "url": {
                         "description": "The webhook endpoint url",
+                        "format": "uri",
                         "example": "http://example.com/endpoint",
                         "type": "string"
                     },
@@ -1459,6 +1452,7 @@
                     },
                     "url": {
                         "description": "The webhook endpoint url",
+                        "format": "uri",
                         "example": "http://example.com/endpoint",
                         "type": "string",
                         "nullable": true
@@ -1528,6 +1522,7 @@
                     },
                     "url": {
                         "description": "The webhook endpoint url",
+                        "format": "uri",
                         "example": "http://example.com/endpoint",
                         "type": "string"
                     },

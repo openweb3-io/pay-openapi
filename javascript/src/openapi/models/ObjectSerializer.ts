@@ -5,7 +5,6 @@ export * from './HTTPValidationError';
 export * from './HttpErrorOut';
 export * from './InvoiceIn';
 export * from './InvoiceOut';
-export * from './Invoiceing';
 export * from './ListResponseEndpointOut';
 export * from './ListResponseInvoiceOut';
 export * from './Ordering';
@@ -19,7 +18,6 @@ import { HTTPValidationError } from './HTTPValidationError';
 import { HttpErrorOut } from './HttpErrorOut';
 import { InvoiceIn } from './InvoiceIn';
 import { InvoiceOut           , InvoiceOutStatusEnum         } from './InvoiceOut';
-import { Invoiceing } from './Invoiceing';
 import { ListResponseEndpointOut } from './ListResponseEndpointOut';
 import { ListResponseInvoiceOut } from './ListResponseInvoiceOut';
 import { Ordering } from './Ordering';
@@ -46,7 +44,6 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
                  
 let enumsMap: Set<string> = new Set<string>([
     "InvoiceOutStatusEnum",
-    "Invoiceing",
     "Ordering",
 ]);
 

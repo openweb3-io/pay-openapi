@@ -13,7 +13,6 @@ docs/HttpErrorOut.md
 docs/InvoiceApi.md
 docs/InvoiceIn.md
 docs/InvoiceOut.md
-docs/Invoiceing.md
 docs/ListResponseEndpointOut.md
 docs/ListResponseInvoiceOut.md
 docs/Ordering.md
@@ -54,7 +53,6 @@ src/main/java/io/openweb3/pay/models/HTTPValidationError.java
 src/main/java/io/openweb3/pay/models/HttpErrorOut.java
 src/main/java/io/openweb3/pay/models/InvoiceIn.java
 src/main/java/io/openweb3/pay/models/InvoiceOut.java
-src/main/java/io/openweb3/pay/models/Invoiceing.java
 src/main/java/io/openweb3/pay/models/ListResponseEndpointOut.java
 src/main/java/io/openweb3/pay/models/ListResponseInvoiceOut.java
 src/main/java/io/openweb3/pay/models/Ordering.java

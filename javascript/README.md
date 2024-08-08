@@ -1,7 +1,7 @@
 <h1 align="center">
     <a style="text-decoration: none" href="https://pay.openweb3.io">
       <img width="120" src="" />
-      <p align="center">pay - Wallet Pay as a service</p>
+      <p align="center">pay - Pay as a Service</p>
     </a>
 </h1>
 <h2 align="center">
@@ -55,7 +55,7 @@ yarn add @openweb3-io/pay
 import { Pay } from "@openweb3-io/pay";
 
 const pay = new Pay("API-KEY", "RSA PRIVATE KEY");
-const order = await pay.Order.create({ channel: "ton-connect", chain:"ton", amount: "0.11", currency: "USDT"});
+const invoice = await pay.Invoice.create("APP_ID", { userId: "userid", channel: "ton-connect", amount: "0.11", currency: "USDT"});
 ```
 # Development
 

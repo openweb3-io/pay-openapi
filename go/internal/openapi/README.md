@@ -97,7 +97,6 @@ Class | Method | HTTP request | Description
  - [HttpErrorOut](docs/HttpErrorOut.md)
  - [InvoiceIn](docs/InvoiceIn.md)
  - [InvoiceOut](docs/InvoiceOut.md)
- - [Invoiceing](docs/Invoiceing.md)
  - [ListResponseEndpointOut](docs/ListResponseEndpointOut.md)
  - [ListResponseInvoiceOut](docs/ListResponseInvoiceOut.md)
  - [Ordering](docs/Ordering.md)

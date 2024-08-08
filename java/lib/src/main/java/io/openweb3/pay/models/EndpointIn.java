@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +32,7 @@ import java.util.Map;
 /**
  * EndpointIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-29T16:32:55.820573+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-08T17:11:46.142942+08:00[Asia/Shanghai]")
 public class EndpointIn {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
@@ -43,7 +44,7 @@ public class EndpointIn {
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
-  private String url;
+  private URI url;
 
   public static final String SERIALIZED_NAME_EVENT_TYPES = "eventTypes";
   @SerializedName(SERIALIZED_NAME_EVENT_TYPES)
@@ -108,7 +109,7 @@ public class EndpointIn {
   }
 
 
-  public EndpointIn url(String url) {
+  public EndpointIn url(URI url) {
     
     this.url = url;
     return this;
@@ -120,12 +121,12 @@ public class EndpointIn {
   **/
   @ApiModelProperty(example = "http://example.com/endpoint", required = true, value = "The webhook endpoint url")
 
-  public String getUrl() {
+  public URI getUrl() {
     return url;
   }
 
 
-  public void setUrl(String url) {
+  public void setUrl(URI url) {
     this.url = url;
   }
 

@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { AnyType } from './AnyType';
 import { HttpFile } from '../http/http';
 
 export class EndpointIn {
@@ -37,7 +36,7 @@ export class EndpointIn {
     /**
     * Optional metadata
     */
-    'metadata'?: { [key: string]: AnyType; };
+    'metadata'?: { [key: string]: any; };
     /**
     * Optional headers
     */
@@ -62,7 +61,7 @@ export class EndpointIn {
             "name": "url",
             "baseName": "url",
             "type": "string",
-            "format": ""
+            "format": "uri"
         },
         {
             "name": "eventTypes",
@@ -79,7 +78,7 @@ export class EndpointIn {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "{ [key: string]: AnyType; }",
+            "type": "{ [key: string]: any; }",
             "format": ""
         },
         {

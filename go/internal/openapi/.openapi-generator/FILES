@@ -15,7 +15,6 @@ docs/HttpErrorOut.md
 docs/InvoiceApi.md
 docs/InvoiceIn.md
 docs/InvoiceOut.md
-docs/Invoiceing.md
 docs/ListResponseEndpointOut.md
 docs/ListResponseInvoiceOut.md
 docs/Ordering.md
@@ -31,7 +30,6 @@ model_http_error_out.go
 model_http_validation_error.go
 model_invoice_in.go
 model_invoice_out.go
-model_invoiceing.go
 model_list_response_endpoint_out_.go
 model_list_response_invoice_out_.go
 model_ordering.go

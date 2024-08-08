@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { AnyType } from './AnyType';
 import { HttpFile } from '../http/http';
 
 export class InvoiceOut {
@@ -41,15 +40,15 @@ export class InvoiceOut {
     /**
     * Optional credentials
     */
-    'credentials'?: { [key: string]: AnyType; };
+    'credentials'?: { [key: string]: any; };
     /**
     * Optional metadata
     */
-    'metadata': { [key: string]: AnyType; };
+    'metadata': { [key: string]: any; };
     /**
     * Optional metadata
     */
-    'extra'?: { [key: string]: AnyType; };
+    'extra'?: { [key: string]: any; };
     /**
     * invoice note
     */
@@ -129,19 +128,19 @@ export class InvoiceOut {
         {
             "name": "credentials",
             "baseName": "credentials",
-            "type": "{ [key: string]: AnyType; }",
+            "type": "{ [key: string]: any; }",
             "format": ""
         },
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "{ [key: string]: AnyType; }",
+            "type": "{ [key: string]: any; }",
             "format": ""
         },
         {
             "name": "extra",
             "baseName": "extra",
-            "type": "{ [key: string]: AnyType; }",
+            "type": "{ [key: string]: any; }",
             "format": ""
         },
         {

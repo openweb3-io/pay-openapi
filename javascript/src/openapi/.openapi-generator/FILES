@@ -18,7 +18,6 @@ models/HTTPValidationError.ts
 models/HttpErrorOut.ts
 models/InvoiceIn.ts
 models/InvoiceOut.ts
-models/Invoiceing.ts
 models/ListResponseEndpointOut.ts
 models/ListResponseInvoiceOut.ts
 models/ObjectSerializer.ts

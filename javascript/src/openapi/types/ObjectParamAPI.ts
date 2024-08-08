@@ -9,7 +9,6 @@ import { HTTPValidationError } from '../models/HTTPValidationError';
 import { HttpErrorOut } from '../models/HttpErrorOut';
 import { InvoiceIn } from '../models/InvoiceIn';
 import { InvoiceOut } from '../models/InvoiceOut';
-import { Invoiceing } from '../models/Invoiceing';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseInvoiceOut } from '../models/ListResponseInvoiceOut';
 import { Ordering } from '../models/Ordering';

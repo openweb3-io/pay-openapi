@@ -730,7 +730,7 @@ components:
       - msg
       - type
       type: object
-    Invoiceing:
+    Ordering:
       description: Defines the ordering in a listing of results.
       enum:
       - asc
@@ -1005,12 +1005,6 @@ components:
       required:
       - data
       type: object
-    Ordering:
-      description: Defines the ordering in a listing of results.
-      enum:
-      - asc
-      - desc
-      type: string
     WebhookMessage:
       description: The request body of the webhook POST request.
       properties:
@@ -1052,6 +1046,7 @@ components:
         url:
           description: The webhook endpoint url
           example: http://example.com/endpoint
+          format: uri
           type: string
         eventTypes:
           description: The webhook endpoint associated event types
@@ -1116,6 +1111,7 @@ components:
         url:
           description: The webhook endpoint url
           example: http://example.com/endpoint
+          format: uri
           nullable: true
           type: string
         eventTypes:
@@ -1185,6 +1181,7 @@ components:
         url:
           description: The webhook endpoint url
           example: http://example.com/endpoint
+          format: uri
           type: string
         filter:
           description: The webhook endpoint url
