@@ -45,21 +45,13 @@ class UserAgentMiddleware implements Middleware {
  * @param data 要签名的数据
  * @returns 签名的 Base64 格式字符串
  */
-function signDataWithPKCS1(data: string, privateKeyStr: string): string {
-  // 将 PKCS#1 格式的私钥字符串转换为 PEM 格式
-  const privateKeyPem = forge.pki.privateKeyToPem(forge.pki.privateKeyFromPem(privateKeyStr));
-
-  // 创建签名对象
+function signDataWithPKCS1(data: string, privateKey: string): string {
   const sign = crypto.createSign('SHA256');
+
   sign.update(data);
   sign.end();
 
-  // 使用私钥进行签名
-  const privateKey = crypto.createPrivateKey(privateKeyPem);
-  const signature = sign.sign(privateKey);
-
-  // 返回签名的 Base64 格式字符串
-  return signature.toString('base64');
+  return sign.sign(privateKey, 'base64');
 }
 
 function hmacSha256(data: string, secret: string): string {
