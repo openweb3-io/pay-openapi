@@ -1,6 +1,6 @@
 {
   "name": "@openweb3-io/pay",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Wallet Pay API client and wallet pay verification library",
   "author": "pay",
   "repository": "https://github.com/pay/pay-libs",
@@ -30,8 +30,10 @@
   },
   "dependencies": {
     "@stablelib/base64": "^1.0.0",
+    "@types/node-forge": "^1.3.11",
     "es6-promise": "^4.2.4",
     "fast-sha256": "^1.3.0",
+    "node-forge": "^1.3.1",
     "url-parse": "^1.4.3"
   },
   "devDependencies": {

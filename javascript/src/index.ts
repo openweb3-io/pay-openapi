@@ -22,6 +22,8 @@ import { createHash } from "crypto";
 import { timingSafeEqual } from "./timing_safe_equal";
 import * as base64 from "@stablelib/base64";
 import * as sha256 from "fast-sha256";
+import * as crypto from 'crypto';
+import * as forge from 'node-forge';
 
 const WEBHOOK_TOLERANCE_IN_SECONDS = 5 * 60; // 5 minutes
 const VERSION = "0.2.0";
@@ -35,6 +37,29 @@ class UserAgentMiddleware implements Middleware {
   public post(context: ResponseContext): Promise<ResponseContext> {
     return Promise.resolve(context);
   }
+}
+
+/**
+ * 使用给定的 PKCS#1 格式的私钥对数据进行 SHA-256 签名
+ * @param privateKeyStr PKCS#1 格式的私钥字符串
+ * @param data 要签名的数据
+ * @returns 签名的 Base64 格式字符串
+ */
+function signDataWithPKCS1(data: string, privateKeyStr: string): string {
+  // 将 PKCS#1 格式的私钥字符串转换为 PEM 格式
+  const privateKeyPem = forge.pki.privateKeyToPem(forge.pki.privateKeyFromPem(privateKeyStr));
+
+  // 创建签名对象
+  const sign = crypto.createSign('SHA256');
+  sign.update(data);
+  sign.end();
+
+  // 使用私钥进行签名
+  const privateKey = crypto.createPrivateKey(privateKeyPem);
+  const signature = sign.sign(privateKey);
+
+  // 返回签名的 Base64 格式字符串
+  return signature.toString('base64');
 }
 
 function hmacSha256(data: string, secret: string): string {
@@ -59,7 +84,7 @@ class SignatureMiddleware implements Middleware {
     source += url.pathname;
     source += timestamp;
 
-    const sign = hmacSha256(source, this.privateKey);
+    const sign = signDataWithPKCS1(source, this.privateKey);
     context.setHeaderParam("x-signature", sign);
 
     return Promise.resolve(context);
