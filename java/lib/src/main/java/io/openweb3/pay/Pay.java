@@ -6,6 +6,7 @@ import io.openweb3.pay.internal.Configuration;
 import io.openweb3.pay.internal.ProgressResponseBody;
 import io.openweb3.pay.internal.auth.ApiKeyAuth;
 import okhttp3.*;
+import okio.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.StandardCharsets;
@@ -47,7 +48,19 @@ public final class Pay {
                 if (query != null && !query.isEmpty()) {
 					uri += "?" + query;
 				}
-				String body = originalRequest.body() == null ? "" : originalRequest.body().toString();
+
+				String body = "";
+				if (originalRequest.body() != null) {
+					RequestBody oldBody = originalRequest.body();
+					Buffer buffer = new Buffer();
+					oldBody.writeTo(buffer);
+					body = buffer.readUtf8();
+
+					// 重新构建 RequestBody
+					RequestBody newRequestBody = RequestBody.create(body, oldBody.contentType());
+					builder.method(originalRequest.method(), newRequestBody);
+				}
+				
 				// 计算请求的 SHA-256 签名
                 String signature = null;
                 try {
