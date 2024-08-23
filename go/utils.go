@@ -104,11 +104,10 @@ func verify(data []byte, publicKey []byte, signature string) (err error) {
 		return err
 	}
 
-	pubInterface, err := x509.ParsePKIXPublicKey(block.Bytes)
+	pub, err := x509.ParsePKCS1PublicKey(block.Bytes)
 	if err != nil {
 		return err
 	}
-	pub := pubInterface.(*rsa.PublicKey)
 
 	hashFunc := crypto.SHA256
 	h := hashFunc.New()

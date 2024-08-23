@@ -1,6 +1,7 @@
 package pay
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"log"
@@ -46,6 +47,14 @@ func New(apikey string, privateKey string, options *PayOptions) *Pay {
 			if err != nil {
 				log.Printf("Error reading body: %v", err)
 			}
+			saveBody := body
+			savecl := req.ContentLength
+			defer func() {
+				// 在中间件处理结束后，需要主动重新把body设置回去
+				req.Body = io.NopCloser(bytes.NewBuffer(saveBody))
+				req.ContentLength = savecl
+			}()
+
 			dataToBeSignature = string(body)
 		}
 		dataToBeSignature = dataToBeSignature + req.URL.RequestURI() + requestTime
