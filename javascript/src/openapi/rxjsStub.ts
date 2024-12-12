@@ -1,5 +1,6 @@
 export class Observable<T> {
-  constructor(private promise: Promise<T>) {}
+  constructor(private promise: Promise<T>) {
+  }
 
   toPromise() {
     return this.promise;
@@ -10,7 +11,7 @@ export class Observable<T> {
   }
 }
 
-export function from<T>(promise: Promise<any>) {
+export function from<T>(promise: Promise<T>) {
   return new Observable(promise);
 }
 

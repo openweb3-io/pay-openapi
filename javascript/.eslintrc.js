@@ -15,7 +15,7 @@ module.exports = {
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
   ],
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
@@ -26,12 +26,12 @@ module.exports = {
     "@typescript-eslint/member-delimiter-style": ["error", {
       "multiline": {
         "delimiter": "semi",
-        "requireLast": true
+        "requireLast": true,
       },
       "singleline": {
         "delimiter": "semi",
-        "requireLast": false
-      }
+        "requireLast": false,
+      },
     }],
     "@typescript-eslint/no-unused-vars": ["warn", {
       "vars": "all",
@@ -49,7 +49,7 @@ module.exports = {
       "objects": "always-multiline",
       "imports": "always-multiline",
       "exports": "always-multiline",
-      "functions": "never"
+      "functions": "never",
     }],
     "comma-spacing": ["error"],
     "eqeqeq": ["error", "smart"],
@@ -66,7 +66,7 @@ module.exports = {
     "space-before-function-paren": ["error", {
         "anonymous": "always",
         "named": "never",
-        "asyncArrow": "always"
+        "asyncArrow": "always",
     }],
     "space-in-parens": ["error", "never"],
     "space-before-blocks": "error",
@@ -83,5 +83,5 @@ module.exports = {
     ],
     "no-useless-constructor": "off",
     "@typescript-eslint/no-useless-constructor": "warn",
-  }
+  },
 };

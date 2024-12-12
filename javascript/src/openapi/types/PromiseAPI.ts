@@ -1,145 +1,199 @@
-import { ResponseContext, RequestContext, HttpFile } from '../http/http';
-import * as models from '../models/all';
-import { Configuration} from '../configuration'
+import { Configuration } from "../configuration";
 
-import { EndpointIn } from '../models/EndpointIn';
-import { EndpointOut } from '../models/EndpointOut';
-import { EndpointPatch } from '../models/EndpointPatch';
-import { HTTPValidationError } from '../models/HTTPValidationError';
-import { HttpErrorOut } from '../models/HttpErrorOut';
-import { InvoiceIn } from '../models/InvoiceIn';
-import { InvoiceOut } from '../models/InvoiceOut';
-import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
-import { ListResponseInvoiceOut } from '../models/ListResponseInvoiceOut';
-import { Ordering } from '../models/Ordering';
-import { ValidationError } from '../models/ValidationError';
-import { WebhookMessage } from '../models/WebhookMessage';
-import { ObservableEndpointApi } from './ObservableAPI';
+import { CreateInvoiceRequest } from "../models/CreateInvoiceRequest";
+import { CreateWebhook } from "../models/CreateWebhook";
+import { CryptoCurrency } from "../models/CryptoCurrency";
+import { CursorPageInvoice } from "../models/CursorPageInvoice";
+import { CursorPageWebhook } from "../models/CursorPageWebhook";
+import { FiatCurrency } from "../models/FiatCurrency";
+import { Invoice } from "../models/Invoice";
+import { Rate } from "../models/Rate";
+import { UpdateWebhook } from "../models/UpdateWebhook";
+import { Webhook } from "../models/Webhook";
+import { ObservableCurrencyApi, ObservableInvoiceApi, ObservableWebhookApi } from "./ObservableAPI";
 
-import { EndpointApiRequestFactory, EndpointApiResponseProcessor} from "../apis/EndpointApi";
-export class PromiseEndpointApi {
-    private api: ObservableEndpointApi
+import { CurrencyApiRequestFactory, CurrencyApiResponseProcessor } from "../apis/CurrencyApi";
 
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: EndpointApiRequestFactory,
-        responseProcessor?: EndpointApiResponseProcessor
-    ) {
-        this.api = new ObservableEndpointApi(configuration, requestFactory, responseProcessor);
-    }
+import { InvoiceApiRequestFactory, InvoiceApiResponseProcessor } from "../apis/InvoiceApi";
 
-    /**
-     * Create a webhook endpoint.
-     * Create endpoint
-     * @param appId Specified the app id.
-     * @param endpointIn 
-     */
-    public v1EndpointCreate(appId: string, endpointIn: EndpointIn, _options?: Configuration): Promise<EndpointOut> {
-        const result = this.api.v1EndpointCreate(appId, endpointIn, _options);
-        return result.toPromise();
-    }
+import { WebhookApiRequestFactory, WebhookApiResponseProcessor } from "../apis/WebhookApi";
 
-    /**
-     * delete the specified webhook endpoint.
-     * Delete endpoint
-     * @param appId Specified the app id.
-     * @param endpointId Specified the endpoint id.
-     */
-    public v1EndpointDelete(appId: string, endpointId: string, _options?: Configuration): Promise<EndpointOut> {
-        const result = this.api.v1EndpointDelete(appId, endpointId, _options);
-        return result.toPromise();
-    }
+export class PromiseCurrencyApi {
+  private api: ObservableCurrencyApi;
 
-    /**
-     * retrieve a specified webhook endpoint.
-     * Get endpoint
-     * @param appId Specified the app id.
-     * @param endpointId Specified the webhook endpoint id.
-     */
-    public v1EndpointGet(appId: string, endpointId: string, _options?: Configuration): Promise<EndpointOut> {
-        const result = this.api.v1EndpointGet(appId, endpointId, _options);
-        return result.toPromise();
-    }
+  public constructor(
+    configuration: Configuration,
+    requestFactory?: CurrencyApiRequestFactory,
+    responseProcessor?: CurrencyApiResponseProcessor
+  ) {
+    this.api = new ObservableCurrencyApi(configuration, requestFactory, responseProcessor);
+  }
 
-    /**
-     * List endpoints.
-     * List endpoints
-     * @param appId Specified the app id.
-     * @param limit Limit the number of returned items
-     * @param cursor Specifying the start cursor position
-     * @param ordering The sorting order of the returned items
-     */
-    public v1EndpointList(appId: string, limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Promise<ListResponseEndpointOut> {
-        const result = this.api.v1EndpointList(appId, limit, cursor, ordering, _options);
-        return result.toPromise();
-    }
+  /**
+   * List available cryptocurrencies
+   * List available cryptocurrencies
+   * @param appId App ID
+   * @param _options
+   */
+  public v1CurrenciesListCrypto(appId: string, _options?: Configuration): Promise<Array<CryptoCurrency>> {
+    const result = this.api.v1CurrenciesListCrypto(appId, _options);
+    return result.toPromise();
+  }
 
-    /**
-     * update a specified webhook endpoint.
-     * Patch endpoint
-     * @param appId Specified the app id.
-     * @param endpointId Specified the endpoint id.
-     * @param endpointPatch 
-     */
-    public v1EndpointPatch(appId: string, endpointId: string, endpointPatch: EndpointPatch, _options?: Configuration): Promise<EndpointOut> {
-        const result = this.api.v1EndpointPatch(appId, endpointId, endpointPatch, _options);
-        return result.toPromise();
-    }
+  /**
+   * List available fiat currencies
+   * List available fiat currencies
+   * @param appId App ID
+   * @param _options
+   */
+  public v1CurrenciesListFlat(appId: string, _options?: Configuration): Promise<Array<FiatCurrency>> {
+    const result = this.api.v1CurrenciesListFlat(appId, _options);
+    return result.toPromise();
+  }
+
+  /**
+   * Get exchange rate
+   * Get exchange rate
+   * @param appId App ID
+   * @param from From currency
+   * @param to To currency
+   * @param _options
+   */
+  public v1CurrenciesRetrieveRate(appId: string, from: string, to: string, _options?: Configuration): Promise<Array<Rate>> {
+    const result = this.api.v1CurrenciesRetrieveRate(appId, from, to, _options);
+    return result.toPromise();
+  }
 
 
 }
 
 
-
-import { ObservableInvoiceApi } from './ObservableAPI';
-
-import { InvoiceApiRequestFactory, InvoiceApiResponseProcessor} from "../apis/InvoiceApi";
 export class PromiseInvoiceApi {
-    private api: ObservableInvoiceApi
+  private api: ObservableInvoiceApi;
 
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: InvoiceApiRequestFactory,
-        responseProcessor?: InvoiceApiResponseProcessor
-    ) {
-        this.api = new ObservableInvoiceApi(configuration, requestFactory, responseProcessor);
-    }
+  public constructor(
+    configuration: Configuration,
+    requestFactory?: InvoiceApiRequestFactory,
+    responseProcessor?: InvoiceApiResponseProcessor
+  ) {
+    this.api = new ObservableInvoiceApi(configuration, requestFactory, responseProcessor);
+  }
 
-    /**
-     * Create a new invoice.
-     * Create invoice
-     * @param appId Specified the app id.
-     * @param invoiceIn 
-     */
-    public v1InvoiceCreate(appId: string, invoiceIn: InvoiceIn, _options?: Configuration): Promise<InvoiceOut> {
-        const result = this.api.v1InvoiceCreate(appId, invoiceIn, _options);
-        return result.toPromise();
-    }
+  /**
+   * Create an invoice
+   * Create an invoice
+   * @param appId App ID
+   * @param createInvoiceRequest Request body
+   * @param _options
+   */
+  public v1InvoicesCreate(appId: string, createInvoiceRequest: CreateInvoiceRequest, _options?: Configuration): Promise<Invoice> {
+    const result = this.api.v1InvoicesCreate(appId, createInvoiceRequest, _options);
+    return result.toPromise();
+  }
 
-    /**
-     * retrieve a specified webhook endpoint.
-     * Get invoice
-     * @param appId Specified the app id.
-     * @param idOrUid Specified the invoice id or invoice uid.
-     */
-    public v1InvoiceGet(appId: string, idOrUid: string, _options?: Configuration): Promise<InvoiceOut> {
-        const result = this.api.v1InvoiceGet(appId, idOrUid, _options);
-        return result.toPromise();
-    }
+  /**
+   * List invoices
+   * List invoices
+   * @param appId App ID
+   * @param cursor Cursor
+   * @param limit Limit
+   * @param ordering Ordering
+   * @param _options
+   */
+  public v1InvoicesList(appId: string, cursor?: string, limit?: number, ordering?: string, _options?: Configuration): Promise<CursorPageInvoice> {
+    const result = this.api.v1InvoicesList(appId, cursor, limit, ordering, _options);
+    return result.toPromise();
+  }
 
-    /**
-     * List invoices.
-     * List invoices
-     * @param appId Specified the app id.
-     * @param limit Limit the number of returned items
-     * @param offset Specifying the amount of excluded from a response the first N invoices
-     * @param userId Optional invoice user id
-     * @param channel Channel of the invoice
-     */
-    public v1InvoiceList(appId: string, limit?: number, offset?: number, userId?: string, channel?: string, _options?: Configuration): Promise<ListResponseInvoiceOut> {
-        const result = this.api.v1InvoiceList(appId, limit, offset, userId, channel, _options);
-        return result.toPromise();
-    }
+  /**
+   * Retrieve an invoice
+   * Retrieve an invoice
+   * @param appId App ID
+   * @param invoiceId Invoice ID / UID
+   * @param _options
+   */
+  public v1InvoicesRetrieve(appId: string, invoiceId: string, _options?: Configuration): Promise<Invoice> {
+    const result = this.api.v1InvoicesRetrieve(appId, invoiceId, _options);
+    return result.toPromise();
+  }
+
+
+}
+
+
+export class PromiseWebhookApi {
+  private api: ObservableWebhookApi;
+
+  public constructor(
+    configuration: Configuration,
+    requestFactory?: WebhookApiRequestFactory,
+    responseProcessor?: WebhookApiResponseProcessor
+  ) {
+    this.api = new ObservableWebhookApi(configuration, requestFactory, responseProcessor);
+  }
+
+  /**
+   * Create a webhook endpoint
+   * Create a webhook endpoint
+   * @param appId App ID
+   * @param createWebhook Request body
+   * @param _options
+   */
+  public v1EndpointsCreate(appId: string, createWebhook: CreateWebhook, _options?: Configuration): Promise<Webhook> {
+    const result = this.api.v1EndpointsCreate(appId, createWebhook, _options);
+    return result.toPromise();
+  }
+
+  /**
+   * Delete a webhook endpoint
+   * Delete a webhook endpoint
+   * @param appId App ID
+   * @param endpointId Endpoint ID
+   * @param _options
+   */
+  public v1EndpointsDelete(appId: string, endpointId: string, _options?: Configuration): Promise<Webhook> {
+    const result = this.api.v1EndpointsDelete(appId, endpointId, _options);
+    return result.toPromise();
+  }
+
+  /**
+   * List webhook endpoints
+   * List webhook endpoints
+   * @param appId App ID
+   * @param cursor Cursor
+   * @param limit Limit
+   * @param ordering Ordering
+   * @param _options
+   */
+  public v1EndpointsList(appId: string, cursor?: string, limit?: number, ordering?: string, _options?: Configuration): Promise<CursorPageWebhook> {
+    const result = this.api.v1EndpointsList(appId, cursor, limit, ordering, _options);
+    return result.toPromise();
+  }
+
+  /**
+   * Retrieve a webhook endpoint
+   * Retrieve a webhook endpoint
+   * @param appId App ID
+   * @param endpointId Endpoint ID
+   * @param _options
+   */
+  public v1EndpointsRetrieve(appId: string, endpointId: string, _options?: Configuration): Promise<Webhook> {
+    const result = this.api.v1EndpointsRetrieve(appId, endpointId, _options);
+    return result.toPromise();
+  }
+
+  /**
+   * Update a webhook endpoint
+   * Update a webhook endpoint
+   * @param appId App ID
+   * @param endpointId Endpoint ID
+   * @param updateWebhook Request body
+   * @param _options
+   */
+  public v1EndpointsUpdate(appId: string, endpointId: string, updateWebhook: UpdateWebhook, _options?: Configuration): Promise<Webhook> {
+    const result = this.api.v1EndpointsUpdate(appId, endpointId, updateWebhook, _options);
+    return result.toPromise();
+  }
 
 
 }

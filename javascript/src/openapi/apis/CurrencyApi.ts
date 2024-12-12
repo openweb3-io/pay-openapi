@@ -6,99 +6,32 @@ import { ObjectSerializer } from "../models/ObjectSerializer";
 import { ApiException } from "./exception";
 import { isCodeInRange } from "../util";
 
-import { CreateInvoiceRequest } from "../models/CreateInvoiceRequest";
-import { CursorPageInvoice } from "../models/CursorPageInvoice";
-import { Invoice } from "../models/Invoice";
+import { CryptoCurrency } from "../models/CryptoCurrency";
+import { FiatCurrency } from "../models/FiatCurrency";
+import { Rate } from "../models/Rate";
 
 /**
  * no description
  */
-export class InvoiceApiRequestFactory extends BaseAPIRequestFactory {
+export class CurrencyApiRequestFactory extends BaseAPIRequestFactory {
 
   /**
-   * Create an invoice
-   * Create an invoice
+   * List available cryptocurrencies
+   * List available cryptocurrencies
    * @param appId App ID
-   * @param createInvoiceRequest Request body
    * @param _options
    */
-  public async v1InvoicesCreate(appId: string, createInvoiceRequest: CreateInvoiceRequest, _options?: Configuration): Promise<RequestContext> {
+  public async v1CurrenciesListCrypto(appId: string, _options?: Configuration): Promise<RequestContext> {
     const _config = _options || this.configuration;
 
     // verify required parameter 'appId' is not null or undefined
     if (appId === null || appId === undefined) {
-      throw new RequiredError("Required parameter appId was null or undefined when calling v1InvoicesCreate.");
-    }
-
-
-    // verify required parameter 'createInvoiceRequest' is not null or undefined
-    if (createInvoiceRequest === null || createInvoiceRequest === undefined) {
-      throw new RequiredError("Required parameter createInvoiceRequest was null or undefined when calling v1InvoicesCreate.");
+      throw new RequiredError("Required parameter appId was null or undefined when calling v1CurrenciesListCrypto.");
     }
 
 
     // Path Params
-    const localVarPath = "/api/v1/apps/{appId}/invoices"
-      .replace("{" + "appId" + "}", encodeURIComponent(String(appId)));
-
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
-    requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8");
-    const randomId = Math.floor(Math.random() * Math.pow(2, 32));
-    requestContext.setHeaderParam("pay-req-id", randomId.toString());
-
-    // Query Params
-
-    // Header Params
-
-    // Form Params
-
-
-    // Body Params
-    const contentType = ObjectSerializer.getPreferredMediaType([
-      "application/json",
-    ]);
-    requestContext.setHeaderParam("Content-Type", contentType);
-    const serializedBody = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(createInvoiceRequest, "CreateInvoiceRequest", ""),
-      contentType
-    );
-    requestContext.setBody(serializedBody);
-
-    let authMethod = null;
-    // Apply auth methods
-    authMethod = _config.authMethods["ApiKeyAuth"];
-    if (authMethod) {
-      await authMethod.applySecurityAuthentication(requestContext);
-    }
-    authMethod = _config.authMethods["SignatureAuth"];
-    if (authMethod) {
-      await authMethod.applySecurityAuthentication(requestContext);
-    }
-
-    return requestContext;
-  }
-
-  /**
-   * List invoices
-   * List invoices
-   * @param appId App ID
-   * @param cursor Cursor
-   * @param limit Limit
-   * @param ordering Ordering
-   * @param _options
-   */
-  public async v1InvoicesList(appId: string, cursor?: string, limit?: number, ordering?: string, _options?: Configuration): Promise<RequestContext> {
-    const _config = _options || this.configuration;
-
-    // verify required parameter 'appId' is not null or undefined
-    if (appId === null || appId === undefined) {
-      throw new RequiredError("Required parameter appId was null or undefined when calling v1InvoicesList.");
-    }
-
-
-    // Path Params
-    const localVarPath = "/api/v1/apps/{appId}/invoices"
+    const localVarPath = "/api/v1/apps/{appId}/currencies/crypto"
       .replace("{" + "appId" + "}", encodeURIComponent(String(appId)));
 
     // Make Request Context
@@ -108,15 +41,6 @@ export class InvoiceApiRequestFactory extends BaseAPIRequestFactory {
     requestContext.setHeaderParam("pay-req-id", randomId.toString());
 
     // Query Params
-    if (cursor !== undefined) {
-      requestContext.setQueryParam("cursor", ObjectSerializer.serialize(cursor, "string", ""));
-    }
-    if (limit !== undefined) {
-      requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
-    }
-    if (ordering !== undefined) {
-      requestContext.setQueryParam("ordering", ObjectSerializer.serialize(ordering, "string", ""));
-    }
 
     // Header Params
 
@@ -140,31 +64,23 @@ export class InvoiceApiRequestFactory extends BaseAPIRequestFactory {
   }
 
   /**
-   * Retrieve an invoice
-   * Retrieve an invoice
+   * List available fiat currencies
+   * List available fiat currencies
    * @param appId App ID
-   * @param invoiceId Invoice ID / UID
    * @param _options
    */
-  public async v1InvoicesRetrieve(appId: string, invoiceId: string, _options?: Configuration): Promise<RequestContext> {
+  public async v1CurrenciesListFlat(appId: string, _options?: Configuration): Promise<RequestContext> {
     const _config = _options || this.configuration;
 
     // verify required parameter 'appId' is not null or undefined
     if (appId === null || appId === undefined) {
-      throw new RequiredError("Required parameter appId was null or undefined when calling v1InvoicesRetrieve.");
-    }
-
-
-    // verify required parameter 'invoiceId' is not null or undefined
-    if (invoiceId === null || invoiceId === undefined) {
-      throw new RequiredError("Required parameter invoiceId was null or undefined when calling v1InvoicesRetrieve.");
+      throw new RequiredError("Required parameter appId was null or undefined when calling v1CurrenciesListFlat.");
     }
 
 
     // Path Params
-    const localVarPath = "/api/v1/apps/{appId}/invoices/{invoiceId}"
-      .replace("{" + "appId" + "}", encodeURIComponent(String(appId)))
-      .replace("{" + "invoiceId" + "}", encodeURIComponent(String(invoiceId)));
+    const localVarPath = "/api/v1/apps/{appId}/currencies/fiat"
+      .replace("{" + "appId" + "}", encodeURIComponent(String(appId)));
 
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -173,6 +89,74 @@ export class InvoiceApiRequestFactory extends BaseAPIRequestFactory {
     requestContext.setHeaderParam("pay-req-id", randomId.toString());
 
     // Query Params
+
+    // Header Params
+
+    // Form Params
+
+
+    // Body Params
+
+    let authMethod = null;
+    // Apply auth methods
+    authMethod = _config.authMethods["ApiKeyAuth"];
+    if (authMethod) {
+      await authMethod.applySecurityAuthentication(requestContext);
+    }
+    authMethod = _config.authMethods["SignatureAuth"];
+    if (authMethod) {
+      await authMethod.applySecurityAuthentication(requestContext);
+    }
+
+    return requestContext;
+  }
+
+  /**
+   * Get exchange rate
+   * Get exchange rate
+   * @param appId App ID
+   * @param from From currency
+   * @param to To currency
+   * @param _options
+   */
+  public async v1CurrenciesRetrieveRate(appId: string, from: string, to: string, _options?: Configuration): Promise<RequestContext> {
+    const _config = _options || this.configuration;
+
+    // verify required parameter 'appId' is not null or undefined
+    if (appId === null || appId === undefined) {
+      throw new RequiredError("Required parameter appId was null or undefined when calling v1CurrenciesRetrieveRate.");
+    }
+
+
+    // verify required parameter 'from' is not null or undefined
+    if (from === null || from === undefined) {
+      throw new RequiredError("Required parameter from was null or undefined when calling v1CurrenciesRetrieveRate.");
+    }
+
+
+    // verify required parameter 'to' is not null or undefined
+    if (to === null || to === undefined) {
+      throw new RequiredError("Required parameter to was null or undefined when calling v1CurrenciesRetrieveRate.");
+    }
+
+
+    // Path Params
+    const localVarPath = "/api/v1/apps/{appId}/currencies/rate"
+      .replace("{" + "appId" + "}", encodeURIComponent(String(appId)));
+
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+    requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8");
+    const randomId = Math.floor(Math.random() * Math.pow(2, 32));
+    requestContext.setHeaderParam("pay-req-id", randomId.toString());
+
+    // Query Params
+    if (from !== undefined) {
+      requestContext.setQueryParam("from", ObjectSerializer.serialize(from, "string", ""));
+    }
+    if (to !== undefined) {
+      requestContext.setQueryParam("to", ObjectSerializer.serialize(to, "string", ""));
+    }
 
     // Header Params
 
@@ -197,32 +181,32 @@ export class InvoiceApiRequestFactory extends BaseAPIRequestFactory {
 
 }
 
-export class InvoiceApiResponseProcessor {
+export class CurrencyApiResponseProcessor {
 
   /**
    * Unwraps the actual response sent by the server from the response context and deserializes the response content
    * to the expected objects
    *
-   * @params response Response returned by the server for a request to v1InvoicesCreate
+   * @params response Response returned by the server for a request to v1CurrenciesListCrypto
    * @throws ApiException if the response code was not in [200, 299]
    */
-  public async v1InvoicesCreate(response: ResponseContext): Promise<Invoice> {
+  public async v1CurrenciesListCrypto(response: ResponseContext): Promise<Array<CryptoCurrency>> {
     const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
     if (isCodeInRange("200", response.httpStatusCode)) {
-      const body: Invoice = ObjectSerializer.deserialize(
+      const body: Array<CryptoCurrency> = ObjectSerializer.deserialize(
         ObjectSerializer.parse(await response.body.text(), contentType),
-        "Invoice", ""
-      ) as Invoice;
+        "Array<CryptoCurrency>", ""
+      ) as Array<CryptoCurrency>;
       return body;
     }
 
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body: Invoice = ObjectSerializer.deserialize(
+      const body: Array<CryptoCurrency> = ObjectSerializer.deserialize(
         ObjectSerializer.parse(await response.body.text(), contentType),
-        "Invoice", ""
-      ) as Invoice;
+        "Array<CryptoCurrency>", ""
+      ) as Array<CryptoCurrency>;
       return body;
     }
 
@@ -234,26 +218,26 @@ export class InvoiceApiResponseProcessor {
    * Unwraps the actual response sent by the server from the response context and deserializes the response content
    * to the expected objects
    *
-   * @params response Response returned by the server for a request to v1InvoicesList
+   * @params response Response returned by the server for a request to v1CurrenciesListFlat
    * @throws ApiException if the response code was not in [200, 299]
    */
-  public async v1InvoicesList(response: ResponseContext): Promise<CursorPageInvoice> {
+  public async v1CurrenciesListFlat(response: ResponseContext): Promise<Array<FiatCurrency>> {
     const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
     if (isCodeInRange("200", response.httpStatusCode)) {
-      const body: CursorPageInvoice = ObjectSerializer.deserialize(
+      const body: Array<FiatCurrency> = ObjectSerializer.deserialize(
         ObjectSerializer.parse(await response.body.text(), contentType),
-        "CursorPageInvoice", ""
-      ) as CursorPageInvoice;
+        "Array<FiatCurrency>", ""
+      ) as Array<FiatCurrency>;
       return body;
     }
 
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body: CursorPageInvoice = ObjectSerializer.deserialize(
+      const body: Array<FiatCurrency> = ObjectSerializer.deserialize(
         ObjectSerializer.parse(await response.body.text(), contentType),
-        "CursorPageInvoice", ""
-      ) as CursorPageInvoice;
+        "Array<FiatCurrency>", ""
+      ) as Array<FiatCurrency>;
       return body;
     }
 
@@ -265,26 +249,26 @@ export class InvoiceApiResponseProcessor {
    * Unwraps the actual response sent by the server from the response context and deserializes the response content
    * to the expected objects
    *
-   * @params response Response returned by the server for a request to v1InvoicesRetrieve
+   * @params response Response returned by the server for a request to v1CurrenciesRetrieveRate
    * @throws ApiException if the response code was not in [200, 299]
    */
-  public async v1InvoicesRetrieve(response: ResponseContext): Promise<Invoice> {
+  public async v1CurrenciesRetrieveRate(response: ResponseContext): Promise<Array<Rate>> {
     const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
     if (isCodeInRange("200", response.httpStatusCode)) {
-      const body: Invoice = ObjectSerializer.deserialize(
+      const body: Array<Rate> = ObjectSerializer.deserialize(
         ObjectSerializer.parse(await response.body.text(), contentType),
-        "Invoice", ""
-      ) as Invoice;
+        "Array<Rate>", ""
+      ) as Array<Rate>;
       return body;
     }
 
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body: Invoice = ObjectSerializer.deserialize(
+      const body: Array<Rate> = ObjectSerializer.deserialize(
         ObjectSerializer.parse(await response.body.text(), contentType),
-        "Invoice", ""
-      ) as Invoice;
+        "Array<Rate>", ""
+      ) as Array<Rate>;
       return body;
     }
 
