@@ -1,11 +1,11 @@
 import {
   Configuration,
   createConfiguration,
-  CursorPageInvoice,
   CursorPageWebhook,
-  InvoiceApi, IsomorphicFetchHttpLibrary,
+  InvoiceApi,
   Middleware,
   Ordering,
+  PageInvoice,
   RequestContext,
   ResponseContext,
   ServerConfiguration,
@@ -75,6 +75,7 @@ class SignatureMiddleware implements Middleware {
     }
     const url = new URL(context.getUrl());
     source += url.pathname;
+    source += url.search;
     source += timestamp;
 
     const sign = signDataWithPKCS1(source, this.privateKey);
@@ -139,7 +140,7 @@ class Invoice {
     this.api = new InvoiceApi(config);
   }
 
-  public list(appId: string, options?: InvoiceListOptions): Promise<CursorPageInvoice> {
+  public list(appId: string, options?: InvoiceListOptions): Promise<PageInvoice> {
     return this.api.v1InvoicesList({ appId, ...options });
   }
 

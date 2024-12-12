@@ -3,7 +3,7 @@ import { Configuration } from "../configuration";
 import { CreateInvoiceRequest } from "../models/CreateInvoiceRequest";
 import { CreateWebhook } from "../models/CreateWebhook";
 import { CryptoCurrency } from "../models/CryptoCurrency";
-import { CursorPageInvoice } from "../models/CursorPageInvoice";
+import { PageInvoice } from "../models/PageInvoice";
 import { CursorPageWebhook } from "../models/CursorPageWebhook";
 import { FiatCurrency } from "../models/FiatCurrency";
 import { Invoice } from "../models/Invoice";
@@ -174,7 +174,7 @@ export class ObjectInvoiceApi {
    * @param param the request object
    * @param options
    */
-  public v1InvoicesList(param: InvoiceApiV1InvoicesListRequest, options?: Configuration): Promise<CursorPageInvoice> {
+  public v1InvoicesList(param: InvoiceApiV1InvoicesListRequest, options?: Configuration): Promise<PageInvoice> {
     return this.api.v1InvoicesList(param.appId, param.cursor, param.limit, param.ordering, options).toPromise();
   }
 

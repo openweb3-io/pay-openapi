@@ -7,7 +7,7 @@ import { ApiException } from "./exception";
 import { isCodeInRange } from "../util";
 
 import { CreateInvoiceRequest } from "../models/CreateInvoiceRequest";
-import { CursorPageInvoice } from "../models/CursorPageInvoice";
+import { PageInvoice } from "../models/PageInvoice";
 import { Invoice } from "../models/Invoice";
 
 /**
@@ -237,23 +237,23 @@ export class InvoiceApiResponseProcessor {
    * @params response Response returned by the server for a request to v1InvoicesList
    * @throws ApiException if the response code was not in [200, 299]
    */
-  public async v1InvoicesList(response: ResponseContext): Promise<CursorPageInvoice> {
+  public async v1InvoicesList(response: ResponseContext): Promise<PageInvoice> {
     const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
     if (isCodeInRange("200", response.httpStatusCode)) {
-      const body: CursorPageInvoice = ObjectSerializer.deserialize(
+      const body: PageInvoice = ObjectSerializer.deserialize(
         ObjectSerializer.parse(await response.body.text(), contentType),
         "CursorPageInvoice", ""
-      ) as CursorPageInvoice;
+      ) as PageInvoice;
       return body;
     }
 
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body: CursorPageInvoice = ObjectSerializer.deserialize(
+      const body: PageInvoice = ObjectSerializer.deserialize(
         ObjectSerializer.parse(await response.body.text(), contentType),
         "CursorPageInvoice", ""
-      ) as CursorPageInvoice;
+      ) as PageInvoice;
       return body;
     }
 

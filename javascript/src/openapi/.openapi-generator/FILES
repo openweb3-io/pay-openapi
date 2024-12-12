@@ -16,7 +16,7 @@ models/CreateInvoiceRequest.ts
 models/CreateWebhook.ts
 models/CryptoCurrency.ts
 models/CryptoCurrencyNetwork.ts
-models/CursorPageInvoice.ts
+models/PageInvoice.ts
 models/CursorPageWebhook.ts
 models/FiatCurrency.ts
 models/Invoice.ts

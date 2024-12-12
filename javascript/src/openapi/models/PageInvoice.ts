@@ -12,13 +12,33 @@
 
 import { Invoice } from "./Invoice";
 
-export class CursorPageInvoice {
+export class PageInvoice {
+  "data"?: Array<Invoice>;
+  "hasNext"?: boolean;
+  "hasPrev"?: boolean;
+  "nextCursor"?: string;
+  "prevCursor"?: string;
+  "total"?: number;
+
   static readonly discriminator: string | undefined = undefined;
+
   static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
     {
-      "name": "items",
-      "baseName": "items",
+      "name": "data",
+      "baseName": "data",
       "type": "Array<Invoice>",
+      "format": "",
+    },
+    {
+      "name": "hasNext",
+      "baseName": "hasNext",
+      "type": "boolean",
+      "format": "",
+    },
+    {
+      "name": "hasPrev",
+      "baseName": "hasPrev",
+      "type": "boolean",
       "format": "",
     },
     {
@@ -32,13 +52,16 @@ export class CursorPageInvoice {
       "baseName": "prev_cursor",
       "type": "string",
       "format": "",
+    },
+    {
+      "name": "total",
+      "baseName": "total",
+      "type": "number",
+      "format": "",
     }];
-  "items"?: Array<Invoice>;
-  "nextCursor"?: string;
-  "prevCursor"?: string;
 
   static getAttributeTypeMap() {
-    return CursorPageInvoice.attributeTypeMap;
+    return PageInvoice.attributeTypeMap;
   }
 }
 

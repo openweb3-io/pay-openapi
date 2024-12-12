@@ -3,7 +3,7 @@ import { Configuration } from "../configuration";
 import { CreateInvoiceRequest } from "../models/CreateInvoiceRequest";
 import { CreateWebhook } from "../models/CreateWebhook";
 import { CryptoCurrency } from "../models/CryptoCurrency";
-import { CursorPageInvoice } from "../models/CursorPageInvoice";
+import { PageInvoice } from "../models/PageInvoice";
 import { CursorPageWebhook } from "../models/CursorPageWebhook";
 import { FiatCurrency } from "../models/FiatCurrency";
 import { Invoice } from "../models/Invoice";
@@ -100,7 +100,7 @@ export class PromiseInvoiceApi {
    * @param ordering Ordering
    * @param _options
    */
-  public v1InvoicesList(appId: string, cursor?: string, limit?: number, ordering?: string, _options?: Configuration): Promise<CursorPageInvoice> {
+  public v1InvoicesList(appId: string, cursor?: string, limit?: number, ordering?: string, _options?: Configuration): Promise<PageInvoice> {
     const result = this.api.v1InvoicesList(appId, cursor, limit, ordering, _options);
     return result.toPromise();
   }

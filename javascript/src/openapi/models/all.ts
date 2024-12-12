@@ -2,7 +2,7 @@ export * from "./CreateInvoiceRequest";
 export * from "./CreateWebhook";
 export * from "./CryptoCurrency";
 export * from "./CryptoCurrencyNetwork";
-export * from "./CursorPageInvoice";
+export * from "./PageInvoice";
 export * from "./CursorPageWebhook";
 export * from "./FiatCurrency";
 export * from "./Invoice";

@@ -2,7 +2,7 @@ export * from "./CreateInvoiceRequest";
 export * from "./CreateWebhook";
 export * from "./CryptoCurrency";
 export * from "./CryptoCurrencyNetwork";
-export * from "./CursorPageInvoice";
+export * from "./PageInvoice";
 export * from "./CursorPageWebhook";
 export * from "./FiatCurrency";
 export * from "./Invoice";
@@ -15,7 +15,7 @@ import { CreateInvoiceRequest } from "./CreateInvoiceRequest";
 import { CreateWebhook } from "./CreateWebhook";
 import { CryptoCurrency } from "./CryptoCurrency";
 import { CryptoCurrencyNetwork } from "./CryptoCurrencyNetwork";
-import { CursorPageInvoice } from "./CursorPageInvoice";
+import { PageInvoice } from "./PageInvoice";
 import { CursorPageWebhook } from "./CursorPageWebhook";
 import { FiatCurrency } from "./FiatCurrency";
 import { Invoice } from "./Invoice";
@@ -50,7 +50,7 @@ const typeMap: { [index: string]: any } = {
   "CreateWebhook": CreateWebhook,
   "CryptoCurrency": CryptoCurrency,
   "CryptoCurrencyNetwork": CryptoCurrencyNetwork,
-  "CursorPageInvoice": CursorPageInvoice,
+  "PageInvoice": PageInvoice,
   "CursorPageWebhook": CursorPageWebhook,
   "FiatCurrency": FiatCurrency,
   "Invoice": Invoice,

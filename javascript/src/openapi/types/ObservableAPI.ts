@@ -4,7 +4,7 @@ import { from, map, mergeMap, Observable, of } from "../rxjsStub";
 import { CreateInvoiceRequest } from "../models/CreateInvoiceRequest";
 import { CreateWebhook } from "../models/CreateWebhook";
 import { CryptoCurrency } from "../models/CryptoCurrency";
-import { CursorPageInvoice } from "../models/CursorPageInvoice";
+import { PageInvoice } from "../models/PageInvoice";
 import { CursorPageWebhook } from "../models/CursorPageWebhook";
 import { FiatCurrency } from "../models/FiatCurrency";
 import { Invoice } from "../models/Invoice";
@@ -156,7 +156,7 @@ export class ObservableInvoiceApi {
    * @param ordering Ordering
    * @param _options
    */
-  public v1InvoicesList(appId: string, cursor?: string, limit?: number, ordering?: string, _options?: Configuration): Observable<CursorPageInvoice> {
+  public v1InvoicesList(appId: string, cursor?: string, limit?: number, ordering?: string, _options?: Configuration): Observable<PageInvoice> {
     const requestContextPromise = this.requestFactory.v1InvoicesList(appId, cursor, limit, ordering, _options);
 
     // build promise chain
