@@ -1,29 +1,29 @@
 import {
-  ServerConfiguration,
   Configuration,
   createConfiguration,
-  InvoiceApi,
-  InvoiceIn,
-  InvoiceOut,
-  ListResponseInvoiceOut,
+  CursorPageInvoice,
+  CursorPageWebhook,
+  InvoiceApi, IsomorphicFetchHttpLibrary,
   Middleware,
+  Ordering,
   RequestContext,
   ResponseContext,
-  Ordering,
-  EndpointApi,
-  EndpointIn,
-  EndpointOut,
-  EndpointPatch,
-  ListResponseEndpointOut,
+  ServerConfiguration,
+  WebhookApi,
 } from "./openapi/index";
-export * from "./openapi/models/all";
-export * from "./openapi/apis/exception";
+import * as crypto from "crypto";
 import { createHash } from "crypto";
 import { timingSafeEqual } from "./timing_safe_equal";
 import * as base64 from "@stablelib/base64";
 import * as sha256 from "fast-sha256";
-import * as crypto from 'crypto';
-import * as forge from 'node-forge';
+import { CreateInvoiceRequest as InvoiceIn } from "./openapi/models/CreateInvoiceRequest";
+import { Invoice as InvoiceOut } from "./openapi/models/Invoice";
+import { CreateWebhook as EndpointIn } from "./openapi/models/CreateWebhook";
+import { UpdateWebhook as EndpointPatch } from "./openapi/models/UpdateWebhook";
+import { Webhook as EndpointOut } from "./openapi/models/Webhook";
+
+export * from "./openapi/models/all";
+export * from "./openapi/apis/exception";
 
 const WEBHOOK_TOLERANCE_IN_SECONDS = 5 * 60; // 5 minutes
 const VERSION = "0.2.0";
@@ -41,17 +41,17 @@ class UserAgentMiddleware implements Middleware {
 
 /**
  * 使用给定的 PKCS#1 格式的私钥对数据进行 SHA-256 签名
- * @param privateKeyStr PKCS#1 格式的私钥字符串
  * @param data 要签名的数据
+ * @param privateKey
  * @returns 签名的 Base64 格式字符串
  */
 function signDataWithPKCS1(data: string, privateKey: string): string {
-  const sign = crypto.createSign('SHA256');
+  const sign = crypto.createSign("SHA256");
 
   sign.update(data);
   sign.end();
 
-  return sign.sign(privateKey, 'base64');
+  return sign.sign(privateKey, "base64");
 }
 
 function hmacSha256(data: string, secret: string): string {
@@ -60,7 +60,8 @@ function hmacSha256(data: string, secret: string): string {
 }
 
 class SignatureMiddleware implements Middleware {
-  public constructor(private privateKey: string) {}
+  public constructor(private privateKey: string) {
+  }
 
   public pre(context: RequestContext): Promise<RequestContext> {
     const timestamp = new Date().toString();
@@ -115,9 +116,6 @@ export class pay {
     this.Endpoint = new Endpoint(config);
   }
 }
-export interface PostOptions {
-  idempotencyKey?: string;
-}
 
 interface ListOptions {
   iterator?: string;
@@ -134,55 +132,61 @@ export interface EndpointListOptions {
   limit?: number;
 }
 
-class Invoice{
+class Invoice {
   private readonly api: InvoiceApi;
 
   public constructor(config: Configuration) {
     this.api = new InvoiceApi(config);
   }
 
-  public list(appId:string, options?: InvoiceListOptions): Promise<ListResponseInvoiceOut> {
-    return this.api.v1InvoiceList({ appId, ...options });
+  public list(appId: string, options?: InvoiceListOptions): Promise<CursorPageInvoice> {
+    return this.api.v1InvoicesList({ appId, ...options });
   }
 
-  public create(appId: string, invoiceIn: InvoiceIn, options?: PostOptions): Promise<InvoiceOut> {
-    return this.api.v1InvoiceCreate({ appId, invoiceIn, ...options });
+  public create(
+    appId: string,
+    invoiceIn: InvoiceIn
+  ): Promise<InvoiceOut> {
+    return this.api.v1InvoicesCreate({ appId, createInvoiceRequest: invoiceIn });
   }
 
   public get(appId: string, idOrUid: string): Promise<InvoiceOut> {
-    return this.api.v1InvoiceGet({ appId, idOrUid });
+    return this.api.v1InvoicesRetrieve({ appId, invoiceId: idOrUid });
   }
 }
 
 class Endpoint {
-  private readonly api: EndpointApi;
+  private readonly api: WebhookApi;
 
   public constructor(config: Configuration) {
-    this.api = new EndpointApi(config);
+    this.api = new WebhookApi(config);
   }
 
-  public create(appId: string, endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
-    return this.api.v1EndpointCreate({ appId, endpointIn, ...options });
+  public create(
+    appId: string,
+    endpointIn: EndpointIn
+  ): Promise<EndpointOut> {
+    return this.api.v1EndpointsCreate({ appId, createWebhook: endpointIn });
   }
 
   public patch(
     appId: string,
     endpointId: string,
-    endpointPatch: EndpointPatch,
-    options?: PostOptions
+    endpointPatch: EndpointPatch
   ): Promise<EndpointOut> {
-    return this.api.v1EndpointPatch({ appId, endpointId, endpointPatch, ...options });
+    return this.api.v1EndpointsUpdate({ appId, endpointId, updateWebhook: endpointPatch });
   }
 
   public delete(appId: string, endpointId: string): Promise<EndpointOut> {
-    return this.api.v1EndpointDelete({ appId, endpointId });
+    return this.api.v1EndpointsDelete({ appId, endpointId });
   }
 
   public get(appId: string, endpointId: string): Promise<EndpointOut> {
-    return this.api.v1EndpointGet({appId, endpointId });
+    return this.api.v1EndpointsRetrieve({ appId, endpointId });
   }
-  public list(appId: string, options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
-    return this.api.v1EndpointList({ appId, ...options });
+
+  public list(appId: string, options?: EndpointListOptions): Promise<CursorPageWebhook> {
+    return this.api.v1EndpointsList({ appId, ...options });
   }
 }
 
@@ -324,9 +328,4 @@ export class Webhook {
     }
     return new Date(timestamp * 1000);
   }
-}
-
-export interface WebhookMessage {
-  event_type: string;
-  payload: InvoiceOut;
 }

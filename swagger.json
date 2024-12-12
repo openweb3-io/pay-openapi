@@ -1,0 +1,1452 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a pay service api server.",
+        "title": "Pay OpenAPI Documentations",
+        "contact": {
+            "name": "API Support",
+            "email": "support@openweb3.io"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/v1/apps/{appId}/currencies/crypto": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List available cryptocurrencies",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "currency"
+                ],
+                "summary": "List available cryptocurrencies",
+                "operationId": "v1.currencies.listCrypto",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CryptoCurrency"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/currencies/fiat": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List available fiat currencies",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "currency"
+                ],
+                "summary": "List available fiat currencies",
+                "operationId": "v1.currencies.listFlat",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/FiatCurrency"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/currencies/rate": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Get exchange rate",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "currency"
+                ],
+                "summary": "Get exchange rate",
+                "operationId": "v1.currencies.retrieveRate",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "From currency",
+                        "name": "from",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "To currency",
+                        "name": "to",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Rate"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/endpoints": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List webhook endpoints",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook"
+                ],
+                "summary": "List webhook endpoints",
+                "operationId": "v1.endpoints.list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Cursor",
+                        "name": "cursor",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Ordering",
+                        "name": "ordering",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CursorPage-Webhook"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Create a webhook endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook"
+                ],
+                "summary": "Create a webhook endpoint",
+                "operationId": "v1.endpoints.create",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateWebhook"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Webhook"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/endpoints/{endpointId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Retrieve a webhook endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook"
+                ],
+                "summary": "Retrieve a webhook endpoint",
+                "operationId": "v1.endpoints.retrieve",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Endpoint ID",
+                        "name": "endpointId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Webhook"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Delete a webhook endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook"
+                ],
+                "summary": "Delete a webhook endpoint",
+                "operationId": "v1.endpoints.delete",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Endpoint ID",
+                        "name": "endpointId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Webhook"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Update a webhook endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook"
+                ],
+                "summary": "Update a webhook endpoint",
+                "operationId": "v1.endpoints.update",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Endpoint ID",
+                        "name": "endpointId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateWebhook"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Webhook"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/invoices": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List invoices",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "invoice"
+                ],
+                "summary": "List invoices",
+                "operationId": "v1.invoices.list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Cursor",
+                        "name": "cursor",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Ordering",
+                        "name": "ordering",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CursorPage-Invoice"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Create an invoice",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "invoice"
+                ],
+                "summary": "Create an invoice",
+                "operationId": "v1.invoices.create",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateInvoiceRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Invoice"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/invoices/{invoiceId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Retrieve an invoice",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "invoice"
+                ],
+                "summary": "Retrieve an invoice",
+                "operationId": "v1.invoices.retrieve",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Invoice ID / UID",
+                        "name": "invoiceId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Invoice"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/payouts": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List payouts",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "payout"
+                ],
+                "summary": "List payouts",
+                "operationId": "v1.payouts.list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Cursor",
+                        "name": "cursor",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CursorPage-Payout"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Payout to address",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "payout"
+                ],
+                "summary": "Payout to address",
+                "operationId": "v1.payouts.create",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreatePayout"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Payout"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/payouts/{payoutId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Retrieve a payout",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "payout"
+                ],
+                "summary": "Retrieve a payout",
+                "operationId": "v1.payouts.retrieve",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Payout ID",
+                        "name": "payoutId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Payout"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/refunds": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List refunds",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "refund"
+                ],
+                "summary": "List refunds",
+                "operationId": "v1.refunds.list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Cursor",
+                        "name": "cursor",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CursorPage-Refund"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Refund invoice payment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "refund"
+                ],
+                "summary": "Refund invoice payment",
+                "operationId": "v1.refunds.create",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateRefund"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Refund"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/refunds/{refundId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Retrieve a refund",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "refund"
+                ],
+                "summary": "Retrieve a refund",
+                "operationId": "v1.refunds.retrieve",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Refund ID",
+                        "name": "refundId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Refund"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "CreateInvoiceRequest": {
+            "type": "object",
+            "required": [
+                "amount",
+                "channel",
+                "currency"
+            ],
+            "properties": {
+                "amount": {
+                    "description": "Amount (Integer)",
+                    "type": "string"
+                },
+                "channel": {
+                    "description": "Channel",
+                    "type": "string"
+                },
+                "currency": {
+                    "description": "Currency",
+                    "type": "string"
+                },
+                "expiration": {
+                    "description": "Expiration",
+                    "type": "integer"
+                },
+                "extra": {
+                    "description": "Extra",
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "metadata": {
+                    "description": "Metadata",
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "note": {
+                    "description": "Note",
+                    "type": "string"
+                },
+                "uid": {
+                    "description": "Unique ID",
+                    "type": "string"
+                },
+                "userId": {
+                    "description": "User ID",
+                    "type": "string"
+                }
+            }
+        },
+        "CreatePayout": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "description": "Amount (Integer)",
+                    "type": "string"
+                },
+                "currency": {
+                    "description": "Currency Code",
+                    "type": "string"
+                },
+                "network": {
+                    "description": "Currency Network",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "Payout notes",
+                    "type": "string"
+                },
+                "toAddress": {
+                    "description": "To Address",
+                    "type": "string"
+                },
+                "userId": {
+                    "description": "User ID",
+                    "type": "string"
+                }
+            }
+        },
+        "CreateRefund": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "description": "Refund amount (Integer)",
+                    "type": "number"
+                },
+                "invoiceId": {
+                    "description": "Invoice ID",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "Refund note",
+                    "type": "string"
+                },
+                "toAddress": {
+                    "description": "To Address",
+                    "type": "string"
+                }
+            }
+        },
+        "CreateWebhook": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "description": "The description of the webhook",
+                    "type": "string"
+                },
+                "disabled": {
+                    "description": "The disabled of the webhook",
+                    "type": "boolean"
+                },
+                "eventTypes": {
+                    "description": "The event types of the webhook",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "headers": {
+                    "description": "The headers of the webhook",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "metadata": {
+                    "description": "The metadata of the webhook",
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "uid": {
+                    "description": "The uid of the webhook",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The url of the webhook",
+                    "type": "string"
+                }
+            }
+        },
+        "CryptoCurrency": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "Currency code",
+                    "type": "string"
+                },
+                "decimals": {
+                    "description": "Decimals",
+                    "type": "integer"
+                },
+                "maxWithdrawAmount": {
+                    "description": "Max Withdraw Amount (Integer)",
+                    "type": "string"
+                },
+                "minDepositAmount": {
+                    "description": "Min Deposit Amount (Integer)",
+                    "type": "string"
+                },
+                "minWithdrawAmount": {
+                    "description": "Min Withdraw Amount (Integer)",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Currency name",
+                    "type": "string"
+                },
+                "networks": {
+                    "description": "Networks",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CryptoCurrencyNetwork"
+                    }
+                },
+                "precision": {
+                    "description": "Precision",
+                    "type": "integer"
+                }
+            }
+        },
+        "CryptoCurrencyNetwork": {
+            "type": "object",
+            "properties": {
+                "canDeposit": {
+                    "description": "Can Deposit",
+                    "type": "boolean"
+                },
+                "canTransfer": {
+                    "description": "Can Transfer",
+                    "type": "boolean"
+                },
+                "canWithdraw": {
+                    "description": "Can Withdraw",
+                    "type": "boolean"
+                },
+                "code": {
+                    "description": "Network code",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Network display name",
+                    "type": "string"
+                },
+                "network": {
+                    "description": "Network name",
+                    "type": "string"
+                }
+            }
+        },
+        "CursorPage-Invoice": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Invoice"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
+        "CursorPage-Payout": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Payout"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
+        "CursorPage-Refund": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Refund"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
+        "CursorPage-Webhook": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Webhook"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
+        "FiatCurrency": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "Currency Code",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Currency Name",
+                    "type": "string"
+                }
+            }
+        },
+        "Invoice": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "description": "Amount (Integer)",
+                    "type": "string"
+                },
+                "base_amount": {
+                    "description": "Base Currency Amount",
+                    "type": "string"
+                },
+                "channel": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "credentials": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "expiration": {
+                    "type": "integer"
+                },
+                "expiredAt": {
+                    "type": "string"
+                },
+                "extra": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "failedAt": {
+                    "type": "string"
+                },
+                "failedReason": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "note": {
+                    "type": "string"
+                },
+                "paidAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/definitions/InvoiceStatus"
+                },
+                "uid": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "InvoiceStatus": {
+            "type": "string",
+            "enum": [
+                "FAILED",
+                "PENDING",
+                "EXPIRED",
+                "PAID",
+                "COMPLETED"
+            ],
+            "x-enum-varnames": [
+                "InvoiceStatusFailed",
+                "InvoiceStatusPending",
+                "InvoiceStatusExpired",
+                "InvoiceStatusPaid",
+                "InvoiceStatusCompleted"
+            ]
+        },
+        "Payout": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "description": "Amount (Integer)",
+                    "type": "string"
+                },
+                "completedAt": {
+                    "description": "Completed at",
+                    "type": "string"
+                },
+                "createdAt": {
+                    "description": "Created at",
+                    "type": "string"
+                },
+                "currency": {
+                    "description": "Currency Code",
+                    "type": "string"
+                },
+                "failedAt": {
+                    "description": "Failed at",
+                    "type": "string"
+                },
+                "failedReason": {
+                    "description": "Failed reason",
+                    "type": "string"
+                },
+                "fromAddress": {
+                    "description": "From Address",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "network": {
+                    "description": "Currency Network",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "Payout note",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Payout status",
+                    "type": "string"
+                },
+                "toAddress": {
+                    "description": "To Address",
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "description": "Updated at",
+                    "type": "string"
+                },
+                "userId": {
+                    "description": "User ID",
+                    "type": "string"
+                }
+            }
+        },
+        "Rate": {
+            "type": "object",
+            "properties": {
+                "fromCurrency": {
+                    "description": "From currency code",
+                    "type": "string"
+                },
+                "rate": {
+                    "description": "Exchange Rate",
+                    "type": "string"
+                },
+                "toCurrency": {
+                    "description": "To currency code",
+                    "type": "string"
+                }
+            }
+        },
+        "Refund": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "description": "Refund amount (Integer)",
+                    "type": "number"
+                },
+                "completedAt": {
+                    "description": "Completed at",
+                    "type": "string"
+                },
+                "createdAt": {
+                    "description": "Created at",
+                    "type": "string"
+                },
+                "failedAt": {
+                    "description": "Failed at",
+                    "type": "string"
+                },
+                "failedReason": {
+                    "description": "Failed reason",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "invoiceId": {
+                    "description": "Invoice ID",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "Refund note",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Refund status",
+                    "type": "string"
+                },
+                "toAddress": {
+                    "description": "To Address",
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "description": "Updated at",
+                    "type": "string"
+                }
+            }
+        },
+        "UpdateWebhook": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "eventTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "uid": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "Webhook": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "eventTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "filter": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "uid": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "x-api-key",
+            "in": "header"
+        },
+        "SignatureAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
