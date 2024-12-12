@@ -8,10 +8,10 @@ import (
 )
 
 type (
-	ListResponseEndpointOut = openapi.ListResponseEndpointOut
-	EndpointIn              = openapi.EndpointIn
-	EndpointOut             = openapi.EndpointOut
-	EndpointPatch           = openapi.EndpointPatch
+	ListResponseEndpointOut = openapi.CursorPageWebhook
+	EndpointIn              = openapi.CreateWebhook
+	EndpointOut             = openapi.Webhook
+	EndpointPatch           = openapi.UpdateWebhook
 	Ordering                = openapi.Ordering
 )
 
@@ -31,7 +31,7 @@ type EndpointStatsOptions struct {
 }
 
 func (e *Endpoint) List(ctx context.Context, appId string, options *EndpointListOptions) (*ListResponseEndpointOut, error) {
-	req := e.api.EndpointApi.V1EndpointList(ctx, appId)
+	req := e.api.WebhookApi.V1EndpointsList(ctx, appId)
 	if options != nil {
 		if options.Limit != nil {
 			req = req.Limit(*options.Limit)
@@ -56,8 +56,8 @@ func (e *Endpoint) Create(ctx context.Context, appId string, endpointIn *Endpoin
 }
 
 func (e *Endpoint) CreateWithOptions(ctx context.Context, appId string, endpointIn *EndpointIn, options *PostOptions) (*EndpointOut, error) {
-	req := e.api.EndpointApi.V1EndpointCreate(ctx, appId)
-	req = req.EndpointIn(openapi.EndpointIn(*endpointIn))
+	req := e.api.WebhookApi.V1EndpointsCreate(ctx, appId)
+	req = req.CreateWebhook(*endpointIn)
 
 	out, res, err := req.Execute()
 	if err != nil {
@@ -72,8 +72,8 @@ func (e *Endpoint) Patch(ctx context.Context, appId string, endpointId string, e
 }
 
 func (e *Endpoint) PatchWithOptions(ctx context.Context, appId string, endpointId string, endpointPatch *EndpointPatch, options *PostOptions) (*EndpointOut, error) {
-	req := e.api.EndpointApi.V1EndpointPatch(ctx, appId, endpointId)
-	req = req.EndpointPatch(openapi.EndpointPatch(*endpointPatch))
+	req := e.api.WebhookApi.V1EndpointsUpdate(ctx, appId, endpointId)
+	req = req.UpdateWebhook(*endpointPatch)
 
 	out, res, err := req.Execute()
 	if err != nil {
@@ -84,7 +84,7 @@ func (e *Endpoint) PatchWithOptions(ctx context.Context, appId string, endpointI
 }
 
 func (e *Endpoint) Get(ctx context.Context, appId string, endpointId string) (*EndpointOut, error) {
-	req := e.api.EndpointApi.V1EndpointGet(ctx, appId, endpointId)
+	req := e.api.WebhookApi.V1EndpointsRetrieve(ctx, appId, endpointId)
 
 	out, res, err := req.Execute()
 	if err != nil {
@@ -96,7 +96,7 @@ func (e *Endpoint) Get(ctx context.Context, appId string, endpointId string) (*E
 }
 
 func (e *Endpoint) Delete(ctx context.Context, appId string, endpointId string) (*EndpointOut, error) {
-	req := e.api.EndpointApi.V1EndpointDelete(ctx, appId, endpointId)
+	req := e.api.WebhookApi.V1EndpointsDelete(ctx, appId, endpointId)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

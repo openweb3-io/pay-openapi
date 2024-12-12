@@ -25,34 +25,29 @@ var (
 	_ _context.Context
 )
 
-// InvoiceApiService InvoiceApi service
-type InvoiceApiService service
+// CurrencyApiService CurrencyApi service
+type CurrencyApiService service
 
-type ApiV1InvoicesCreateRequest struct {
+type ApiV1CurrenciesListCryptoRequest struct {
 	ctx _context.Context
-	ApiService *InvoiceApiService
+	ApiService *CurrencyApiService
 	appId string
-	createInvoiceRequest *CreateInvoiceRequest
 }
 
-func (r ApiV1InvoicesCreateRequest) CreateInvoiceRequest(createInvoiceRequest CreateInvoiceRequest) ApiV1InvoicesCreateRequest {
-	r.createInvoiceRequest = &createInvoiceRequest
-	return r
-}
 
-func (r ApiV1InvoicesCreateRequest) Execute() (Invoice, *_nethttp.Response, error) {
-	return r.ApiService.V1InvoicesCreateExecute(r)
+func (r ApiV1CurrenciesListCryptoRequest) Execute() ([]CryptoCurrency, *_nethttp.Response, error) {
+	return r.ApiService.V1CurrenciesListCryptoExecute(r)
 }
 
 /*
- * V1InvoicesCreate Create an invoice
- * Create an invoice
+ * V1CurrenciesListCrypto List available cryptocurrencies
+ * List available cryptocurrencies
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId App ID
- * @return ApiV1InvoicesCreateRequest
+ * @return ApiV1CurrenciesListCryptoRequest
  */
-func (a *InvoiceApiService) V1InvoicesCreate(ctx _context.Context, appId string) ApiV1InvoicesCreateRequest {
-	return ApiV1InvoicesCreateRequest{
+func (a *CurrencyApiService) V1CurrenciesListCrypto(ctx _context.Context, appId string) ApiV1CurrenciesListCryptoRequest {
+	return ApiV1CurrenciesListCryptoRequest{
 		ApiService: a,
 		ctx: ctx,
 		appId: appId,
@@ -61,193 +56,30 @@ func (a *InvoiceApiService) V1InvoicesCreate(ctx _context.Context, appId string)
 
 /*
  * Execute executes the request
- * @return Invoice
+ * @return []CryptoCurrency
  */
-func (a *InvoiceApiService) V1InvoicesCreateExecute(r ApiV1InvoicesCreateRequest) (Invoice, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Invoice
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoiceApiService.V1InvoicesCreate")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/invoices"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.createInvoiceRequest == nil {
-		return localVarReturnValue, nil, reportError("createInvoiceRequest is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.createInvoiceRequest
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKeyAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["SignatureAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiV1InvoicesListRequest struct {
-	ctx _context.Context
-	ApiService *InvoiceApiService
-	appId string
-	cursor *string
-	limit *int32
-	ordering *string
-}
-
-func (r ApiV1InvoicesListRequest) Cursor(cursor string) ApiV1InvoicesListRequest {
-	r.cursor = &cursor
-	return r
-}
-func (r ApiV1InvoicesListRequest) Limit(limit int32) ApiV1InvoicesListRequest {
-	r.limit = &limit
-	return r
-}
-func (r ApiV1InvoicesListRequest) Ordering(ordering string) ApiV1InvoicesListRequest {
-	r.ordering = &ordering
-	return r
-}
-
-func (r ApiV1InvoicesListRequest) Execute() (PageInvoice, *_nethttp.Response, error) {
-	return r.ApiService.V1InvoicesListExecute(r)
-}
-
-/*
- * V1InvoicesList List invoices
- * List invoices
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
- * @return ApiV1InvoicesListRequest
- */
-func (a *InvoiceApiService) V1InvoicesList(ctx _context.Context, appId string) ApiV1InvoicesListRequest {
-	return ApiV1InvoicesListRequest{
-		ApiService: a,
-		ctx: ctx,
-		appId: appId,
-	}
-}
-
-/*
- * Execute executes the request
- * @return PageInvoice
- */
-func (a *InvoiceApiService) V1InvoicesListExecute(r ApiV1InvoicesListRequest) (PageInvoice, *_nethttp.Response, error) {
+func (a *CurrencyApiService) V1CurrenciesListCryptoExecute(r ApiV1CurrenciesListCryptoRequest) ([]CryptoCurrency, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PageInvoice
+		localVarReturnValue  []CryptoCurrency
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoiceApiService.V1InvoicesList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CurrencyApiService.V1CurrenciesListCrypto")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/invoices"
+	localVarPath := localBasePath + "/api/v1/apps/{appId}/currencies/crypto"
 	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.cursor != nil {
-		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
-	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
-	if r.ordering != nil {
-		localVarQueryParams.Add("ordering", parameterToString(*r.ordering, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -330,62 +162,210 @@ func (a *InvoiceApiService) V1InvoicesListExecute(r ApiV1InvoicesListRequest) (P
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiV1InvoicesRetrieveRequest struct {
+type ApiV1CurrenciesListFlatRequest struct {
 	ctx _context.Context
-	ApiService *InvoiceApiService
+	ApiService *CurrencyApiService
 	appId string
-	invoiceId string
 }
 
 
-func (r ApiV1InvoicesRetrieveRequest) Execute() (Invoice, *_nethttp.Response, error) {
-	return r.ApiService.V1InvoicesRetrieveExecute(r)
+func (r ApiV1CurrenciesListFlatRequest) Execute() ([]FiatCurrency, *_nethttp.Response, error) {
+	return r.ApiService.V1CurrenciesListFlatExecute(r)
 }
 
 /*
- * V1InvoicesRetrieve Retrieve an invoice
- * Retrieve an invoice
+ * V1CurrenciesListFlat List available fiat currencies
+ * List available fiat currencies
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId App ID
- * @param invoiceId Invoice ID / UID
- * @return ApiV1InvoicesRetrieveRequest
+ * @return ApiV1CurrenciesListFlatRequest
  */
-func (a *InvoiceApiService) V1InvoicesRetrieve(ctx _context.Context, appId string, invoiceId string) ApiV1InvoicesRetrieveRequest {
-	return ApiV1InvoicesRetrieveRequest{
+func (a *CurrencyApiService) V1CurrenciesListFlat(ctx _context.Context, appId string) ApiV1CurrenciesListFlatRequest {
+	return ApiV1CurrenciesListFlatRequest{
 		ApiService: a,
 		ctx: ctx,
 		appId: appId,
-		invoiceId: invoiceId,
 	}
 }
 
 /*
  * Execute executes the request
- * @return Invoice
+ * @return []FiatCurrency
  */
-func (a *InvoiceApiService) V1InvoicesRetrieveExecute(r ApiV1InvoicesRetrieveRequest) (Invoice, *_nethttp.Response, error) {
+func (a *CurrencyApiService) V1CurrenciesListFlatExecute(r ApiV1CurrenciesListFlatRequest) ([]FiatCurrency, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Invoice
+		localVarReturnValue  []FiatCurrency
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoiceApiService.V1InvoicesRetrieve")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CurrencyApiService.V1CurrenciesListFlat")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/invoices/{invoiceId}"
+	localVarPath := localBasePath + "/api/v1/apps/{appId}/currencies/fiat"
 	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"invoiceId"+"}", _neturl.PathEscape(parameterToString(r.invoiceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["SignatureAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiV1CurrenciesRetrieveRateRequest struct {
+	ctx _context.Context
+	ApiService *CurrencyApiService
+	appId string
+	from *string
+	to *string
+}
+
+func (r ApiV1CurrenciesRetrieveRateRequest) From(from string) ApiV1CurrenciesRetrieveRateRequest {
+	r.from = &from
+	return r
+}
+func (r ApiV1CurrenciesRetrieveRateRequest) To(to string) ApiV1CurrenciesRetrieveRateRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiV1CurrenciesRetrieveRateRequest) Execute() ([]Rate, *_nethttp.Response, error) {
+	return r.ApiService.V1CurrenciesRetrieveRateExecute(r)
+}
+
+/*
+ * V1CurrenciesRetrieveRate Get exchange rate
+ * Get exchange rate
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appId App ID
+ * @return ApiV1CurrenciesRetrieveRateRequest
+ */
+func (a *CurrencyApiService) V1CurrenciesRetrieveRate(ctx _context.Context, appId string) ApiV1CurrenciesRetrieveRateRequest {
+	return ApiV1CurrenciesRetrieveRateRequest{
+		ApiService: a,
+		ctx: ctx,
+		appId: appId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return []Rate
+ */
+func (a *CurrencyApiService) V1CurrenciesRetrieveRateExecute(r ApiV1CurrenciesRetrieveRateRequest) ([]Rate, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []Rate
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CurrencyApiService.V1CurrenciesRetrieveRate")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/apps/{appId}/currencies/rate"
+	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.from == nil {
+		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	}
+	if r.to == nil {
+		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	}
+
+	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

@@ -465,7 +465,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/CursorPage-Invoice"
+                            "$ref": "#/definitions/Page-Invoice"
                         }
                     }
                 }
@@ -566,304 +566,6 @@
                     }
                 }
             }
-        },
-        "/api/v1/apps/{appId}/payouts": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "List payouts",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "payout"
-                ],
-                "summary": "List payouts",
-                "operationId": "v1.payouts.list",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Cursor",
-                        "name": "cursor",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Limit",
-                        "name": "limit",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/CursorPage-Payout"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Payout to address",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "payout"
-                ],
-                "summary": "Payout to address",
-                "operationId": "v1.payouts.create",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Request body",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/CreatePayout"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Payout"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/apps/{appId}/payouts/{payoutId}": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Retrieve a payout",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "payout"
-                ],
-                "summary": "Retrieve a payout",
-                "operationId": "v1.payouts.retrieve",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Payout ID",
-                        "name": "payoutId",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Payout"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/apps/{appId}/refunds": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "List refunds",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "refund"
-                ],
-                "summary": "List refunds",
-                "operationId": "v1.refunds.list",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Cursor",
-                        "name": "cursor",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Limit",
-                        "name": "limit",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/CursorPage-Refund"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Refund invoice payment",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "refund"
-                ],
-                "summary": "Refund invoice payment",
-                "operationId": "v1.refunds.create",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Request body",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/CreateRefund"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Refund"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/apps/{appId}/refunds/{refundId}": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Retrieve a refund",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "refund"
-                ],
-                "summary": "Retrieve a refund",
-                "operationId": "v1.refunds.retrieve",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Refund ID",
-                        "name": "refundId",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Refund"
-                        }
-                    }
-                }
-            }
         }
     },
     "definitions": {
@@ -911,56 +613,6 @@
                 },
                 "userId": {
                     "description": "User ID",
-                    "type": "string"
-                }
-            }
-        },
-        "CreatePayout": {
-            "type": "object",
-            "properties": {
-                "amount": {
-                    "description": "Amount (Integer)",
-                    "type": "string"
-                },
-                "currency": {
-                    "description": "Currency Code",
-                    "type": "string"
-                },
-                "network": {
-                    "description": "Currency Network",
-                    "type": "string"
-                },
-                "note": {
-                    "description": "Payout notes",
-                    "type": "string"
-                },
-                "toAddress": {
-                    "description": "To Address",
-                    "type": "string"
-                },
-                "userId": {
-                    "description": "User ID",
-                    "type": "string"
-                }
-            }
-        },
-        "CreateRefund": {
-            "type": "object",
-            "properties": {
-                "amount": {
-                    "description": "Refund amount (Integer)",
-                    "type": "number"
-                },
-                "invoiceId": {
-                    "description": "Invoice ID",
-                    "type": "string"
-                },
-                "note": {
-                    "description": "Refund note",
-                    "type": "string"
-                },
-                "toAddress": {
-                    "description": "To Address",
                     "type": "string"
                 }
             }
@@ -1070,57 +722,6 @@
                 },
                 "network": {
                     "description": "Network name",
-                    "type": "string"
-                }
-            }
-        },
-        "CursorPage-Invoice": {
-            "type": "object",
-            "properties": {
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Invoice"
-                    }
-                },
-                "next_cursor": {
-                    "type": "string"
-                },
-                "prev_cursor": {
-                    "type": "string"
-                }
-            }
-        },
-        "CursorPage-Payout": {
-            "type": "object",
-            "properties": {
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Payout"
-                    }
-                },
-                "next_cursor": {
-                    "type": "string"
-                },
-                "prev_cursor": {
-                    "type": "string"
-                }
-            }
-        },
-        "CursorPage-Refund": {
-            "type": "object",
-            "properties": {
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Refund"
-                    }
-                },
-                "next_cursor": {
-                    "type": "string"
-                },
-                "prev_cursor": {
                     "type": "string"
                 }
             }
@@ -1236,63 +837,29 @@
                 "InvoiceStatusCompleted"
             ]
         },
-        "Payout": {
+        "Page-Invoice": {
             "type": "object",
             "properties": {
-                "amount": {
-                    "description": "Amount (Integer)",
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Invoice"
+                    }
+                },
+                "hasNext": {
+                    "type": "boolean"
+                },
+                "hasPrev": {
+                    "type": "boolean"
+                },
+                "next_cursor": {
                     "type": "string"
                 },
-                "completedAt": {
-                    "description": "Completed at",
+                "prev_cursor": {
                     "type": "string"
                 },
-                "createdAt": {
-                    "description": "Created at",
-                    "type": "string"
-                },
-                "currency": {
-                    "description": "Currency Code",
-                    "type": "string"
-                },
-                "failedAt": {
-                    "description": "Failed at",
-                    "type": "string"
-                },
-                "failedReason": {
-                    "description": "Failed reason",
-                    "type": "string"
-                },
-                "fromAddress": {
-                    "description": "From Address",
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "network": {
-                    "description": "Currency Network",
-                    "type": "string"
-                },
-                "note": {
-                    "description": "Payout note",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Payout status",
-                    "type": "string"
-                },
-                "toAddress": {
-                    "description": "To Address",
-                    "type": "string"
-                },
-                "updatedAt": {
-                    "description": "Updated at",
-                    "type": "string"
-                },
-                "userId": {
-                    "description": "User ID",
-                    "type": "string"
+                "total": {
+                    "type": "integer"
                 }
             }
         },
@@ -1309,54 +876,6 @@
                 },
                 "toCurrency": {
                     "description": "To currency code",
-                    "type": "string"
-                }
-            }
-        },
-        "Refund": {
-            "type": "object",
-            "properties": {
-                "amount": {
-                    "description": "Refund amount (Integer)",
-                    "type": "number"
-                },
-                "completedAt": {
-                    "description": "Completed at",
-                    "type": "string"
-                },
-                "createdAt": {
-                    "description": "Created at",
-                    "type": "string"
-                },
-                "failedAt": {
-                    "description": "Failed at",
-                    "type": "string"
-                },
-                "failedReason": {
-                    "description": "Failed reason",
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "invoiceId": {
-                    "description": "Invoice ID",
-                    "type": "string"
-                },
-                "note": {
-                    "description": "Refund note",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Refund status",
-                    "type": "string"
-                },
-                "toAddress": {
-                    "description": "To Address",
-                    "type": "string"
-                },
-                "updatedAt": {
-                    "description": "Updated at",
                     "type": "string"
                 }
             }
