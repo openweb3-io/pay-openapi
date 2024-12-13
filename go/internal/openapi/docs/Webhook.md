@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
+**CreatedAt** | **string** |  | 
+**Description** | **string** |  | 
 **Disabled** | Pointer to **bool** |  | [optional] 
-**EventTypes** | Pointer to **[]string** |  | [optional] 
-**Filter** | Pointer to **string** |  | [optional] 
-**Headers** | Pointer to **map[string]string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
+**EventTypes** | **[]string** |  | 
+**Filter** | **string** |  | 
+**Headers** | **map[string]string** |  | 
+**Id** | **string** |  | 
+**Metadata** | **map[string]interface{}** |  | 
 **Uid** | Pointer to **string** |  | [optional] 
-**Url** | Pointer to **string** |  | [optional] 
+**Url** | **string** |  | 
 
 ## Methods
 
 ### NewWebhook
 
-`func NewWebhook() *Webhook`
+`func NewWebhook(createdAt string, description string, eventTypes []string, filter string, headers map[string]string, id string, metadata map[string]interface{}, url string, ) *Webhook`
 
 NewWebhook instantiates a new Webhook object
 This constructor will assign default values to properties that have it defined,
@@ -53,11 +53,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *Webhook) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -78,11 +73,6 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
-### HasDescription
-
-`func (o *Webhook) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
 
 ### GetDisabled
 
@@ -128,11 +118,6 @@ and a boolean to check if the value has been set.
 
 SetEventTypes sets EventTypes field to given value.
 
-### HasEventTypes
-
-`func (o *Webhook) HasEventTypes() bool`
-
-HasEventTypes returns a boolean if a field has been set.
 
 ### GetFilter
 
@@ -153,11 +138,6 @@ and a boolean to check if the value has been set.
 
 SetFilter sets Filter field to given value.
 
-### HasFilter
-
-`func (o *Webhook) HasFilter() bool`
-
-HasFilter returns a boolean if a field has been set.
 
 ### GetHeaders
 
@@ -178,11 +158,6 @@ and a boolean to check if the value has been set.
 
 SetHeaders sets Headers field to given value.
 
-### HasHeaders
-
-`func (o *Webhook) HasHeaders() bool`
-
-HasHeaders returns a boolean if a field has been set.
 
 ### GetId
 
@@ -203,11 +178,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *Webhook) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -228,11 +198,6 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
-### HasMetadata
-
-`func (o *Webhook) HasMetadata() bool`
-
-HasMetadata returns a boolean if a field has been set.
 
 ### GetUid
 
@@ -278,11 +243,6 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
-### HasUrl
-
-`func (o *Webhook) HasUrl() bool`
-
-HasUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

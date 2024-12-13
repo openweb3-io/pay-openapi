@@ -122,30 +122,33 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Cursor
-        explode: true
+      - explode: true
         in: query
         name: cursor
         required: false
         schema:
           type: string
         style: form
-      - description: Limit
-        explode: true
+      - explode: true
         in: query
         name: limit
         required: false
         schema:
           type: integer
         style: form
-      - description: Ordering
-        explode: true
+      - explode: true
         in: query
         name: ordering
         required: false
         schema:
+          enum:
+          - asc
+          - desc
           type: string
         style: form
+        x-enum-varnames:
+        - ORDERING_ASC
+        - ORDERING_DESC
       responses:
         "200":
           content:
@@ -311,26 +314,30 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Cursor
-        explode: true
+      - explode: true
         in: query
-        name: cursor
+        name: channel
         required: false
         schema:
           type: string
         style: form
-      - description: Limit
-        explode: true
+      - explode: true
         in: query
         name: limit
         required: false
         schema:
           type: integer
         style: form
-      - description: Ordering
-        explode: true
+      - explode: true
         in: query
-        name: ordering
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: userId
         required: false
         schema:
           type: string
@@ -463,6 +470,8 @@ components:
       - amount
       - channel
       - currency
+      - extra
+      - metadata
       type: object
     CreateWebhook:
       example:
@@ -504,6 +513,12 @@ components:
         url:
           description: The url of the webhook
           type: string
+      required:
+      - disabled
+      - eventTypes
+      - headers
+      - metadata
+      - url
       type: object
     CryptoCurrency:
       example:
@@ -554,6 +569,15 @@ components:
         precision:
           description: Precision
           type: integer
+      required:
+      - code
+      - decimals
+      - maxWithdrawAmount
+      - minDepositAmount
+      - minWithdrawAmount
+      - name
+      - networks
+      - precision
       type: object
     CryptoCurrencyNetwork:
       example:
@@ -582,6 +606,13 @@ components:
         network:
           description: Network name
           type: string
+      required:
+      - canDeposit
+      - canTransfer
+      - canWithdraw
+      - code
+      - name
+      - network
       type: object
     CursorPage-Webhook:
       example:
@@ -637,6 +668,9 @@ components:
         name:
           description: Currency Name
           type: string
+      required:
+      - code
+      - name
       type: object
     Invoice:
       example:
@@ -702,6 +736,18 @@ components:
           type: string
         userId:
           type: string
+      required:
+      - amount
+      - base_amount
+      - channel
+      - createdAt
+      - credentials
+      - currency
+      - extra
+      - id
+      - metadata
+      - note
+      - status
       type: object
     InvoiceStatus:
       enum:
@@ -717,6 +763,14 @@ components:
       - InvoiceStatusExpired
       - InvoiceStatusPaid
       - InvoiceStatusCompleted
+    Ordering:
+      enum:
+      - asc
+      - desc
+      type: string
+      x-enum-varnames:
+      - ORDERING_ASC
+      - ORDERING_DESC
     Page-Invoice:
       example:
         prev_cursor: prev_cursor
@@ -796,6 +850,10 @@ components:
         toCurrency:
           description: To currency code
           type: string
+      required:
+      - fromCurrency
+      - rate
+      - toCurrency
       type: object
     UpdateWebhook:
       example:
@@ -830,6 +888,10 @@ components:
           type: string
         url:
           type: string
+      required:
+      - eventTypes
+      - headers
+      - metadata
       type: object
     Webhook:
       example:
@@ -873,6 +935,15 @@ components:
           type: string
         url:
           type: string
+      required:
+      - createdAt
+      - description
+      - eventTypes
+      - filter
+      - headers
+      - id
+      - metadata
+      - url
       type: object
   securitySchemes:
     ApiKeyAuth:

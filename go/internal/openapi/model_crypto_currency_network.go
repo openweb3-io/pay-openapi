@@ -18,25 +18,31 @@ import (
 // CryptoCurrencyNetwork struct for CryptoCurrencyNetwork
 type CryptoCurrencyNetwork struct {
 	// Can Deposit
-	CanDeposit *bool `json:"canDeposit,omitempty"`
+	CanDeposit bool `json:"canDeposit"`
 	// Can Transfer
-	CanTransfer *bool `json:"canTransfer,omitempty"`
+	CanTransfer bool `json:"canTransfer"`
 	// Can Withdraw
-	CanWithdraw *bool `json:"canWithdraw,omitempty"`
+	CanWithdraw bool `json:"canWithdraw"`
 	// Network code
-	Code *string `json:"code,omitempty"`
+	Code string `json:"code"`
 	// Network display name
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Network name
-	Network *string `json:"network,omitempty"`
+	Network string `json:"network"`
 }
 
 // NewCryptoCurrencyNetwork instantiates a new CryptoCurrencyNetwork object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCryptoCurrencyNetwork() *CryptoCurrencyNetwork {
+func NewCryptoCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, name string, network string) *CryptoCurrencyNetwork {
 	this := CryptoCurrencyNetwork{}
+	this.CanDeposit = canDeposit
+	this.CanTransfer = canTransfer
+	this.CanWithdraw = canWithdraw
+	this.Code = code
+	this.Name = name
+	this.Network = network
 	return &this
 }
 
@@ -48,216 +54,168 @@ func NewCryptoCurrencyNetworkWithDefaults() *CryptoCurrencyNetwork {
 	return &this
 }
 
-// GetCanDeposit returns the CanDeposit field value if set, zero value otherwise.
+// GetCanDeposit returns the CanDeposit field value
 func (o *CryptoCurrencyNetwork) GetCanDeposit() bool {
-	if o == nil || o.CanDeposit == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.CanDeposit
+
+	return o.CanDeposit
 }
 
-// GetCanDepositOk returns a tuple with the CanDeposit field value if set, nil otherwise
+// GetCanDepositOk returns a tuple with the CanDeposit field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetCanDepositOk() (*bool, bool) {
-	if o == nil || o.CanDeposit == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CanDeposit, true
+	return &o.CanDeposit, true
 }
 
-// HasCanDeposit returns a boolean if a field has been set.
-func (o *CryptoCurrencyNetwork) HasCanDeposit() bool {
-	if o != nil && o.CanDeposit != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCanDeposit gets a reference to the given bool and assigns it to the CanDeposit field.
+// SetCanDeposit sets field value
 func (o *CryptoCurrencyNetwork) SetCanDeposit(v bool) {
-	o.CanDeposit = &v
+	o.CanDeposit = v
 }
 
-// GetCanTransfer returns the CanTransfer field value if set, zero value otherwise.
+// GetCanTransfer returns the CanTransfer field value
 func (o *CryptoCurrencyNetwork) GetCanTransfer() bool {
-	if o == nil || o.CanTransfer == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.CanTransfer
+
+	return o.CanTransfer
 }
 
-// GetCanTransferOk returns a tuple with the CanTransfer field value if set, nil otherwise
+// GetCanTransferOk returns a tuple with the CanTransfer field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetCanTransferOk() (*bool, bool) {
-	if o == nil || o.CanTransfer == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CanTransfer, true
+	return &o.CanTransfer, true
 }
 
-// HasCanTransfer returns a boolean if a field has been set.
-func (o *CryptoCurrencyNetwork) HasCanTransfer() bool {
-	if o != nil && o.CanTransfer != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCanTransfer gets a reference to the given bool and assigns it to the CanTransfer field.
+// SetCanTransfer sets field value
 func (o *CryptoCurrencyNetwork) SetCanTransfer(v bool) {
-	o.CanTransfer = &v
+	o.CanTransfer = v
 }
 
-// GetCanWithdraw returns the CanWithdraw field value if set, zero value otherwise.
+// GetCanWithdraw returns the CanWithdraw field value
 func (o *CryptoCurrencyNetwork) GetCanWithdraw() bool {
-	if o == nil || o.CanWithdraw == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.CanWithdraw
+
+	return o.CanWithdraw
 }
 
-// GetCanWithdrawOk returns a tuple with the CanWithdraw field value if set, nil otherwise
+// GetCanWithdrawOk returns a tuple with the CanWithdraw field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetCanWithdrawOk() (*bool, bool) {
-	if o == nil || o.CanWithdraw == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CanWithdraw, true
+	return &o.CanWithdraw, true
 }
 
-// HasCanWithdraw returns a boolean if a field has been set.
-func (o *CryptoCurrencyNetwork) HasCanWithdraw() bool {
-	if o != nil && o.CanWithdraw != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCanWithdraw gets a reference to the given bool and assigns it to the CanWithdraw field.
+// SetCanWithdraw sets field value
 func (o *CryptoCurrencyNetwork) SetCanWithdraw(v bool) {
-	o.CanWithdraw = &v
+	o.CanWithdraw = v
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
+// GetCode returns the Code field value
 func (o *CryptoCurrencyNetwork) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Code
+
+	return o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Code, true
+	return &o.Code, true
 }
 
-// HasCode returns a boolean if a field has been set.
-func (o *CryptoCurrencyNetwork) HasCode() bool {
-	if o != nil && o.Code != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given string and assigns it to the Code field.
+// SetCode sets field value
 func (o *CryptoCurrencyNetwork) SetCode(v string) {
-	o.Code = &v
+	o.Code = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *CryptoCurrencyNetwork) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CryptoCurrencyNetwork) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *CryptoCurrencyNetwork) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetNetwork returns the Network field value if set, zero value otherwise.
+// GetNetwork returns the Network field value
 func (o *CryptoCurrencyNetwork) GetNetwork() string {
-	if o == nil || o.Network == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Network
+
+	return o.Network
 }
 
-// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
+// GetNetworkOk returns a tuple with the Network field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetNetworkOk() (*string, bool) {
-	if o == nil || o.Network == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Network, true
+	return &o.Network, true
 }
 
-// HasNetwork returns a boolean if a field has been set.
-func (o *CryptoCurrencyNetwork) HasNetwork() bool {
-	if o != nil && o.Network != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNetwork gets a reference to the given string and assigns it to the Network field.
+// SetNetwork sets field value
 func (o *CryptoCurrencyNetwork) SetNetwork(v string) {
-	o.Network = &v
+	o.Network = v
 }
 
 func (o CryptoCurrencyNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CanDeposit != nil {
+	if true {
 		toSerialize["canDeposit"] = o.CanDeposit
 	}
-	if o.CanTransfer != nil {
+	if true {
 		toSerialize["canTransfer"] = o.CanTransfer
 	}
-	if o.CanWithdraw != nil {
+	if true {
 		toSerialize["canWithdraw"] = o.CanWithdraw
 	}
-	if o.Code != nil {
+	if true {
 		toSerialize["code"] = o.Code
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Network != nil {
+	if true {
 		toSerialize["network"] = o.Network
 	}
 	return json.Marshal(toSerialize)
@@ -298,5 +256,3 @@ func (v *NullableCryptoCurrencyNetwork) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

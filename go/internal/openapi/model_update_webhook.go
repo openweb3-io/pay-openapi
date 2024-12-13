@@ -17,21 +17,24 @@ import (
 
 // UpdateWebhook struct for UpdateWebhook
 type UpdateWebhook struct {
-	Description *string `json:"description,omitempty"`
-	Disabled *bool `json:"disabled,omitempty"`
-	EventTypes *[]string `json:"eventTypes,omitempty"`
-	Headers *map[string]string `json:"headers,omitempty"`
-	Metadata *map[string]interface{} `json:"metadata,omitempty"`
-	Uid *string `json:"uid,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Description *string                `json:"description,omitempty"`
+	Disabled    *bool                  `json:"disabled,omitempty"`
+	EventTypes  []string               `json:"eventTypes"`
+	Headers     map[string]string      `json:"headers"`
+	Metadata    map[string]interface{} `json:"metadata"`
+	Uid         *string                `json:"uid,omitempty"`
+	Url         *string                `json:"url,omitempty"`
 }
 
 // NewUpdateWebhook instantiates a new UpdateWebhook object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateWebhook() *UpdateWebhook {
+func NewUpdateWebhook(eventTypes []string, headers map[string]string, metadata map[string]interface{}) *UpdateWebhook {
 	this := UpdateWebhook{}
+	this.EventTypes = eventTypes
+	this.Headers = headers
+	this.Metadata = metadata
 	return &this
 }
 
@@ -107,100 +110,76 @@ func (o *UpdateWebhook) SetDisabled(v bool) {
 	o.Disabled = &v
 }
 
-// GetEventTypes returns the EventTypes field value if set, zero value otherwise.
+// GetEventTypes returns the EventTypes field value
 func (o *UpdateWebhook) GetEventTypes() []string {
-	if o == nil || o.EventTypes == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.EventTypes
+
+	return o.EventTypes
 }
 
-// GetEventTypesOk returns a tuple with the EventTypes field value if set, nil otherwise
+// GetEventTypesOk returns a tuple with the EventTypes field value
 // and a boolean to check if the value has been set.
 func (o *UpdateWebhook) GetEventTypesOk() (*[]string, bool) {
-	if o == nil || o.EventTypes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.EventTypes, true
+	return &o.EventTypes, true
 }
 
-// HasEventTypes returns a boolean if a field has been set.
-func (o *UpdateWebhook) HasEventTypes() bool {
-	if o != nil && o.EventTypes != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEventTypes gets a reference to the given []string and assigns it to the EventTypes field.
+// SetEventTypes sets field value
 func (o *UpdateWebhook) SetEventTypes(v []string) {
-	o.EventTypes = &v
+	o.EventTypes = v
 }
 
-// GetHeaders returns the Headers field value if set, zero value otherwise.
+// GetHeaders returns the Headers field value
 func (o *UpdateWebhook) GetHeaders() map[string]string {
-	if o == nil || o.Headers == nil {
+	if o == nil {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Headers
+
+	return o.Headers
 }
 
-// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
+// GetHeadersOk returns a tuple with the Headers field value
 // and a boolean to check if the value has been set.
 func (o *UpdateWebhook) GetHeadersOk() (*map[string]string, bool) {
-	if o == nil || o.Headers == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Headers, true
+	return &o.Headers, true
 }
 
-// HasHeaders returns a boolean if a field has been set.
-func (o *UpdateWebhook) HasHeaders() bool {
-	if o != nil && o.Headers != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
+// SetHeaders sets field value
 func (o *UpdateWebhook) SetHeaders(v map[string]string) {
-	o.Headers = &v
+	o.Headers = v
 }
 
-// GetMetadata returns the Metadata field value if set, zero value otherwise.
+// GetMetadata returns the Metadata field value
 func (o *UpdateWebhook) GetMetadata() map[string]interface{} {
-	if o == nil || o.Metadata == nil {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Metadata
+
+	return o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 func (o *UpdateWebhook) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil || o.Metadata == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Metadata, true
+	return &o.Metadata, true
 }
 
-// HasMetadata returns a boolean if a field has been set.
-func (o *UpdateWebhook) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+// SetMetadata sets field value
 func (o *UpdateWebhook) SetMetadata(v map[string]interface{}) {
-	o.Metadata = &v
+	o.Metadata = v
 }
 
 // GetUid returns the Uid field value if set, zero value otherwise.
@@ -275,13 +254,13 @@ func (o UpdateWebhook) MarshalJSON() ([]byte, error) {
 	if o.Disabled != nil {
 		toSerialize["disabled"] = o.Disabled
 	}
-	if o.EventTypes != nil {
+	if true {
 		toSerialize["eventTypes"] = o.EventTypes
 	}
-	if o.Headers != nil {
+	if true {
 		toSerialize["headers"] = o.Headers
 	}
-	if o.Metadata != nil {
+	if true {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if o.Uid != nil {
@@ -328,5 +307,3 @@ func (v *NullableUpdateWebhook) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

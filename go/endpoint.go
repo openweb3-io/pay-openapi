@@ -40,7 +40,7 @@ func (e *Endpoint) List(ctx context.Context, appId string, options *EndpointList
 			req = req.Cursor(*options.Cursor)
 		}
 		if options.Ordering != nil {
-			req = req.Ordering(*options.Ordering)
+			req = req.Ordering(string(*options.Ordering))
 		}
 	}
 	out, res, err := req.Execute()

@@ -18,29 +18,37 @@ import (
 // CryptoCurrency struct for CryptoCurrency
 type CryptoCurrency struct {
 	// Currency code
-	Code *string `json:"code,omitempty"`
+	Code string `json:"code"`
 	// Decimals
-	Decimals *int32 `json:"decimals,omitempty"`
+	Decimals int32 `json:"decimals"`
 	// Max Withdraw Amount (Integer)
-	MaxWithdrawAmount *string `json:"maxWithdrawAmount,omitempty"`
+	MaxWithdrawAmount string `json:"maxWithdrawAmount"`
 	// Min Deposit Amount (Integer)
-	MinDepositAmount *string `json:"minDepositAmount,omitempty"`
+	MinDepositAmount string `json:"minDepositAmount"`
 	// Min Withdraw Amount (Integer)
-	MinWithdrawAmount *string `json:"minWithdrawAmount,omitempty"`
+	MinWithdrawAmount string `json:"minWithdrawAmount"`
 	// Currency name
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Networks
-	Networks *[]CryptoCurrencyNetwork `json:"networks,omitempty"`
+	Networks []CryptoCurrencyNetwork `json:"networks"`
 	// Precision
-	Precision *int32 `json:"precision,omitempty"`
+	Precision int32 `json:"precision"`
 }
 
 // NewCryptoCurrency instantiates a new CryptoCurrency object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCryptoCurrency() *CryptoCurrency {
+func NewCryptoCurrency(code string, decimals int32, maxWithdrawAmount string, minDepositAmount string, minWithdrawAmount string, name string, networks []CryptoCurrencyNetwork, precision int32) *CryptoCurrency {
 	this := CryptoCurrency{}
+	this.Code = code
+	this.Decimals = decimals
+	this.MaxWithdrawAmount = maxWithdrawAmount
+	this.MinDepositAmount = minDepositAmount
+	this.MinWithdrawAmount = minWithdrawAmount
+	this.Name = name
+	this.Networks = networks
+	this.Precision = precision
 	return &this
 }
 
@@ -52,286 +60,222 @@ func NewCryptoCurrencyWithDefaults() *CryptoCurrency {
 	return &this
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
+// GetCode returns the Code field value
 func (o *CryptoCurrency) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Code
+
+	return o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Code, true
+	return &o.Code, true
 }
 
-// HasCode returns a boolean if a field has been set.
-func (o *CryptoCurrency) HasCode() bool {
-	if o != nil && o.Code != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given string and assigns it to the Code field.
+// SetCode sets field value
 func (o *CryptoCurrency) SetCode(v string) {
-	o.Code = &v
+	o.Code = v
 }
 
-// GetDecimals returns the Decimals field value if set, zero value otherwise.
+// GetDecimals returns the Decimals field value
 func (o *CryptoCurrency) GetDecimals() int32 {
-	if o == nil || o.Decimals == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Decimals
+
+	return o.Decimals
 }
 
-// GetDecimalsOk returns a tuple with the Decimals field value if set, nil otherwise
+// GetDecimalsOk returns a tuple with the Decimals field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetDecimalsOk() (*int32, bool) {
-	if o == nil || o.Decimals == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Decimals, true
+	return &o.Decimals, true
 }
 
-// HasDecimals returns a boolean if a field has been set.
-func (o *CryptoCurrency) HasDecimals() bool {
-	if o != nil && o.Decimals != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDecimals gets a reference to the given int32 and assigns it to the Decimals field.
+// SetDecimals sets field value
 func (o *CryptoCurrency) SetDecimals(v int32) {
-	o.Decimals = &v
+	o.Decimals = v
 }
 
-// GetMaxWithdrawAmount returns the MaxWithdrawAmount field value if set, zero value otherwise.
+// GetMaxWithdrawAmount returns the MaxWithdrawAmount field value
 func (o *CryptoCurrency) GetMaxWithdrawAmount() string {
-	if o == nil || o.MaxWithdrawAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MaxWithdrawAmount
+
+	return o.MaxWithdrawAmount
 }
 
-// GetMaxWithdrawAmountOk returns a tuple with the MaxWithdrawAmount field value if set, nil otherwise
+// GetMaxWithdrawAmountOk returns a tuple with the MaxWithdrawAmount field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetMaxWithdrawAmountOk() (*string, bool) {
-	if o == nil || o.MaxWithdrawAmount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.MaxWithdrawAmount, true
+	return &o.MaxWithdrawAmount, true
 }
 
-// HasMaxWithdrawAmount returns a boolean if a field has been set.
-func (o *CryptoCurrency) HasMaxWithdrawAmount() bool {
-	if o != nil && o.MaxWithdrawAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxWithdrawAmount gets a reference to the given string and assigns it to the MaxWithdrawAmount field.
+// SetMaxWithdrawAmount sets field value
 func (o *CryptoCurrency) SetMaxWithdrawAmount(v string) {
-	o.MaxWithdrawAmount = &v
+	o.MaxWithdrawAmount = v
 }
 
-// GetMinDepositAmount returns the MinDepositAmount field value if set, zero value otherwise.
+// GetMinDepositAmount returns the MinDepositAmount field value
 func (o *CryptoCurrency) GetMinDepositAmount() string {
-	if o == nil || o.MinDepositAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MinDepositAmount
+
+	return o.MinDepositAmount
 }
 
-// GetMinDepositAmountOk returns a tuple with the MinDepositAmount field value if set, nil otherwise
+// GetMinDepositAmountOk returns a tuple with the MinDepositAmount field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetMinDepositAmountOk() (*string, bool) {
-	if o == nil || o.MinDepositAmount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.MinDepositAmount, true
+	return &o.MinDepositAmount, true
 }
 
-// HasMinDepositAmount returns a boolean if a field has been set.
-func (o *CryptoCurrency) HasMinDepositAmount() bool {
-	if o != nil && o.MinDepositAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinDepositAmount gets a reference to the given string and assigns it to the MinDepositAmount field.
+// SetMinDepositAmount sets field value
 func (o *CryptoCurrency) SetMinDepositAmount(v string) {
-	o.MinDepositAmount = &v
+	o.MinDepositAmount = v
 }
 
-// GetMinWithdrawAmount returns the MinWithdrawAmount field value if set, zero value otherwise.
+// GetMinWithdrawAmount returns the MinWithdrawAmount field value
 func (o *CryptoCurrency) GetMinWithdrawAmount() string {
-	if o == nil || o.MinWithdrawAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MinWithdrawAmount
+
+	return o.MinWithdrawAmount
 }
 
-// GetMinWithdrawAmountOk returns a tuple with the MinWithdrawAmount field value if set, nil otherwise
+// GetMinWithdrawAmountOk returns a tuple with the MinWithdrawAmount field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetMinWithdrawAmountOk() (*string, bool) {
-	if o == nil || o.MinWithdrawAmount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.MinWithdrawAmount, true
+	return &o.MinWithdrawAmount, true
 }
 
-// HasMinWithdrawAmount returns a boolean if a field has been set.
-func (o *CryptoCurrency) HasMinWithdrawAmount() bool {
-	if o != nil && o.MinWithdrawAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinWithdrawAmount gets a reference to the given string and assigns it to the MinWithdrawAmount field.
+// SetMinWithdrawAmount sets field value
 func (o *CryptoCurrency) SetMinWithdrawAmount(v string) {
-	o.MinWithdrawAmount = &v
+	o.MinWithdrawAmount = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *CryptoCurrency) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CryptoCurrency) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *CryptoCurrency) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetNetworks returns the Networks field value if set, zero value otherwise.
+// GetNetworks returns the Networks field value
 func (o *CryptoCurrency) GetNetworks() []CryptoCurrencyNetwork {
-	if o == nil || o.Networks == nil {
+	if o == nil {
 		var ret []CryptoCurrencyNetwork
 		return ret
 	}
-	return *o.Networks
+
+	return o.Networks
 }
 
-// GetNetworksOk returns a tuple with the Networks field value if set, nil otherwise
+// GetNetworksOk returns a tuple with the Networks field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetNetworksOk() (*[]CryptoCurrencyNetwork, bool) {
-	if o == nil || o.Networks == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Networks, true
+	return &o.Networks, true
 }
 
-// HasNetworks returns a boolean if a field has been set.
-func (o *CryptoCurrency) HasNetworks() bool {
-	if o != nil && o.Networks != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworks gets a reference to the given []CryptoCurrencyNetwork and assigns it to the Networks field.
+// SetNetworks sets field value
 func (o *CryptoCurrency) SetNetworks(v []CryptoCurrencyNetwork) {
-	o.Networks = &v
+	o.Networks = v
 }
 
-// GetPrecision returns the Precision field value if set, zero value otherwise.
+// GetPrecision returns the Precision field value
 func (o *CryptoCurrency) GetPrecision() int32 {
-	if o == nil || o.Precision == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Precision
+
+	return o.Precision
 }
 
-// GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
+// GetPrecisionOk returns a tuple with the Precision field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetPrecisionOk() (*int32, bool) {
-	if o == nil || o.Precision == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Precision, true
+	return &o.Precision, true
 }
 
-// HasPrecision returns a boolean if a field has been set.
-func (o *CryptoCurrency) HasPrecision() bool {
-	if o != nil && o.Precision != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPrecision gets a reference to the given int32 and assigns it to the Precision field.
+// SetPrecision sets field value
 func (o *CryptoCurrency) SetPrecision(v int32) {
-	o.Precision = &v
+	o.Precision = v
 }
 
 func (o CryptoCurrency) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
+	if true {
 		toSerialize["code"] = o.Code
 	}
-	if o.Decimals != nil {
+	if true {
 		toSerialize["decimals"] = o.Decimals
 	}
-	if o.MaxWithdrawAmount != nil {
+	if true {
 		toSerialize["maxWithdrawAmount"] = o.MaxWithdrawAmount
 	}
-	if o.MinDepositAmount != nil {
+	if true {
 		toSerialize["minDepositAmount"] = o.MinDepositAmount
 	}
-	if o.MinWithdrawAmount != nil {
+	if true {
 		toSerialize["minWithdrawAmount"] = o.MinWithdrawAmount
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Networks != nil {
+	if true {
 		toSerialize["networks"] = o.Networks
 	}
-	if o.Precision != nil {
+	if true {
 		toSerialize["precision"] = o.Precision
 	}
 	return json.Marshal(toSerialize)
@@ -372,5 +316,3 @@ func (v *NullableCryptoCurrency) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

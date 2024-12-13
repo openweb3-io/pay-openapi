@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** |  | [optional] 
 **Disabled** | Pointer to **bool** |  | [optional] 
-**EventTypes** | Pointer to **[]string** |  | [optional] 
-**Headers** | Pointer to **map[string]string** |  | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
+**EventTypes** | **[]string** |  | 
+**Headers** | **map[string]string** |  | 
+**Metadata** | **map[string]interface{}** |  | 
 **Uid** | Pointer to **string** |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateWebhook
 
-`func NewUpdateWebhook() *UpdateWebhook`
+`func NewUpdateWebhook(eventTypes []string, headers map[string]string, metadata map[string]interface{}, ) *UpdateWebhook`
 
 NewUpdateWebhook instantiates a new UpdateWebhook object
 This constructor will assign default values to properties that have it defined,
@@ -100,11 +100,6 @@ and a boolean to check if the value has been set.
 
 SetEventTypes sets EventTypes field to given value.
 
-### HasEventTypes
-
-`func (o *UpdateWebhook) HasEventTypes() bool`
-
-HasEventTypes returns a boolean if a field has been set.
 
 ### GetHeaders
 
@@ -125,11 +120,6 @@ and a boolean to check if the value has been set.
 
 SetHeaders sets Headers field to given value.
 
-### HasHeaders
-
-`func (o *UpdateWebhook) HasHeaders() bool`
-
-HasHeaders returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -150,11 +140,6 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
-### HasMetadata
-
-`func (o *UpdateWebhook) HasMetadata() bool`
-
-HasMetadata returns a boolean if a field has been set.
 
 ### GetUid
 

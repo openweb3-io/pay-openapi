@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Channel** | **string** | Channel | 
 **Currency** | **string** | Currency | 
 **Expiration** | Pointer to **int32** | Expiration | [optional] 
-**Extra** | Pointer to **map[string]interface{}** | Extra | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** | Metadata | [optional] 
+**Extra** | **map[string]interface{}** | Extra | 
+**Metadata** | **map[string]interface{}** | Metadata | 
 **Note** | Pointer to **string** | Note | [optional] 
 **Uid** | Pointer to **string** | Unique ID | [optional] 
 **UserId** | Pointer to **string** | User ID | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewCreateInvoiceRequest
 
-`func NewCreateInvoiceRequest(amount string, channel string, currency string, ) *CreateInvoiceRequest`
+`func NewCreateInvoiceRequest(amount string, channel string, currency string, extra map[string]interface{}, metadata map[string]interface{}, ) *CreateInvoiceRequest`
 
 NewCreateInvoiceRequest instantiates a new CreateInvoiceRequest object
 This constructor will assign default values to properties that have it defined,
@@ -137,11 +137,6 @@ and a boolean to check if the value has been set.
 
 SetExtra sets Extra field to given value.
 
-### HasExtra
-
-`func (o *CreateInvoiceRequest) HasExtra() bool`
-
-HasExtra returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -162,11 +157,6 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
-### HasMetadata
-
-`func (o *CreateInvoiceRequest) HasMetadata() bool`
-
-HasMetadata returns a boolean if a field has been set.
 
 ### GetNote
 

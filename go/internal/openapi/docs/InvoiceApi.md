@@ -32,7 +32,7 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    createInvoiceRequest := *openapiclient.NewCreateInvoiceRequest("Amount_example", "Channel_example", "Currency_example") // CreateInvoiceRequest | Request body
+    createInvoiceRequest := *openapiclient.NewCreateInvoiceRequest("Amount_example", "Channel_example", "Currency_example", map[string]interface{}{"key": interface{}(123)}, map[string]interface{}{"key": interface{}(123)}) // CreateInvoiceRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## V1InvoicesList
 
-> PageInvoice V1InvoicesList(ctx, appId).Cursor(cursor).Limit(limit).Ordering(ordering).Execute()
+> PageInvoice V1InvoicesList(ctx, appId).Channel(channel).Limit(limit).Offset(offset).UserId(userId).Execute()
 
 List invoices
 
@@ -104,13 +104,14 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    cursor := "cursor_example" // string | Cursor (optional)
-    limit := int32(56) // int32 | Limit (optional)
-    ordering := "ordering_example" // string | Ordering (optional)
+    channel := "channel_example" // string |  (optional)
+    limit := int32(56) // int32 |  (optional)
+    offset := int32(56) // int32 |  (optional)
+    userId := "userId_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoiceApi.V1InvoicesList(context.Background(), appId).Cursor(cursor).Limit(limit).Ordering(ordering).Execute()
+    resp, r, err := api_client.InvoiceApi.V1InvoicesList(context.Background(), appId).Channel(channel).Limit(limit).Offset(offset).UserId(userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvoiceApi.V1InvoicesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -136,9 +137,10 @@ Other parameters are passed through a pointer to a apiV1InvoicesListRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cursor** | **string** | Cursor | 
- **limit** | **int32** | Limit | 
- **ordering** | **string** | Ordering | 
+ **channel** | **string** |  | 
+ **limit** | **int32** |  | 
+ **offset** | **int32** |  | 
+ **userId** | **string** |  | 
 
 ### Return type
 

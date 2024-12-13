@@ -5,18 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** | The description of the webhook | [optional] 
-**Disabled** | Pointer to **bool** | The disabled of the webhook | [optional] 
-**EventTypes** | Pointer to **[]string** | The event types of the webhook | [optional] 
-**Headers** | Pointer to **map[string]string** | The headers of the webhook | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** | The metadata of the webhook | [optional] 
+**Disabled** | **bool** | The disabled of the webhook | 
+**EventTypes** | **[]string** | The event types of the webhook | 
+**Headers** | **map[string]string** | The headers of the webhook | 
+**Metadata** | **map[string]interface{}** | The metadata of the webhook | 
 **Uid** | Pointer to **string** | The uid of the webhook | [optional] 
-**Url** | Pointer to **string** | The url of the webhook | [optional] 
+**Url** | **string** | The url of the webhook | 
 
 ## Methods
 
 ### NewCreateWebhook
 
-`func NewCreateWebhook() *CreateWebhook`
+`func NewCreateWebhook(disabled bool, eventTypes []string, headers map[string]string, metadata map[string]interface{}, url string, ) *CreateWebhook`
 
 NewCreateWebhook instantiates a new CreateWebhook object
 This constructor will assign default values to properties that have it defined,
@@ -75,11 +75,6 @@ and a boolean to check if the value has been set.
 
 SetDisabled sets Disabled field to given value.
 
-### HasDisabled
-
-`func (o *CreateWebhook) HasDisabled() bool`
-
-HasDisabled returns a boolean if a field has been set.
 
 ### GetEventTypes
 
@@ -100,11 +95,6 @@ and a boolean to check if the value has been set.
 
 SetEventTypes sets EventTypes field to given value.
 
-### HasEventTypes
-
-`func (o *CreateWebhook) HasEventTypes() bool`
-
-HasEventTypes returns a boolean if a field has been set.
 
 ### GetHeaders
 
@@ -125,11 +115,6 @@ and a boolean to check if the value has been set.
 
 SetHeaders sets Headers field to given value.
 
-### HasHeaders
-
-`func (o *CreateWebhook) HasHeaders() bool`
-
-HasHeaders returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -150,11 +135,6 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
-### HasMetadata
-
-`func (o *CreateWebhook) HasMetadata() bool`
-
-HasMetadata returns a boolean if a field has been set.
 
 ### GetUid
 
@@ -200,11 +180,6 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
-### HasUrl
-
-`func (o *CreateWebhook) HasUrl() bool`
-
-HasUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

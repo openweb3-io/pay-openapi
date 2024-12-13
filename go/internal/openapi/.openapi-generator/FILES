@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -17,6 +18,7 @@ docs/FiatCurrency.md
 docs/Invoice.md
 docs/InvoiceApi.md
 docs/InvoiceStatus.md
+docs/Ordering.md
 docs/PageInvoice.md
 docs/Rate.md
 docs/UpdateWebhook.md
@@ -33,6 +35,7 @@ model_cursor_page_webhook.go
 model_fiat_currency.go
 model_invoice.go
 model_invoice_status.go
+model_ordering.go
 model_page_invoice.go
 model_rate.go
 model_update_webhook.go

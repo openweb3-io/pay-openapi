@@ -18,17 +18,19 @@ import (
 // FiatCurrency struct for FiatCurrency
 type FiatCurrency struct {
 	// Currency Code
-	Code *string `json:"code,omitempty"`
+	Code string `json:"code"`
 	// Currency Name
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 }
 
 // NewFiatCurrency instantiates a new FiatCurrency object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFiatCurrency() *FiatCurrency {
+func NewFiatCurrency(code string, name string) *FiatCurrency {
 	this := FiatCurrency{}
+	this.Code = code
+	this.Name = name
 	return &this
 }
 
@@ -40,76 +42,60 @@ func NewFiatCurrencyWithDefaults() *FiatCurrency {
 	return &this
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
+// GetCode returns the Code field value
 func (o *FiatCurrency) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Code
+
+	return o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *FiatCurrency) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Code, true
+	return &o.Code, true
 }
 
-// HasCode returns a boolean if a field has been set.
-func (o *FiatCurrency) HasCode() bool {
-	if o != nil && o.Code != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given string and assigns it to the Code field.
+// SetCode sets field value
 func (o *FiatCurrency) SetCode(v string) {
-	o.Code = &v
+	o.Code = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *FiatCurrency) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *FiatCurrency) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *FiatCurrency) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *FiatCurrency) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 func (o FiatCurrency) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
+	if true {
 		toSerialize["code"] = o.Code
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
@@ -150,5 +136,3 @@ func (v *NullableFiatCurrency) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

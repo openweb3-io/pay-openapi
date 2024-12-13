@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **string** | Currency code | [optional] 
-**Decimals** | Pointer to **int32** | Decimals | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** | Max Withdraw Amount (Integer) | [optional] 
-**MinDepositAmount** | Pointer to **string** | Min Deposit Amount (Integer) | [optional] 
-**MinWithdrawAmount** | Pointer to **string** | Min Withdraw Amount (Integer) | [optional] 
-**Name** | Pointer to **string** | Currency name | [optional] 
-**Networks** | Pointer to [**[]CryptoCurrencyNetwork**](CryptoCurrencyNetwork.md) | Networks | [optional] 
-**Precision** | Pointer to **int32** | Precision | [optional] 
+**Code** | **string** | Currency code | 
+**Decimals** | **int32** | Decimals | 
+**MaxWithdrawAmount** | **string** | Max Withdraw Amount (Integer) | 
+**MinDepositAmount** | **string** | Min Deposit Amount (Integer) | 
+**MinWithdrawAmount** | **string** | Min Withdraw Amount (Integer) | 
+**Name** | **string** | Currency name | 
+**Networks** | [**[]CryptoCurrencyNetwork**](CryptoCurrencyNetwork.md) | Networks | 
+**Precision** | **int32** | Precision | 
 
 ## Methods
 
 ### NewCryptoCurrency
 
-`func NewCryptoCurrency() *CryptoCurrency`
+`func NewCryptoCurrency(code string, decimals int32, maxWithdrawAmount string, minDepositAmount string, minWithdrawAmount string, name string, networks []CryptoCurrencyNetwork, precision int32, ) *CryptoCurrency`
 
 NewCryptoCurrency instantiates a new CryptoCurrency object
 This constructor will assign default values to properties that have it defined,
@@ -51,11 +51,6 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
-### HasCode
-
-`func (o *CryptoCurrency) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
 
 ### GetDecimals
 
@@ -76,11 +71,6 @@ and a boolean to check if the value has been set.
 
 SetDecimals sets Decimals field to given value.
 
-### HasDecimals
-
-`func (o *CryptoCurrency) HasDecimals() bool`
-
-HasDecimals returns a boolean if a field has been set.
 
 ### GetMaxWithdrawAmount
 
@@ -101,11 +91,6 @@ and a boolean to check if the value has been set.
 
 SetMaxWithdrawAmount sets MaxWithdrawAmount field to given value.
 
-### HasMaxWithdrawAmount
-
-`func (o *CryptoCurrency) HasMaxWithdrawAmount() bool`
-
-HasMaxWithdrawAmount returns a boolean if a field has been set.
 
 ### GetMinDepositAmount
 
@@ -126,11 +111,6 @@ and a boolean to check if the value has been set.
 
 SetMinDepositAmount sets MinDepositAmount field to given value.
 
-### HasMinDepositAmount
-
-`func (o *CryptoCurrency) HasMinDepositAmount() bool`
-
-HasMinDepositAmount returns a boolean if a field has been set.
 
 ### GetMinWithdrawAmount
 
@@ -151,11 +131,6 @@ and a boolean to check if the value has been set.
 
 SetMinWithdrawAmount sets MinWithdrawAmount field to given value.
 
-### HasMinWithdrawAmount
-
-`func (o *CryptoCurrency) HasMinWithdrawAmount() bool`
-
-HasMinWithdrawAmount returns a boolean if a field has been set.
 
 ### GetName
 
@@ -176,11 +151,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *CryptoCurrency) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetNetworks
 
@@ -201,11 +171,6 @@ and a boolean to check if the value has been set.
 
 SetNetworks sets Networks field to given value.
 
-### HasNetworks
-
-`func (o *CryptoCurrency) HasNetworks() bool`
-
-HasNetworks returns a boolean if a field has been set.
 
 ### GetPrecision
 
@@ -226,11 +191,6 @@ and a boolean to check if the value has been set.
 
 SetPrecision sets Precision field to given value.
 
-### HasPrecision
-
-`func (o *CryptoCurrency) HasPrecision() bool`
-
-HasPrecision returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -29,9 +29,9 @@ var (
 type InvoiceApiService service
 
 type ApiV1InvoicesCreateRequest struct {
-	ctx _context.Context
-	ApiService *InvoiceApiService
-	appId string
+	ctx                  _context.Context
+	ApiService           *InvoiceApiService
+	appId                string
 	createInvoiceRequest *CreateInvoiceRequest
 }
 
@@ -54,8 +54,8 @@ func (r ApiV1InvoicesCreateRequest) Execute() (Invoice, *_nethttp.Response, erro
 func (a *InvoiceApiService) V1InvoicesCreate(ctx _context.Context, appId string) ApiV1InvoicesCreateRequest {
 	return ApiV1InvoicesCreateRequest{
 		ApiService: a,
-		ctx: ctx,
-		appId: appId,
+		ctx:        ctx,
+		appId:      appId,
 	}
 }
 
@@ -173,24 +173,29 @@ func (a *InvoiceApiService) V1InvoicesCreateExecute(r ApiV1InvoicesCreateRequest
 }
 
 type ApiV1InvoicesListRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *InvoiceApiService
-	appId string
-	cursor *string
-	limit *int32
-	ordering *string
+	appId      string
+	channel    *string
+	limit      *int32
+	offset     *int32
+	userId     *string
 }
 
-func (r ApiV1InvoicesListRequest) Cursor(cursor string) ApiV1InvoicesListRequest {
-	r.cursor = &cursor
+func (r ApiV1InvoicesListRequest) Channel(channel string) ApiV1InvoicesListRequest {
+	r.channel = &channel
 	return r
 }
 func (r ApiV1InvoicesListRequest) Limit(limit int32) ApiV1InvoicesListRequest {
 	r.limit = &limit
 	return r
 }
-func (r ApiV1InvoicesListRequest) Ordering(ordering string) ApiV1InvoicesListRequest {
-	r.ordering = &ordering
+func (r ApiV1InvoicesListRequest) Offset(offset int32) ApiV1InvoicesListRequest {
+	r.offset = &offset
+	return r
+}
+func (r ApiV1InvoicesListRequest) UserId(userId string) ApiV1InvoicesListRequest {
+	r.userId = &userId
 	return r
 }
 
@@ -208,8 +213,8 @@ func (r ApiV1InvoicesListRequest) Execute() (PageInvoice, *_nethttp.Response, er
 func (a *InvoiceApiService) V1InvoicesList(ctx _context.Context, appId string) ApiV1InvoicesListRequest {
 	return ApiV1InvoicesListRequest{
 		ApiService: a,
-		ctx: ctx,
-		appId: appId,
+		ctx:        ctx,
+		appId:      appId,
 	}
 }
 
@@ -239,14 +244,17 @@ func (a *InvoiceApiService) V1InvoicesListExecute(r ApiV1InvoicesListRequest) (P
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.cursor != nil {
-		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
+	if r.channel != nil {
+		localVarQueryParams.Add("channel", parameterToString(*r.channel, ""))
 	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
-	if r.ordering != nil {
-		localVarQueryParams.Add("ordering", parameterToString(*r.ordering, ""))
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.userId != nil {
+		localVarQueryParams.Add("userId", parameterToString(*r.userId, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -331,12 +339,11 @@ func (a *InvoiceApiService) V1InvoicesListExecute(r ApiV1InvoicesListRequest) (P
 }
 
 type ApiV1InvoicesRetrieveRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *InvoiceApiService
-	appId string
-	invoiceId string
+	appId      string
+	invoiceId  string
 }
-
 
 func (r ApiV1InvoicesRetrieveRequest) Execute() (Invoice, *_nethttp.Response, error) {
 	return r.ApiService.V1InvoicesRetrieveExecute(r)
@@ -353,9 +360,9 @@ func (r ApiV1InvoicesRetrieveRequest) Execute() (Invoice, *_nethttp.Response, er
 func (a *InvoiceApiService) V1InvoicesRetrieve(ctx _context.Context, appId string, invoiceId string) ApiV1InvoicesRetrieveRequest {
 	return ApiV1InvoicesRetrieveRequest{
 		ApiService: a,
-		ctx: ctx,
-		appId: appId,
-		invoiceId: invoiceId,
+		ctx:        ctx,
+		appId:      appId,
+		invoiceId:  invoiceId,
 	}
 }
 

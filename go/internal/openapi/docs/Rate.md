@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FromCurrency** | Pointer to **string** | From currency code | [optional] 
-**Rate** | Pointer to **string** | Exchange Rate | [optional] 
-**ToCurrency** | Pointer to **string** | To currency code | [optional] 
+**FromCurrency** | **string** | From currency code | 
+**Rate** | **string** | Exchange Rate | 
+**ToCurrency** | **string** | To currency code | 
 
 ## Methods
 
 ### NewRate
 
-`func NewRate() *Rate`
+`func NewRate(fromCurrency string, rate string, toCurrency string, ) *Rate`
 
 NewRate instantiates a new Rate object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetFromCurrency sets FromCurrency field to given value.
 
-### HasFromCurrency
-
-`func (o *Rate) HasFromCurrency() bool`
-
-HasFromCurrency returns a boolean if a field has been set.
 
 ### GetRate
 
@@ -71,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetRate sets Rate field to given value.
 
-### HasRate
-
-`func (o *Rate) HasRate() bool`
-
-HasRate returns a boolean if a field has been set.
 
 ### GetToCurrency
 
@@ -96,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetToCurrency sets ToCurrency field to given value.
 
-### HasToCurrency
-
-`func (o *Rate) HasToCurrency() bool`
-
-HasToCurrency returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

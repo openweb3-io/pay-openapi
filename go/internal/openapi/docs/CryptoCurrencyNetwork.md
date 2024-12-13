@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CanDeposit** | Pointer to **bool** | Can Deposit | [optional] 
-**CanTransfer** | Pointer to **bool** | Can Transfer | [optional] 
-**CanWithdraw** | Pointer to **bool** | Can Withdraw | [optional] 
-**Code** | Pointer to **string** | Network code | [optional] 
-**Name** | Pointer to **string** | Network display name | [optional] 
-**Network** | Pointer to **string** | Network name | [optional] 
+**CanDeposit** | **bool** | Can Deposit | 
+**CanTransfer** | **bool** | Can Transfer | 
+**CanWithdraw** | **bool** | Can Withdraw | 
+**Code** | **string** | Network code | 
+**Name** | **string** | Network display name | 
+**Network** | **string** | Network name | 
 
 ## Methods
 
 ### NewCryptoCurrencyNetwork
 
-`func NewCryptoCurrencyNetwork() *CryptoCurrencyNetwork`
+`func NewCryptoCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, name string, network string, ) *CryptoCurrencyNetwork`
 
 NewCryptoCurrencyNetwork instantiates a new CryptoCurrencyNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -49,11 +49,6 @@ and a boolean to check if the value has been set.
 
 SetCanDeposit sets CanDeposit field to given value.
 
-### HasCanDeposit
-
-`func (o *CryptoCurrencyNetwork) HasCanDeposit() bool`
-
-HasCanDeposit returns a boolean if a field has been set.
 
 ### GetCanTransfer
 
@@ -74,11 +69,6 @@ and a boolean to check if the value has been set.
 
 SetCanTransfer sets CanTransfer field to given value.
 
-### HasCanTransfer
-
-`func (o *CryptoCurrencyNetwork) HasCanTransfer() bool`
-
-HasCanTransfer returns a boolean if a field has been set.
 
 ### GetCanWithdraw
 
@@ -99,11 +89,6 @@ and a boolean to check if the value has been set.
 
 SetCanWithdraw sets CanWithdraw field to given value.
 
-### HasCanWithdraw
-
-`func (o *CryptoCurrencyNetwork) HasCanWithdraw() bool`
-
-HasCanWithdraw returns a boolean if a field has been set.
 
 ### GetCode
 
@@ -124,11 +109,6 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
-### HasCode
-
-`func (o *CryptoCurrencyNetwork) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
 
 ### GetName
 
@@ -149,11 +129,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *CryptoCurrencyNetwork) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetNetwork
 
@@ -174,11 +149,6 @@ and a boolean to check if the value has been set.
 
 SetNetwork sets Network field to given value.
 
-### HasNetwork
-
-`func (o *CryptoCurrencyNetwork) HasNetwork() bool`
-
-HasNetwork returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

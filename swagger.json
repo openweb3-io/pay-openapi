@@ -188,19 +188,24 @@
                     },
                     {
                         "type": "string",
-                        "description": "Cursor",
                         "name": "cursor",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "Limit",
                         "name": "limit",
                         "in": "query"
                     },
                     {
+                        "enum": [
+                            "asc",
+                            "desc"
+                        ],
                         "type": "string",
-                        "description": "Ordering",
+                        "x-enum-varnames": [
+                            "ORDERING_ASC",
+                            "ORDERING_DESC"
+                        ],
                         "name": "ordering",
                         "in": "query"
                     }
@@ -444,20 +449,22 @@
                     },
                     {
                         "type": "string",
-                        "description": "Cursor",
-                        "name": "cursor",
+                        "name": "channel",
                         "in": "query"
                     },
                     {
                         "type": "integer",
-                        "description": "Limit",
                         "name": "limit",
                         "in": "query"
                     },
                     {
+                        "type": "integer",
+                        "name": "offset",
+                        "in": "query"
+                    },
+                    {
                         "type": "string",
-                        "description": "Ordering",
-                        "name": "ordering",
+                        "name": "userId",
                         "in": "query"
                     }
                 ],
@@ -574,7 +581,9 @@
             "required": [
                 "amount",
                 "channel",
-                "currency"
+                "currency",
+                "extra",
+                "metadata"
             ],
             "properties": {
                 "amount": {
@@ -619,6 +628,13 @@
         },
         "CreateWebhook": {
             "type": "object",
+            "required": [
+                "disabled",
+                "eventTypes",
+                "headers",
+                "metadata",
+                "url"
+            ],
             "properties": {
                 "description": {
                     "description": "The description of the webhook",
@@ -659,6 +675,16 @@
         },
         "CryptoCurrency": {
             "type": "object",
+            "required": [
+                "code",
+                "decimals",
+                "maxWithdrawAmount",
+                "minDepositAmount",
+                "minWithdrawAmount",
+                "name",
+                "networks",
+                "precision"
+            ],
             "properties": {
                 "code": {
                     "description": "Currency code",
@@ -699,6 +725,14 @@
         },
         "CryptoCurrencyNetwork": {
             "type": "object",
+            "required": [
+                "canDeposit",
+                "canTransfer",
+                "canWithdraw",
+                "code",
+                "name",
+                "network"
+            ],
             "properties": {
                 "canDeposit": {
                     "description": "Can Deposit",
@@ -745,6 +779,10 @@
         },
         "FiatCurrency": {
             "type": "object",
+            "required": [
+                "code",
+                "name"
+            ],
             "properties": {
                 "code": {
                     "description": "Currency Code",
@@ -758,6 +796,19 @@
         },
         "Invoice": {
             "type": "object",
+            "required": [
+                "amount",
+                "base_amount",
+                "channel",
+                "createdAt",
+                "credentials",
+                "currency",
+                "extra",
+                "id",
+                "metadata",
+                "note",
+                "status"
+            ],
             "properties": {
                 "amount": {
                     "description": "Amount (Integer)",
@@ -837,6 +888,17 @@
                 "InvoiceStatusCompleted"
             ]
         },
+        "Ordering": {
+            "type": "string",
+            "enum": [
+                "asc",
+                "desc"
+            ],
+            "x-enum-varnames": [
+                "ORDERING_ASC",
+                "ORDERING_DESC"
+            ]
+        },
         "Page-Invoice": {
             "type": "object",
             "properties": {
@@ -865,6 +927,11 @@
         },
         "Rate": {
             "type": "object",
+            "required": [
+                "fromCurrency",
+                "rate",
+                "toCurrency"
+            ],
             "properties": {
                 "fromCurrency": {
                     "description": "From currency code",
@@ -882,6 +949,11 @@
         },
         "UpdateWebhook": {
             "type": "object",
+            "required": [
+                "eventTypes",
+                "headers",
+                "metadata"
+            ],
             "properties": {
                 "description": {
                     "type": "string"
@@ -915,6 +987,16 @@
         },
         "Webhook": {
             "type": "object",
+            "required": [
+                "createdAt",
+                "description",
+                "eventTypes",
+                "filter",
+                "headers",
+                "id",
+                "metadata",
+                "url"
+            ],
             "properties": {
                 "createdAt": {
                     "type": "string"

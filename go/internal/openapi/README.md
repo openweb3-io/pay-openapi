@@ -101,6 +101,7 @@ Class | Method | HTTP request | Description
  - [FiatCurrency](docs/FiatCurrency.md)
  - [Invoice](docs/Invoice.md)
  - [InvoiceStatus](docs/InvoiceStatus.md)
+ - [Ordering](docs/Ordering.md)
  - [PageInvoice](docs/PageInvoice.md)
  - [Rate](docs/Rate.md)
  - [UpdateWebhook](docs/UpdateWebhook.md)

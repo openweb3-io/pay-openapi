@@ -17,7 +17,7 @@ type Invoice struct {
 }
 
 type InvoiceListOptions struct {
-	Cursor *string
+	Offset *int32
 	Limit  *int32
 	UserId *string
 }
@@ -28,8 +28,8 @@ func (e *Invoice) List(ctx context.Context, appId string, options *InvoiceListOp
 		if options.Limit != nil {
 			req = req.Limit(*options.Limit)
 		}
-		if options.Cursor != nil {
-			req = req.Cursor(*options.Cursor)
+		if options.Offset != nil {
+			req = req.Offset(*options.Offset)
 		}
 	}
 	out, res, err := req.Execute()

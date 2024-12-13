@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** | Amount (Integer) | [optional] 
-**BaseAmount** | Pointer to **string** | Base Currency Amount | [optional] 
-**Channel** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **string** |  | [optional] 
-**Credentials** | Pointer to **map[string]interface{}** |  | [optional] 
-**Currency** | Pointer to **string** |  | [optional] 
+**Amount** | **string** | Amount (Integer) | 
+**BaseAmount** | **string** | Base Currency Amount | 
+**Channel** | **string** |  | 
+**CreatedAt** | **string** |  | 
+**Credentials** | **map[string]interface{}** |  | 
+**Currency** | **string** |  | 
 **Expiration** | Pointer to **int32** |  | [optional] 
 **ExpiredAt** | Pointer to **string** |  | [optional] 
-**Extra** | Pointer to **map[string]interface{}** |  | [optional] 
+**Extra** | **map[string]interface{}** |  | 
 **FailedAt** | Pointer to **string** |  | [optional] 
 **FailedReason** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
-**Note** | Pointer to **string** |  | [optional] 
+**Id** | **string** |  | 
+**Metadata** | **map[string]interface{}** |  | 
+**Note** | **string** |  | 
 **PaidAt** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to [**InvoiceStatus**](InvoiceStatus.md) |  | [optional] 
+**Status** | [**InvoiceStatus**](InvoiceStatus.md) |  | 
 **Uid** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** |  | [optional] 
 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewInvoice
 
-`func NewInvoice() *Invoice`
+`func NewInvoice(amount string, baseAmount string, channel string, createdAt string, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, status InvoiceStatus, ) *Invoice`
 
 NewInvoice instantiates a new Invoice object
 This constructor will assign default values to properties that have it defined,
@@ -61,11 +61,6 @@ and a boolean to check if the value has been set.
 
 SetAmount sets Amount field to given value.
 
-### HasAmount
-
-`func (o *Invoice) HasAmount() bool`
-
-HasAmount returns a boolean if a field has been set.
 
 ### GetBaseAmount
 
@@ -86,11 +81,6 @@ and a boolean to check if the value has been set.
 
 SetBaseAmount sets BaseAmount field to given value.
 
-### HasBaseAmount
-
-`func (o *Invoice) HasBaseAmount() bool`
-
-HasBaseAmount returns a boolean if a field has been set.
 
 ### GetChannel
 
@@ -111,11 +101,6 @@ and a boolean to check if the value has been set.
 
 SetChannel sets Channel field to given value.
 
-### HasChannel
-
-`func (o *Invoice) HasChannel() bool`
-
-HasChannel returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -136,11 +121,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *Invoice) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetCredentials
 
@@ -161,11 +141,6 @@ and a boolean to check if the value has been set.
 
 SetCredentials sets Credentials field to given value.
 
-### HasCredentials
-
-`func (o *Invoice) HasCredentials() bool`
-
-HasCredentials returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -186,11 +161,6 @@ and a boolean to check if the value has been set.
 
 SetCurrency sets Currency field to given value.
 
-### HasCurrency
-
-`func (o *Invoice) HasCurrency() bool`
-
-HasCurrency returns a boolean if a field has been set.
 
 ### GetExpiration
 
@@ -261,11 +231,6 @@ and a boolean to check if the value has been set.
 
 SetExtra sets Extra field to given value.
 
-### HasExtra
-
-`func (o *Invoice) HasExtra() bool`
-
-HasExtra returns a boolean if a field has been set.
 
 ### GetFailedAt
 
@@ -336,11 +301,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *Invoice) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -361,11 +321,6 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
-### HasMetadata
-
-`func (o *Invoice) HasMetadata() bool`
-
-HasMetadata returns a boolean if a field has been set.
 
 ### GetNote
 
@@ -386,11 +341,6 @@ and a boolean to check if the value has been set.
 
 SetNote sets Note field to given value.
 
-### HasNote
-
-`func (o *Invoice) HasNote() bool`
-
-HasNote returns a boolean if a field has been set.
 
 ### GetPaidAt
 
@@ -436,11 +386,6 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
-### HasStatus
-
-`func (o *Invoice) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### GetUid
 

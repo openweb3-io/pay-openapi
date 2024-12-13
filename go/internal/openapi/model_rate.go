@@ -18,19 +18,22 @@ import (
 // Rate struct for Rate
 type Rate struct {
 	// From currency code
-	FromCurrency *string `json:"fromCurrency,omitempty"`
+	FromCurrency string `json:"fromCurrency"`
 	// Exchange Rate
-	Rate *string `json:"rate,omitempty"`
+	Rate string `json:"rate"`
 	// To currency code
-	ToCurrency *string `json:"toCurrency,omitempty"`
+	ToCurrency string `json:"toCurrency"`
 }
 
 // NewRate instantiates a new Rate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRate() *Rate {
+func NewRate(fromCurrency string, rate string, toCurrency string) *Rate {
 	this := Rate{}
+	this.FromCurrency = fromCurrency
+	this.Rate = rate
+	this.ToCurrency = toCurrency
 	return &this
 }
 
@@ -42,111 +45,87 @@ func NewRateWithDefaults() *Rate {
 	return &this
 }
 
-// GetFromCurrency returns the FromCurrency field value if set, zero value otherwise.
+// GetFromCurrency returns the FromCurrency field value
 func (o *Rate) GetFromCurrency() string {
-	if o == nil || o.FromCurrency == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.FromCurrency
+
+	return o.FromCurrency
 }
 
-// GetFromCurrencyOk returns a tuple with the FromCurrency field value if set, nil otherwise
+// GetFromCurrencyOk returns a tuple with the FromCurrency field value
 // and a boolean to check if the value has been set.
 func (o *Rate) GetFromCurrencyOk() (*string, bool) {
-	if o == nil || o.FromCurrency == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.FromCurrency, true
+	return &o.FromCurrency, true
 }
 
-// HasFromCurrency returns a boolean if a field has been set.
-func (o *Rate) HasFromCurrency() bool {
-	if o != nil && o.FromCurrency != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFromCurrency gets a reference to the given string and assigns it to the FromCurrency field.
+// SetFromCurrency sets field value
 func (o *Rate) SetFromCurrency(v string) {
-	o.FromCurrency = &v
+	o.FromCurrency = v
 }
 
-// GetRate returns the Rate field value if set, zero value otherwise.
+// GetRate returns the Rate field value
 func (o *Rate) GetRate() string {
-	if o == nil || o.Rate == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Rate
+
+	return o.Rate
 }
 
-// GetRateOk returns a tuple with the Rate field value if set, nil otherwise
+// GetRateOk returns a tuple with the Rate field value
 // and a boolean to check if the value has been set.
 func (o *Rate) GetRateOk() (*string, bool) {
-	if o == nil || o.Rate == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Rate, true
+	return &o.Rate, true
 }
 
-// HasRate returns a boolean if a field has been set.
-func (o *Rate) HasRate() bool {
-	if o != nil && o.Rate != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRate gets a reference to the given string and assigns it to the Rate field.
+// SetRate sets field value
 func (o *Rate) SetRate(v string) {
-	o.Rate = &v
+	o.Rate = v
 }
 
-// GetToCurrency returns the ToCurrency field value if set, zero value otherwise.
+// GetToCurrency returns the ToCurrency field value
 func (o *Rate) GetToCurrency() string {
-	if o == nil || o.ToCurrency == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ToCurrency
+
+	return o.ToCurrency
 }
 
-// GetToCurrencyOk returns a tuple with the ToCurrency field value if set, nil otherwise
+// GetToCurrencyOk returns a tuple with the ToCurrency field value
 // and a boolean to check if the value has been set.
 func (o *Rate) GetToCurrencyOk() (*string, bool) {
-	if o == nil || o.ToCurrency == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.ToCurrency, true
+	return &o.ToCurrency, true
 }
 
-// HasToCurrency returns a boolean if a field has been set.
-func (o *Rate) HasToCurrency() bool {
-	if o != nil && o.ToCurrency != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetToCurrency gets a reference to the given string and assigns it to the ToCurrency field.
+// SetToCurrency sets field value
 func (o *Rate) SetToCurrency(v string) {
-	o.ToCurrency = &v
+	o.ToCurrency = v
 }
 
 func (o Rate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.FromCurrency != nil {
+	if true {
 		toSerialize["fromCurrency"] = o.FromCurrency
 	}
-	if o.Rate != nil {
+	if true {
 		toSerialize["rate"] = o.Rate
 	}
-	if o.ToCurrency != nil {
+	if true {
 		toSerialize["toCurrency"] = o.ToCurrency
 	}
 	return json.Marshal(toSerialize)
@@ -187,5 +166,3 @@ func (v *NullableRate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

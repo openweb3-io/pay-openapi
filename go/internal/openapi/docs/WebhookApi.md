@@ -34,7 +34,7 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    createWebhook := *openapiclient.NewCreateWebhook() // CreateWebhook | Request body
+    createWebhook := *openapiclient.NewCreateWebhook(false, []string{"EventTypes_example"}, map[string]string{"key": "Inner_example"}, map[string]interface{}{"key": interface{}(123)}, "Url_example") // CreateWebhook | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -179,9 +179,9 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    cursor := "cursor_example" // string | Cursor (optional)
-    limit := int32(56) // int32 | Limit (optional)
-    ordering := "ordering_example" // string | Ordering (optional)
+    cursor := "cursor_example" // string |  (optional)
+    limit := int32(56) // int32 |  (optional)
+    ordering := "ordering_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -211,9 +211,9 @@ Other parameters are passed through a pointer to a apiV1EndpointsListRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cursor** | **string** | Cursor | 
- **limit** | **int32** | Limit | 
- **ordering** | **string** | Ordering | 
+ **cursor** | **string** |  | 
+ **limit** | **int32** |  | 
+ **ordering** | **string** |  | 
 
 ### Return type
 
@@ -329,7 +329,7 @@ import (
 func main() {
     appId := "appId_example" // string | App ID
     endpointId := "endpointId_example" // string | Endpoint ID
-    updateWebhook := *openapiclient.NewUpdateWebhook() // UpdateWebhook | Request body
+    updateWebhook := *openapiclient.NewUpdateWebhook([]string{"EventTypes_example"}, map[string]string{"key": "Inner_example"}, map[string]interface{}{"key": interface{}(123)}) // UpdateWebhook | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

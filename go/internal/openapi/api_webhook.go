@@ -29,9 +29,9 @@ var (
 type WebhookApiService service
 
 type ApiV1EndpointsCreateRequest struct {
-	ctx _context.Context
-	ApiService *WebhookApiService
-	appId string
+	ctx           _context.Context
+	ApiService    *WebhookApiService
+	appId         string
 	createWebhook *CreateWebhook
 }
 
@@ -54,8 +54,8 @@ func (r ApiV1EndpointsCreateRequest) Execute() (Webhook, *_nethttp.Response, err
 func (a *WebhookApiService) V1EndpointsCreate(ctx _context.Context, appId string) ApiV1EndpointsCreateRequest {
 	return ApiV1EndpointsCreateRequest{
 		ApiService: a,
-		ctx: ctx,
-		appId: appId,
+		ctx:        ctx,
+		appId:      appId,
 	}
 }
 
@@ -173,12 +173,11 @@ func (a *WebhookApiService) V1EndpointsCreateExecute(r ApiV1EndpointsCreateReque
 }
 
 type ApiV1EndpointsDeleteRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *WebhookApiService
-	appId string
+	appId      string
 	endpointId string
 }
-
 
 func (r ApiV1EndpointsDeleteRequest) Execute() (Webhook, *_nethttp.Response, error) {
 	return r.ApiService.V1EndpointsDeleteExecute(r)
@@ -195,8 +194,8 @@ func (r ApiV1EndpointsDeleteRequest) Execute() (Webhook, *_nethttp.Response, err
 func (a *WebhookApiService) V1EndpointsDelete(ctx _context.Context, appId string, endpointId string) ApiV1EndpointsDeleteRequest {
 	return ApiV1EndpointsDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		appId: appId,
+		ctx:        ctx,
+		appId:      appId,
 		endpointId: endpointId,
 	}
 }
@@ -311,12 +310,12 @@ func (a *WebhookApiService) V1EndpointsDeleteExecute(r ApiV1EndpointsDeleteReque
 }
 
 type ApiV1EndpointsListRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *WebhookApiService
-	appId string
-	cursor *string
-	limit *int32
-	ordering *Ordering
+	appId      string
+	cursor     *string
+	limit      *int32
+	ordering   *string
 }
 
 func (r ApiV1EndpointsListRequest) Cursor(cursor string) ApiV1EndpointsListRequest {
@@ -327,7 +326,7 @@ func (r ApiV1EndpointsListRequest) Limit(limit int32) ApiV1EndpointsListRequest 
 	r.limit = &limit
 	return r
 }
-func (r ApiV1EndpointsListRequest) Ordering(ordering Ordering) ApiV1EndpointsListRequest {
+func (r ApiV1EndpointsListRequest) Ordering(ordering string) ApiV1EndpointsListRequest {
 	r.ordering = &ordering
 	return r
 }
@@ -346,8 +345,8 @@ func (r ApiV1EndpointsListRequest) Execute() (CursorPageWebhook, *_nethttp.Respo
 func (a *WebhookApiService) V1EndpointsList(ctx _context.Context, appId string) ApiV1EndpointsListRequest {
 	return ApiV1EndpointsListRequest{
 		ApiService: a,
-		ctx: ctx,
-		appId: appId,
+		ctx:        ctx,
+		appId:      appId,
 	}
 }
 
@@ -469,12 +468,11 @@ func (a *WebhookApiService) V1EndpointsListExecute(r ApiV1EndpointsListRequest) 
 }
 
 type ApiV1EndpointsRetrieveRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService *WebhookApiService
-	appId string
+	appId      string
 	endpointId string
 }
-
 
 func (r ApiV1EndpointsRetrieveRequest) Execute() (Webhook, *_nethttp.Response, error) {
 	return r.ApiService.V1EndpointsRetrieveExecute(r)
@@ -491,8 +489,8 @@ func (r ApiV1EndpointsRetrieveRequest) Execute() (Webhook, *_nethttp.Response, e
 func (a *WebhookApiService) V1EndpointsRetrieve(ctx _context.Context, appId string, endpointId string) ApiV1EndpointsRetrieveRequest {
 	return ApiV1EndpointsRetrieveRequest{
 		ApiService: a,
-		ctx: ctx,
-		appId: appId,
+		ctx:        ctx,
+		appId:      appId,
 		endpointId: endpointId,
 	}
 }
@@ -607,10 +605,10 @@ func (a *WebhookApiService) V1EndpointsRetrieveExecute(r ApiV1EndpointsRetrieveR
 }
 
 type ApiV1EndpointsUpdateRequest struct {
-	ctx _context.Context
-	ApiService *WebhookApiService
-	appId string
-	endpointId string
+	ctx           _context.Context
+	ApiService    *WebhookApiService
+	appId         string
+	endpointId    string
 	updateWebhook *UpdateWebhook
 }
 
@@ -634,8 +632,8 @@ func (r ApiV1EndpointsUpdateRequest) Execute() (Webhook, *_nethttp.Response, err
 func (a *WebhookApiService) V1EndpointsUpdate(ctx _context.Context, appId string, endpointId string) ApiV1EndpointsUpdateRequest {
 	return ApiV1EndpointsUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
-		appId: appId,
+		ctx:        ctx,
+		appId:      appId,
 		endpointId: endpointId,
 	}
 }
