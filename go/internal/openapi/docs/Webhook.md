@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Description** | **string** |  | 
 **Disabled** | Pointer to **bool** |  | [optional] 
 **EventTypes** | **[]string** |  | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewWebhook
 
-`func NewWebhook(createdAt string, description string, eventTypes []string, filter string, headers map[string]string, id string, metadata map[string]interface{}, url string, ) *Webhook`
+`func NewWebhook(createdAt time.Time, description string, eventTypes []string, filter string, headers map[string]string, id string, metadata map[string]interface{}, url string, ) *Webhook`
 
 NewWebhook instantiates a new Webhook object
 This constructor will assign default values to properties that have it defined,
@@ -36,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCreatedAt
 
-`func (o *Webhook) GetCreatedAt() string`
+`func (o *Webhook) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *Webhook) GetCreatedAtOk() (*string, bool)`
+`func (o *Webhook) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *Webhook) SetCreatedAt(v string)`
+`func (o *Webhook) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 

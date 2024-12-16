@@ -13,11 +13,12 @@ package openapi
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // Webhook struct for Webhook
 type Webhook struct {
-	CreatedAt   string                 `json:"createdAt"`
+	CreatedAt   time.Time              `json:"createdAt"`
 	Description string                 `json:"description"`
 	Disabled    *bool                  `json:"disabled,omitempty"`
 	EventTypes  []string               `json:"eventTypes"`
@@ -33,7 +34,7 @@ type Webhook struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhook(createdAt string, description string, eventTypes []string, filter string, headers map[string]string, id string, metadata map[string]interface{}, url string) *Webhook {
+func NewWebhook(createdAt time.Time, description string, eventTypes []string, filter string, headers map[string]string, id string, metadata map[string]interface{}, url string) *Webhook {
 	this := Webhook{}
 	this.CreatedAt = createdAt
 	this.Description = description
@@ -55,9 +56,9 @@ func NewWebhookWithDefaults() *Webhook {
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *Webhook) GetCreatedAt() string {
+func (o *Webhook) GetCreatedAt() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -66,7 +67,7 @@ func (o *Webhook) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetCreatedAtOk() (*string, bool) {
+func (o *Webhook) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -74,7 +75,7 @@ func (o *Webhook) GetCreatedAtOk() (*string, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *Webhook) SetCreatedAt(v string) {
+func (o *Webhook) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 

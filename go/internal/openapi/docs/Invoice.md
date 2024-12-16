@@ -7,18 +7,18 @@ Name | Type | Description | Notes
 **Amount** | **string** | Amount (Integer) | 
 **BaseAmount** | **string** | Base Currency Amount | 
 **Channel** | **string** |  | 
-**CreatedAt** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Credentials** | **map[string]interface{}** |  | 
 **Currency** | **string** |  | 
 **Expiration** | Pointer to **int32** |  | [optional] 
-**ExpiredAt** | Pointer to **string** |  | [optional] 
+**ExpiredAt** | Pointer to **time.Time** |  | [optional] 
 **Extra** | **map[string]interface{}** |  | 
-**FailedAt** | Pointer to **string** |  | [optional] 
+**FailedAt** | Pointer to **time.Time** |  | [optional] 
 **FailedReason** | Pointer to **string** |  | [optional] 
 **Id** | **string** |  | 
 **Metadata** | **map[string]interface{}** |  | 
 **Note** | **string** |  | 
-**PaidAt** | Pointer to **string** |  | [optional] 
+**PaidAt** | Pointer to **time.Time** |  | [optional] 
 **Status** | [**InvoiceStatus**](InvoiceStatus.md) |  | 
 **Uid** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** |  | [optional] 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewInvoice
 
-`func NewInvoice(amount string, baseAmount string, channel string, createdAt string, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, status InvoiceStatus, ) *Invoice`
+`func NewInvoice(amount string, baseAmount string, channel string, createdAt time.Time, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, status InvoiceStatus, ) *Invoice`
 
 NewInvoice instantiates a new Invoice object
 This constructor will assign default values to properties that have it defined,
@@ -104,20 +104,20 @@ SetChannel sets Channel field to given value.
 
 ### GetCreatedAt
 
-`func (o *Invoice) GetCreatedAt() string`
+`func (o *Invoice) GetCreatedAt() time.Time`
 
 GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
 ### GetCreatedAtOk
 
-`func (o *Invoice) GetCreatedAtOk() (*string, bool)`
+`func (o *Invoice) GetCreatedAtOk() (*time.Time, bool)`
 
 GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedAt
 
-`func (o *Invoice) SetCreatedAt(v string)`
+`func (o *Invoice) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
 
@@ -189,20 +189,20 @@ HasExpiration returns a boolean if a field has been set.
 
 ### GetExpiredAt
 
-`func (o *Invoice) GetExpiredAt() string`
+`func (o *Invoice) GetExpiredAt() time.Time`
 
 GetExpiredAt returns the ExpiredAt field if non-nil, zero value otherwise.
 
 ### GetExpiredAtOk
 
-`func (o *Invoice) GetExpiredAtOk() (*string, bool)`
+`func (o *Invoice) GetExpiredAtOk() (*time.Time, bool)`
 
 GetExpiredAtOk returns a tuple with the ExpiredAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpiredAt
 
-`func (o *Invoice) SetExpiredAt(v string)`
+`func (o *Invoice) SetExpiredAt(v time.Time)`
 
 SetExpiredAt sets ExpiredAt field to given value.
 
@@ -234,20 +234,20 @@ SetExtra sets Extra field to given value.
 
 ### GetFailedAt
 
-`func (o *Invoice) GetFailedAt() string`
+`func (o *Invoice) GetFailedAt() time.Time`
 
 GetFailedAt returns the FailedAt field if non-nil, zero value otherwise.
 
 ### GetFailedAtOk
 
-`func (o *Invoice) GetFailedAtOk() (*string, bool)`
+`func (o *Invoice) GetFailedAtOk() (*time.Time, bool)`
 
 GetFailedAtOk returns a tuple with the FailedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFailedAt
 
-`func (o *Invoice) SetFailedAt(v string)`
+`func (o *Invoice) SetFailedAt(v time.Time)`
 
 SetFailedAt sets FailedAt field to given value.
 
@@ -344,20 +344,20 @@ SetNote sets Note field to given value.
 
 ### GetPaidAt
 
-`func (o *Invoice) GetPaidAt() string`
+`func (o *Invoice) GetPaidAt() time.Time`
 
 GetPaidAt returns the PaidAt field if non-nil, zero value otherwise.
 
 ### GetPaidAtOk
 
-`func (o *Invoice) GetPaidAtOk() (*string, bool)`
+`func (o *Invoice) GetPaidAtOk() (*time.Time, bool)`
 
 GetPaidAtOk returns a tuple with the PaidAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaidAt
 
-`func (o *Invoice) SetPaidAt(v string)`
+`func (o *Invoice) SetPaidAt(v time.Time)`
 
 SetPaidAt sets PaidAt field to given value.
 

@@ -867,7 +867,8 @@
                         "type": "string"
                     },
                     "createdAt": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date-time"
                     },
                     "credentials": {
                         "type": "object",
@@ -880,14 +881,16 @@
                         "type": "integer"
                     },
                     "expiredAt": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date-time"
                     },
                     "extra": {
                         "type": "object",
                         "additionalProperties": {}
                     },
                     "failedAt": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date-time"
                     },
                     "failedReason": {
                         "type": "string"
@@ -903,7 +906,8 @@
                         "type": "string"
                     },
                     "paidAt": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date-time"
                     },
                     "status": {
                         "$ref": "#/components/schemas/InvoiceStatus"
@@ -1044,7 +1048,8 @@
                 ],
                 "properties": {
                     "createdAt": {
-                        "type": "string"
+                        "type": "string",
+                        "format": "date-time"
                     },
                     "description": {
                         "type": "string"

@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // Invoice struct for Invoice
@@ -22,18 +23,18 @@ type Invoice struct {
 	// Base Currency Amount
 	BaseAmount   string                 `json:"base_amount"`
 	Channel      string                 `json:"channel"`
-	CreatedAt    string                 `json:"createdAt"`
+	CreatedAt    time.Time              `json:"createdAt"`
 	Credentials  map[string]interface{} `json:"credentials"`
 	Currency     string                 `json:"currency"`
 	Expiration   *int32                 `json:"expiration,omitempty"`
-	ExpiredAt    *string                `json:"expiredAt,omitempty"`
+	ExpiredAt    *time.Time             `json:"expiredAt,omitempty"`
 	Extra        map[string]interface{} `json:"extra"`
-	FailedAt     *string                `json:"failedAt,omitempty"`
+	FailedAt     *time.Time             `json:"failedAt,omitempty"`
 	FailedReason *string                `json:"failedReason,omitempty"`
 	Id           string                 `json:"id"`
 	Metadata     map[string]interface{} `json:"metadata"`
 	Note         string                 `json:"note"`
-	PaidAt       *string                `json:"paidAt,omitempty"`
+	PaidAt       *time.Time             `json:"paidAt,omitempty"`
 	Status       InvoiceStatus          `json:"status"`
 	Uid          *string                `json:"uid,omitempty"`
 	UserId       *string                `json:"userId,omitempty"`
@@ -43,7 +44,7 @@ type Invoice struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvoice(amount string, baseAmount string, channel string, createdAt string, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, status InvoiceStatus) *Invoice {
+func NewInvoice(amount string, baseAmount string, channel string, createdAt time.Time, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, status InvoiceStatus) *Invoice {
 	this := Invoice{}
 	this.Amount = amount
 	this.BaseAmount = baseAmount
@@ -140,9 +141,9 @@ func (o *Invoice) SetChannel(v string) {
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *Invoice) GetCreatedAt() string {
+func (o *Invoice) GetCreatedAt() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -151,7 +152,7 @@ func (o *Invoice) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *Invoice) GetCreatedAtOk() (*string, bool) {
+func (o *Invoice) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -159,7 +160,7 @@ func (o *Invoice) GetCreatedAtOk() (*string, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *Invoice) SetCreatedAt(v string) {
+func (o *Invoice) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
@@ -244,9 +245,9 @@ func (o *Invoice) SetExpiration(v int32) {
 }
 
 // GetExpiredAt returns the ExpiredAt field value if set, zero value otherwise.
-func (o *Invoice) GetExpiredAt() string {
+func (o *Invoice) GetExpiredAt() time.Time {
 	if o == nil || o.ExpiredAt == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.ExpiredAt
@@ -254,7 +255,7 @@ func (o *Invoice) GetExpiredAt() string {
 
 // GetExpiredAtOk returns a tuple with the ExpiredAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invoice) GetExpiredAtOk() (*string, bool) {
+func (o *Invoice) GetExpiredAtOk() (*time.Time, bool) {
 	if o == nil || o.ExpiredAt == nil {
 		return nil, false
 	}
@@ -270,8 +271,8 @@ func (o *Invoice) HasExpiredAt() bool {
 	return false
 }
 
-// SetExpiredAt gets a reference to the given string and assigns it to the ExpiredAt field.
-func (o *Invoice) SetExpiredAt(v string) {
+// SetExpiredAt gets a reference to the given time.Time and assigns it to the ExpiredAt field.
+func (o *Invoice) SetExpiredAt(v time.Time) {
 	o.ExpiredAt = &v
 }
 
@@ -300,9 +301,9 @@ func (o *Invoice) SetExtra(v map[string]interface{}) {
 }
 
 // GetFailedAt returns the FailedAt field value if set, zero value otherwise.
-func (o *Invoice) GetFailedAt() string {
+func (o *Invoice) GetFailedAt() time.Time {
 	if o == nil || o.FailedAt == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.FailedAt
@@ -310,7 +311,7 @@ func (o *Invoice) GetFailedAt() string {
 
 // GetFailedAtOk returns a tuple with the FailedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invoice) GetFailedAtOk() (*string, bool) {
+func (o *Invoice) GetFailedAtOk() (*time.Time, bool) {
 	if o == nil || o.FailedAt == nil {
 		return nil, false
 	}
@@ -326,8 +327,8 @@ func (o *Invoice) HasFailedAt() bool {
 	return false
 }
 
-// SetFailedAt gets a reference to the given string and assigns it to the FailedAt field.
-func (o *Invoice) SetFailedAt(v string) {
+// SetFailedAt gets a reference to the given time.Time and assigns it to the FailedAt field.
+func (o *Invoice) SetFailedAt(v time.Time) {
 	o.FailedAt = &v
 }
 
@@ -436,9 +437,9 @@ func (o *Invoice) SetNote(v string) {
 }
 
 // GetPaidAt returns the PaidAt field value if set, zero value otherwise.
-func (o *Invoice) GetPaidAt() string {
+func (o *Invoice) GetPaidAt() time.Time {
 	if o == nil || o.PaidAt == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.PaidAt
@@ -446,7 +447,7 @@ func (o *Invoice) GetPaidAt() string {
 
 // GetPaidAtOk returns a tuple with the PaidAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Invoice) GetPaidAtOk() (*string, bool) {
+func (o *Invoice) GetPaidAtOk() (*time.Time, bool) {
 	if o == nil || o.PaidAt == nil {
 		return nil, false
 	}
@@ -462,8 +463,8 @@ func (o *Invoice) HasPaidAt() bool {
 	return false
 }
 
-// SetPaidAt gets a reference to the given string and assigns it to the PaidAt field.
-func (o *Invoice) SetPaidAt(v string) {
+// SetPaidAt gets a reference to the given time.Time and assigns it to the PaidAt field.
+func (o *Invoice) SetPaidAt(v time.Time) {
 	o.PaidAt = &v
 }
 

@@ -620,7 +620,7 @@ components:
         next_cursor: next_cursor
         items:
         - filter: filter
-          createdAt: createdAt
+          createdAt: 2000-01-23T04:56:07.000+00:00
           headers:
             key: headers
           uid: uid
@@ -634,7 +634,7 @@ components:
           - eventTypes
           url: url
         - filter: filter
-          createdAt: createdAt
+          createdAt: 2000-01-23T04:56:07.000+00:00
           headers:
             key: headers
           uid: uid
@@ -682,14 +682,14 @@ components:
           key: ""
         channel: channel
         userId: userId
-        createdAt: createdAt
-        expiredAt: expiredAt
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        expiredAt: 2000-01-23T04:56:07.000+00:00
         uid: uid
-        failedAt: failedAt
+        failedAt: 2000-01-23T04:56:07.000+00:00
         extra:
           key: ""
         base_amount: base_amount
-        paidAt: paidAt
+        paidAt: 2000-01-23T04:56:07.000+00:00
         currency: currency
         expiration: 0
         id: id
@@ -704,6 +704,7 @@ components:
         channel:
           type: string
         createdAt:
+          format: date-time
           type: string
         credentials:
           additionalProperties: {}
@@ -713,11 +714,13 @@ components:
         expiration:
           type: integer
         expiredAt:
+          format: date-time
           type: string
         extra:
           additionalProperties: {}
           type: object
         failedAt:
+          format: date-time
           type: string
         failedReason:
           type: string
@@ -729,6 +732,7 @@ components:
         note:
           type: string
         paidAt:
+          format: date-time
           type: string
         status:
           $ref: '#/components/schemas/InvoiceStatus'
@@ -785,14 +789,14 @@ components:
             key: ""
           channel: channel
           userId: userId
-          createdAt: createdAt
-          expiredAt: expiredAt
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          expiredAt: 2000-01-23T04:56:07.000+00:00
           uid: uid
-          failedAt: failedAt
+          failedAt: 2000-01-23T04:56:07.000+00:00
           extra:
             key: ""
           base_amount: base_amount
-          paidAt: paidAt
+          paidAt: 2000-01-23T04:56:07.000+00:00
           currency: currency
           expiration: 0
           id: id
@@ -805,14 +809,14 @@ components:
             key: ""
           channel: channel
           userId: userId
-          createdAt: createdAt
-          expiredAt: expiredAt
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          expiredAt: 2000-01-23T04:56:07.000+00:00
           uid: uid
-          failedAt: failedAt
+          failedAt: 2000-01-23T04:56:07.000+00:00
           extra:
             key: ""
           base_amount: base_amount
-          paidAt: paidAt
+          paidAt: 2000-01-23T04:56:07.000+00:00
           currency: currency
           expiration: 0
           id: id
@@ -896,7 +900,7 @@ components:
     Webhook:
       example:
         filter: filter
-        createdAt: createdAt
+        createdAt: 2000-01-23T04:56:07.000+00:00
         headers:
           key: headers
         uid: uid
@@ -911,6 +915,7 @@ components:
         url: url
       properties:
         createdAt:
+          format: date-time
           type: string
         description:
           type: string
