@@ -12,7 +12,6 @@ type (
 	EndpointIn              = openapi.CreateWebhook
 	EndpointOut             = openapi.Webhook
 	EndpointPatch           = openapi.UpdateWebhook
-	Ordering                = openapi.Ordering
 )
 
 type Endpoint struct {
@@ -20,9 +19,8 @@ type Endpoint struct {
 }
 
 type EndpointListOptions struct {
-	Limit    *int32
-	Cursor   *string
-	Ordering *Ordering
+	Limit  *int32
+	Cursor *string
 }
 
 type EndpointStatsOptions struct {
@@ -38,9 +36,6 @@ func (e *Endpoint) List(ctx context.Context, appId string, options *EndpointList
 		}
 		if options.Cursor != nil {
 			req = req.Cursor(*options.Cursor)
-		}
-		if options.Ordering != nil {
-			req = req.Ordering(string(*options.Ordering))
 		}
 	}
 	out, res, err := req.Execute()

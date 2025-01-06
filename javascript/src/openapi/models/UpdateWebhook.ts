@@ -10,61 +10,68 @@
  * Do not edit the class manually.
  */
 
-export class UpdateWebhook {
-  static readonly discriminator: string | undefined = undefined;
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "description",
-      "baseName": "description",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "disabled",
-      "baseName": "disabled",
-      "type": "boolean",
-      "format": "",
-    },
-    {
-      "name": "eventTypes",
-      "baseName": "eventTypes",
-      "type": "Array<string>",
-      "format": "",
-    },
-    {
-      "name": "headers",
-      "baseName": "headers",
-      "type": "{ [key: string]: string; }",
-      "format": "",
-    },
-    {
-      "name": "metadata",
-      "baseName": "metadata",
-      "type": "{ [key: string]: any; }",
-      "format": "",
-    },
-    {
-      "name": "uid",
-      "baseName": "uid",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "url",
-      "baseName": "url",
-      "type": "string",
-      "format": "",
-    }];
-  "description"?: string;
-  "disabled"?: boolean;
-  "eventTypes"?: Array<string>;
-  "headers"?: { [key: string]: string };
-  "metadata"?: { [key: string]: any };
-  "uid"?: string;
-  "url"?: string;
+import { HttpFile } from '../http/http';
 
-  static getAttributeTypeMap() {
-    return UpdateWebhook.attributeTypeMap;
-  }
+export class UpdateWebhook {
+    'description'?: string;
+    'disabled'?: boolean;
+    'eventTypes': Array<string>;
+    'headers': { [key: string]: string; };
+    'metadata': { [key: string]: any; };
+    'uid'?: string;
+    'url'?: string;
+
+    static readonly discriminator: string | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "disabled",
+            "baseName": "disabled",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "eventTypes",
+            "baseName": "eventTypes",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "headers",
+            "baseName": "headers",
+            "type": "{ [key: string]: string; }",
+            "format": ""
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: any; }",
+            "format": ""
+        },
+        {
+            "name": "uid",
+            "baseName": "uid",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string",
+            "format": ""
+        }    ];
+
+    static getAttributeTypeMap() {
+        return UpdateWebhook.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 

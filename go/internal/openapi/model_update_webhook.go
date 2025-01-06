@@ -17,13 +17,13 @@ import (
 
 // UpdateWebhook struct for UpdateWebhook
 type UpdateWebhook struct {
-	Description *string                `json:"description,omitempty"`
-	Disabled    *bool                  `json:"disabled,omitempty"`
-	EventTypes  []string               `json:"eventTypes"`
-	Headers     map[string]string      `json:"headers"`
-	Metadata    map[string]interface{} `json:"metadata"`
-	Uid         *string                `json:"uid,omitempty"`
-	Url         *string                `json:"url,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Disabled *bool `json:"disabled,omitempty"`
+	EventTypes []string `json:"eventTypes"`
+	Headers map[string]string `json:"headers"`
+	Metadata map[string]interface{} `json:"metadata"`
+	Uid *string `json:"uid,omitempty"`
+	Url *string `json:"url,omitempty"`
 }
 
 // NewUpdateWebhook instantiates a new UpdateWebhook object
@@ -123,7 +123,7 @@ func (o *UpdateWebhook) GetEventTypes() []string {
 // GetEventTypesOk returns a tuple with the EventTypes field value
 // and a boolean to check if the value has been set.
 func (o *UpdateWebhook) GetEventTypesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.EventTypes, true
@@ -147,7 +147,7 @@ func (o *UpdateWebhook) GetHeaders() map[string]string {
 // GetHeadersOk returns a tuple with the Headers field value
 // and a boolean to check if the value has been set.
 func (o *UpdateWebhook) GetHeadersOk() (*map[string]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Headers, true
@@ -171,7 +171,7 @@ func (o *UpdateWebhook) GetMetadata() map[string]interface{} {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 func (o *UpdateWebhook) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Metadata, true
@@ -307,3 +307,5 @@ func (v *NullableUpdateWebhook) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

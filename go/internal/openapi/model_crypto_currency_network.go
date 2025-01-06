@@ -67,7 +67,7 @@ func (o *CryptoCurrencyNetwork) GetCanDeposit() bool {
 // GetCanDepositOk returns a tuple with the CanDeposit field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetCanDepositOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.CanDeposit, true
@@ -91,7 +91,7 @@ func (o *CryptoCurrencyNetwork) GetCanTransfer() bool {
 // GetCanTransferOk returns a tuple with the CanTransfer field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetCanTransferOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.CanTransfer, true
@@ -115,7 +115,7 @@ func (o *CryptoCurrencyNetwork) GetCanWithdraw() bool {
 // GetCanWithdrawOk returns a tuple with the CanWithdraw field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetCanWithdrawOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.CanWithdraw, true
@@ -139,7 +139,7 @@ func (o *CryptoCurrencyNetwork) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetCodeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Code, true
@@ -163,7 +163,7 @@ func (o *CryptoCurrencyNetwork) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -187,7 +187,7 @@ func (o *CryptoCurrencyNetwork) GetNetwork() string {
 // GetNetworkOk returns a tuple with the Network field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrencyNetwork) GetNetworkOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Network, true
@@ -256,3 +256,5 @@ func (v *NullableCryptoCurrencyNetwork) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

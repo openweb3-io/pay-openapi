@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.0.2
 info:
   contact:
     email: support@openweb3.io
@@ -6,8 +6,10 @@ info:
   description: This is a pay service api server.
   title: Pay OpenAPI Documentations
   version: "1.0"
+externalDocs: {}
 servers:
-- url: /
+- description: Pay API Server
+  url: https://api.pay.openweb3.io
 paths:
   /api/v1/apps/{appId}/currencies/crypto:
     get:
@@ -33,7 +35,6 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: List available cryptocurrencies
       tags:
       - currency
@@ -61,7 +62,6 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: List available fiat currencies
       tags:
       - currency
@@ -81,7 +81,7 @@ paths:
       - description: From currency
         explode: true
         in: query
-        name: from
+        name: fromCurrency
         required: true
         schema:
           type: string
@@ -89,7 +89,7 @@ paths:
       - description: To currency
         explode: true
         in: query
-        name: to
+        name: toCurrency
         required: true
         schema:
           type: string
@@ -105,7 +105,6 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: Get exchange rate
       tags:
       - currency
@@ -124,31 +123,18 @@ paths:
         style: simple
       - explode: true
         in: query
-        name: cursor
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
         name: limit
-        required: false
+        required: true
         schema:
           type: integer
         style: form
       - explode: true
         in: query
-        name: ordering
+        name: cursor
         required: false
         schema:
-          enum:
-          - asc
-          - desc
           type: string
         style: form
-        x-enum-varnames:
-        - ORDERING_ASC
-        - ORDERING_DESC
       responses:
         "200":
           content:
@@ -158,7 +144,6 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: List webhook endpoints
       tags:
       - webhook
@@ -190,7 +175,6 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: Create a webhook endpoint
       tags:
       - webhook
@@ -224,7 +208,6 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: Delete a webhook endpoint
       tags:
       - webhook
@@ -257,7 +240,6 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: Retrieve a webhook endpoint
       tags:
       - webhook
@@ -297,7 +279,6 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: Update a webhook endpoint
       tags:
       - webhook
@@ -316,13 +297,6 @@ paths:
         style: simple
       - explode: true
         in: query
-        name: channel
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
         name: limit
         required: false
         schema:
@@ -330,10 +304,10 @@ paths:
         style: form
       - explode: true
         in: query
-        name: offset
+        name: channel
         required: false
         schema:
-          type: integer
+          type: string
         style: form
       - explode: true
         in: query
@@ -341,6 +315,13 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
         style: form
       responses:
         "200":
@@ -351,7 +332,6 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: List invoices
       tags:
       - invoice
@@ -383,7 +363,6 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: Create an invoice
       tags:
       - invoice
@@ -417,10 +396,219 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: Retrieve an invoice
       tags:
       - invoice
+  /api/v1/apps/{appId}/payouts:
+    get:
+      description: List payouts
+      operationId: v1.payouts.list
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Cursor
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CursorPage-Payout'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: List payouts
+      tags:
+      - payout
+    post:
+      description: Payout to address
+      operationId: v1.payouts.create
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePayout'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payout'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: Payout to address
+      tags:
+      - payout
+  /api/v1/apps/{appId}/payouts/{payoutId}:
+    get:
+      description: Retrieve a payout
+      operationId: v1.payouts.retrieve
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Payout ID
+        explode: false
+        in: path
+        name: payoutId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payout'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: Retrieve a payout
+      tags:
+      - payout
+  /api/v1/apps/{appId}/refunds:
+    get:
+      description: List refunds
+      operationId: v1.refunds.list
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Cursor
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CursorPage-Refund'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: List refunds
+      tags:
+      - refund
+    post:
+      description: Refund invoice payment
+      operationId: v1.refunds.create
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRefund'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: Refund invoice payment
+      tags:
+      - refund
+  /api/v1/apps/{appId}/refunds/{refundId}:
+    get:
+      description: Retrieve a refund
+      operationId: v1.refunds.retrieve
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Refund ID
+        explode: false
+        in: path
+        name: refundId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      summary: Retrieve a refund
+      tags:
+      - refund
 components:
   schemas:
     CreateInvoiceRequest:
@@ -430,6 +618,7 @@ components:
         amount: amount
         metadata:
           key: ""
+        provider: provider
         extra:
           key: ""
         channel: channel
@@ -460,6 +649,9 @@ components:
         note:
           description: Note
           type: string
+        provider:
+          description: Provider
+          type: string
         uid:
           description: Unique ID
           type: string
@@ -472,6 +664,55 @@ components:
       - currency
       - extra
       - metadata
+      - provider
+      type: object
+    CreatePayout:
+      example:
+        note: note
+        amount: amount
+        currency: currency
+        toAddress: toAddress
+        userId: userId
+        network: network
+      properties:
+        amount:
+          description: Amount (Integer)
+          type: string
+        currency:
+          description: Currency Code
+          type: string
+        network:
+          description: Currency Network
+          type: string
+        note:
+          description: Payout notes
+          type: string
+        toAddress:
+          description: To Address
+          type: string
+        userId:
+          description: User ID
+          type: string
+      type: object
+    CreateRefund:
+      example:
+        note: note
+        amount: 0.8008281904610115
+        invoiceId: invoiceId
+        toAddress: toAddress
+      properties:
+        amount:
+          description: Refund amount (Integer)
+          type: number
+        invoiceId:
+          description: Invoice ID
+          type: string
+        note:
+          description: Refund note
+          type: string
+        toAddress:
+          description: To Address
+          type: string
       type: object
     CreateWebhook:
       example:
@@ -498,6 +739,7 @@ components:
           items:
             type: string
           type: array
+          uniqueItems: false
         headers:
           additionalProperties:
             type: string
@@ -566,6 +808,7 @@ components:
           items:
             $ref: '#/components/schemas/CryptoCurrencyNetwork'
           type: array
+          uniqueItems: false
         precision:
           description: Precision
           type: integer
@@ -614,6 +857,88 @@ components:
       - name
       - network
       type: object
+    CursorPage-Payout:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        items:
+        - note: note
+          amount: amount
+          completedAt: completedAt
+          toAddress: toAddress
+          userId: userId
+          network: network
+          createdAt: createdAt
+          failedAt: failedAt
+          currency: currency
+          fromAddress: fromAddress
+          id: id
+          failedReason: failedReason
+          status: status
+          updatedAt: updatedAt
+        - note: note
+          amount: amount
+          completedAt: completedAt
+          toAddress: toAddress
+          userId: userId
+          network: network
+          createdAt: createdAt
+          failedAt: failedAt
+          currency: currency
+          fromAddress: fromAddress
+          id: id
+          failedReason: failedReason
+          status: status
+          updatedAt: updatedAt
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Payout'
+          type: array
+          uniqueItems: false
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+      type: object
+    CursorPage-Refund:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        items:
+        - createdAt: createdAt
+          note: note
+          amount: 0.8008281904610115
+          completedAt: completedAt
+          failedAt: failedAt
+          invoiceId: invoiceId
+          id: id
+          toAddress: toAddress
+          failedReason: failedReason
+          status: status
+          updatedAt: updatedAt
+        - createdAt: createdAt
+          note: note
+          amount: 0.8008281904610115
+          completedAt: completedAt
+          failedAt: failedAt
+          invoiceId: invoiceId
+          id: id
+          toAddress: toAddress
+          failedReason: failedReason
+          status: status
+          updatedAt: updatedAt
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Refund'
+          type: array
+          uniqueItems: false
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+      type: object
     CursorPage-Webhook:
       example:
         prev_cursor: prev_cursor
@@ -652,6 +977,7 @@ components:
           items:
             $ref: '#/components/schemas/Webhook'
           type: array
+          uniqueItems: false
         next_cursor:
           type: string
         prev_cursor:
@@ -686,6 +1012,7 @@ components:
         expiredAt: 2000-01-23T04:56:07.000+00:00
         uid: uid
         failedAt: 2000-01-23T04:56:07.000+00:00
+        provider: provider
         extra:
           key: ""
         base_amount: base_amount
@@ -694,6 +1021,7 @@ components:
         expiration: 0
         id: id
         failedReason: failedReason
+        status: status
       properties:
         amount:
           description: Amount (Integer)
@@ -734,8 +1062,16 @@ components:
         paidAt:
           format: date-time
           type: string
+        provider:
+          type: string
         status:
-          $ref: '#/components/schemas/InvoiceStatus'
+          type: string
+          x-enum-varnames:
+          - InvoiceStatusFailed
+          - InvoiceStatusPending
+          - InvoiceStatusExpired
+          - InvoiceStatusPaid
+          - InvoiceStatusCompleted
         uid:
           type: string
         userId:
@@ -751,15 +1087,10 @@ components:
       - id
       - metadata
       - note
+      - provider
       - status
       type: object
     InvoiceStatus:
-      enum:
-      - FAILED
-      - PENDING
-      - EXPIRED
-      - PAID
-      - COMPLETED
       type: string
       x-enum-varnames:
       - InvoiceStatusFailed
@@ -767,14 +1098,6 @@ components:
       - InvoiceStatusExpired
       - InvoiceStatusPaid
       - InvoiceStatusCompleted
-    Ordering:
-      enum:
-      - asc
-      - desc
-      type: string
-      x-enum-varnames:
-      - ORDERING_ASC
-      - ORDERING_DESC
     Page-Invoice:
       example:
         prev_cursor: prev_cursor
@@ -793,6 +1116,7 @@ components:
           expiredAt: 2000-01-23T04:56:07.000+00:00
           uid: uid
           failedAt: 2000-01-23T04:56:07.000+00:00
+          provider: provider
           extra:
             key: ""
           base_amount: base_amount
@@ -801,6 +1125,7 @@ components:
           expiration: 0
           id: id
           failedReason: failedReason
+          status: status
         - note: note
           amount: amount
           metadata:
@@ -813,6 +1138,7 @@ components:
           expiredAt: 2000-01-23T04:56:07.000+00:00
           uid: uid
           failedAt: 2000-01-23T04:56:07.000+00:00
+          provider: provider
           extra:
             key: ""
           base_amount: base_amount
@@ -821,6 +1147,7 @@ components:
           expiration: 0
           id: id
           failedReason: failedReason
+          status: status
         hasPrev: true
         hasNext: true
       properties:
@@ -838,6 +1165,65 @@ components:
           type: string
         total:
           type: integer
+      type: object
+    Payout:
+      example:
+        note: note
+        amount: amount
+        completedAt: completedAt
+        toAddress: toAddress
+        userId: userId
+        network: network
+        createdAt: createdAt
+        failedAt: failedAt
+        currency: currency
+        fromAddress: fromAddress
+        id: id
+        failedReason: failedReason
+        status: status
+        updatedAt: updatedAt
+      properties:
+        amount:
+          description: Amount (Integer)
+          type: string
+        completedAt:
+          description: Completed at
+          type: string
+        createdAt:
+          description: Created at
+          type: string
+        currency:
+          description: Currency Code
+          type: string
+        failedAt:
+          description: Failed at
+          type: string
+        failedReason:
+          description: Failed reason
+          type: string
+        fromAddress:
+          description: From Address
+          type: string
+        id:
+          type: string
+        network:
+          description: Currency Network
+          type: string
+        note:
+          description: Payout note
+          type: string
+        status:
+          description: Payout status
+          type: string
+        toAddress:
+          description: To Address
+          type: string
+        updatedAt:
+          description: Updated at
+          type: string
+        userId:
+          description: User ID
+          type: string
       type: object
     Rate:
       example:
@@ -858,6 +1244,53 @@ components:
       - fromCurrency
       - rate
       - toCurrency
+      type: object
+    Refund:
+      example:
+        createdAt: createdAt
+        note: note
+        amount: 0.8008281904610115
+        completedAt: completedAt
+        failedAt: failedAt
+        invoiceId: invoiceId
+        id: id
+        toAddress: toAddress
+        failedReason: failedReason
+        status: status
+        updatedAt: updatedAt
+      properties:
+        amount:
+          description: Refund amount (Integer)
+          type: number
+        completedAt:
+          description: Completed at
+          type: string
+        createdAt:
+          description: Created at
+          type: string
+        failedAt:
+          description: Failed at
+          type: string
+        failedReason:
+          description: Failed reason
+          type: string
+        id:
+          type: string
+        invoiceId:
+          description: Invoice ID
+          type: string
+        note:
+          description: Refund note
+          type: string
+        status:
+          description: Refund status
+          type: string
+        toAddress:
+          description: To Address
+          type: string
+        updatedAt:
+          description: Updated at
+          type: string
       type: object
     UpdateWebhook:
       example:
@@ -881,6 +1314,7 @@ components:
           items:
             type: string
           type: array
+          uniqueItems: false
         headers:
           additionalProperties:
             type: string
@@ -925,6 +1359,7 @@ components:
           items:
             type: string
           type: array
+          uniqueItems: false
         filter:
           type: string
         headers:
@@ -954,8 +1389,4 @@ components:
     ApiKeyAuth:
       in: header
       name: x-api-key
-      type: apiKey
-    SignatureAuth:
-      in: header
-      name: Authorization
       type: apiKey

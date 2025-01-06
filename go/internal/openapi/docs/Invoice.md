@@ -19,7 +19,8 @@ Name | Type | Description | Notes
 **Metadata** | **map[string]interface{}** |  | 
 **Note** | **string** |  | 
 **PaidAt** | Pointer to **time.Time** |  | [optional] 
-**Status** | [**InvoiceStatus**](InvoiceStatus.md) |  | 
+**Provider** | **string** |  | 
+**Status** | **string** |  | 
 **Uid** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** |  | [optional] 
 
@@ -27,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewInvoice
 
-`func NewInvoice(amount string, baseAmount string, channel string, createdAt time.Time, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, status InvoiceStatus, ) *Invoice`
+`func NewInvoice(amount string, baseAmount string, channel string, createdAt time.Time, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, provider string, status string, ) *Invoice`
 
 NewInvoice instantiates a new Invoice object
 This constructor will assign default values to properties that have it defined,
@@ -367,22 +368,42 @@ SetPaidAt sets PaidAt field to given value.
 
 HasPaidAt returns a boolean if a field has been set.
 
+### GetProvider
+
+`func (o *Invoice) GetProvider() string`
+
+GetProvider returns the Provider field if non-nil, zero value otherwise.
+
+### GetProviderOk
+
+`func (o *Invoice) GetProviderOk() (*string, bool)`
+
+GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvider
+
+`func (o *Invoice) SetProvider(v string)`
+
+SetProvider sets Provider field to given value.
+
+
 ### GetStatus
 
-`func (o *Invoice) GetStatus() InvoiceStatus`
+`func (o *Invoice) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *Invoice) GetStatusOk() (*InvoiceStatus, bool)`
+`func (o *Invoice) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *Invoice) SetStatus(v InvoiceStatus)`
+`func (o *Invoice) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
 

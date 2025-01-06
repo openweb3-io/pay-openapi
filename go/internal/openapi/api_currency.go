@@ -111,20 +111,6 @@ func (a *CurrencyApiService) V1CurrenciesListCryptoExecute(r ApiV1CurrenciesList
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["SignatureAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -245,20 +231,6 @@ func (a *CurrencyApiService) V1CurrenciesListFlatExecute(r ApiV1CurrenciesListFl
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["SignatureAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -300,16 +272,16 @@ type ApiV1CurrenciesRetrieveRateRequest struct {
 	ctx _context.Context
 	ApiService *CurrencyApiService
 	appId string
-	from *string
-	to *string
+	fromCurrency *string
+	toCurrency *string
 }
 
-func (r ApiV1CurrenciesRetrieveRateRequest) From(from string) ApiV1CurrenciesRetrieveRateRequest {
-	r.from = &from
+func (r ApiV1CurrenciesRetrieveRateRequest) FromCurrency(fromCurrency string) ApiV1CurrenciesRetrieveRateRequest {
+	r.fromCurrency = &fromCurrency
 	return r
 }
-func (r ApiV1CurrenciesRetrieveRateRequest) To(to string) ApiV1CurrenciesRetrieveRateRequest {
-	r.to = &to
+func (r ApiV1CurrenciesRetrieveRateRequest) ToCurrency(toCurrency string) ApiV1CurrenciesRetrieveRateRequest {
+	r.toCurrency = &toCurrency
 	return r
 }
 
@@ -357,15 +329,15 @@ func (a *CurrencyApiService) V1CurrenciesRetrieveRateExecute(r ApiV1CurrenciesRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.from == nil {
-		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	if r.fromCurrency == nil {
+		return localVarReturnValue, nil, reportError("fromCurrency is required and must be specified")
 	}
-	if r.to == nil {
-		return localVarReturnValue, nil, reportError("to is required and must be specified")
+	if r.toCurrency == nil {
+		return localVarReturnValue, nil, reportError("toCurrency is required and must be specified")
 	}
 
-	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	localVarQueryParams.Add("fromCurrency", parameterToString(*r.fromCurrency, ""))
+	localVarQueryParams.Add("toCurrency", parameterToString(*r.toCurrency, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -394,20 +366,6 @@ func (a *CurrencyApiService) V1CurrenciesRetrieveRateExecute(r ApiV1CurrenciesRe
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["SignatureAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
 			}
 		}
 	}

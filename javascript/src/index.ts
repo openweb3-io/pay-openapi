@@ -4,7 +4,6 @@ import {
   CursorPageWebhook,
   InvoiceApi,
   Middleware,
-  Ordering,
   PageInvoice,
   RequestContext,
   ResponseContext,
@@ -123,14 +122,36 @@ interface ListOptions {
   limit?: number;
 }
 
-export interface InvoiceListOptions extends ListOptions {
-  ordering?: Ordering;
+export interface InvoiceListOptions {
+     /**
+     * 
+     * @type string
+     * @memberof InvoiceApiv1InvoicesList
+     */
+     userId?: string
+     /**
+      * 
+      * @type number
+      * @memberof InvoiceApiv1InvoicesList
+      */
+     offset?: number
+     /**
+      * 
+      * @type number
+      * @memberof InvoiceApiv1InvoicesList
+      */
+     limit?: number
+     /**
+      * 
+      * @type string
+      * @memberof InvoiceApiv1InvoicesList
+      */
+     channel?: string
 }
 
 export interface EndpointListOptions {
-  ordering?: Ordering;
   cursor?: string;
-  limit?: number;
+  limit: number;
 }
 
 class Invoice {
@@ -186,7 +207,7 @@ class Endpoint {
     return this.api.v1EndpointsRetrieve({ appId, endpointId });
   }
 
-  public list(appId: string, options?: EndpointListOptions): Promise<CursorPageWebhook> {
+  public list(appId: string, options: EndpointListOptions): Promise<CursorPageWebhook> {
     return this.api.v1EndpointsList({ appId, ...options });
   }
 }

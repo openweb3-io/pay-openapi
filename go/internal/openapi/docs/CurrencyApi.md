@@ -1,6 +1,6 @@
 # \CurrencyApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -138,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## V1CurrenciesRetrieveRate
 
-> []Rate V1CurrenciesRetrieveRate(ctx, appId).From(from).To(to).Execute()
+> []Rate V1CurrenciesRetrieveRate(ctx, appId).FromCurrency(fromCurrency).ToCurrency(toCurrency).Execute()
 
 Get exchange rate
 
@@ -172,12 +172,12 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    from := "from_example" // string | From currency
-    to := "to_example" // string | To currency
+    fromCurrency := "fromCurrency_example" // string | From currency
+    toCurrency := "toCurrency_example" // string | To currency
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CurrencyApi.V1CurrenciesRetrieveRate(context.Background(), appId).From(from).To(to).Execute()
+    resp, r, err := api_client.CurrencyApi.V1CurrenciesRetrieveRate(context.Background(), appId).FromCurrency(fromCurrency).ToCurrency(toCurrency).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CurrencyApi.V1CurrenciesRetrieveRate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,8 +203,8 @@ Other parameters are passed through a pointer to a apiV1CurrenciesRetrieveRateRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **from** | **string** | From currency | 
- **to** | **string** | To currency | 
+ **fromCurrency** | **string** | From currency | 
+ **toCurrency** | **string** | To currency | 
 
 ### Return type
 
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

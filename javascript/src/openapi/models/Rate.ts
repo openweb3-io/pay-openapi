@@ -10,42 +10,49 @@
  * Do not edit the class manually.
  */
 
-export class Rate {
-  static readonly discriminator: string | undefined = undefined;
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "fromCurrency",
-      "baseName": "fromCurrency",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "rate",
-      "baseName": "rate",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "toCurrency",
-      "baseName": "toCurrency",
-      "type": "string",
-      "format": "",
-    }];
-  /**
-   * From currency code
-   */
-  "fromCurrency"?: string;
-  /**
-   * Exchange Rate
-   */
-  "rate"?: string;
-  /**
-   * To currency code
-   */
-  "toCurrency"?: string;
+import { HttpFile } from '../http/http';
 
-  static getAttributeTypeMap() {
-    return Rate.attributeTypeMap;
-  }
+export class Rate {
+    /**
+    * From currency code
+    */
+    'fromCurrency': string;
+    /**
+    * Exchange Rate
+    */
+    'rate': string;
+    /**
+    * To currency code
+    */
+    'toCurrency': string;
+
+    static readonly discriminator: string | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "fromCurrency",
+            "baseName": "fromCurrency",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "rate",
+            "baseName": "rate",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "toCurrency",
+            "baseName": "toCurrency",
+            "type": "string",
+            "format": ""
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Rate.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 

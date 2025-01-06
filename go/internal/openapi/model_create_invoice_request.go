@@ -31,6 +31,8 @@ type CreateInvoiceRequest struct {
 	Metadata map[string]interface{} `json:"metadata"`
 	// Note
 	Note *string `json:"note,omitempty"`
+	// Provider
+	Provider string `json:"provider"`
 	// Unique ID
 	Uid *string `json:"uid,omitempty"`
 	// User ID
@@ -41,13 +43,14 @@ type CreateInvoiceRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInvoiceRequest(amount string, channel string, currency string, extra map[string]interface{}, metadata map[string]interface{}) *CreateInvoiceRequest {
+func NewCreateInvoiceRequest(amount string, channel string, currency string, extra map[string]interface{}, metadata map[string]interface{}, provider string) *CreateInvoiceRequest {
 	this := CreateInvoiceRequest{}
 	this.Amount = amount
 	this.Channel = channel
 	this.Currency = currency
 	this.Extra = extra
 	this.Metadata = metadata
+	this.Provider = provider
 	return &this
 }
 
@@ -72,7 +75,7 @@ func (o *CreateInvoiceRequest) GetAmount() string {
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
 func (o *CreateInvoiceRequest) GetAmountOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Amount, true
@@ -96,7 +99,7 @@ func (o *CreateInvoiceRequest) GetChannel() string {
 // GetChannelOk returns a tuple with the Channel field value
 // and a boolean to check if the value has been set.
 func (o *CreateInvoiceRequest) GetChannelOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Channel, true
@@ -120,7 +123,7 @@ func (o *CreateInvoiceRequest) GetCurrency() string {
 // GetCurrencyOk returns a tuple with the Currency field value
 // and a boolean to check if the value has been set.
 func (o *CreateInvoiceRequest) GetCurrencyOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Currency, true
@@ -176,7 +179,7 @@ func (o *CreateInvoiceRequest) GetExtra() map[string]interface{} {
 // GetExtraOk returns a tuple with the Extra field value
 // and a boolean to check if the value has been set.
 func (o *CreateInvoiceRequest) GetExtraOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Extra, true
@@ -200,7 +203,7 @@ func (o *CreateInvoiceRequest) GetMetadata() map[string]interface{} {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 func (o *CreateInvoiceRequest) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Metadata, true
@@ -241,6 +244,30 @@ func (o *CreateInvoiceRequest) HasNote() bool {
 // SetNote gets a reference to the given string and assigns it to the Note field.
 func (o *CreateInvoiceRequest) SetNote(v string) {
 	o.Note = &v
+}
+
+// GetProvider returns the Provider field value
+func (o *CreateInvoiceRequest) GetProvider() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value
+// and a boolean to check if the value has been set.
+func (o *CreateInvoiceRequest) GetProviderOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Provider, true
+}
+
+// SetProvider sets field value
+func (o *CreateInvoiceRequest) SetProvider(v string) {
+	o.Provider = v
 }
 
 // GetUid returns the Uid field value if set, zero value otherwise.
@@ -330,6 +357,9 @@ func (o CreateInvoiceRequest) MarshalJSON() ([]byte, error) {
 	if o.Note != nil {
 		toSerialize["note"] = o.Note
 	}
+	if true {
+		toSerialize["provider"] = o.Provider
+	}
 	if o.Uid != nil {
 		toSerialize["uid"] = o.Uid
 	}
@@ -374,3 +404,5 @@ func (v *NullableCreateInvoiceRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

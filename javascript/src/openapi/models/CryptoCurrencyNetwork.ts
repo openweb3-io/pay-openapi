@@ -10,72 +10,79 @@
  * Do not edit the class manually.
  */
 
-export class CryptoCurrencyNetwork {
-  static readonly discriminator: string | undefined = undefined;
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "canDeposit",
-      "baseName": "canDeposit",
-      "type": "boolean",
-      "format": "",
-    },
-    {
-      "name": "canTransfer",
-      "baseName": "canTransfer",
-      "type": "boolean",
-      "format": "",
-    },
-    {
-      "name": "canWithdraw",
-      "baseName": "canWithdraw",
-      "type": "boolean",
-      "format": "",
-    },
-    {
-      "name": "code",
-      "baseName": "code",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "name",
-      "baseName": "name",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "network",
-      "baseName": "network",
-      "type": "string",
-      "format": "",
-    }];
-  /**
-   * Can Deposit
-   */
-  "canDeposit"?: boolean;
-  /**
-   * Can Transfer
-   */
-  "canTransfer"?: boolean;
-  /**
-   * Can Withdraw
-   */
-  "canWithdraw"?: boolean;
-  /**
-   * Network code
-   */
-  "code"?: string;
-  /**
-   * Network display name
-   */
-  "name"?: string;
-  /**
-   * Network name
-   */
-  "network"?: string;
+import { HttpFile } from '../http/http';
 
-  static getAttributeTypeMap() {
-    return CryptoCurrencyNetwork.attributeTypeMap;
-  }
+export class CryptoCurrencyNetwork {
+    /**
+    * Can Deposit
+    */
+    'canDeposit': boolean;
+    /**
+    * Can Transfer
+    */
+    'canTransfer': boolean;
+    /**
+    * Can Withdraw
+    */
+    'canWithdraw': boolean;
+    /**
+    * Network code
+    */
+    'code': string;
+    /**
+    * Network display name
+    */
+    'name': string;
+    /**
+    * Network name
+    */
+    'network': string;
+
+    static readonly discriminator: string | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "canDeposit",
+            "baseName": "canDeposit",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "canTransfer",
+            "baseName": "canTransfer",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "canWithdraw",
+            "baseName": "canWithdraw",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "code",
+            "baseName": "code",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "network",
+            "baseName": "network",
+            "type": "string",
+            "format": ""
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CryptoCurrencyNetwork.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 

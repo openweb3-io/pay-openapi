@@ -29,9 +29,9 @@ var (
 type WebhookApiService service
 
 type ApiV1EndpointsCreateRequest struct {
-	ctx           _context.Context
-	ApiService    *WebhookApiService
-	appId         string
+	ctx _context.Context
+	ApiService *WebhookApiService
+	appId string
 	createWebhook *CreateWebhook
 }
 
@@ -54,8 +54,8 @@ func (r ApiV1EndpointsCreateRequest) Execute() (Webhook, *_nethttp.Response, err
 func (a *WebhookApiService) V1EndpointsCreate(ctx _context.Context, appId string) ApiV1EndpointsCreateRequest {
 	return ApiV1EndpointsCreateRequest{
 		ApiService: a,
-		ctx:        ctx,
-		appId:      appId,
+		ctx: ctx,
+		appId: appId,
 	}
 }
 
@@ -121,20 +121,6 @@ func (a *WebhookApiService) V1EndpointsCreateExecute(r ApiV1EndpointsCreateReque
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["SignatureAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -173,11 +159,12 @@ func (a *WebhookApiService) V1EndpointsCreateExecute(r ApiV1EndpointsCreateReque
 }
 
 type ApiV1EndpointsDeleteRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *WebhookApiService
-	appId      string
+	appId string
 	endpointId string
 }
+
 
 func (r ApiV1EndpointsDeleteRequest) Execute() (Webhook, *_nethttp.Response, error) {
 	return r.ApiService.V1EndpointsDeleteExecute(r)
@@ -194,8 +181,8 @@ func (r ApiV1EndpointsDeleteRequest) Execute() (Webhook, *_nethttp.Response, err
 func (a *WebhookApiService) V1EndpointsDelete(ctx _context.Context, appId string, endpointId string) ApiV1EndpointsDeleteRequest {
 	return ApiV1EndpointsDeleteRequest{
 		ApiService: a,
-		ctx:        ctx,
-		appId:      appId,
+		ctx: ctx,
+		appId: appId,
 		endpointId: endpointId,
 	}
 }
@@ -258,20 +245,6 @@ func (a *WebhookApiService) V1EndpointsDeleteExecute(r ApiV1EndpointsDeleteReque
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["SignatureAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -310,24 +283,19 @@ func (a *WebhookApiService) V1EndpointsDeleteExecute(r ApiV1EndpointsDeleteReque
 }
 
 type ApiV1EndpointsListRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *WebhookApiService
-	appId      string
-	cursor     *string
-	limit      *int32
-	ordering   *string
+	appId string
+	limit *int32
+	cursor *string
 }
 
-func (r ApiV1EndpointsListRequest) Cursor(cursor string) ApiV1EndpointsListRequest {
-	r.cursor = &cursor
-	return r
-}
 func (r ApiV1EndpointsListRequest) Limit(limit int32) ApiV1EndpointsListRequest {
 	r.limit = &limit
 	return r
 }
-func (r ApiV1EndpointsListRequest) Ordering(ordering string) ApiV1EndpointsListRequest {
-	r.ordering = &ordering
+func (r ApiV1EndpointsListRequest) Cursor(cursor string) ApiV1EndpointsListRequest {
+	r.cursor = &cursor
 	return r
 }
 
@@ -345,8 +313,8 @@ func (r ApiV1EndpointsListRequest) Execute() (CursorPageWebhook, *_nethttp.Respo
 func (a *WebhookApiService) V1EndpointsList(ctx _context.Context, appId string) ApiV1EndpointsListRequest {
 	return ApiV1EndpointsListRequest{
 		ApiService: a,
-		ctx:        ctx,
-		appId:      appId,
+		ctx: ctx,
+		appId: appId,
 	}
 }
 
@@ -375,15 +343,13 @@ func (a *WebhookApiService) V1EndpointsListExecute(r ApiV1EndpointsListRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
 
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
-	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
-	if r.ordering != nil {
-		localVarQueryParams.Add("ordering", parameterToString(*r.ordering, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -413,20 +379,6 @@ func (a *WebhookApiService) V1EndpointsListExecute(r ApiV1EndpointsListRequest) 
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["SignatureAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
 			}
 		}
 	}
@@ -468,11 +420,12 @@ func (a *WebhookApiService) V1EndpointsListExecute(r ApiV1EndpointsListRequest) 
 }
 
 type ApiV1EndpointsRetrieveRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *WebhookApiService
-	appId      string
+	appId string
 	endpointId string
 }
+
 
 func (r ApiV1EndpointsRetrieveRequest) Execute() (Webhook, *_nethttp.Response, error) {
 	return r.ApiService.V1EndpointsRetrieveExecute(r)
@@ -489,8 +442,8 @@ func (r ApiV1EndpointsRetrieveRequest) Execute() (Webhook, *_nethttp.Response, e
 func (a *WebhookApiService) V1EndpointsRetrieve(ctx _context.Context, appId string, endpointId string) ApiV1EndpointsRetrieveRequest {
 	return ApiV1EndpointsRetrieveRequest{
 		ApiService: a,
-		ctx:        ctx,
-		appId:      appId,
+		ctx: ctx,
+		appId: appId,
 		endpointId: endpointId,
 	}
 }
@@ -553,20 +506,6 @@ func (a *WebhookApiService) V1EndpointsRetrieveExecute(r ApiV1EndpointsRetrieveR
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["SignatureAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -605,10 +544,10 @@ func (a *WebhookApiService) V1EndpointsRetrieveExecute(r ApiV1EndpointsRetrieveR
 }
 
 type ApiV1EndpointsUpdateRequest struct {
-	ctx           _context.Context
-	ApiService    *WebhookApiService
-	appId         string
-	endpointId    string
+	ctx _context.Context
+	ApiService *WebhookApiService
+	appId string
+	endpointId string
 	updateWebhook *UpdateWebhook
 }
 
@@ -632,8 +571,8 @@ func (r ApiV1EndpointsUpdateRequest) Execute() (Webhook, *_nethttp.Response, err
 func (a *WebhookApiService) V1EndpointsUpdate(ctx _context.Context, appId string, endpointId string) ApiV1EndpointsUpdateRequest {
 	return ApiV1EndpointsUpdateRequest{
 		ApiService: a,
-		ctx:        ctx,
-		appId:      appId,
+		ctx: ctx,
+		appId: appId,
 		endpointId: endpointId,
 	}
 }
@@ -698,20 +637,6 @@ func (a *WebhookApiService) V1EndpointsUpdateExecute(r ApiV1EndpointsUpdateReque
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["SignatureAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
 			}
 		}
 	}

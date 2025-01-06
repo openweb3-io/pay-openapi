@@ -100,7 +100,7 @@ func (o *CreateWebhook) GetDisabled() bool {
 // GetDisabledOk returns a tuple with the Disabled field value
 // and a boolean to check if the value has been set.
 func (o *CreateWebhook) GetDisabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Disabled, true
@@ -124,7 +124,7 @@ func (o *CreateWebhook) GetEventTypes() []string {
 // GetEventTypesOk returns a tuple with the EventTypes field value
 // and a boolean to check if the value has been set.
 func (o *CreateWebhook) GetEventTypesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.EventTypes, true
@@ -148,7 +148,7 @@ func (o *CreateWebhook) GetHeaders() map[string]string {
 // GetHeadersOk returns a tuple with the Headers field value
 // and a boolean to check if the value has been set.
 func (o *CreateWebhook) GetHeadersOk() (*map[string]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Headers, true
@@ -172,7 +172,7 @@ func (o *CreateWebhook) GetMetadata() map[string]interface{} {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 func (o *CreateWebhook) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Metadata, true
@@ -228,7 +228,7 @@ func (o *CreateWebhook) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
 func (o *CreateWebhook) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Url, true
@@ -300,3 +300,5 @@ func (v *NullableCreateWebhook) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

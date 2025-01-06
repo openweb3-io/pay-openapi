@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Extra** | **map[string]interface{}** | Extra | 
 **Metadata** | **map[string]interface{}** | Metadata | 
 **Note** | Pointer to **string** | Note | [optional] 
+**Provider** | **string** | Provider | 
 **Uid** | Pointer to **string** | Unique ID | [optional] 
 **UserId** | Pointer to **string** | User ID | [optional] 
 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewCreateInvoiceRequest
 
-`func NewCreateInvoiceRequest(amount string, channel string, currency string, extra map[string]interface{}, metadata map[string]interface{}, ) *CreateInvoiceRequest`
+`func NewCreateInvoiceRequest(amount string, channel string, currency string, extra map[string]interface{}, metadata map[string]interface{}, provider string, ) *CreateInvoiceRequest`
 
 NewCreateInvoiceRequest instantiates a new CreateInvoiceRequest object
 This constructor will assign default values to properties that have it defined,
@@ -182,6 +183,26 @@ SetNote sets Note field to given value.
 `func (o *CreateInvoiceRequest) HasNote() bool`
 
 HasNote returns a boolean if a field has been set.
+
+### GetProvider
+
+`func (o *CreateInvoiceRequest) GetProvider() string`
+
+GetProvider returns the Provider field if non-nil, zero value otherwise.
+
+### GetProviderOk
+
+`func (o *CreateInvoiceRequest) GetProviderOk() (*string, bool)`
+
+GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvider
+
+`func (o *CreateInvoiceRequest) SetProvider(v string)`
+
+SetProvider sets Provider field to given value.
+
 
 ### GetUid
 

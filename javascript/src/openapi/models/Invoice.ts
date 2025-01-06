@@ -10,146 +10,158 @@
  * Do not edit the class manually.
  */
 
-import { InvoiceStatus } from "./InvoiceStatus";
+import { HttpFile } from '../http/http';
 
 export class Invoice {
-  static readonly discriminator: string | undefined = undefined;
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "amount",
-      "baseName": "amount",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "baseAmount",
-      "baseName": "base_amount",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "channel",
-      "baseName": "channel",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "createdAt",
-      "baseName": "createdAt",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "credentials",
-      "baseName": "credentials",
-      "type": "{ [key: string]: any; }",
-      "format": "",
-    },
-    {
-      "name": "currency",
-      "baseName": "currency",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "expiration",
-      "baseName": "expiration",
-      "type": "number",
-      "format": "",
-    },
-    {
-      "name": "expiredAt",
-      "baseName": "expiredAt",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "extra",
-      "baseName": "extra",
-      "type": "{ [key: string]: any; }",
-      "format": "",
-    },
-    {
-      "name": "failedAt",
-      "baseName": "failedAt",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "failedReason",
-      "baseName": "failedReason",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "id",
-      "baseName": "id",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "metadata",
-      "baseName": "metadata",
-      "type": "{ [key: string]: any; }",
-      "format": "",
-    },
-    {
-      "name": "note",
-      "baseName": "note",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "paidAt",
-      "baseName": "paidAt",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "status",
-      "baseName": "status",
-      "type": "InvoiceStatus",
-      "format": "",
-    },
-    {
-      "name": "uid",
-      "baseName": "uid",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "userId",
-      "baseName": "userId",
-      "type": "string",
-      "format": "",
-    }];
-  /**
-   * Amount (Integer)
-   */
-  "amount"?: string;
-  /**
-   * Base Currency Amount
-   */
-  "baseAmount"?: string;
-  "channel"?: string;
-  "createdAt"?: string;
-  "credentials"?: { [key: string]: any };
-  "currency"?: string;
-  "expiration"?: number;
-  "expiredAt"?: string;
-  "extra"?: { [key: string]: any };
-  "failedAt"?: string;
-  "failedReason"?: string;
-  "id"?: string;
-  "metadata"?: { [key: string]: any };
-  "note"?: string;
-  "paidAt"?: string;
-  "status"?: InvoiceStatus;
-  "uid"?: string;
-  "userId"?: string;
+    /**
+    * Amount (Integer)
+    */
+    'amount': string;
+    /**
+    * Base Currency Amount
+    */
+    'baseAmount': string;
+    'channel': string;
+    'createdAt': Date;
+    'credentials': { [key: string]: any; };
+    'currency': string;
+    'expiration'?: number;
+    'expiredAt'?: Date;
+    'extra': { [key: string]: any; };
+    'failedAt'?: Date;
+    'failedReason'?: string;
+    'id': string;
+    'metadata': { [key: string]: any; };
+    'note': string;
+    'paidAt'?: Date;
+    'provider': string;
+    'status': string;
+    'uid'?: string;
+    'userId'?: string;
 
-  static getAttributeTypeMap() {
-    return Invoice.attributeTypeMap;
-  }
+    static readonly discriminator: string | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "amount",
+            "baseName": "amount",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "baseAmount",
+            "baseName": "base_amount",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "channel",
+            "baseName": "channel",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "createdAt",
+            "baseName": "createdAt",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "credentials",
+            "baseName": "credentials",
+            "type": "{ [key: string]: any; }",
+            "format": ""
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "expiration",
+            "baseName": "expiration",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "expiredAt",
+            "baseName": "expiredAt",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "extra",
+            "baseName": "extra",
+            "type": "{ [key: string]: any; }",
+            "format": ""
+        },
+        {
+            "name": "failedAt",
+            "baseName": "failedAt",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "failedReason",
+            "baseName": "failedReason",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: any; }",
+            "format": ""
+        },
+        {
+            "name": "note",
+            "baseName": "note",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "paidAt",
+            "baseName": "paidAt",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "provider",
+            "baseName": "provider",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "uid",
+            "baseName": "uid",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "userId",
+            "baseName": "userId",
+            "type": "string",
+            "format": ""
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Invoice.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 

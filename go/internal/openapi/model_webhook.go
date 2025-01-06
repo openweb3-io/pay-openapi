@@ -18,16 +18,16 @@ import (
 
 // Webhook struct for Webhook
 type Webhook struct {
-	CreatedAt   time.Time              `json:"createdAt"`
-	Description string                 `json:"description"`
-	Disabled    *bool                  `json:"disabled,omitempty"`
-	EventTypes  []string               `json:"eventTypes"`
-	Filter      string                 `json:"filter"`
-	Headers     map[string]string      `json:"headers"`
-	Id          string                 `json:"id"`
-	Metadata    map[string]interface{} `json:"metadata"`
-	Uid         *string                `json:"uid,omitempty"`
-	Url         string                 `json:"url"`
+	CreatedAt time.Time `json:"createdAt"`
+	Description string `json:"description"`
+	Disabled *bool `json:"disabled,omitempty"`
+	EventTypes []string `json:"eventTypes"`
+	Filter string `json:"filter"`
+	Headers map[string]string `json:"headers"`
+	Id string `json:"id"`
+	Metadata map[string]interface{} `json:"metadata"`
+	Uid *string `json:"uid,omitempty"`
+	Url string `json:"url"`
 }
 
 // NewWebhook instantiates a new Webhook object
@@ -68,7 +68,7 @@ func (o *Webhook) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.CreatedAt, true
@@ -92,7 +92,7 @@ func (o *Webhook) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Description, true
@@ -148,7 +148,7 @@ func (o *Webhook) GetEventTypes() []string {
 // GetEventTypesOk returns a tuple with the EventTypes field value
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetEventTypesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.EventTypes, true
@@ -172,7 +172,7 @@ func (o *Webhook) GetFilter() string {
 // GetFilterOk returns a tuple with the Filter field value
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetFilterOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Filter, true
@@ -196,7 +196,7 @@ func (o *Webhook) GetHeaders() map[string]string {
 // GetHeadersOk returns a tuple with the Headers field value
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetHeadersOk() (*map[string]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Headers, true
@@ -220,7 +220,7 @@ func (o *Webhook) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -244,7 +244,7 @@ func (o *Webhook) GetMetadata() map[string]interface{} {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Metadata, true
@@ -300,7 +300,7 @@ func (o *Webhook) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
 func (o *Webhook) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Url, true
@@ -381,3 +381,5 @@ func (v *NullableWebhook) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

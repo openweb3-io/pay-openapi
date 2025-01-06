@@ -10,102 +10,119 @@
  * Do not edit the class manually.
  */
 
-export class CreateInvoiceRequest {
-  static readonly discriminator: string | undefined = undefined;
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "amount",
-      "baseName": "amount",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "channel",
-      "baseName": "channel",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "currency",
-      "baseName": "currency",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "expiration",
-      "baseName": "expiration",
-      "type": "number",
-      "format": "",
-    },
-    {
-      "name": "extra",
-      "baseName": "extra",
-      "type": "{ [key: string]: any; }",
-      "format": "",
-    },
-    {
-      "name": "metadata",
-      "baseName": "metadata",
-      "type": "{ [key: string]: any; }",
-      "format": "",
-    },
-    {
-      "name": "note",
-      "baseName": "note",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "uid",
-      "baseName": "uid",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "userId",
-      "baseName": "userId",
-      "type": "string",
-      "format": "",
-    }];
-  /**
-   * Amount (Integer)
-   */
-  "amount": string;
-  /**
-   * Channel
-   */
-  "channel": string;
-  /**
-   * Currency
-   */
-  "currency": string;
-  /**
-   * Expiration
-   */
-  "expiration"?: number;
-  /**
-   * Extra
-   */
-  "extra"?: { [key: string]: any };
-  /**
-   * Metadata
-   */
-  "metadata"?: { [key: string]: any };
-  /**
-   * Note
-   */
-  "note"?: string;
-  /**
-   * Unique ID
-   */
-  "uid"?: string;
-  /**
-   * User ID
-   */
-  "userId"?: string;
+import { HttpFile } from '../http/http';
 
-  static getAttributeTypeMap() {
-    return CreateInvoiceRequest.attributeTypeMap;
-  }
+export class CreateInvoiceRequest {
+    /**
+    * Amount (Integer)
+    */
+    'amount': string;
+    /**
+    * Channel
+    */
+    'channel': string;
+    /**
+    * Currency
+    */
+    'currency': string;
+    /**
+    * Expiration
+    */
+    'expiration'?: number;
+    /**
+    * Extra
+    */
+    'extra': { [key: string]: any; };
+    /**
+    * Metadata
+    */
+    'metadata': { [key: string]: any; };
+    /**
+    * Note
+    */
+    'note'?: string;
+    /**
+    * Provider
+    */
+    'provider': string;
+    /**
+    * Unique ID
+    */
+    'uid'?: string;
+    /**
+    * User ID
+    */
+    'userId'?: string;
+
+    static readonly discriminator: string | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "amount",
+            "baseName": "amount",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "channel",
+            "baseName": "channel",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "currency",
+            "baseName": "currency",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "expiration",
+            "baseName": "expiration",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "extra",
+            "baseName": "extra",
+            "type": "{ [key: string]: any; }",
+            "format": ""
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: any; }",
+            "format": ""
+        },
+        {
+            "name": "note",
+            "baseName": "note",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "provider",
+            "baseName": "provider",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "uid",
+            "baseName": "uid",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "userId",
+            "baseName": "userId",
+            "type": "string",
+            "format": ""
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateInvoiceRequest.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 

@@ -10,35 +10,41 @@
  * Do not edit the class manually.
  */
 
-import { Webhook } from "./Webhook";
+import { Webhook } from './Webhook';
+import { HttpFile } from '../http/http';
 
 export class CursorPageWebhook {
-  static readonly discriminator: string | undefined = undefined;
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "items",
-      "baseName": "items",
-      "type": "Array<Webhook>",
-      "format": "",
-    },
-    {
-      "name": "nextCursor",
-      "baseName": "next_cursor",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "prevCursor",
-      "baseName": "prev_cursor",
-      "type": "string",
-      "format": "",
-    }];
-  "items"?: Array<Webhook>;
-  "nextCursor"?: string;
-  "prevCursor"?: string;
+    'items'?: Array<Webhook>;
+    'nextCursor'?: string;
+    'prevCursor'?: string;
 
-  static getAttributeTypeMap() {
-    return CursorPageWebhook.attributeTypeMap;
-  }
+    static readonly discriminator: string | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "items",
+            "baseName": "items",
+            "type": "Array<Webhook>",
+            "format": ""
+        },
+        {
+            "name": "nextCursor",
+            "baseName": "next_cursor",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "prevCursor",
+            "baseName": "prev_cursor",
+            "type": "string",
+            "format": ""
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CursorPageWebhook.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 

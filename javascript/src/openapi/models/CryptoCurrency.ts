@@ -10,94 +10,100 @@
  * Do not edit the class manually.
  */
 
-import { CryptoCurrencyNetwork } from "./CryptoCurrencyNetwork";
+import { CryptoCurrencyNetwork } from './CryptoCurrencyNetwork';
+import { HttpFile } from '../http/http';
 
 export class CryptoCurrency {
-  static readonly discriminator: string | undefined = undefined;
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "code",
-      "baseName": "code",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "decimals",
-      "baseName": "decimals",
-      "type": "number",
-      "format": "",
-    },
-    {
-      "name": "maxWithdrawAmount",
-      "baseName": "maxWithdrawAmount",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "minDepositAmount",
-      "baseName": "minDepositAmount",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "minWithdrawAmount",
-      "baseName": "minWithdrawAmount",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "name",
-      "baseName": "name",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "networks",
-      "baseName": "networks",
-      "type": "Array<CryptoCurrencyNetwork>",
-      "format": "",
-    },
-    {
-      "name": "precision",
-      "baseName": "precision",
-      "type": "number",
-      "format": "",
-    }];
-  /**
-   * Currency code
-   */
-  "code"?: string;
-  /**
-   * Decimals
-   */
-  "decimals"?: number;
-  /**
-   * Max Withdraw Amount (Integer)
-   */
-  "maxWithdrawAmount"?: string;
-  /**
-   * Min Deposit Amount (Integer)
-   */
-  "minDepositAmount"?: string;
-  /**
-   * Min Withdraw Amount (Integer)
-   */
-  "minWithdrawAmount"?: string;
-  /**
-   * Currency name
-   */
-  "name"?: string;
-  /**
-   * Networks
-   */
-  "networks"?: Array<CryptoCurrencyNetwork>;
-  /**
-   * Precision
-   */
-  "precision"?: number;
+    /**
+    * Currency code
+    */
+    'code': string;
+    /**
+    * Decimals
+    */
+    'decimals': number;
+    /**
+    * Max Withdraw Amount (Integer)
+    */
+    'maxWithdrawAmount': string;
+    /**
+    * Min Deposit Amount (Integer)
+    */
+    'minDepositAmount': string;
+    /**
+    * Min Withdraw Amount (Integer)
+    */
+    'minWithdrawAmount': string;
+    /**
+    * Currency name
+    */
+    'name': string;
+    /**
+    * Networks
+    */
+    'networks': Array<CryptoCurrencyNetwork>;
+    /**
+    * Precision
+    */
+    'precision': number;
 
-  static getAttributeTypeMap() {
-    return CryptoCurrency.attributeTypeMap;
-  }
+    static readonly discriminator: string | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "code",
+            "baseName": "code",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "decimals",
+            "baseName": "decimals",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "maxWithdrawAmount",
+            "baseName": "maxWithdrawAmount",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "minDepositAmount",
+            "baseName": "minDepositAmount",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "minWithdrawAmount",
+            "baseName": "minWithdrawAmount",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "networks",
+            "baseName": "networks",
+            "type": "Array<CryptoCurrencyNetwork>",
+            "format": ""
+        },
+        {
+            "name": "precision",
+            "baseName": "precision",
+            "type": "number",
+            "format": ""
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CryptoCurrency.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 

@@ -1,6 +1,6 @@
 # \InvoiceApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -32,7 +32,7 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    createInvoiceRequest := *openapiclient.NewCreateInvoiceRequest("Amount_example", "Channel_example", "Currency_example", map[string]interface{}{"key": interface{}(123)}, map[string]interface{}{"key": interface{}(123)}) // CreateInvoiceRequest | Request body
+    createInvoiceRequest := *openapiclient.NewCreateInvoiceRequest("Amount_example", "Channel_example", "Currency_example", map[string]interface{}{"key": interface{}(123)}, map[string]interface{}{"key": interface{}(123)}, "Provider_example") // CreateInvoiceRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## V1InvoicesList
 
-> PageInvoice V1InvoicesList(ctx, appId).Channel(channel).Limit(limit).Offset(offset).UserId(userId).Execute()
+> PageInvoice V1InvoicesList(ctx, appId).Limit(limit).Channel(channel).UserId(userId).Offset(offset).Execute()
 
 List invoices
 
@@ -104,14 +104,14 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    channel := "channel_example" // string |  (optional)
     limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
+    channel := "channel_example" // string |  (optional)
     userId := "userId_example" // string |  (optional)
+    offset := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoiceApi.V1InvoicesList(context.Background(), appId).Channel(channel).Limit(limit).Offset(offset).UserId(userId).Execute()
+    resp, r, err := api_client.InvoiceApi.V1InvoicesList(context.Background(), appId).Limit(limit).Channel(channel).UserId(userId).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvoiceApi.V1InvoicesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -137,10 +137,10 @@ Other parameters are passed through a pointer to a apiV1InvoicesListRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **channel** | **string** |  | 
  **limit** | **int32** |  | 
- **offset** | **int32** |  | 
+ **channel** | **string** |  | 
  **userId** | **string** |  | 
+ **offset** | **int32** |  | 
 
 ### Return type
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

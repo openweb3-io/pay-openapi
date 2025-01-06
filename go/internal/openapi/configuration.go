@@ -110,8 +110,8 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "",
-				Description: "No description provided",
+				URL: "https://api.pay.openweb3.io",
+				Description: "Pay API Server",
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{

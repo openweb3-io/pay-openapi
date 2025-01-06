@@ -73,7 +73,7 @@ func (o *CryptoCurrency) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetCodeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Code, true
@@ -97,7 +97,7 @@ func (o *CryptoCurrency) GetDecimals() int32 {
 // GetDecimalsOk returns a tuple with the Decimals field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetDecimalsOk() (*int32, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Decimals, true
@@ -121,7 +121,7 @@ func (o *CryptoCurrency) GetMaxWithdrawAmount() string {
 // GetMaxWithdrawAmountOk returns a tuple with the MaxWithdrawAmount field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetMaxWithdrawAmountOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.MaxWithdrawAmount, true
@@ -145,7 +145,7 @@ func (o *CryptoCurrency) GetMinDepositAmount() string {
 // GetMinDepositAmountOk returns a tuple with the MinDepositAmount field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetMinDepositAmountOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.MinDepositAmount, true
@@ -169,7 +169,7 @@ func (o *CryptoCurrency) GetMinWithdrawAmount() string {
 // GetMinWithdrawAmountOk returns a tuple with the MinWithdrawAmount field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetMinWithdrawAmountOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.MinWithdrawAmount, true
@@ -193,7 +193,7 @@ func (o *CryptoCurrency) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -217,7 +217,7 @@ func (o *CryptoCurrency) GetNetworks() []CryptoCurrencyNetwork {
 // GetNetworksOk returns a tuple with the Networks field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetNetworksOk() (*[]CryptoCurrencyNetwork, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Networks, true
@@ -241,7 +241,7 @@ func (o *CryptoCurrency) GetPrecision() int32 {
 // GetPrecisionOk returns a tuple with the Precision field value
 // and a boolean to check if the value has been set.
 func (o *CryptoCurrency) GetPrecisionOk() (*int32, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Precision, true
@@ -316,3 +316,5 @@ func (v *NullableCryptoCurrency) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

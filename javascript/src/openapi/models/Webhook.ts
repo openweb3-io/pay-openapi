@@ -10,82 +10,89 @@
  * Do not edit the class manually.
  */
 
-export class Webhook {
-  static readonly discriminator: string | undefined = undefined;
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "createdAt",
-      "baseName": "createdAt",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "description",
-      "baseName": "description",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "disabled",
-      "baseName": "disabled",
-      "type": "boolean",
-      "format": "",
-    },
-    {
-      "name": "eventTypes",
-      "baseName": "eventTypes",
-      "type": "Array<string>",
-      "format": "",
-    },
-    {
-      "name": "filter",
-      "baseName": "filter",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "headers",
-      "baseName": "headers",
-      "type": "{ [key: string]: string; }",
-      "format": "",
-    },
-    {
-      "name": "id",
-      "baseName": "id",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "metadata",
-      "baseName": "metadata",
-      "type": "{ [key: string]: any; }",
-      "format": "",
-    },
-    {
-      "name": "uid",
-      "baseName": "uid",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "url",
-      "baseName": "url",
-      "type": "string",
-      "format": "",
-    }];
-  "createdAt"?: string;
-  "description"?: string;
-  "disabled"?: boolean;
-  "eventTypes"?: Array<string>;
-  "filter"?: string;
-  "headers"?: { [key: string]: string };
-  "id"?: string;
-  "metadata"?: { [key: string]: any };
-  "uid"?: string;
-  "url"?: string;
+import { HttpFile } from '../http/http';
 
-  static getAttributeTypeMap() {
-    return Webhook.attributeTypeMap;
-  }
+export class Webhook {
+    'createdAt': Date;
+    'description': string;
+    'disabled'?: boolean;
+    'eventTypes': Array<string>;
+    'filter': string;
+    'headers': { [key: string]: string; };
+    'id': string;
+    'metadata': { [key: string]: any; };
+    'uid'?: string;
+    'url': string;
+
+    static readonly discriminator: string | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "createdAt",
+            "baseName": "createdAt",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "disabled",
+            "baseName": "disabled",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "eventTypes",
+            "baseName": "eventTypes",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "filter",
+            "baseName": "filter",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "headers",
+            "baseName": "headers",
+            "type": "{ [key: string]: string; }",
+            "format": ""
+        },
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: any; }",
+            "format": ""
+        },
+        {
+            "name": "uid",
+            "baseName": "uid",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string",
+            "format": ""
+        }    ];
+
+    static getAttributeTypeMap() {
+        return Webhook.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 

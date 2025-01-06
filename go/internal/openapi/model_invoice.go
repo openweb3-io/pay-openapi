@@ -21,30 +21,31 @@ type Invoice struct {
 	// Amount (Integer)
 	Amount string `json:"amount"`
 	// Base Currency Amount
-	BaseAmount   string                 `json:"base_amount"`
-	Channel      string                 `json:"channel"`
-	CreatedAt    time.Time              `json:"createdAt"`
-	Credentials  map[string]interface{} `json:"credentials"`
-	Currency     string                 `json:"currency"`
-	Expiration   *int32                 `json:"expiration,omitempty"`
-	ExpiredAt    *time.Time             `json:"expiredAt,omitempty"`
-	Extra        map[string]interface{} `json:"extra"`
-	FailedAt     *time.Time             `json:"failedAt,omitempty"`
-	FailedReason *string                `json:"failedReason,omitempty"`
-	Id           string                 `json:"id"`
-	Metadata     map[string]interface{} `json:"metadata"`
-	Note         string                 `json:"note"`
-	PaidAt       *time.Time             `json:"paidAt,omitempty"`
-	Status       InvoiceStatus          `json:"status"`
-	Uid          *string                `json:"uid,omitempty"`
-	UserId       *string                `json:"userId,omitempty"`
+	BaseAmount string `json:"base_amount"`
+	Channel string `json:"channel"`
+	CreatedAt time.Time `json:"createdAt"`
+	Credentials map[string]interface{} `json:"credentials"`
+	Currency string `json:"currency"`
+	Expiration *int32 `json:"expiration,omitempty"`
+	ExpiredAt *time.Time `json:"expiredAt,omitempty"`
+	Extra map[string]interface{} `json:"extra"`
+	FailedAt *time.Time `json:"failedAt,omitempty"`
+	FailedReason *string `json:"failedReason,omitempty"`
+	Id string `json:"id"`
+	Metadata map[string]interface{} `json:"metadata"`
+	Note string `json:"note"`
+	PaidAt *time.Time `json:"paidAt,omitempty"`
+	Provider string `json:"provider"`
+	Status string `json:"status"`
+	Uid *string `json:"uid,omitempty"`
+	UserId *string `json:"userId,omitempty"`
 }
 
 // NewInvoice instantiates a new Invoice object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvoice(amount string, baseAmount string, channel string, createdAt time.Time, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, status InvoiceStatus) *Invoice {
+func NewInvoice(amount string, baseAmount string, channel string, createdAt time.Time, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, provider string, status string) *Invoice {
 	this := Invoice{}
 	this.Amount = amount
 	this.BaseAmount = baseAmount
@@ -56,6 +57,7 @@ func NewInvoice(amount string, baseAmount string, channel string, createdAt time
 	this.Id = id
 	this.Metadata = metadata
 	this.Note = note
+	this.Provider = provider
 	this.Status = status
 	return &this
 }
@@ -81,7 +83,7 @@ func (o *Invoice) GetAmount() string {
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetAmountOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Amount, true
@@ -105,7 +107,7 @@ func (o *Invoice) GetBaseAmount() string {
 // GetBaseAmountOk returns a tuple with the BaseAmount field value
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetBaseAmountOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.BaseAmount, true
@@ -129,7 +131,7 @@ func (o *Invoice) GetChannel() string {
 // GetChannelOk returns a tuple with the Channel field value
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetChannelOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Channel, true
@@ -153,7 +155,7 @@ func (o *Invoice) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.CreatedAt, true
@@ -177,7 +179,7 @@ func (o *Invoice) GetCredentials() map[string]interface{} {
 // GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetCredentialsOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Credentials, true
@@ -201,7 +203,7 @@ func (o *Invoice) GetCurrency() string {
 // GetCurrencyOk returns a tuple with the Currency field value
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetCurrencyOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Currency, true
@@ -289,7 +291,7 @@ func (o *Invoice) GetExtra() map[string]interface{} {
 // GetExtraOk returns a tuple with the Extra field value
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetExtraOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Extra, true
@@ -377,7 +379,7 @@ func (o *Invoice) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -401,7 +403,7 @@ func (o *Invoice) GetMetadata() map[string]interface{} {
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Metadata, true
@@ -425,7 +427,7 @@ func (o *Invoice) GetNote() string {
 // GetNoteOk returns a tuple with the Note field value
 // and a boolean to check if the value has been set.
 func (o *Invoice) GetNoteOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Note, true
@@ -468,10 +470,34 @@ func (o *Invoice) SetPaidAt(v time.Time) {
 	o.PaidAt = &v
 }
 
-// GetStatus returns the Status field value
-func (o *Invoice) GetStatus() InvoiceStatus {
+// GetProvider returns the Provider field value
+func (o *Invoice) GetProvider() string {
 	if o == nil {
-		var ret InvoiceStatus
+		var ret string
+		return ret
+	}
+
+	return o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value
+// and a boolean to check if the value has been set.
+func (o *Invoice) GetProviderOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Provider, true
+}
+
+// SetProvider sets field value
+func (o *Invoice) SetProvider(v string) {
+	o.Provider = v
+}
+
+// GetStatus returns the Status field value
+func (o *Invoice) GetStatus() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
 
@@ -480,15 +506,15 @@ func (o *Invoice) GetStatus() InvoiceStatus {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *Invoice) GetStatusOk() (*InvoiceStatus, bool) {
-	if o == nil {
+func (o *Invoice) GetStatusOk() (*string, bool) {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Status, true
 }
 
 // SetStatus sets field value
-func (o *Invoice) SetStatus(v InvoiceStatus) {
+func (o *Invoice) SetStatus(v string) {
 	o.Status = v
 }
 
@@ -604,6 +630,9 @@ func (o Invoice) MarshalJSON() ([]byte, error) {
 		toSerialize["paidAt"] = o.PaidAt
 	}
 	if true {
+		toSerialize["provider"] = o.Provider
+	}
+	if true {
 		toSerialize["status"] = o.Status
 	}
 	if o.Uid != nil {
@@ -650,3 +679,5 @@ func (v *NullableInvoice) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

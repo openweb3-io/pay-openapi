@@ -10,58 +10,62 @@
  * Do not edit the class manually.
  */
 
-import { Invoice } from "./Invoice";
+import { Invoice } from './Invoice';
+import { HttpFile } from '../http/http';
 
 export class PageInvoice {
-  "data"?: Array<Invoice>;
-  "hasNext"?: boolean;
-  "hasPrev"?: boolean;
-  "nextCursor"?: string;
-  "prevCursor"?: string;
-  "total"?: number;
+    'data'?: Array<Invoice>;
+    'hasNext'?: boolean;
+    'hasPrev'?: boolean;
+    'nextCursor'?: string;
+    'prevCursor'?: string;
+    'total'?: number;
 
-  static readonly discriminator: string | undefined = undefined;
+    static readonly discriminator: string | undefined = undefined;
 
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "data",
-      "baseName": "data",
-      "type": "Array<Invoice>",
-      "format": "",
-    },
-    {
-      "name": "hasNext",
-      "baseName": "hasNext",
-      "type": "boolean",
-      "format": "",
-    },
-    {
-      "name": "hasPrev",
-      "baseName": "hasPrev",
-      "type": "boolean",
-      "format": "",
-    },
-    {
-      "name": "nextCursor",
-      "baseName": "next_cursor",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "prevCursor",
-      "baseName": "prev_cursor",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "total",
-      "baseName": "total",
-      "type": "number",
-      "format": "",
-    }];
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<Invoice>",
+            "format": ""
+        },
+        {
+            "name": "hasNext",
+            "baseName": "hasNext",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "hasPrev",
+            "baseName": "hasPrev",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "nextCursor",
+            "baseName": "next_cursor",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "prevCursor",
+            "baseName": "prev_cursor",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "total",
+            "baseName": "total",
+            "type": "number",
+            "format": ""
+        }    ];
 
-  static getAttributeTypeMap() {
-    return PageInvoice.attributeTypeMap;
-  }
+    static getAttributeTypeMap() {
+        return PageInvoice.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 

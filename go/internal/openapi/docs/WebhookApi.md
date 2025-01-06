@@ -1,6 +1,6 @@
 # \WebhookApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 
 ## V1EndpointsList
 
-> CursorPageWebhook V1EndpointsList(ctx, appId).Cursor(cursor).Limit(limit).Ordering(ordering).Execute()
+> CursorPageWebhook V1EndpointsList(ctx, appId).Limit(limit).Cursor(cursor).Execute()
 
 List webhook endpoints
 
@@ -179,13 +179,12 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
+    limit := int32(56) // int32 | 
     cursor := "cursor_example" // string |  (optional)
-    limit := int32(56) // int32 |  (optional)
-    ordering := "ordering_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookApi.V1EndpointsList(context.Background(), appId).Cursor(cursor).Limit(limit).Ordering(ordering).Execute()
+    resp, r, err := api_client.WebhookApi.V1EndpointsList(context.Background(), appId).Limit(limit).Cursor(cursor).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookApi.V1EndpointsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,9 +210,8 @@ Other parameters are passed through a pointer to a apiV1EndpointsListRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cursor** | **string** |  | 
  **limit** | **int32** |  | 
- **ordering** | **string** |  | 
+ **cursor** | **string** |  | 
 
 ### Return type
 
@@ -221,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -294,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -369,7 +367,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

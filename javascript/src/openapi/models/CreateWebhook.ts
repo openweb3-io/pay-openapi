@@ -10,82 +10,89 @@
  * Do not edit the class manually.
  */
 
-export class CreateWebhook {
-  static readonly discriminator: string | undefined = undefined;
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "description",
-      "baseName": "description",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "disabled",
-      "baseName": "disabled",
-      "type": "boolean",
-      "format": "",
-    },
-    {
-      "name": "eventTypes",
-      "baseName": "eventTypes",
-      "type": "Array<string>",
-      "format": "",
-    },
-    {
-      "name": "headers",
-      "baseName": "headers",
-      "type": "{ [key: string]: string; }",
-      "format": "",
-    },
-    {
-      "name": "metadata",
-      "baseName": "metadata",
-      "type": "{ [key: string]: any; }",
-      "format": "",
-    },
-    {
-      "name": "uid",
-      "baseName": "uid",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "url",
-      "baseName": "url",
-      "type": "string",
-      "format": "",
-    }];
-  /**
-   * The description of the webhook
-   */
-  "description"?: string;
-  /**
-   * The disabled of the webhook
-   */
-  "disabled"?: boolean;
-  /**
-   * The event types of the webhook
-   */
-  "eventTypes"?: Array<string>;
-  /**
-   * The headers of the webhook
-   */
-  "headers"?: { [key: string]: string };
-  /**
-   * The metadata of the webhook
-   */
-  "metadata"?: { [key: string]: any };
-  /**
-   * The uid of the webhook
-   */
-  "uid"?: string;
-  /**
-   * The url of the webhook
-   */
-  "url"?: string;
+import { HttpFile } from '../http/http';
 
-  static getAttributeTypeMap() {
-    return CreateWebhook.attributeTypeMap;
-  }
+export class CreateWebhook {
+    /**
+    * The description of the webhook
+    */
+    'description'?: string;
+    /**
+    * The disabled of the webhook
+    */
+    'disabled': boolean;
+    /**
+    * The event types of the webhook
+    */
+    'eventTypes': Array<string>;
+    /**
+    * The headers of the webhook
+    */
+    'headers': { [key: string]: string; };
+    /**
+    * The metadata of the webhook
+    */
+    'metadata': { [key: string]: any; };
+    /**
+    * The uid of the webhook
+    */
+    'uid'?: string;
+    /**
+    * The url of the webhook
+    */
+    'url': string;
+
+    static readonly discriminator: string | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "disabled",
+            "baseName": "disabled",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "eventTypes",
+            "baseName": "eventTypes",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "headers",
+            "baseName": "headers",
+            "type": "{ [key: string]: string; }",
+            "format": ""
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: any; }",
+            "format": ""
+        },
+        {
+            "name": "uid",
+            "baseName": "uid",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "url",
+            "baseName": "url",
+            "type": "string",
+            "format": ""
+        }    ];
+
+    static getAttributeTypeMap() {
+        return CreateWebhook.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 

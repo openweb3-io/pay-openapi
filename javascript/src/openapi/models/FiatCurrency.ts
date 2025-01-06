@@ -10,32 +10,39 @@
  * Do not edit the class manually.
  */
 
-export class FiatCurrency {
-  static readonly discriminator: string | undefined = undefined;
-  static readonly attributeTypeMap: Array<{ name: string; baseName: string; type: string; format: string }> = [
-    {
-      "name": "code",
-      "baseName": "code",
-      "type": "string",
-      "format": "",
-    },
-    {
-      "name": "name",
-      "baseName": "name",
-      "type": "string",
-      "format": "",
-    }];
-  /**
-   * Currency Code
-   */
-  "code"?: string;
-  /**
-   * Currency Name
-   */
-  "name"?: string;
+import { HttpFile } from '../http/http';
 
-  static getAttributeTypeMap() {
-    return FiatCurrency.attributeTypeMap;
-  }
+export class FiatCurrency {
+    /**
+    * Currency Code
+    */
+    'code': string;
+    /**
+    * Currency Name
+    */
+    'name': string;
+
+    static readonly discriminator: string | undefined = undefined;
+
+    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "code",
+            "baseName": "code",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
+        }    ];
+
+    static getAttributeTypeMap() {
+        return FiatCurrency.attributeTypeMap;
+    }
+    
+    public constructor() {
+    }
 }
 
