@@ -20,7 +20,7 @@ export class CreateWebhook {
     /**
     * The disabled of the webhook
     */
-    'disabled': boolean;
+    'disabled'?: boolean;
     /**
     * The event types of the webhook
     */

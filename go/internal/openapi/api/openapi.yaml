@@ -123,17 +123,17 @@ paths:
         style: simple
       - explode: true
         in: query
-        name: cursor
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
         name: limit
         required: true
         schema:
           type: integer
+        style: form
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
         style: form
       responses:
         "200":
@@ -297,6 +297,20 @@ paths:
         style: simple
       - explode: true
         in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
         name: channel
         required: false
         schema:
@@ -308,20 +322,6 @@ paths:
         required: false
         schema:
           type: string
-        style: form
-      - explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          type: integer
         style: form
       responses:
         "200":
@@ -758,7 +758,6 @@ components:
           description: The url of the webhook
           type: string
       required:
-      - disabled
       - eventTypes
       - url
       type: object

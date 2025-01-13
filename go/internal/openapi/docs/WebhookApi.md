@@ -34,7 +34,7 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    createWebhook := *openapiclient.NewCreateWebhook(false, []string{"EventTypes_example"}, "Url_example") // CreateWebhook | Request body
+    createWebhook := *openapiclient.NewCreateWebhook([]string{"EventTypes_example"}, "Url_example") // CreateWebhook | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

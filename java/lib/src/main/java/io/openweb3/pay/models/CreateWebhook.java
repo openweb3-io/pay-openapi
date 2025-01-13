@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * CreateWebhook
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-13T23:46:23.401937+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-14T03:11:44.796828+08:00[Asia/Shanghai]")
 public class CreateWebhook {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -95,7 +95,8 @@ public class CreateWebhook {
    * The disabled of the webhook
    * @return disabled
   **/
-  @ApiModelProperty(required = true, value = "The disabled of the webhook")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The disabled of the webhook")
 
   public Boolean getDisabled() {
     return disabled;

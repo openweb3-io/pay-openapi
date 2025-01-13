@@ -148,7 +148,6 @@
           }
         },
         "required": [
-          "disabled",
           "eventTypes",
           "url"
         ],
@@ -838,17 +837,17 @@
           },
           {
             "in": "query",
-            "name": "cursor",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
             "name": "limit",
             "required": true,
             "schema": {
               "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1086,16 +1085,9 @@
           },
           {
             "in": "query",
-            "name": "channel",
+            "name": "limit",
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "userId",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           },
           {
@@ -1107,9 +1099,16 @@
           },
           {
             "in": "query",
-            "name": "limit",
+            "name": "channel",
             "schema": {
-              "type": "integer"
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "userId",
+            "schema": {
+              "type": "string"
             }
           }
         ],

@@ -99,13 +99,13 @@ export class PromiseInvoiceApi {
      * List invoices
      * List invoices
      * @param appId App ID
+     * @param limit 
+     * @param offset 
      * @param channel 
      * @param userId 
-     * @param offset 
-     * @param limit 
      */
-    public v1InvoicesList(appId: string, channel?: string, userId?: string, offset?: number, limit?: number, _options?: Configuration): Promise<PageInvoice> {
-        const result = this.api.v1InvoicesList(appId, channel, userId, offset, limit, _options);
+    public v1InvoicesList(appId: string, limit?: number, offset?: number, channel?: string, userId?: string, _options?: Configuration): Promise<PageInvoice> {
+        const result = this.api.v1InvoicesList(appId, limit, offset, channel, userId, _options);
         return result.toPromise();
     }
 

@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 <a name="v1InvoicesList"></a>
 # **v1InvoicesList**
-> PageInvoice v1InvoicesList(appId, channel, userId, offset, limit)
+> PageInvoice v1InvoicesList(appId, limit, offset, channel, userId)
 
 List invoices
 
@@ -111,12 +111,12 @@ public class Example {
 
     InvoiceApi apiInstance = new InvoiceApi(defaultClient);
     String appId = "appId_example"; // String | App ID
+    Integer limit = 56; // Integer | 
+    Integer offset = 56; // Integer | 
     String channel = "channel_example"; // String | 
     String userId = "userId_example"; // String | 
-    Integer offset = 56; // Integer | 
-    Integer limit = 56; // Integer | 
     try {
-      PageInvoice result = apiInstance.v1InvoicesList(appId, channel, userId, offset, limit);
+      PageInvoice result = apiInstance.v1InvoicesList(appId, limit, offset, channel, userId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InvoiceApi#v1InvoicesList");
@@ -134,10 +134,10 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **appId** | **String**| App ID |
+ **limit** | **Integer**|  | [optional]
+ **offset** | **Integer**|  | [optional]
  **channel** | **String**|  | [optional]
  **userId** | **String**|  | [optional]
- **offset** | **Integer**|  | [optional]
- **limit** | **Integer**|  | [optional]
 
 ### Return type
 

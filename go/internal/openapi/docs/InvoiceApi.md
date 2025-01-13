@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## V1InvoicesList
 
-> PageInvoice V1InvoicesList(ctx, appId).Channel(channel).UserId(userId).Offset(offset).Limit(limit).Execute()
+> PageInvoice V1InvoicesList(ctx, appId).Limit(limit).Offset(offset).Channel(channel).UserId(userId).Execute()
 
 List invoices
 
@@ -104,14 +104,14 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
+    limit := int32(56) // int32 |  (optional)
+    offset := int32(56) // int32 |  (optional)
     channel := "channel_example" // string |  (optional)
     userId := "userId_example" // string |  (optional)
-    offset := int32(56) // int32 |  (optional)
-    limit := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoiceApi.V1InvoicesList(context.Background(), appId).Channel(channel).UserId(userId).Offset(offset).Limit(limit).Execute()
+    resp, r, err := api_client.InvoiceApi.V1InvoicesList(context.Background(), appId).Limit(limit).Offset(offset).Channel(channel).UserId(userId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InvoiceApi.V1InvoicesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -137,10 +137,10 @@ Other parameters are passed through a pointer to a apiV1InvoicesListRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **limit** | **int32** |  | 
+ **offset** | **int32** |  | 
  **channel** | **string** |  | 
  **userId** | **string** |  | 
- **offset** | **int32** |  | 
- **limit** | **int32** |  | 
 
 ### Return type
 

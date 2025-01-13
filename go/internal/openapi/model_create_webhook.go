@@ -20,7 +20,7 @@ type CreateWebhook struct {
 	// The description of the webhook
 	Description *string `json:"description,omitempty"`
 	// The disabled of the webhook
-	Disabled bool `json:"disabled"`
+	Disabled *bool `json:"disabled,omitempty"`
 	// The event types of the webhook
 	EventTypes []string `json:"eventTypes"`
 	// The headers of the webhook
@@ -37,9 +37,8 @@ type CreateWebhook struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateWebhook(disabled bool, eventTypes []string, url string) *CreateWebhook {
+func NewCreateWebhook(eventTypes []string, url string) *CreateWebhook {
 	this := CreateWebhook{}
-	this.Disabled = disabled
 	this.EventTypes = eventTypes
 	this.Url = url
 	return &this
@@ -85,28 +84,36 @@ func (o *CreateWebhook) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetDisabled returns the Disabled field value
+// GetDisabled returns the Disabled field value if set, zero value otherwise.
 func (o *CreateWebhook) GetDisabled() bool {
-	if o == nil {
+	if o == nil || o.Disabled == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.Disabled
+	return *o.Disabled
 }
 
-// GetDisabledOk returns a tuple with the Disabled field value
+// GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateWebhook) GetDisabledOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.Disabled == nil {
 		return nil, false
 	}
-	return &o.Disabled, true
+	return o.Disabled, true
 }
 
-// SetDisabled sets field value
+// HasDisabled returns a boolean if a field has been set.
+func (o *CreateWebhook) HasDisabled() bool {
+	if o != nil && o.Disabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
 func (o *CreateWebhook) SetDisabled(v bool) {
-	o.Disabled = v
+	o.Disabled = &v
 }
 
 // GetEventTypes returns the EventTypes field value
@@ -260,7 +267,7 @@ func (o CreateWebhook) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if true {
+	if o.Disabled != nil {
 		toSerialize["disabled"] = o.Disabled
 	}
 	if true {

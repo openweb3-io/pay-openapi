@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** | The description of the webhook | [optional] 
-**Disabled** | **bool** | The disabled of the webhook | 
+**Disabled** | Pointer to **bool** | The disabled of the webhook | [optional] 
 **EventTypes** | **[]string** | The event types of the webhook | 
 **Headers** | Pointer to **map[string]string** | The headers of the webhook | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | The metadata of the webhook | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewCreateWebhook
 
-`func NewCreateWebhook(disabled bool, eventTypes []string, url string, ) *CreateWebhook`
+`func NewCreateWebhook(eventTypes []string, url string, ) *CreateWebhook`
 
 NewCreateWebhook instantiates a new CreateWebhook object
 This constructor will assign default values to properties that have it defined,
@@ -75,6 +75,11 @@ and a boolean to check if the value has been set.
 
 SetDisabled sets Disabled field to given value.
 
+### HasDisabled
+
+`func (o *CreateWebhook) HasDisabled() bool`
+
+HasDisabled returns a boolean if a field has been set.
 
 ### GetEventTypes
 
