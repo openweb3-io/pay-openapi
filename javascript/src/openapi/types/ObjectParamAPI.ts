@@ -125,12 +125,6 @@ export interface InvoiceApiV1InvoicesListRequest {
     appId: string
     /**
      * 
-     * @type number
-     * @memberof InvoiceApiv1InvoicesList
-     */
-    limit?: number
-    /**
-     * 
      * @type string
      * @memberof InvoiceApiv1InvoicesList
      */
@@ -147,6 +141,12 @@ export interface InvoiceApiV1InvoicesListRequest {
      * @memberof InvoiceApiv1InvoicesList
      */
     offset?: number
+    /**
+     * 
+     * @type number
+     * @memberof InvoiceApiv1InvoicesList
+     */
+    limit?: number
 }
 
 export interface InvoiceApiV1InvoicesRetrieveRequest {
@@ -186,7 +186,7 @@ export class ObjectInvoiceApi {
      * @param param the request object
      */
     public v1InvoicesList(param: InvoiceApiV1InvoicesListRequest, options?: Configuration): Promise<PageInvoice> {
-        return this.api.v1InvoicesList(param.appId, param.limit, param.channel, param.userId, param.offset,  options).toPromise();
+        return this.api.v1InvoicesList(param.appId, param.channel, param.userId, param.offset, param.limit,  options).toPromise();
     }
 
     /**

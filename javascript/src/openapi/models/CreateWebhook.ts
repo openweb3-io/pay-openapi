@@ -28,11 +28,11 @@ export class CreateWebhook {
     /**
     * The headers of the webhook
     */
-    'headers': { [key: string]: string; };
+    'headers'?: { [key: string]: string; };
     /**
     * The metadata of the webhook
     */
-    'metadata': { [key: string]: any; };
+    'metadata'?: { [key: string]: any; };
     /**
     * The uid of the webhook
     */

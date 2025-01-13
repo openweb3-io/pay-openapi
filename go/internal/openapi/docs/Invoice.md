@@ -12,11 +12,11 @@ Name | Type | Description | Notes
 **Currency** | **string** |  | 
 **Expiration** | Pointer to **int32** |  | [optional] 
 **ExpiredAt** | Pointer to **time.Time** |  | [optional] 
-**Extra** | **map[string]interface{}** |  | 
+**Extra** | Pointer to **map[string]interface{}** |  | [optional] 
 **FailedAt** | Pointer to **time.Time** |  | [optional] 
 **FailedReason** | Pointer to **string** |  | [optional] 
 **Id** | **string** |  | 
-**Metadata** | **map[string]interface{}** |  | 
+**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Note** | **string** |  | 
 **PaidAt** | Pointer to **time.Time** |  | [optional] 
 **Provider** | **string** |  | 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewInvoice
 
-`func NewInvoice(amount string, baseAmount string, channel string, createdAt time.Time, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, provider string, status string, ) *Invoice`
+`func NewInvoice(amount string, baseAmount string, channel string, createdAt time.Time, credentials map[string]interface{}, currency string, id string, note string, provider string, status string, ) *Invoice`
 
 NewInvoice instantiates a new Invoice object
 This constructor will assign default values to properties that have it defined,
@@ -232,7 +232,22 @@ and a boolean to check if the value has been set.
 
 SetExtra sets Extra field to given value.
 
+### HasExtra
 
+`func (o *Invoice) HasExtra() bool`
+
+HasExtra returns a boolean if a field has been set.
+
+### SetExtraNil
+
+`func (o *Invoice) SetExtraNil(b bool)`
+
+ SetExtraNil sets the value for Extra to be an explicit nil
+
+### UnsetExtra
+`func (o *Invoice) UnsetExtra()`
+
+UnsetExtra ensures that no value is present for Extra, not even an explicit nil
 ### GetFailedAt
 
 `func (o *Invoice) GetFailedAt() time.Time`
@@ -322,7 +337,22 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
+### HasMetadata
 
+`func (o *Invoice) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
+### SetMetadataNil
+
+`func (o *Invoice) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *Invoice) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetNote
 
 `func (o *Invoice) GetNote() string`

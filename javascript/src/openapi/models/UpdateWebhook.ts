@@ -16,8 +16,8 @@ export class UpdateWebhook {
     'description'?: string;
     'disabled'?: boolean;
     'eventTypes': Array<string>;
-    'headers': { [key: string]: string; };
-    'metadata': { [key: string]: any; };
+    'headers'?: { [key: string]: string; };
+    'metadata'?: { [key: string]: any; };
     'uid'?: string;
     'url'?: string;
 

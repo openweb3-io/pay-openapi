@@ -78,12 +78,12 @@ export class InvoiceApiRequestFactory extends BaseAPIRequestFactory {
      * List invoices
      * List invoices
      * @param appId App ID
-     * @param limit 
      * @param channel 
      * @param userId 
      * @param offset 
+     * @param limit 
      */
-    public async v1InvoicesList(appId: string, limit?: number, channel?: string, userId?: string, offset?: number, _options?: Configuration): Promise<RequestContext> {
+    public async v1InvoicesList(appId: string, channel?: string, userId?: string, offset?: number, limit?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'appId' is not null or undefined
@@ -107,9 +107,6 @@ export class InvoiceApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
-        if (limit !== undefined) {
-            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
-        }
         if (channel !== undefined) {
             requestContext.setQueryParam("channel", ObjectSerializer.serialize(channel, "string", ""));
         }
@@ -118,6 +115,9 @@ export class InvoiceApiRequestFactory extends BaseAPIRequestFactory {
         }
         if (offset !== undefined) {
             requestContext.setQueryParam("offset", ObjectSerializer.serialize(offset, "number", ""));
+        }
+        if (limit !== undefined) {
+            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
         }
 
         // Header Params

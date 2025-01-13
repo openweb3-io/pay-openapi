@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | The description of the webhook | [optional] 
 **Disabled** | **bool** | The disabled of the webhook | 
 **EventTypes** | **[]string** | The event types of the webhook | 
-**Headers** | **map[string]string** | The headers of the webhook | 
-**Metadata** | **map[string]interface{}** | The metadata of the webhook | 
+**Headers** | Pointer to **map[string]string** | The headers of the webhook | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | The metadata of the webhook | [optional] 
 **Uid** | Pointer to **string** | The uid of the webhook | [optional] 
 **Url** | **string** | The url of the webhook | 
 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewCreateWebhook
 
-`func NewCreateWebhook(disabled bool, eventTypes []string, headers map[string]string, metadata map[string]interface{}, url string, ) *CreateWebhook`
+`func NewCreateWebhook(disabled bool, eventTypes []string, url string, ) *CreateWebhook`
 
 NewCreateWebhook instantiates a new CreateWebhook object
 This constructor will assign default values to properties that have it defined,
@@ -115,7 +115,22 @@ and a boolean to check if the value has been set.
 
 SetHeaders sets Headers field to given value.
 
+### HasHeaders
 
+`func (o *CreateWebhook) HasHeaders() bool`
+
+HasHeaders returns a boolean if a field has been set.
+
+### SetHeadersNil
+
+`func (o *CreateWebhook) SetHeadersNil(b bool)`
+
+ SetHeadersNil sets the value for Headers to be an explicit nil
+
+### UnsetHeaders
+`func (o *CreateWebhook) UnsetHeaders()`
+
+UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
 ### GetMetadata
 
 `func (o *CreateWebhook) GetMetadata() map[string]interface{}`
@@ -135,7 +150,22 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
+### HasMetadata
 
+`func (o *CreateWebhook) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
+### SetMetadataNil
+
+`func (o *CreateWebhook) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *CreateWebhook) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetUid
 
 `func (o *CreateWebhook) GetUid() string`

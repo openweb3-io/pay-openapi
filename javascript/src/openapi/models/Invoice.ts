@@ -27,11 +27,11 @@ export class Invoice {
     'currency': string;
     'expiration'?: number;
     'expiredAt'?: Date;
-    'extra': { [key: string]: any; };
+    'extra'?: { [key: string]: any; };
     'failedAt'?: Date;
     'failedReason'?: string;
     'id': string;
-    'metadata': { [key: string]: any; };
+    'metadata'?: { [key: string]: any; };
     'note': string;
     'paidAt'?: Date;
     'provider': string;

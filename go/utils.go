@@ -123,7 +123,7 @@ func genSign(data []byte, privateKey []byte) (sign string, err error) {
 
 	block, _ := pem.Decode(privateKey)
 	if block == nil {
-		return "", errors.New("private key error")
+		return "", errors.New("decode private key failed, please check your private key")
 	}
 	priv, err := x509.ParsePKCS1PrivateKey(block.Bytes)
 	if err != nil {

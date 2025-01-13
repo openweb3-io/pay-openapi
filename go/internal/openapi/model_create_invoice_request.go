@@ -26,9 +26,9 @@ type CreateInvoiceRequest struct {
 	// Expiration
 	Expiration *int32 `json:"expiration,omitempty"`
 	// Extra
-	Extra map[string]interface{} `json:"extra"`
+	Extra map[string]interface{} `json:"extra,omitempty"`
 	// Metadata
-	Metadata map[string]interface{} `json:"metadata"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Note
 	Note *string `json:"note,omitempty"`
 	// Provider
@@ -43,13 +43,11 @@ type CreateInvoiceRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInvoiceRequest(amount string, channel string, currency string, extra map[string]interface{}, metadata map[string]interface{}, provider string) *CreateInvoiceRequest {
+func NewCreateInvoiceRequest(amount string, channel string, currency string, provider string) *CreateInvoiceRequest {
 	this := CreateInvoiceRequest{}
 	this.Amount = amount
 	this.Channel = channel
 	this.Currency = currency
-	this.Extra = extra
-	this.Metadata = metadata
 	this.Provider = provider
 	return &this
 }
@@ -166,50 +164,68 @@ func (o *CreateInvoiceRequest) SetExpiration(v int32) {
 	o.Expiration = &v
 }
 
-// GetExtra returns the Extra field value
+// GetExtra returns the Extra field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateInvoiceRequest) GetExtra() map[string]interface{} {
-	if o == nil {
+	if o == nil  {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Extra
 }
 
-// GetExtraOk returns a tuple with the Extra field value
+// GetExtraOk returns a tuple with the Extra field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateInvoiceRequest) GetExtraOk() (*map[string]interface{}, bool) {
-	if o == nil  {
+	if o == nil || o.Extra == nil {
 		return nil, false
 	}
 	return &o.Extra, true
 }
 
-// SetExtra sets field value
+// HasExtra returns a boolean if a field has been set.
+func (o *CreateInvoiceRequest) HasExtra() bool {
+	if o != nil && o.Extra != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExtra gets a reference to the given map[string]interface{} and assigns it to the Extra field.
 func (o *CreateInvoiceRequest) SetExtra(v map[string]interface{}) {
 	o.Extra = v
 }
 
-// GetMetadata returns the Metadata field value
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateInvoiceRequest) GetMetadata() map[string]interface{} {
-	if o == nil {
+	if o == nil  {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateInvoiceRequest) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil  {
+	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
 	return &o.Metadata, true
 }
 
-// SetMetadata sets field value
+// HasMetadata returns a boolean if a field has been set.
+func (o *CreateInvoiceRequest) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
 func (o *CreateInvoiceRequest) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
@@ -348,10 +364,10 @@ func (o CreateInvoiceRequest) MarshalJSON() ([]byte, error) {
 	if o.Expiration != nil {
 		toSerialize["expiration"] = o.Expiration
 	}
-	if true {
+	if o.Extra != nil {
 		toSerialize["extra"] = o.Extra
 	}
-	if true {
+	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if o.Note != nil {

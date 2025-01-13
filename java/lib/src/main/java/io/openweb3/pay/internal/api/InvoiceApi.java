@@ -180,10 +180,10 @@ public class InvoiceApi {
     /**
      * Build call for v1InvoicesList
      * @param appId App ID (required)
-     * @param limit  (optional)
      * @param channel  (optional)
      * @param userId  (optional)
      * @param offset  (optional)
+     * @param limit  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -193,7 +193,7 @@ public class InvoiceApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1InvoicesListCall(String appId, Integer limit, String channel, String userId, Integer offset, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1InvoicesListCall(String appId, String channel, String userId, Integer offset, Integer limit, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -206,10 +206,6 @@ public class InvoiceApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
         if (channel != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("channel", channel));
         }
@@ -220,6 +216,10 @@ public class InvoiceApi {
 
         if (offset != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
         }
 
         final String[] localVarAccepts = {
@@ -241,7 +241,7 @@ public class InvoiceApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1InvoicesListValidateBeforeCall(String appId, Integer limit, String channel, String userId, Integer offset, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1InvoicesListValidateBeforeCall(String appId, String channel, String userId, Integer offset, Integer limit, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'appId' is set
         if (appId == null) {
@@ -249,7 +249,7 @@ public class InvoiceApi {
         }
         
 
-        okhttp3.Call localVarCall = v1InvoicesListCall(appId, limit, channel, userId, offset, _callback);
+        okhttp3.Call localVarCall = v1InvoicesListCall(appId, channel, userId, offset, limit, _callback);
         return localVarCall;
 
     }
@@ -258,10 +258,10 @@ public class InvoiceApi {
      * List invoices
      * List invoices
      * @param appId App ID (required)
-     * @param limit  (optional)
      * @param channel  (optional)
      * @param userId  (optional)
      * @param offset  (optional)
+     * @param limit  (optional)
      * @return PageInvoice
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -270,8 +270,8 @@ public class InvoiceApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public PageInvoice v1InvoicesList(String appId, Integer limit, String channel, String userId, Integer offset) throws ApiException {
-        ApiResponse<PageInvoice> localVarResp = v1InvoicesListWithHttpInfo(appId, limit, channel, userId, offset);
+    public PageInvoice v1InvoicesList(String appId, String channel, String userId, Integer offset, Integer limit) throws ApiException {
+        ApiResponse<PageInvoice> localVarResp = v1InvoicesListWithHttpInfo(appId, channel, userId, offset, limit);
         return localVarResp.getData();
     }
 
@@ -279,10 +279,10 @@ public class InvoiceApi {
      * List invoices
      * List invoices
      * @param appId App ID (required)
-     * @param limit  (optional)
      * @param channel  (optional)
      * @param userId  (optional)
      * @param offset  (optional)
+     * @param limit  (optional)
      * @return ApiResponse&lt;PageInvoice&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -291,8 +291,8 @@ public class InvoiceApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PageInvoice> v1InvoicesListWithHttpInfo(String appId, Integer limit, String channel, String userId, Integer offset) throws ApiException {
-        okhttp3.Call localVarCall = v1InvoicesListValidateBeforeCall(appId, limit, channel, userId, offset, null);
+    public ApiResponse<PageInvoice> v1InvoicesListWithHttpInfo(String appId, String channel, String userId, Integer offset, Integer limit) throws ApiException {
+        okhttp3.Call localVarCall = v1InvoicesListValidateBeforeCall(appId, channel, userId, offset, limit, null);
         Type localVarReturnType = new TypeToken<PageInvoice>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -301,10 +301,10 @@ public class InvoiceApi {
      * List invoices (asynchronously)
      * List invoices
      * @param appId App ID (required)
-     * @param limit  (optional)
      * @param channel  (optional)
      * @param userId  (optional)
      * @param offset  (optional)
+     * @param limit  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -314,9 +314,9 @@ public class InvoiceApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1InvoicesListAsync(String appId, Integer limit, String channel, String userId, Integer offset, final ApiCallback<PageInvoice> _callback) throws ApiException {
+    public okhttp3.Call v1InvoicesListAsync(String appId, String channel, String userId, Integer offset, Integer limit, final ApiCallback<PageInvoice> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1InvoicesListValidateBeforeCall(appId, limit, channel, userId, offset, _callback);
+        okhttp3.Call localVarCall = v1InvoicesListValidateBeforeCall(appId, channel, userId, offset, limit, _callback);
         Type localVarReturnType = new TypeToken<PageInvoice>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

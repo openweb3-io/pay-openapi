@@ -2,7 +2,7 @@
 
 Pay OpenAPI Documentations
 - API version: 1.0
-  - Build date: 2025-01-07T05:09:50.814598+08:00[Asia/Shanghai]
+  - Build date: 2025-01-13T23:46:23.401937+08:00[Asia/Shanghai]
 
 This is a pay service api server.
 

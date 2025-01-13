@@ -123,17 +123,17 @@ paths:
         style: simple
       - explode: true
         in: query
-        name: limit
-        required: true
-        schema:
-          type: integer
-        style: form
-      - explode: true
-        in: query
         name: cursor
         required: false
         schema:
           type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          type: integer
         style: form
       responses:
         "200":
@@ -297,13 +297,6 @@ paths:
         style: simple
       - explode: true
         in: query
-        name: limit
-        required: false
-        schema:
-          type: integer
-        style: form
-      - explode: true
-        in: query
         name: channel
         required: false
         schema:
@@ -319,6 +312,13 @@ paths:
       - explode: true
         in: query
         name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
         required: false
         schema:
           type: integer
@@ -641,10 +641,12 @@ components:
         extra:
           additionalProperties: {}
           description: Extra
+          nullable: true
           type: object
         metadata:
           additionalProperties: {}
           description: Metadata
+          nullable: true
           type: object
         note:
           description: Note
@@ -662,8 +664,6 @@ components:
       - amount
       - channel
       - currency
-      - extra
-      - metadata
       - provider
       type: object
     CreatePayout:
@@ -744,10 +744,12 @@ components:
           additionalProperties:
             type: string
           description: The headers of the webhook
+          nullable: true
           type: object
         metadata:
           additionalProperties: {}
           description: The metadata of the webhook
+          nullable: true
           type: object
         uid:
           description: The uid of the webhook
@@ -758,8 +760,6 @@ components:
       required:
       - disabled
       - eventTypes
-      - headers
-      - metadata
       - url
       type: object
     CryptoCurrency:
@@ -1046,6 +1046,7 @@ components:
           type: string
         extra:
           additionalProperties: {}
+          nullable: true
           type: object
         failedAt:
           format: date-time
@@ -1056,6 +1057,7 @@ components:
           type: string
         metadata:
           additionalProperties: {}
+          nullable: true
           type: object
         note:
           type: string
@@ -1083,9 +1085,7 @@ components:
       - createdAt
       - credentials
       - currency
-      - extra
       - id
-      - metadata
       - note
       - provider
       - status
@@ -1318,9 +1318,11 @@ components:
         headers:
           additionalProperties:
             type: string
+          nullable: true
           type: object
         metadata:
           additionalProperties: {}
+          nullable: true
           type: object
         uid:
           type: string
@@ -1328,8 +1330,6 @@ components:
           type: string
       required:
       - eventTypes
-      - headers
-      - metadata
       type: object
     Webhook:
       example:
@@ -1365,11 +1365,13 @@ components:
         headers:
           additionalProperties:
             type: string
+          nullable: true
           type: object
         id:
           type: string
         metadata:
           additionalProperties: {}
+          nullable: true
           type: object
         uid:
           type: string
@@ -1380,9 +1382,7 @@ components:
       - description
       - eventTypes
       - filter
-      - headers
       - id
-      - metadata
       - url
       type: object
   securitySchemes:

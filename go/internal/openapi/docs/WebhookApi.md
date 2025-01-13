@@ -34,7 +34,7 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    createWebhook := *openapiclient.NewCreateWebhook(false, []string{"EventTypes_example"}, map[string]string{"key": "Inner_example"}, map[string]interface{}{"key": interface{}(123)}, "Url_example") // CreateWebhook | Request body
+    createWebhook := *openapiclient.NewCreateWebhook(false, []string{"EventTypes_example"}, "Url_example") // CreateWebhook | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -327,7 +327,7 @@ import (
 func main() {
     appId := "appId_example" // string | App ID
     endpointId := "endpointId_example" // string | Endpoint ID
-    updateWebhook := *openapiclient.NewUpdateWebhook([]string{"EventTypes_example"}, map[string]string{"key": "Inner_example"}, map[string]interface{}{"key": interface{}(123)}) // UpdateWebhook | Request body
+    updateWebhook := *openapiclient.NewUpdateWebhook([]string{"EventTypes_example"}) // UpdateWebhook | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Channel** | **string** | Channel | 
 **Currency** | **string** | Currency | 
 **Expiration** | Pointer to **int32** | Expiration | [optional] 
-**Extra** | **map[string]interface{}** | Extra | 
-**Metadata** | **map[string]interface{}** | Metadata | 
+**Extra** | Pointer to **map[string]interface{}** | Extra | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | Metadata | [optional] 
 **Note** | Pointer to **string** | Note | [optional] 
 **Provider** | **string** | Provider | 
 **Uid** | Pointer to **string** | Unique ID | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewCreateInvoiceRequest
 
-`func NewCreateInvoiceRequest(amount string, channel string, currency string, extra map[string]interface{}, metadata map[string]interface{}, provider string, ) *CreateInvoiceRequest`
+`func NewCreateInvoiceRequest(amount string, channel string, currency string, provider string, ) *CreateInvoiceRequest`
 
 NewCreateInvoiceRequest instantiates a new CreateInvoiceRequest object
 This constructor will assign default values to properties that have it defined,
@@ -138,7 +138,22 @@ and a boolean to check if the value has been set.
 
 SetExtra sets Extra field to given value.
 
+### HasExtra
 
+`func (o *CreateInvoiceRequest) HasExtra() bool`
+
+HasExtra returns a boolean if a field has been set.
+
+### SetExtraNil
+
+`func (o *CreateInvoiceRequest) SetExtraNil(b bool)`
+
+ SetExtraNil sets the value for Extra to be an explicit nil
+
+### UnsetExtra
+`func (o *CreateInvoiceRequest) UnsetExtra()`
+
+UnsetExtra ensures that no value is present for Extra, not even an explicit nil
 ### GetMetadata
 
 `func (o *CreateInvoiceRequest) GetMetadata() map[string]interface{}`
@@ -158,7 +173,22 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
+### HasMetadata
 
+`func (o *CreateInvoiceRequest) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
+### SetMetadataNil
+
+`func (o *CreateInvoiceRequest) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *CreateInvoiceRequest) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetNote
 
 `func (o *CreateInvoiceRequest) GetNote() string`

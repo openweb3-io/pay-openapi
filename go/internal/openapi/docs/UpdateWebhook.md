@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **Disabled** | Pointer to **bool** |  | [optional] 
 **EventTypes** | **[]string** |  | 
-**Headers** | **map[string]string** |  | 
-**Metadata** | **map[string]interface{}** |  | 
+**Headers** | Pointer to **map[string]string** |  | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Uid** | Pointer to **string** |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateWebhook
 
-`func NewUpdateWebhook(eventTypes []string, headers map[string]string, metadata map[string]interface{}, ) *UpdateWebhook`
+`func NewUpdateWebhook(eventTypes []string, ) *UpdateWebhook`
 
 NewUpdateWebhook instantiates a new UpdateWebhook object
 This constructor will assign default values to properties that have it defined,
@@ -120,7 +120,22 @@ and a boolean to check if the value has been set.
 
 SetHeaders sets Headers field to given value.
 
+### HasHeaders
 
+`func (o *UpdateWebhook) HasHeaders() bool`
+
+HasHeaders returns a boolean if a field has been set.
+
+### SetHeadersNil
+
+`func (o *UpdateWebhook) SetHeadersNil(b bool)`
+
+ SetHeadersNil sets the value for Headers to be an explicit nil
+
+### UnsetHeaders
+`func (o *UpdateWebhook) UnsetHeaders()`
+
+UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
 ### GetMetadata
 
 `func (o *UpdateWebhook) GetMetadata() map[string]interface{}`
@@ -140,7 +155,22 @@ and a boolean to check if the value has been set.
 
 SetMetadata sets Metadata field to given value.
 
+### HasMetadata
 
+`func (o *UpdateWebhook) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
+### SetMetadataNil
+
+`func (o *UpdateWebhook) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *UpdateWebhook) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetUid
 
 `func (o *UpdateWebhook) GetUid() string`

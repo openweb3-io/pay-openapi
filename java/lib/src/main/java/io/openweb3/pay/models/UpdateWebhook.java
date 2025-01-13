@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * UpdateWebhook
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-07T05:09:50.814598+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-13T23:46:23.401937+08:00[Asia/Shanghai]")
 public class UpdateWebhook {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -47,11 +47,11 @@ public class UpdateWebhook {
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
-  private Map<String, String> headers = new HashMap<>();
+  private Map<String, String> headers = null;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, Object> metadata = new HashMap<>();
+  private Map<String, Object> metadata = null;
 
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
@@ -142,6 +142,9 @@ public class UpdateWebhook {
   }
 
   public UpdateWebhook putHeadersItem(String key, String headersItem) {
+    if (this.headers == null) {
+      this.headers = new HashMap<>();
+    }
     this.headers.put(key, headersItem);
     return this;
   }
@@ -150,7 +153,8 @@ public class UpdateWebhook {
    * Get headers
    * @return headers
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Map<String, String> getHeaders() {
     return headers;
@@ -169,6 +173,9 @@ public class UpdateWebhook {
   }
 
   public UpdateWebhook putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
     this.metadata.put(key, metadataItem);
     return this;
   }
@@ -177,7 +184,8 @@ public class UpdateWebhook {
    * Get metadata
    * @return metadata
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Map<String, Object> getMetadata() {
     return metadata;

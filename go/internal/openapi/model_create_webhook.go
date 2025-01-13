@@ -24,9 +24,9 @@ type CreateWebhook struct {
 	// The event types of the webhook
 	EventTypes []string `json:"eventTypes"`
 	// The headers of the webhook
-	Headers map[string]string `json:"headers"`
+	Headers map[string]string `json:"headers,omitempty"`
 	// The metadata of the webhook
-	Metadata map[string]interface{} `json:"metadata"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The uid of the webhook
 	Uid *string `json:"uid,omitempty"`
 	// The url of the webhook
@@ -37,12 +37,10 @@ type CreateWebhook struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateWebhook(disabled bool, eventTypes []string, headers map[string]string, metadata map[string]interface{}, url string) *CreateWebhook {
+func NewCreateWebhook(disabled bool, eventTypes []string, url string) *CreateWebhook {
 	this := CreateWebhook{}
 	this.Disabled = disabled
 	this.EventTypes = eventTypes
-	this.Headers = headers
-	this.Metadata = metadata
 	this.Url = url
 	return &this
 }
@@ -135,50 +133,68 @@ func (o *CreateWebhook) SetEventTypes(v []string) {
 	o.EventTypes = v
 }
 
-// GetHeaders returns the Headers field value
+// GetHeaders returns the Headers field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateWebhook) GetHeaders() map[string]string {
-	if o == nil {
+	if o == nil  {
 		var ret map[string]string
 		return ret
 	}
-
 	return o.Headers
 }
 
-// GetHeadersOk returns a tuple with the Headers field value
+// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateWebhook) GetHeadersOk() (*map[string]string, bool) {
-	if o == nil  {
+	if o == nil || o.Headers == nil {
 		return nil, false
 	}
 	return &o.Headers, true
 }
 
-// SetHeaders sets field value
+// HasHeaders returns a boolean if a field has been set.
+func (o *CreateWebhook) HasHeaders() bool {
+	if o != nil && o.Headers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
 func (o *CreateWebhook) SetHeaders(v map[string]string) {
 	o.Headers = v
 }
 
-// GetMetadata returns the Metadata field value
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CreateWebhook) GetMetadata() map[string]interface{} {
-	if o == nil {
+	if o == nil  {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateWebhook) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil  {
+	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
 	return &o.Metadata, true
 }
 
-// SetMetadata sets field value
+// HasMetadata returns a boolean if a field has been set.
+func (o *CreateWebhook) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
 func (o *CreateWebhook) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
@@ -250,10 +266,10 @@ func (o CreateWebhook) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["eventTypes"] = o.EventTypes
 	}
-	if true {
+	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers
 	}
-	if true {
+	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if o.Uid != nil {

@@ -162,16 +162,12 @@ type ApiV1InvoicesListRequest struct {
 	ctx _context.Context
 	ApiService *InvoiceApiService
 	appId string
-	limit *int32
 	channel *string
 	userId *string
 	offset *int32
+	limit *int32
 }
 
-func (r ApiV1InvoicesListRequest) Limit(limit int32) ApiV1InvoicesListRequest {
-	r.limit = &limit
-	return r
-}
 func (r ApiV1InvoicesListRequest) Channel(channel string) ApiV1InvoicesListRequest {
 	r.channel = &channel
 	return r
@@ -182,6 +178,10 @@ func (r ApiV1InvoicesListRequest) UserId(userId string) ApiV1InvoicesListRequest
 }
 func (r ApiV1InvoicesListRequest) Offset(offset int32) ApiV1InvoicesListRequest {
 	r.offset = &offset
+	return r
+}
+func (r ApiV1InvoicesListRequest) Limit(limit int32) ApiV1InvoicesListRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -230,9 +230,6 @@ func (a *InvoiceApiService) V1InvoicesListExecute(r ApiV1InvoicesListRequest) (P
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
 	if r.channel != nil {
 		localVarQueryParams.Add("channel", parameterToString(*r.channel, ""))
 	}
@@ -241,6 +238,9 @@ func (a *InvoiceApiService) V1InvoicesListExecute(r ApiV1InvoicesListRequest) (P
 	}
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

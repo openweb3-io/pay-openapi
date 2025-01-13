@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * CreateInvoiceRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-07T05:09:50.814598+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-13T23:46:23.401937+08:00[Asia/Shanghai]")
 public class CreateInvoiceRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -50,11 +50,11 @@ public class CreateInvoiceRequest {
 
   public static final String SERIALIZED_NAME_EXTRA = "extra";
   @SerializedName(SERIALIZED_NAME_EXTRA)
-  private Map<String, Object> extra = new HashMap<>();
+  private Map<String, Object> extra = null;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, Object> metadata = new HashMap<>();
+  private Map<String, Object> metadata = null;
 
   public static final String SERIALIZED_NAME_NOTE = "note";
   @SerializedName(SERIALIZED_NAME_NOTE)
@@ -169,6 +169,9 @@ public class CreateInvoiceRequest {
   }
 
   public CreateInvoiceRequest putExtraItem(String key, Object extraItem) {
+    if (this.extra == null) {
+      this.extra = new HashMap<>();
+    }
     this.extra.put(key, extraItem);
     return this;
   }
@@ -177,7 +180,8 @@ public class CreateInvoiceRequest {
    * Extra
    * @return extra
   **/
-  @ApiModelProperty(required = true, value = "Extra")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Extra")
 
   public Map<String, Object> getExtra() {
     return extra;
@@ -196,6 +200,9 @@ public class CreateInvoiceRequest {
   }
 
   public CreateInvoiceRequest putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
     this.metadata.put(key, metadataItem);
     return this;
   }
@@ -204,7 +211,8 @@ public class CreateInvoiceRequest {
    * Metadata
    * @return metadata
   **/
-  @ApiModelProperty(required = true, value = "Metadata")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Metadata")
 
   public Map<String, Object> getMetadata() {
     return metadata;

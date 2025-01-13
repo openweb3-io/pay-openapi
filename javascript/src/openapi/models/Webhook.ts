@@ -18,9 +18,9 @@ export class Webhook {
     'disabled'?: boolean;
     'eventTypes': Array<string>;
     'filter': string;
-    'headers': { [key: string]: string; };
+    'headers'?: { [key: string]: string; };
     'id': string;
-    'metadata': { [key: string]: any; };
+    'metadata'?: { [key: string]: any; };
     'uid'?: string;
     'url': string;
 

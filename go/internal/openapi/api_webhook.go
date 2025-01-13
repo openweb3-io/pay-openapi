@@ -347,10 +347,10 @@ func (a *WebhookApiService) V1EndpointsListExecute(r ApiV1EndpointsListRequest) 
 		return localVarReturnValue, nil, reportError("limit is required and must be specified")
 	}
 
-	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

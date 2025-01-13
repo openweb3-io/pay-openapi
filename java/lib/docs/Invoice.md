@@ -15,11 +15,11 @@ Name | Type | Description | Notes
 **currency** | **String** |  | 
 **expiration** | **Integer** |  |  [optional]
 **expiredAt** | **OffsetDateTime** |  |  [optional]
-**extra** | **Map&lt;String, Object&gt;** |  | 
+**extra** | **Map&lt;String, Object&gt;** |  |  [optional]
 **failedAt** | **OffsetDateTime** |  |  [optional]
 **failedReason** | **String** |  |  [optional]
 **id** | **String** |  | 
-**metadata** | **Map&lt;String, Object&gt;** |  | 
+**metadata** | **Map&lt;String, Object&gt;** |  |  [optional]
 **note** | **String** |  | 
 **paidAt** | **OffsetDateTime** |  |  [optional]
 **provider** | **String** |  | 

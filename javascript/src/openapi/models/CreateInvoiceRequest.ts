@@ -32,11 +32,11 @@ export class CreateInvoiceRequest {
     /**
     * Extra
     */
-    'extra': { [key: string]: any; };
+    'extra'?: { [key: string]: any; };
     /**
     * Metadata
     */
-    'metadata': { [key: string]: any; };
+    'metadata'?: { [key: string]: any; };
     /**
     * Note
     */

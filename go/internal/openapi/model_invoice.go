@@ -28,11 +28,11 @@ type Invoice struct {
 	Currency string `json:"currency"`
 	Expiration *int32 `json:"expiration,omitempty"`
 	ExpiredAt *time.Time `json:"expiredAt,omitempty"`
-	Extra map[string]interface{} `json:"extra"`
+	Extra map[string]interface{} `json:"extra,omitempty"`
 	FailedAt *time.Time `json:"failedAt,omitempty"`
 	FailedReason *string `json:"failedReason,omitempty"`
 	Id string `json:"id"`
-	Metadata map[string]interface{} `json:"metadata"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	Note string `json:"note"`
 	PaidAt *time.Time `json:"paidAt,omitempty"`
 	Provider string `json:"provider"`
@@ -45,7 +45,7 @@ type Invoice struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvoice(amount string, baseAmount string, channel string, createdAt time.Time, credentials map[string]interface{}, currency string, extra map[string]interface{}, id string, metadata map[string]interface{}, note string, provider string, status string) *Invoice {
+func NewInvoice(amount string, baseAmount string, channel string, createdAt time.Time, credentials map[string]interface{}, currency string, id string, note string, provider string, status string) *Invoice {
 	this := Invoice{}
 	this.Amount = amount
 	this.BaseAmount = baseAmount
@@ -53,9 +53,7 @@ func NewInvoice(amount string, baseAmount string, channel string, createdAt time
 	this.CreatedAt = createdAt
 	this.Credentials = credentials
 	this.Currency = currency
-	this.Extra = extra
 	this.Id = id
-	this.Metadata = metadata
 	this.Note = note
 	this.Provider = provider
 	this.Status = status
@@ -278,26 +276,35 @@ func (o *Invoice) SetExpiredAt(v time.Time) {
 	o.ExpiredAt = &v
 }
 
-// GetExtra returns the Extra field value
+// GetExtra returns the Extra field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Invoice) GetExtra() map[string]interface{} {
-	if o == nil {
+	if o == nil  {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Extra
 }
 
-// GetExtraOk returns a tuple with the Extra field value
+// GetExtraOk returns a tuple with the Extra field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Invoice) GetExtraOk() (*map[string]interface{}, bool) {
-	if o == nil  {
+	if o == nil || o.Extra == nil {
 		return nil, false
 	}
 	return &o.Extra, true
 }
 
-// SetExtra sets field value
+// HasExtra returns a boolean if a field has been set.
+func (o *Invoice) HasExtra() bool {
+	if o != nil && o.Extra != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExtra gets a reference to the given map[string]interface{} and assigns it to the Extra field.
 func (o *Invoice) SetExtra(v map[string]interface{}) {
 	o.Extra = v
 }
@@ -390,26 +397,35 @@ func (o *Invoice) SetId(v string) {
 	o.Id = v
 }
 
-// GetMetadata returns the Metadata field value
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Invoice) GetMetadata() map[string]interface{} {
-	if o == nil {
+	if o == nil  {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Invoice) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil  {
+	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
 	return &o.Metadata, true
 }
 
-// SetMetadata sets field value
+// HasMetadata returns a boolean if a field has been set.
+func (o *Invoice) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
 func (o *Invoice) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
@@ -608,7 +624,7 @@ func (o Invoice) MarshalJSON() ([]byte, error) {
 	if o.ExpiredAt != nil {
 		toSerialize["expiredAt"] = o.ExpiredAt
 	}
-	if true {
+	if o.Extra != nil {
 		toSerialize["extra"] = o.Extra
 	}
 	if o.FailedAt != nil {
@@ -620,7 +636,7 @@ func (o Invoice) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["id"] = o.Id
 	}
-	if true {
+	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if true {
