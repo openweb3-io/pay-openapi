@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **Note** | Pointer to **string** | Note | [optional] 
 **PaymentMethod** | **string** | PaymentMethod | 
 **PaymentProvider** | **string** | PaymentProvider | 
-**Provider** | **string** | Provider | 
 **Uid** | Pointer to **string** | Unique ID | [optional] 
 **UserId** | Pointer to **string** | User ID | [optional] 
 
@@ -20,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewCreatePaymentRequest
 
-`func NewCreatePaymentRequest(amount string, currency string, paymentMethod string, paymentProvider string, provider string, ) *CreatePaymentRequest`
+`func NewCreatePaymentRequest(amount string, currency string, paymentMethod string, paymentProvider string, ) *CreatePaymentRequest`
 
 NewCreatePaymentRequest instantiates a new CreatePaymentRequest object
 This constructor will assign default values to properties that have it defined,
@@ -233,26 +232,6 @@ and a boolean to check if the value has been set.
 `func (o *CreatePaymentRequest) SetPaymentProvider(v string)`
 
 SetPaymentProvider sets PaymentProvider field to given value.
-
-
-### GetProvider
-
-`func (o *CreatePaymentRequest) GetProvider() string`
-
-GetProvider returns the Provider field if non-nil, zero value otherwise.
-
-### GetProviderOk
-
-`func (o *CreatePaymentRequest) GetProviderOk() (*string, bool)`
-
-GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProvider
-
-`func (o *CreatePaymentRequest) SetProvider(v string)`
-
-SetProvider sets Provider field to given value.
 
 
 ### GetUid

@@ -180,10 +180,10 @@ public class PaymentApi {
     /**
      * Build call for v1PaymentsList
      * @param appId App ID (required)
-     * @param limit  (optional)
-     * @param offset  (optional)
      * @param paymentMethod  (optional)
      * @param userId  (optional)
+     * @param offset  (optional)
+     * @param limit  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -193,7 +193,7 @@ public class PaymentApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1PaymentsListCall(String appId, Integer limit, Integer offset, String paymentMethod, String userId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1PaymentsListCall(String appId, String paymentMethod, String userId, Integer offset, Integer limit, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -206,20 +206,20 @@ public class PaymentApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
-        if (offset != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
-        }
-
         if (paymentMethod != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("payment_method", paymentMethod));
         }
 
         if (userId != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("userId", userId));
+        }
+
+        if (offset != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
         }
 
         final String[] localVarAccepts = {
@@ -241,7 +241,7 @@ public class PaymentApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1PaymentsListValidateBeforeCall(String appId, Integer limit, Integer offset, String paymentMethod, String userId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1PaymentsListValidateBeforeCall(String appId, String paymentMethod, String userId, Integer offset, Integer limit, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'appId' is set
         if (appId == null) {
@@ -249,7 +249,7 @@ public class PaymentApi {
         }
         
 
-        okhttp3.Call localVarCall = v1PaymentsListCall(appId, limit, offset, paymentMethod, userId, _callback);
+        okhttp3.Call localVarCall = v1PaymentsListCall(appId, paymentMethod, userId, offset, limit, _callback);
         return localVarCall;
 
     }
@@ -258,10 +258,10 @@ public class PaymentApi {
      * List Payments
      * List Payments
      * @param appId App ID (required)
-     * @param limit  (optional)
-     * @param offset  (optional)
      * @param paymentMethod  (optional)
      * @param userId  (optional)
+     * @param offset  (optional)
+     * @param limit  (optional)
      * @return PagePayment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -270,8 +270,8 @@ public class PaymentApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public PagePayment v1PaymentsList(String appId, Integer limit, Integer offset, String paymentMethod, String userId) throws ApiException {
-        ApiResponse<PagePayment> localVarResp = v1PaymentsListWithHttpInfo(appId, limit, offset, paymentMethod, userId);
+    public PagePayment v1PaymentsList(String appId, String paymentMethod, String userId, Integer offset, Integer limit) throws ApiException {
+        ApiResponse<PagePayment> localVarResp = v1PaymentsListWithHttpInfo(appId, paymentMethod, userId, offset, limit);
         return localVarResp.getData();
     }
 
@@ -279,10 +279,10 @@ public class PaymentApi {
      * List Payments
      * List Payments
      * @param appId App ID (required)
-     * @param limit  (optional)
-     * @param offset  (optional)
      * @param paymentMethod  (optional)
      * @param userId  (optional)
+     * @param offset  (optional)
+     * @param limit  (optional)
      * @return ApiResponse&lt;PagePayment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -291,8 +291,8 @@ public class PaymentApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PagePayment> v1PaymentsListWithHttpInfo(String appId, Integer limit, Integer offset, String paymentMethod, String userId) throws ApiException {
-        okhttp3.Call localVarCall = v1PaymentsListValidateBeforeCall(appId, limit, offset, paymentMethod, userId, null);
+    public ApiResponse<PagePayment> v1PaymentsListWithHttpInfo(String appId, String paymentMethod, String userId, Integer offset, Integer limit) throws ApiException {
+        okhttp3.Call localVarCall = v1PaymentsListValidateBeforeCall(appId, paymentMethod, userId, offset, limit, null);
         Type localVarReturnType = new TypeToken<PagePayment>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -301,10 +301,10 @@ public class PaymentApi {
      * List Payments (asynchronously)
      * List Payments
      * @param appId App ID (required)
-     * @param limit  (optional)
-     * @param offset  (optional)
      * @param paymentMethod  (optional)
      * @param userId  (optional)
+     * @param offset  (optional)
+     * @param limit  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -314,9 +314,9 @@ public class PaymentApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1PaymentsListAsync(String appId, Integer limit, Integer offset, String paymentMethod, String userId, final ApiCallback<PagePayment> _callback) throws ApiException {
+    public okhttp3.Call v1PaymentsListAsync(String appId, String paymentMethod, String userId, Integer offset, Integer limit, final ApiCallback<PagePayment> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1PaymentsListValidateBeforeCall(appId, limit, offset, paymentMethod, userId, _callback);
+        okhttp3.Call localVarCall = v1PaymentsListValidateBeforeCall(appId, paymentMethod, userId, offset, limit, _callback);
         Type localVarReturnType = new TypeToken<PagePayment>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

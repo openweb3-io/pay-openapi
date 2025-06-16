@@ -74,7 +74,3 @@ src/main/java/io/openweb3/pay/models/Rate.java
 src/main/java/io/openweb3/pay/models/Refund.java
 src/main/java/io/openweb3/pay/models/UpdateWebhook.java
 src/main/java/io/openweb3/pay/models/Webhook.java
-src/test/java/io/openweb3/pay/internal/api/PaymentApiTest.java
-src/test/java/io/openweb3/pay/models/CreatePaymentRequestTest.java
-src/test/java/io/openweb3/pay/models/PagePaymentTest.java
-src/test/java/io/openweb3/pay/models/PaymentTest.java

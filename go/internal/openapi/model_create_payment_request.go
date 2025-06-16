@@ -33,8 +33,6 @@ type CreatePaymentRequest struct {
 	PaymentMethod string `json:"payment_method"`
 	// PaymentProvider
 	PaymentProvider string `json:"payment_provider"`
-	// Provider
-	Provider string `json:"provider"`
 	// Unique ID
 	Uid *string `json:"uid,omitempty"`
 	// User ID
@@ -45,13 +43,12 @@ type CreatePaymentRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreatePaymentRequest(amount string, currency string, paymentMethod string, paymentProvider string, provider string) *CreatePaymentRequest {
+func NewCreatePaymentRequest(amount string, currency string, paymentMethod string, paymentProvider string) *CreatePaymentRequest {
 	this := CreatePaymentRequest{}
 	this.Amount = amount
 	this.Currency = currency
 	this.PaymentMethod = paymentMethod
 	this.PaymentProvider = paymentProvider
-	this.Provider = provider
 	return &this
 }
 
@@ -289,30 +286,6 @@ func (o *CreatePaymentRequest) SetPaymentProvider(v string) {
 	o.PaymentProvider = v
 }
 
-// GetProvider returns the Provider field value
-func (o *CreatePaymentRequest) GetProvider() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Provider
-}
-
-// GetProviderOk returns a tuple with the Provider field value
-// and a boolean to check if the value has been set.
-func (o *CreatePaymentRequest) GetProviderOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Provider, true
-}
-
-// SetProvider sets field value
-func (o *CreatePaymentRequest) SetProvider(v string) {
-	o.Provider = v
-}
-
 // GetUid returns the Uid field value if set, zero value otherwise.
 func (o *CreatePaymentRequest) GetUid() string {
 	if o == nil || o.Uid == nil {
@@ -402,9 +375,6 @@ func (o CreatePaymentRequest) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["payment_provider"] = o.PaymentProvider
-	}
-	if true {
-		toSerialize["provider"] = o.Provider
 	}
 	if o.Uid != nil {
 		toSerialize["uid"] = o.Uid

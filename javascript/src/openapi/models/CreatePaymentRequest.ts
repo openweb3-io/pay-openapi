@@ -46,10 +46,6 @@ export class CreatePaymentRequest {
     */
     'paymentProvider': string;
     /**
-    * Provider
-    */
-    'provider': string;
-    /**
     * Unique ID
     */
     'uid'?: string;
@@ -106,12 +102,6 @@ export class CreatePaymentRequest {
         {
             "name": "paymentProvider",
             "baseName": "payment_provider",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "provider",
-            "baseName": "provider",
             "type": "string",
             "format": ""
         },

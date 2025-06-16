@@ -99,13 +99,13 @@ export class PromisePaymentApi {
      * List Payments
      * List Payments
      * @param appId App ID
-     * @param limit 
-     * @param offset 
      * @param paymentMethod 
      * @param userId 
+     * @param offset 
+     * @param limit 
      */
-    public v1PaymentsList(appId: string, limit?: number, offset?: number, paymentMethod?: string, userId?: string, _options?: Configuration): Promise<PagePayment> {
-        const result = this.api.v1PaymentsList(appId, limit, offset, paymentMethod, userId, _options);
+    public v1PaymentsList(appId: string, paymentMethod?: string, userId?: string, offset?: number, limit?: number, _options?: Configuration): Promise<PagePayment> {
+        const result = this.api.v1PaymentsList(appId, paymentMethod, userId, offset, limit, _options);
         return result.toPromise();
     }
 

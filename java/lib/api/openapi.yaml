@@ -307,20 +307,6 @@ paths:
         style: simple
       - explode: true
         in: query
-        name: limit
-        required: false
-        schema:
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          type: integer
-        style: form
-      - explode: true
-        in: query
         name: payment_method
         required: false
         schema:
@@ -332,6 +318,20 @@ paths:
         required: false
         schema:
           type: string
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
         style: form
       responses:
         "200":
@@ -640,7 +640,6 @@ components:
         amount: amount
         metadata:
           key: ""
-        provider: provider
         extra:
           key: ""
         payment_provider: payment_provider
@@ -677,9 +676,6 @@ components:
         payment_provider:
           description: PaymentProvider
           type: string
-        provider:
-          description: Provider
-          type: string
         uid:
           description: Unique ID
           type: string
@@ -691,7 +687,6 @@ components:
       - currency
       - payment_method
       - payment_provider
-      - provider
       type: object
     CreatePayout:
       example:

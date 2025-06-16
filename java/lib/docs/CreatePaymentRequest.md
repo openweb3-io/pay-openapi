@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **note** | **String** | Note |  [optional]
 **paymentMethod** | **String** | PaymentMethod | 
 **paymentProvider** | **String** | PaymentProvider | 
-**provider** | **String** | Provider | 
 **uid** | **String** | Unique ID |  [optional]
 **userId** | **String** | User ID |  [optional]
 

@@ -78,12 +78,12 @@ export class PaymentApiRequestFactory extends BaseAPIRequestFactory {
      * List Payments
      * List Payments
      * @param appId App ID
-     * @param limit 
-     * @param offset 
      * @param paymentMethod 
      * @param userId 
+     * @param offset 
+     * @param limit 
      */
-    public async v1PaymentsList(appId: string, limit?: number, offset?: number, paymentMethod?: string, userId?: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1PaymentsList(appId: string, paymentMethod?: string, userId?: string, offset?: number, limit?: number, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'appId' is not null or undefined
@@ -107,17 +107,17 @@ export class PaymentApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
-        if (limit !== undefined) {
-            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
-        }
-        if (offset !== undefined) {
-            requestContext.setQueryParam("offset", ObjectSerializer.serialize(offset, "number", ""));
-        }
         if (paymentMethod !== undefined) {
             requestContext.setQueryParam("payment_method", ObjectSerializer.serialize(paymentMethod, "string", ""));
         }
         if (userId !== undefined) {
             requestContext.setQueryParam("userId", ObjectSerializer.serialize(userId, "string", ""));
+        }
+        if (offset !== undefined) {
+            requestContext.setQueryParam("offset", ObjectSerializer.serialize(offset, "number", ""));
+        }
+        if (limit !== undefined) {
+            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
         }
 
         // Header Params

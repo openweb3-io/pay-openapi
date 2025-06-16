@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * CreatePaymentRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-17T02:08:34.702118+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-17T03:54:14.993684+08:00[Asia/Shanghai]")
 public class CreatePaymentRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -63,10 +63,6 @@ public class CreatePaymentRequest {
   public static final String SERIALIZED_NAME_PAYMENT_PROVIDER = "payment_provider";
   @SerializedName(SERIALIZED_NAME_PAYMENT_PROVIDER)
   private String paymentProvider;
-
-  public static final String SERIALIZED_NAME_PROVIDER = "provider";
-  @SerializedName(SERIALIZED_NAME_PROVIDER)
-  private String provider;
 
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
@@ -273,28 +269,6 @@ public class CreatePaymentRequest {
   }
 
 
-  public CreatePaymentRequest provider(String provider) {
-    
-    this.provider = provider;
-    return this;
-  }
-
-   /**
-   * Provider
-   * @return provider
-  **/
-  @ApiModelProperty(required = true, value = "Provider")
-
-  public String getProvider() {
-    return provider;
-  }
-
-
-  public void setProvider(String provider) {
-    this.provider = provider;
-  }
-
-
   public CreatePaymentRequest uid(String uid) {
     
     this.uid = uid;
@@ -358,14 +332,13 @@ public class CreatePaymentRequest {
         Objects.equals(this.note, createPaymentRequest.note) &&
         Objects.equals(this.paymentMethod, createPaymentRequest.paymentMethod) &&
         Objects.equals(this.paymentProvider, createPaymentRequest.paymentProvider) &&
-        Objects.equals(this.provider, createPaymentRequest.provider) &&
         Objects.equals(this.uid, createPaymentRequest.uid) &&
         Objects.equals(this.userId, createPaymentRequest.userId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, expiration, extra, metadata, note, paymentMethod, paymentProvider, provider, uid, userId);
+    return Objects.hash(amount, currency, expiration, extra, metadata, note, paymentMethod, paymentProvider, uid, userId);
   }
 
   @Override
@@ -380,7 +353,6 @@ public class CreatePaymentRequest {
     sb.append("    note: ").append(toIndentedString(note)).append("\n");
     sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
     sb.append("    paymentProvider: ").append(toIndentedString(paymentProvider)).append("\n");
-    sb.append("    provider: ").append(toIndentedString(provider)).append("\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("}");

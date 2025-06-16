@@ -42,7 +42,8 @@ func TestPayment_Create(t *testing.T) {
 		Extra: map[string]interface{}{
 			"walletId": "test",
 		},
-		Provider: "openweb3_wallet",
+		PaymentMethod:   "ton_connect",
+		PaymentProvider: "openweb3_wallet",
 	})
 	if err != nil {
 		t.Error(err)

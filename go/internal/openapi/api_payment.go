@@ -162,26 +162,26 @@ type ApiV1PaymentsListRequest struct {
 	ctx _context.Context
 	ApiService *PaymentApiService
 	appId string
-	limit *int32
-	offset *int32
 	paymentMethod *string
 	userId *string
+	offset *int32
+	limit *int32
 }
 
-func (r ApiV1PaymentsListRequest) Limit(limit int32) ApiV1PaymentsListRequest {
-	r.limit = &limit
-	return r
-}
-func (r ApiV1PaymentsListRequest) Offset(offset int32) ApiV1PaymentsListRequest {
-	r.offset = &offset
-	return r
-}
 func (r ApiV1PaymentsListRequest) PaymentMethod(paymentMethod string) ApiV1PaymentsListRequest {
 	r.paymentMethod = &paymentMethod
 	return r
 }
 func (r ApiV1PaymentsListRequest) UserId(userId string) ApiV1PaymentsListRequest {
 	r.userId = &userId
+	return r
+}
+func (r ApiV1PaymentsListRequest) Offset(offset int32) ApiV1PaymentsListRequest {
+	r.offset = &offset
+	return r
+}
+func (r ApiV1PaymentsListRequest) Limit(limit int32) ApiV1PaymentsListRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -230,17 +230,17 @@ func (a *PaymentApiService) V1PaymentsListExecute(r ApiV1PaymentsListRequest) (P
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
 	if r.paymentMethod != nil {
 		localVarQueryParams.Add("payment_method", parameterToString(*r.paymentMethod, ""))
 	}
 	if r.userId != nil {
 		localVarQueryParams.Add("userId", parameterToString(*r.userId, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -125,18 +125,6 @@ export interface PaymentApiV1PaymentsListRequest {
     appId: string
     /**
      * 
-     * @type number
-     * @memberof PaymentApiv1PaymentsList
-     */
-    limit?: number
-    /**
-     * 
-     * @type number
-     * @memberof PaymentApiv1PaymentsList
-     */
-    offset?: number
-    /**
-     * 
      * @type string
      * @memberof PaymentApiv1PaymentsList
      */
@@ -147,6 +135,18 @@ export interface PaymentApiV1PaymentsListRequest {
      * @memberof PaymentApiv1PaymentsList
      */
     userId?: string
+    /**
+     * 
+     * @type number
+     * @memberof PaymentApiv1PaymentsList
+     */
+    offset?: number
+    /**
+     * 
+     * @type number
+     * @memberof PaymentApiv1PaymentsList
+     */
+    limit?: number
 }
 
 export interface PaymentApiV1PaymentsRetrieveRequest {
@@ -186,7 +186,7 @@ export class ObjectPaymentApi {
      * @param param the request object
      */
     public v1PaymentsList(param: PaymentApiV1PaymentsListRequest, options?: Configuration): Promise<PagePayment> {
-        return this.api.v1PaymentsList(param.appId, param.limit, param.offset, param.paymentMethod, param.userId,  options).toPromise();
+        return this.api.v1PaymentsList(param.appId, param.paymentMethod, param.userId, param.offset, param.limit,  options).toPromise();
     }
 
     /**

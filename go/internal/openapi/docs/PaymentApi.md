@@ -32,7 +32,7 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    createPaymentRequest := *openapiclient.NewCreatePaymentRequest("Amount_example", "Currency_example", "PaymentMethod_example", "PaymentProvider_example", "Provider_example") // CreatePaymentRequest | Request body
+    createPaymentRequest := *openapiclient.NewCreatePaymentRequest("Amount_example", "Currency_example", "PaymentMethod_example", "PaymentProvider_example") // CreatePaymentRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## V1PaymentsList
 
-> PagePayment V1PaymentsList(ctx, appId).Limit(limit).Offset(offset).PaymentMethod(paymentMethod).UserId(userId).Execute()
+> PagePayment V1PaymentsList(ctx, appId).PaymentMethod(paymentMethod).UserId(userId).Offset(offset).Limit(limit).Execute()
 
 List Payments
 
@@ -104,14 +104,14 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    limit := int32(56) // int32 |  (optional)
-    offset := int32(56) // int32 |  (optional)
     paymentMethod := "paymentMethod_example" // string |  (optional)
     userId := "userId_example" // string |  (optional)
+    offset := int32(56) // int32 |  (optional)
+    limit := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PaymentApi.V1PaymentsList(context.Background(), appId).Limit(limit).Offset(offset).PaymentMethod(paymentMethod).UserId(userId).Execute()
+    resp, r, err := api_client.PaymentApi.V1PaymentsList(context.Background(), appId).PaymentMethod(paymentMethod).UserId(userId).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PaymentApi.V1PaymentsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -137,10 +137,10 @@ Other parameters are passed through a pointer to a apiV1PaymentsListRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **int32** |  | 
- **offset** | **int32** |  | 
  **paymentMethod** | **string** |  | 
  **userId** | **string** |  | 
+ **offset** | **int32** |  | 
+ **limit** | **int32** |  | 
 
 ### Return type
 

@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 <a name="v1PaymentsList"></a>
 # **v1PaymentsList**
-> PagePayment v1PaymentsList(appId, limit, offset, paymentMethod, userId)
+> PagePayment v1PaymentsList(appId, paymentMethod, userId, offset, limit)
 
 List Payments
 
@@ -111,12 +111,12 @@ public class Example {
 
     PaymentApi apiInstance = new PaymentApi(defaultClient);
     String appId = "appId_example"; // String | App ID
-    Integer limit = 56; // Integer | 
-    Integer offset = 56; // Integer | 
     String paymentMethod = "paymentMethod_example"; // String | 
     String userId = "userId_example"; // String | 
+    Integer offset = 56; // Integer | 
+    Integer limit = 56; // Integer | 
     try {
-      PagePayment result = apiInstance.v1PaymentsList(appId, limit, offset, paymentMethod, userId);
+      PagePayment result = apiInstance.v1PaymentsList(appId, paymentMethod, userId, offset, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PaymentApi#v1PaymentsList");
@@ -134,10 +134,10 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **appId** | **String**| App ID |
- **limit** | **Integer**|  | [optional]
- **offset** | **Integer**|  | [optional]
  **paymentMethod** | **String**|  | [optional]
  **userId** | **String**|  | [optional]
+ **offset** | **Integer**|  | [optional]
+ **limit** | **Integer**|  | [optional]
 
 ### Return type
 

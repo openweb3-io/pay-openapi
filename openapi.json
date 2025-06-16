@@ -39,10 +39,6 @@
             "description": "PaymentProvider",
             "type": "string"
           },
-          "provider": {
-            "description": "Provider",
-            "type": "string"
-          },
           "uid": {
             "description": "Unique ID",
             "type": "string"
@@ -56,8 +52,7 @@
           "amount",
           "currency",
           "payment_method",
-          "payment_provider",
-          "provider"
+          "payment_provider"
         ],
         "type": "object"
       },
@@ -1082,9 +1077,16 @@
           },
           {
             "in": "query",
-            "name": "limit",
+            "name": "payment_method",
             "schema": {
-              "type": "integer"
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "userId",
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -1096,16 +1098,9 @@
           },
           {
             "in": "query",
-            "name": "payment_method",
+            "name": "limit",
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "userId",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
