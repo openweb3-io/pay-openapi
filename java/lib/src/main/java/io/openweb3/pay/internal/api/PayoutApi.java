@@ -73,8 +73,8 @@ public class PayoutApi {
         Object localVarPostBody = createPayout;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/payouts"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/payouts"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -195,8 +195,8 @@ public class PayoutApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/payouts"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/payouts"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -322,9 +322,9 @@ public class PayoutApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/payouts/{payoutId}"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()))
-            .replaceAll("\\{" + "payoutId" + "\\}", localVarApiClient.escapeString(payoutId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/payouts/{payout_id}"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()))
+            .replaceAll("\\{" + "payout_id" + "\\}", localVarApiClient.escapeString(payoutId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

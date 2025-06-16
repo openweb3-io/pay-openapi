@@ -74,8 +74,8 @@ public class WebhookApi {
         Object localVarPostBody = createWebhook;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/endpoints"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/endpoints"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -195,9 +195,9 @@ public class WebhookApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/endpoints/{endpointId}"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()))
-            .replaceAll("\\{" + "endpointId" + "\\}", localVarApiClient.escapeString(endpointId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/endpoints/{endpoint_id}"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()))
+            .replaceAll("\\{" + "endpoint_id" + "\\}", localVarApiClient.escapeString(endpointId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -318,8 +318,8 @@ public class WebhookApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/endpoints"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/endpoints"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -327,12 +327,12 @@ public class WebhookApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
         if (cursor != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("cursor", cursor));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
         }
 
         final String[] localVarAccepts = {
@@ -450,9 +450,9 @@ public class WebhookApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/endpoints/{endpointId}"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()))
-            .replaceAll("\\{" + "endpointId" + "\\}", localVarApiClient.escapeString(endpointId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/endpoints/{endpoint_id}"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()))
+            .replaceAll("\\{" + "endpoint_id" + "\\}", localVarApiClient.escapeString(endpointId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -573,9 +573,9 @@ public class WebhookApi {
         Object localVarPostBody = updateWebhook;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/endpoints/{endpointId}"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()))
-            .replaceAll("\\{" + "endpointId" + "\\}", localVarApiClient.escapeString(endpointId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/endpoints/{endpoint_id}"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()))
+            .replaceAll("\\{" + "endpoint_id" + "\\}", localVarApiClient.escapeString(endpointId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

@@ -25,34 +25,34 @@ var (
 	_ _context.Context
 )
 
-// InvoiceApiService InvoiceApi service
-type InvoiceApiService service
+// PaymentApiService PaymentApi service
+type PaymentApiService service
 
-type ApiV1InvoicesCreateRequest struct {
+type ApiV1PaymentsCreateRequest struct {
 	ctx _context.Context
-	ApiService *InvoiceApiService
+	ApiService *PaymentApiService
 	appId string
-	createInvoiceRequest *CreateInvoiceRequest
+	createPaymentRequest *CreatePaymentRequest
 }
 
-func (r ApiV1InvoicesCreateRequest) CreateInvoiceRequest(createInvoiceRequest CreateInvoiceRequest) ApiV1InvoicesCreateRequest {
-	r.createInvoiceRequest = &createInvoiceRequest
+func (r ApiV1PaymentsCreateRequest) CreatePaymentRequest(createPaymentRequest CreatePaymentRequest) ApiV1PaymentsCreateRequest {
+	r.createPaymentRequest = &createPaymentRequest
 	return r
 }
 
-func (r ApiV1InvoicesCreateRequest) Execute() (Invoice, *_nethttp.Response, error) {
-	return r.ApiService.V1InvoicesCreateExecute(r)
+func (r ApiV1PaymentsCreateRequest) Execute() (Payment, *_nethttp.Response, error) {
+	return r.ApiService.V1PaymentsCreateExecute(r)
 }
 
 /*
- * V1InvoicesCreate Create an invoice
- * Create an invoice
+ * V1PaymentsCreate Create an Payment
+ * Create an Payment
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId App ID
- * @return ApiV1InvoicesCreateRequest
+ * @return ApiV1PaymentsCreateRequest
  */
-func (a *InvoiceApiService) V1InvoicesCreate(ctx _context.Context, appId string) ApiV1InvoicesCreateRequest {
-	return ApiV1InvoicesCreateRequest{
+func (a *PaymentApiService) V1PaymentsCreate(ctx _context.Context, appId string) ApiV1PaymentsCreateRequest {
+	return ApiV1PaymentsCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 		appId: appId,
@@ -61,31 +61,31 @@ func (a *InvoiceApiService) V1InvoicesCreate(ctx _context.Context, appId string)
 
 /*
  * Execute executes the request
- * @return Invoice
+ * @return Payment
  */
-func (a *InvoiceApiService) V1InvoicesCreateExecute(r ApiV1InvoicesCreateRequest) (Invoice, *_nethttp.Response, error) {
+func (a *PaymentApiService) V1PaymentsCreateExecute(r ApiV1PaymentsCreateRequest) (Payment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Invoice
+		localVarReturnValue  Payment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoiceApiService.V1InvoicesCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentApiService.V1PaymentsCreate")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/invoices"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/payments"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.createInvoiceRequest == nil {
-		return localVarReturnValue, nil, reportError("createInvoiceRequest is required and must be specified")
+	if r.createPaymentRequest == nil {
+		return localVarReturnValue, nil, reportError("createPaymentRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -106,7 +106,7 @@ func (a *InvoiceApiService) V1InvoicesCreateExecute(r ApiV1InvoicesCreateRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createInvoiceRequest
+	localVarPostBody = r.createPaymentRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -158,46 +158,46 @@ func (a *InvoiceApiService) V1InvoicesCreateExecute(r ApiV1InvoicesCreateRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiV1InvoicesListRequest struct {
+type ApiV1PaymentsListRequest struct {
 	ctx _context.Context
-	ApiService *InvoiceApiService
+	ApiService *PaymentApiService
 	appId string
 	limit *int32
 	offset *int32
-	channel *string
+	paymentMethod *string
 	userId *string
 }
 
-func (r ApiV1InvoicesListRequest) Limit(limit int32) ApiV1InvoicesListRequest {
+func (r ApiV1PaymentsListRequest) Limit(limit int32) ApiV1PaymentsListRequest {
 	r.limit = &limit
 	return r
 }
-func (r ApiV1InvoicesListRequest) Offset(offset int32) ApiV1InvoicesListRequest {
+func (r ApiV1PaymentsListRequest) Offset(offset int32) ApiV1PaymentsListRequest {
 	r.offset = &offset
 	return r
 }
-func (r ApiV1InvoicesListRequest) Channel(channel string) ApiV1InvoicesListRequest {
-	r.channel = &channel
+func (r ApiV1PaymentsListRequest) PaymentMethod(paymentMethod string) ApiV1PaymentsListRequest {
+	r.paymentMethod = &paymentMethod
 	return r
 }
-func (r ApiV1InvoicesListRequest) UserId(userId string) ApiV1InvoicesListRequest {
+func (r ApiV1PaymentsListRequest) UserId(userId string) ApiV1PaymentsListRequest {
 	r.userId = &userId
 	return r
 }
 
-func (r ApiV1InvoicesListRequest) Execute() (PageInvoice, *_nethttp.Response, error) {
-	return r.ApiService.V1InvoicesListExecute(r)
+func (r ApiV1PaymentsListRequest) Execute() (PagePayment, *_nethttp.Response, error) {
+	return r.ApiService.V1PaymentsListExecute(r)
 }
 
 /*
- * V1InvoicesList List invoices
- * List invoices
+ * V1PaymentsList List Payments
+ * List Payments
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId App ID
- * @return ApiV1InvoicesListRequest
+ * @return ApiV1PaymentsListRequest
  */
-func (a *InvoiceApiService) V1InvoicesList(ctx _context.Context, appId string) ApiV1InvoicesListRequest {
-	return ApiV1InvoicesListRequest{
+func (a *PaymentApiService) V1PaymentsList(ctx _context.Context, appId string) ApiV1PaymentsListRequest {
+	return ApiV1PaymentsListRequest{
 		ApiService: a,
 		ctx: ctx,
 		appId: appId,
@@ -206,25 +206,25 @@ func (a *InvoiceApiService) V1InvoicesList(ctx _context.Context, appId string) A
 
 /*
  * Execute executes the request
- * @return PageInvoice
+ * @return PagePayment
  */
-func (a *InvoiceApiService) V1InvoicesListExecute(r ApiV1InvoicesListRequest) (PageInvoice, *_nethttp.Response, error) {
+func (a *PaymentApiService) V1PaymentsListExecute(r ApiV1PaymentsListRequest) (PagePayment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PageInvoice
+		localVarReturnValue  PagePayment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoiceApiService.V1InvoicesList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentApiService.V1PaymentsList")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/invoices"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/payments"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -236,8 +236,8 @@ func (a *InvoiceApiService) V1InvoicesListExecute(r ApiV1InvoicesListRequest) (P
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
 	}
-	if r.channel != nil {
-		localVarQueryParams.Add("channel", parameterToString(*r.channel, ""))
+	if r.paymentMethod != nil {
+		localVarQueryParams.Add("payment_method", parameterToString(*r.paymentMethod, ""))
 	}
 	if r.userId != nil {
 		localVarQueryParams.Add("userId", parameterToString(*r.userId, ""))
@@ -310,57 +310,57 @@ func (a *InvoiceApiService) V1InvoicesListExecute(r ApiV1InvoicesListRequest) (P
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiV1InvoicesRetrieveRequest struct {
+type ApiV1PaymentsRetrieveRequest struct {
 	ctx _context.Context
-	ApiService *InvoiceApiService
+	ApiService *PaymentApiService
 	appId string
-	invoiceId string
+	paymentId string
 }
 
 
-func (r ApiV1InvoicesRetrieveRequest) Execute() (Invoice, *_nethttp.Response, error) {
-	return r.ApiService.V1InvoicesRetrieveExecute(r)
+func (r ApiV1PaymentsRetrieveRequest) Execute() (Payment, *_nethttp.Response, error) {
+	return r.ApiService.V1PaymentsRetrieveExecute(r)
 }
 
 /*
- * V1InvoicesRetrieve Retrieve an invoice
- * Retrieve an invoice
+ * V1PaymentsRetrieve Retrieve an Payment
+ * Retrieve an Payment
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId App ID
- * @param invoiceId Invoice ID / UID
- * @return ApiV1InvoicesRetrieveRequest
+ * @param paymentId Payment ID / UID
+ * @return ApiV1PaymentsRetrieveRequest
  */
-func (a *InvoiceApiService) V1InvoicesRetrieve(ctx _context.Context, appId string, invoiceId string) ApiV1InvoicesRetrieveRequest {
-	return ApiV1InvoicesRetrieveRequest{
+func (a *PaymentApiService) V1PaymentsRetrieve(ctx _context.Context, appId string, paymentId string) ApiV1PaymentsRetrieveRequest {
+	return ApiV1PaymentsRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
 		appId: appId,
-		invoiceId: invoiceId,
+		paymentId: paymentId,
 	}
 }
 
 /*
  * Execute executes the request
- * @return Invoice
+ * @return Payment
  */
-func (a *InvoiceApiService) V1InvoicesRetrieveExecute(r ApiV1InvoicesRetrieveRequest) (Invoice, *_nethttp.Response, error) {
+func (a *PaymentApiService) V1PaymentsRetrieveExecute(r ApiV1PaymentsRetrieveRequest) (Payment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Invoice
+		localVarReturnValue  Payment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InvoiceApiService.V1InvoicesRetrieve")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentApiService.V1PaymentsRetrieve")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/invoices/{invoiceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"invoiceId"+"}", _neturl.PathEscape(parameterToString(r.invoiceId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/payments/{payment_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"payment_id"+"}", _neturl.PathEscape(parameterToString(r.paymentId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

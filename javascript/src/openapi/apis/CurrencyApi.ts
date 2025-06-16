@@ -30,8 +30,8 @@ export class CurrencyApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/currencies/crypto'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/apps/{app_id}/currencies/crypto'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -73,8 +73,8 @@ export class CurrencyApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/currencies/fiat'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/apps/{app_id}/currencies/fiat'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -130,8 +130,8 @@ export class CurrencyApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/currencies/rate'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/apps/{app_id}/currencies/rate'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

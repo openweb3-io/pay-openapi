@@ -16,8 +16,8 @@ import { Refund } from '../models/Refund';
 export class RefundApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Refund invoice payment
-     * Refund invoice payment
+     * Refund payment
+     * Refund payment
      * @param appId App ID
      * @param createRefund Request body
      */
@@ -37,8 +37,8 @@ export class RefundApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/refunds'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/apps/{app_id}/refunds'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -93,8 +93,8 @@ export class RefundApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/refunds'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/apps/{app_id}/refunds'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -149,9 +149,9 @@ export class RefundApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/refunds/{refundId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'refundId' + '}', encodeURIComponent(String(refundId)));
+        const localVarPath = '/api/v1/apps/{app_id}/refunds/{refund_id}'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'refund_id' + '}', encodeURIComponent(String(refundId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

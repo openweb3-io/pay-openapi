@@ -2,7 +2,7 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
-import { CreateInvoiceRequest } from '../models/CreateInvoiceRequest';
+import { CreatePaymentRequest } from '../models/CreatePaymentRequest';
 import { CreatePayout } from '../models/CreatePayout';
 import { CreateRefund } from '../models/CreateRefund';
 import { CreateWebhook } from '../models/CreateWebhook';
@@ -12,8 +12,8 @@ import { CursorPagePayout } from '../models/CursorPagePayout';
 import { CursorPageRefund } from '../models/CursorPageRefund';
 import { CursorPageWebhook } from '../models/CursorPageWebhook';
 import { FiatCurrency } from '../models/FiatCurrency';
-import { Invoice } from '../models/Invoice';
-import { PageInvoice } from '../models/PageInvoice';
+import { PagePayment } from '../models/PagePayment';
+import { Payment } from '../models/Payment';
 import { Payout } from '../models/Payout';
 import { Rate } from '../models/Rate';
 import { Refund } from '../models/Refund';
@@ -70,53 +70,53 @@ export class PromiseCurrencyApi {
 
 
 
-import { ObservableInvoiceApi } from './ObservableAPI';
+import { ObservablePaymentApi } from './ObservableAPI';
 
-import { InvoiceApiRequestFactory, InvoiceApiResponseProcessor} from "../apis/InvoiceApi";
-export class PromiseInvoiceApi {
-    private api: ObservableInvoiceApi
+import { PaymentApiRequestFactory, PaymentApiResponseProcessor} from "../apis/PaymentApi";
+export class PromisePaymentApi {
+    private api: ObservablePaymentApi
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: InvoiceApiRequestFactory,
-        responseProcessor?: InvoiceApiResponseProcessor
+        requestFactory?: PaymentApiRequestFactory,
+        responseProcessor?: PaymentApiResponseProcessor
     ) {
-        this.api = new ObservableInvoiceApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservablePaymentApi(configuration, requestFactory, responseProcessor);
     }
 
     /**
-     * Create an invoice
-     * Create an invoice
+     * Create an Payment
+     * Create an Payment
      * @param appId App ID
-     * @param createInvoiceRequest Request body
+     * @param createPaymentRequest Request body
      */
-    public v1InvoicesCreate(appId: string, createInvoiceRequest: CreateInvoiceRequest, _options?: Configuration): Promise<Invoice> {
-        const result = this.api.v1InvoicesCreate(appId, createInvoiceRequest, _options);
+    public v1PaymentsCreate(appId: string, createPaymentRequest: CreatePaymentRequest, _options?: Configuration): Promise<Payment> {
+        const result = this.api.v1PaymentsCreate(appId, createPaymentRequest, _options);
         return result.toPromise();
     }
 
     /**
-     * List invoices
-     * List invoices
+     * List Payments
+     * List Payments
      * @param appId App ID
      * @param limit 
      * @param offset 
-     * @param channel 
+     * @param paymentMethod 
      * @param userId 
      */
-    public v1InvoicesList(appId: string, limit?: number, offset?: number, channel?: string, userId?: string, _options?: Configuration): Promise<PageInvoice> {
-        const result = this.api.v1InvoicesList(appId, limit, offset, channel, userId, _options);
+    public v1PaymentsList(appId: string, limit?: number, offset?: number, paymentMethod?: string, userId?: string, _options?: Configuration): Promise<PagePayment> {
+        const result = this.api.v1PaymentsList(appId, limit, offset, paymentMethod, userId, _options);
         return result.toPromise();
     }
 
     /**
-     * Retrieve an invoice
-     * Retrieve an invoice
+     * Retrieve an Payment
+     * Retrieve an Payment
      * @param appId App ID
-     * @param invoiceId Invoice ID / UID
+     * @param paymentId Payment ID / UID
      */
-    public v1InvoicesRetrieve(appId: string, invoiceId: string, _options?: Configuration): Promise<Invoice> {
-        const result = this.api.v1InvoicesRetrieve(appId, invoiceId, _options);
+    public v1PaymentsRetrieve(appId: string, paymentId: string, _options?: Configuration): Promise<Payment> {
+        const result = this.api.v1PaymentsRetrieve(appId, paymentId, _options);
         return result.toPromise();
     }
 
@@ -193,8 +193,8 @@ export class PromiseRefundApi {
     }
 
     /**
-     * Refund invoice payment
-     * Refund invoice payment
+     * Refund payment
+     * Refund payment
      * @param appId App ID
      * @param createRefund Request body
      */

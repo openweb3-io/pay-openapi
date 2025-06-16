@@ -1,14 +1,10 @@
 {
   "components": {
     "schemas": {
-      "CreateInvoiceRequest": {
+      "CreatePaymentRequest": {
         "properties": {
           "amount": {
             "description": "Amount (Integer)",
-            "type": "string"
-          },
-          "channel": {
-            "description": "Channel",
             "type": "string"
           },
           "currency": {
@@ -35,6 +31,14 @@
             "description": "Note",
             "type": "string"
           },
+          "payment_method": {
+            "description": "PaymentMethod",
+            "type": "string"
+          },
+          "payment_provider": {
+            "description": "PaymentProvider",
+            "type": "string"
+          },
           "provider": {
             "description": "Provider",
             "type": "string"
@@ -50,8 +54,9 @@
         },
         "required": [
           "amount",
-          "channel",
           "currency",
+          "payment_method",
+          "payment_provider",
           "provider"
         ],
         "type": "object"
@@ -89,17 +94,17 @@
         "properties": {
           "amount": {
             "description": "Refund amount (Integer)",
-            "type": "number"
-          },
-          "invoiceId": {
-            "description": "Invoice ID",
             "type": "string"
           },
           "note": {
             "description": "Refund note",
             "type": "string"
           },
-          "toAddress": {
+          "payment_id": {
+            "description": "Payment ID",
+            "type": "string"
+          },
+          "to_address": {
             "description": "To Address",
             "type": "string"
           }
@@ -312,106 +317,11 @@
         ],
         "type": "object"
       },
-      "Invoice": {
-        "properties": {
-          "amount": {
-            "description": "Amount (Integer)",
-            "type": "string"
-          },
-          "base_amount": {
-            "description": "Base Currency Amount",
-            "type": "string"
-          },
-          "channel": {
-            "type": "string"
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "credentials": {
-            "additionalProperties": {},
-            "type": "object"
-          },
-          "currency": {
-            "type": "string"
-          },
-          "expiration": {
-            "type": "integer"
-          },
-          "expiredAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "extra": {
-            "additionalProperties": {},
-            "nullable": true,
-            "type": "object"
-          },
-          "failedAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "failedReason": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "metadata": {
-            "additionalProperties": {},
-            "nullable": true,
-            "type": "object"
-          },
-          "note": {
-            "type": "string"
-          },
-          "paidAt": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "provider": {
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/InvoiceStatus"
-          },
-          "uid": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "amount",
-          "base_amount",
-          "channel",
-          "createdAt",
-          "credentials",
-          "currency",
-          "id",
-          "note",
-          "provider",
-          "status"
-        ],
-        "type": "object"
-      },
-      "InvoiceStatus": {
-        "type": "string",
-        "x-enum-varnames": [
-          "InvoiceStatusFailed",
-          "InvoiceStatusPending",
-          "InvoiceStatusExpired",
-          "InvoiceStatusPaid",
-          "InvoiceStatusCompleted"
-        ]
-      },
-      "Page-Invoice": {
+      "Page-Payment": {
         "properties": {
           "data": {
             "items": {
-              "$ref": "#/components/schemas/Invoice"
+              "$ref": "#/components/schemas/Payment"
             },
             "type": "array"
           },
@@ -432,6 +342,93 @@
           }
         },
         "type": "object"
+      },
+      "Payment": {
+        "properties": {
+          "amount": {
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "credentials": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "details": {
+            "additionalProperties": {},
+            "nullable": true,
+            "type": "object"
+          },
+          "expiration": {
+            "type": "integer"
+          },
+          "extra": {
+            "additionalProperties": {},
+            "nullable": true,
+            "type": "object"
+          },
+          "failed_message": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "metadata": {
+            "additionalProperties": {},
+            "nullable": true,
+            "type": "object"
+          },
+          "note": {
+            "type": "string"
+          },
+          "payment_method": {
+            "type": "string"
+          },
+          "payment_provider": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PaymentStatus"
+          },
+          "uid": {
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount",
+          "created_at",
+          "credentials",
+          "currency",
+          "id",
+          "note",
+          "payment_method",
+          "payment_provider",
+          "status",
+          "updated_at"
+        ],
+        "type": "object"
+      },
+      "PaymentStatus": {
+        "type": "string",
+        "x-enum-varnames": [
+          "PaymentStatusFailed",
+          "PaymentStatusPending",
+          "PaymentStatusExpired",
+          "PaymentStatusPaid",
+          "PaymentStatusCompleted"
+        ]
       },
       "Payout": {
         "properties": {
@@ -519,44 +516,44 @@
         "properties": {
           "amount": {
             "description": "Refund amount (Integer)",
-            "type": "number"
+            "type": "string"
           },
-          "completedAt": {
+          "completed_at": {
             "description": "Completed at",
             "type": "string"
           },
-          "createdAt": {
+          "created_at": {
             "description": "Created at",
             "type": "string"
           },
-          "failedAt": {
+          "failed_at": {
             "description": "Failed at",
             "type": "string"
           },
-          "failedReason": {
+          "failed_reason": {
             "description": "Failed reason",
             "type": "string"
           },
           "id": {
             "type": "string"
           },
-          "invoiceId": {
-            "description": "Invoice ID",
-            "type": "string"
-          },
           "note": {
             "description": "Refund note",
+            "type": "string"
+          },
+          "payment_id": {
+            "description": "Payment ID",
             "type": "string"
           },
           "status": {
             "description": "Refund status",
             "type": "string"
           },
-          "toAddress": {
+          "to_address": {
             "description": "To Address",
             "type": "string"
           },
-          "updatedAt": {
+          "updated_at": {
             "description": "Updated at",
             "type": "string"
           }
@@ -680,7 +677,7 @@
   },
   "openapi": "3.0.2",
   "paths": {
-    "/api/v1/apps/{appId}/currencies/crypto": {
+    "/api/v1/apps/{app_id}/currencies/crypto": {
       "get": {
         "description": "List available cryptocurrencies",
         "operationId": "v1.currencies.listCrypto",
@@ -688,7 +685,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -721,7 +718,7 @@
         ]
       }
     },
-    "/api/v1/apps/{appId}/currencies/fiat": {
+    "/api/v1/apps/{app_id}/currencies/fiat": {
       "get": {
         "description": "List available fiat currencies",
         "operationId": "v1.currencies.listFlat",
@@ -729,7 +726,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -762,7 +759,7 @@
         ]
       }
     },
-    "/api/v1/apps/{appId}/currencies/rate": {
+    "/api/v1/apps/{app_id}/currencies/rate": {
       "get": {
         "description": "Get exchange rate",
         "operationId": "v1.currencies.retrieveRate",
@@ -770,7 +767,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -821,7 +818,7 @@
         ]
       }
     },
-    "/api/v1/apps/{appId}/endpoints": {
+    "/api/v1/apps/{app_id}/endpoints": {
       "get": {
         "description": "List webhook endpoints",
         "operationId": "v1.endpoints.list",
@@ -829,8 +826,15 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
             "schema": {
               "type": "string"
             }
@@ -841,13 +845,6 @@
             "required": true,
             "schema": {
               "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "cursor",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -880,7 +877,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -921,7 +918,7 @@
         ]
       }
     },
-    "/api/v1/apps/{appId}/endpoints/{endpointId}": {
+    "/api/v1/apps/{app_id}/endpoints/{endpoint_id}": {
       "delete": {
         "description": "Delete a webhook endpoint",
         "operationId": "v1.endpoints.delete",
@@ -929,7 +926,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -938,7 +935,7 @@
           {
             "description": "Endpoint ID",
             "in": "path",
-            "name": "endpointId",
+            "name": "endpoint_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -974,7 +971,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -983,7 +980,7 @@
           {
             "description": "Endpoint ID",
             "in": "path",
-            "name": "endpointId",
+            "name": "endpoint_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1019,7 +1016,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1028,7 +1025,7 @@
           {
             "description": "Endpoint ID",
             "in": "path",
-            "name": "endpointId",
+            "name": "endpoint_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1069,15 +1066,15 @@
         ]
       }
     },
-    "/api/v1/apps/{appId}/invoices": {
+    "/api/v1/apps/{app_id}/payments": {
       "get": {
-        "description": "List invoices",
-        "operationId": "v1.invoices.list",
+        "description": "List Payments",
+        "operationId": "v1.Payments.list",
         "parameters": [
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1099,7 +1096,7 @@
           },
           {
             "in": "query",
-            "name": "channel",
+            "name": "payment_method",
             "schema": {
               "type": "string"
             }
@@ -1117,7 +1114,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Page-Invoice"
+                  "$ref": "#/components/schemas/Page-Payment"
                 }
               }
             },
@@ -1129,19 +1126,19 @@
             "ApiKeyAuth": []
           }
         ],
-        "summary": "List invoices",
+        "summary": "List Payments",
         "tags": [
-          "invoice"
+          "Payment"
         ]
       },
       "post": {
-        "description": "Create an invoice",
-        "operationId": "v1.invoices.create",
+        "description": "Create an Payment",
+        "operationId": "v1.Payments.create",
         "parameters": [
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1152,7 +1149,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateInvoiceRequest"
+                "$ref": "#/components/schemas/CreatePaymentRequest"
               }
             }
           },
@@ -1164,7 +1161,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Invoice"
+                  "$ref": "#/components/schemas/Payment"
                 }
               }
             },
@@ -1176,30 +1173,30 @@
             "ApiKeyAuth": []
           }
         ],
-        "summary": "Create an invoice",
+        "summary": "Create an Payment",
         "tags": [
-          "invoice"
+          "Payment"
         ]
       }
     },
-    "/api/v1/apps/{appId}/invoices/{invoiceId}": {
+    "/api/v1/apps/{app_id}/payments/{payment_id}": {
       "get": {
-        "description": "Retrieve an invoice",
-        "operationId": "v1.invoices.retrieve",
+        "description": "Retrieve an Payment",
+        "operationId": "v1.Payments.retrieve",
         "parameters": [
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
             }
           },
           {
-            "description": "Invoice ID / UID",
+            "description": "Payment ID / UID",
             "in": "path",
-            "name": "invoiceId",
+            "name": "payment_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1211,7 +1208,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Invoice"
+                  "$ref": "#/components/schemas/Payment"
                 }
               }
             },
@@ -1223,13 +1220,13 @@
             "ApiKeyAuth": []
           }
         ],
-        "summary": "Retrieve an invoice",
+        "summary": "Retrieve an Payment",
         "tags": [
-          "invoice"
+          "Payment"
         ]
       }
     },
-    "/api/v1/apps/{appId}/payouts": {
+    "/api/v1/apps/{app_id}/payouts": {
       "get": {
         "description": "List payouts",
         "operationId": "v1.payouts.list",
@@ -1237,7 +1234,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1289,7 +1286,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1330,7 +1327,7 @@
         ]
       }
     },
-    "/api/v1/apps/{appId}/payouts/{payoutId}": {
+    "/api/v1/apps/{app_id}/payouts/{payout_id}": {
       "get": {
         "description": "Retrieve a payout",
         "operationId": "v1.payouts.retrieve",
@@ -1338,7 +1335,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1347,7 +1344,7 @@
           {
             "description": "Payout ID",
             "in": "path",
-            "name": "payoutId",
+            "name": "payout_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1377,7 +1374,7 @@
         ]
       }
     },
-    "/api/v1/apps/{appId}/refunds": {
+    "/api/v1/apps/{app_id}/refunds": {
       "get": {
         "description": "List refunds",
         "operationId": "v1.refunds.list",
@@ -1385,7 +1382,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1431,13 +1428,13 @@
         ]
       },
       "post": {
-        "description": "Refund invoice payment",
+        "description": "Refund payment",
         "operationId": "v1.refunds.create",
         "parameters": [
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1472,13 +1469,13 @@
             "ApiKeyAuth": []
           }
         ],
-        "summary": "Refund invoice payment",
+        "summary": "Refund payment",
         "tags": [
           "refund"
         ]
       }
     },
-    "/api/v1/apps/{appId}/refunds/{refundId}": {
+    "/api/v1/apps/{app_id}/refunds/{refund_id}": {
       "get": {
         "description": "Retrieve a refund",
         "operationId": "v1.refunds.retrieve",
@@ -1486,7 +1483,7 @@
           {
             "description": "App ID",
             "in": "path",
-            "name": "appId",
+            "name": "app_id",
             "required": true,
             "schema": {
               "type": "string"
@@ -1495,7 +1492,7 @@
           {
             "description": "Refund ID",
             "in": "path",
-            "name": "refundId",
+            "name": "refund_id",
             "required": true,
             "schema": {
               "type": "string"

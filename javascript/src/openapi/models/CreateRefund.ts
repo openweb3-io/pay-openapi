@@ -16,15 +16,15 @@ export class CreateRefund {
     /**
     * Refund amount (Integer)
     */
-    'amount'?: number;
-    /**
-    * Invoice ID
-    */
-    'invoiceId'?: string;
+    'amount'?: string;
     /**
     * Refund note
     */
     'note'?: string;
+    /**
+    * Payment ID
+    */
+    'paymentId'?: string;
     /**
     * To Address
     */
@@ -36,12 +36,6 @@ export class CreateRefund {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "number",
-            "format": ""
-        },
-        {
-            "name": "invoiceId",
-            "baseName": "invoiceId",
             "type": "string",
             "format": ""
         },
@@ -52,8 +46,14 @@ export class CreateRefund {
             "format": ""
         },
         {
+            "name": "paymentId",
+            "baseName": "payment_id",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "toAddress",
-            "baseName": "toAddress",
+            "baseName": "to_address",
             "type": "string",
             "format": ""
         }    ];

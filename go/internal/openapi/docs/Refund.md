@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float32** | Refund amount (Integer) | [optional] 
+**Amount** | Pointer to **string** | Refund amount (Integer) | [optional] 
 **CompletedAt** | Pointer to **string** | Completed at | [optional] 
 **CreatedAt** | Pointer to **string** | Created at | [optional] 
 **FailedAt** | Pointer to **string** | Failed at | [optional] 
 **FailedReason** | Pointer to **string** | Failed reason | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
-**InvoiceId** | Pointer to **string** | Invoice ID | [optional] 
 **Note** | Pointer to **string** | Refund note | [optional] 
+**PaymentId** | Pointer to **string** | Payment ID | [optional] 
 **Status** | Pointer to **string** | Refund status | [optional] 
 **ToAddress** | Pointer to **string** | To Address | [optional] 
 **UpdatedAt** | Pointer to **string** | Updated at | [optional] 
@@ -37,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *Refund) GetAmount() float32`
+`func (o *Refund) GetAmount() string`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *Refund) GetAmountOk() (*float32, bool)`
+`func (o *Refund) GetAmountOk() (*string, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *Refund) SetAmount(v float32)`
+`func (o *Refund) SetAmount(v string)`
 
 SetAmount sets Amount field to given value.
 
@@ -185,31 +185,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### GetInvoiceId
-
-`func (o *Refund) GetInvoiceId() string`
-
-GetInvoiceId returns the InvoiceId field if non-nil, zero value otherwise.
-
-### GetInvoiceIdOk
-
-`func (o *Refund) GetInvoiceIdOk() (*string, bool)`
-
-GetInvoiceIdOk returns a tuple with the InvoiceId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInvoiceId
-
-`func (o *Refund) SetInvoiceId(v string)`
-
-SetInvoiceId sets InvoiceId field to given value.
-
-### HasInvoiceId
-
-`func (o *Refund) HasInvoiceId() bool`
-
-HasInvoiceId returns a boolean if a field has been set.
-
 ### GetNote
 
 `func (o *Refund) GetNote() string`
@@ -234,6 +209,31 @@ SetNote sets Note field to given value.
 `func (o *Refund) HasNote() bool`
 
 HasNote returns a boolean if a field has been set.
+
+### GetPaymentId
+
+`func (o *Refund) GetPaymentId() string`
+
+GetPaymentId returns the PaymentId field if non-nil, zero value otherwise.
+
+### GetPaymentIdOk
+
+`func (o *Refund) GetPaymentIdOk() (*string, bool)`
+
+GetPaymentIdOk returns a tuple with the PaymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentId
+
+`func (o *Refund) SetPaymentId(v string)`
+
+SetPaymentId sets PaymentId field to given value.
+
+### HasPaymentId
+
+`func (o *Refund) HasPaymentId() bool`
+
+HasPaymentId returns a boolean if a field has been set.
 
 ### GetStatus
 

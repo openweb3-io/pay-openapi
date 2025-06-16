@@ -38,8 +38,8 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/endpoints'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/apps/{app_id}/endpoints'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -97,9 +97,9 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/endpoints/{endpointId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'endpointId' + '}', encodeURIComponent(String(endpointId)));
+        const localVarPath = '/api/v1/apps/{app_id}/endpoints/{endpoint_id}'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'endpoint_id' + '}', encodeURIComponent(String(endpointId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -150,8 +150,8 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/endpoints'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/apps/{app_id}/endpoints'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -160,11 +160,11 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
-        if (limit !== undefined) {
-            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
-        }
         if (cursor !== undefined) {
             requestContext.setQueryParam("cursor", ObjectSerializer.serialize(cursor, "string", ""));
+        }
+        if (limit !== undefined) {
+            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
         }
 
         // Header Params
@@ -206,9 +206,9 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/endpoints/{endpointId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'endpointId' + '}', encodeURIComponent(String(endpointId)));
+        const localVarPath = '/api/v1/apps/{app_id}/endpoints/{endpoint_id}'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'endpoint_id' + '}', encodeURIComponent(String(endpointId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -264,9 +264,9 @@ export class WebhookApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/endpoints/{endpointId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'endpointId' + '}', encodeURIComponent(String(endpointId)));
+        const localVarPath = '/api/v1/apps/{app_id}/endpoints/{endpoint_id}'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'endpoint_id' + '}', encodeURIComponent(String(endpointId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);

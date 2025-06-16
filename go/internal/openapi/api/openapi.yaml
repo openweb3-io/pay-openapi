@@ -11,7 +11,7 @@ servers:
 - description: Pay API Server
   url: https://api.pay.openweb3.io
 paths:
-  /api/v1/apps/{appId}/currencies/crypto:
+  /api/v1/apps/{app_id}/currencies/crypto:
     get:
       description: List available cryptocurrencies
       operationId: v1.currencies.listCrypto
@@ -19,7 +19,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -38,7 +38,7 @@ paths:
       summary: List available cryptocurrencies
       tags:
       - currency
-  /api/v1/apps/{appId}/currencies/fiat:
+  /api/v1/apps/{app_id}/currencies/fiat:
     get:
       description: List available fiat currencies
       operationId: v1.currencies.listFlat
@@ -46,7 +46,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -65,7 +65,7 @@ paths:
       summary: List available fiat currencies
       tags:
       - currency
-  /api/v1/apps/{appId}/currencies/rate:
+  /api/v1/apps/{app_id}/currencies/rate:
     get:
       description: Get exchange rate
       operationId: v1.currencies.retrieveRate
@@ -73,7 +73,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -108,7 +108,7 @@ paths:
       summary: Get exchange rate
       tags:
       - currency
-  /api/v1/apps/{appId}/endpoints:
+  /api/v1/apps/{app_id}/endpoints:
     get:
       description: List webhook endpoints
       operationId: v1.endpoints.list
@@ -116,24 +116,24 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
         style: simple
       - explode: true
         in: query
-        name: limit
-        required: true
-        schema:
-          type: integer
-        style: form
-      - explode: true
-        in: query
         name: cursor
         required: false
         schema:
           type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          type: integer
         style: form
       responses:
         "200":
@@ -154,7 +154,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -178,7 +178,7 @@ paths:
       summary: Create a webhook endpoint
       tags:
       - webhook
-  /api/v1/apps/{appId}/endpoints/{endpointId}:
+  /api/v1/apps/{app_id}/endpoints/{endpoint_id}:
     delete:
       description: Delete a webhook endpoint
       operationId: v1.endpoints.delete
@@ -186,7 +186,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -194,7 +194,7 @@ paths:
       - description: Endpoint ID
         explode: false
         in: path
-        name: endpointId
+        name: endpoint_id
         required: true
         schema:
           type: string
@@ -218,7 +218,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -226,7 +226,7 @@ paths:
       - description: Endpoint ID
         explode: false
         in: path
-        name: endpointId
+        name: endpoint_id
         required: true
         schema:
           type: string
@@ -250,7 +250,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -258,7 +258,7 @@ paths:
       - description: Endpoint ID
         explode: false
         in: path
-        name: endpointId
+        name: endpoint_id
         required: true
         schema:
           type: string
@@ -282,15 +282,15 @@ paths:
       summary: Update a webhook endpoint
       tags:
       - webhook
-  /api/v1/apps/{appId}/invoices:
+  /api/v1/apps/{app_id}/payments:
     get:
-      description: List invoices
-      operationId: v1.invoices.list
+      description: List Payments
+      operationId: v1.Payments.list
       parameters:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -311,7 +311,7 @@ paths:
         style: form
       - explode: true
         in: query
-        name: channel
+        name: payment_method
         required: false
         schema:
           type: string
@@ -328,21 +328,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Page-Invoice'
+                $ref: '#/components/schemas/Page-Payment'
           description: OK
       security:
       - ApiKeyAuth: []
-      summary: List invoices
+      summary: List Payments
       tags:
-      - invoice
+      - Payment
     post:
-      description: Create an invoice
-      operationId: v1.invoices.create
+      description: Create an Payment
+      operationId: v1.Payments.create
       parameters:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -351,7 +351,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateInvoiceRequest'
+              $ref: '#/components/schemas/CreatePaymentRequest'
         description: Request body
         required: true
       responses:
@@ -359,30 +359,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Invoice'
+                $ref: '#/components/schemas/Payment'
           description: OK
       security:
       - ApiKeyAuth: []
-      summary: Create an invoice
+      summary: Create an Payment
       tags:
-      - invoice
-  /api/v1/apps/{appId}/invoices/{invoiceId}:
+      - Payment
+  /api/v1/apps/{app_id}/payments/{payment_id}:
     get:
-      description: Retrieve an invoice
-      operationId: v1.invoices.retrieve
+      description: Retrieve an Payment
+      operationId: v1.Payments.retrieve
       parameters:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
         style: simple
-      - description: Invoice ID / UID
+      - description: Payment ID / UID
         explode: false
         in: path
-        name: invoiceId
+        name: payment_id
         required: true
         schema:
           type: string
@@ -392,14 +392,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Invoice'
+                $ref: '#/components/schemas/Payment'
           description: OK
       security:
       - ApiKeyAuth: []
-      summary: Retrieve an invoice
+      summary: Retrieve an Payment
       tags:
-      - invoice
-  /api/v1/apps/{appId}/payouts:
+      - Payment
+  /api/v1/apps/{app_id}/payouts:
     get:
       description: List payouts
       operationId: v1.payouts.list
@@ -407,7 +407,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -447,7 +447,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -471,7 +471,7 @@ paths:
       summary: Payout to address
       tags:
       - payout
-  /api/v1/apps/{appId}/payouts/{payoutId}:
+  /api/v1/apps/{app_id}/payouts/{payout_id}:
     get:
       description: Retrieve a payout
       operationId: v1.payouts.retrieve
@@ -479,7 +479,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -487,7 +487,7 @@ paths:
       - description: Payout ID
         explode: false
         in: path
-        name: payoutId
+        name: payout_id
         required: true
         schema:
           type: string
@@ -504,7 +504,7 @@ paths:
       summary: Retrieve a payout
       tags:
       - payout
-  /api/v1/apps/{appId}/refunds:
+  /api/v1/apps/{app_id}/refunds:
     get:
       description: List refunds
       operationId: v1.refunds.list
@@ -512,7 +512,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -546,13 +546,13 @@ paths:
       tags:
       - refund
     post:
-      description: Refund invoice payment
+      description: Refund payment
       operationId: v1.refunds.create
       parameters:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -573,10 +573,10 @@ paths:
           description: OK
       security:
       - ApiKeyAuth: []
-      summary: Refund invoice payment
+      summary: Refund payment
       tags:
       - refund
-  /api/v1/apps/{appId}/refunds/{refundId}:
+  /api/v1/apps/{app_id}/refunds/{refund_id}:
     get:
       description: Retrieve a refund
       operationId: v1.refunds.retrieve
@@ -584,7 +584,7 @@ paths:
       - description: App ID
         explode: false
         in: path
-        name: appId
+        name: app_id
         required: true
         schema:
           type: string
@@ -592,7 +592,7 @@ paths:
       - description: Refund ID
         explode: false
         in: path
-        name: refundId
+        name: refund_id
         required: true
         schema:
           type: string
@@ -611,7 +611,7 @@ paths:
       - refund
 components:
   schemas:
-    CreateInvoiceRequest:
+    CreatePaymentRequest:
       example:
         note: note
         uid: uid
@@ -621,16 +621,14 @@ components:
         provider: provider
         extra:
           key: ""
-        channel: channel
+        payment_provider: payment_provider
         currency: currency
         expiration: 0
         userId: userId
+        payment_method: payment_method
       properties:
         amount:
           description: Amount (Integer)
-          type: string
-        channel:
-          description: Channel
           type: string
         currency:
           description: Currency
@@ -651,6 +649,12 @@ components:
         note:
           description: Note
           type: string
+        payment_method:
+          description: PaymentMethod
+          type: string
+        payment_provider:
+          description: PaymentProvider
+          type: string
         provider:
           description: Provider
           type: string
@@ -662,8 +666,9 @@ components:
           type: string
       required:
       - amount
-      - channel
       - currency
+      - payment_method
+      - payment_provider
       - provider
       type: object
     CreatePayout:
@@ -697,20 +702,20 @@ components:
     CreateRefund:
       example:
         note: note
-        amount: 0.8008281904610115
-        invoiceId: invoiceId
-        toAddress: toAddress
+        amount: amount
+        payment_id: payment_id
+        to_address: to_address
       properties:
         amount:
           description: Refund amount (Integer)
-          type: number
-        invoiceId:
-          description: Invoice ID
           type: string
         note:
           description: Refund note
           type: string
-        toAddress:
+        payment_id:
+          description: Payment ID
+          type: string
+        to_address:
           description: To Address
           type: string
       type: object
@@ -905,28 +910,28 @@ components:
         prev_cursor: prev_cursor
         next_cursor: next_cursor
         items:
-        - createdAt: createdAt
+        - completed_at: completed_at
           note: note
-          amount: 0.8008281904610115
-          completedAt: completedAt
-          failedAt: failedAt
-          invoiceId: invoiceId
+          amount: amount
+          updated_at: updated_at
+          payment_id: payment_id
+          created_at: created_at
+          to_address: to_address
+          failed_at: failed_at
           id: id
-          toAddress: toAddress
-          failedReason: failedReason
+          failed_reason: failed_reason
           status: status
-          updatedAt: updatedAt
-        - createdAt: createdAt
+        - completed_at: completed_at
           note: note
-          amount: 0.8008281904610115
-          completedAt: completedAt
-          failedAt: failedAt
-          invoiceId: invoiceId
+          amount: amount
+          updated_at: updated_at
+          payment_id: payment_id
+          created_at: created_at
+          to_address: to_address
+          failed_at: failed_at
           id: id
-          toAddress: toAddress
-          failedReason: failedReason
+          failed_reason: failed_reason
           status: status
-          updatedAt: updatedAt
       properties:
         items:
           items:
@@ -997,107 +1002,7 @@ components:
       - code
       - name
       type: object
-    Invoice:
-      example:
-        note: note
-        amount: amount
-        metadata:
-          key: ""
-        credentials:
-          key: ""
-        channel: channel
-        userId: userId
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        expiredAt: 2000-01-23T04:56:07.000+00:00
-        uid: uid
-        failedAt: 2000-01-23T04:56:07.000+00:00
-        provider: provider
-        extra:
-          key: ""
-        base_amount: base_amount
-        paidAt: 2000-01-23T04:56:07.000+00:00
-        currency: currency
-        expiration: 0
-        id: id
-        failedReason: failedReason
-        status: status
-      properties:
-        amount:
-          description: Amount (Integer)
-          type: string
-        base_amount:
-          description: Base Currency Amount
-          type: string
-        channel:
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-        credentials:
-          additionalProperties: {}
-          type: object
-        currency:
-          type: string
-        expiration:
-          type: integer
-        expiredAt:
-          format: date-time
-          type: string
-        extra:
-          additionalProperties: {}
-          nullable: true
-          type: object
-        failedAt:
-          format: date-time
-          type: string
-        failedReason:
-          type: string
-        id:
-          type: string
-        metadata:
-          additionalProperties: {}
-          nullable: true
-          type: object
-        note:
-          type: string
-        paidAt:
-          format: date-time
-          type: string
-        provider:
-          type: string
-        status:
-          type: string
-          x-enum-varnames:
-          - InvoiceStatusFailed
-          - InvoiceStatusPending
-          - InvoiceStatusExpired
-          - InvoiceStatusPaid
-          - InvoiceStatusCompleted
-        uid:
-          type: string
-        userId:
-          type: string
-      required:
-      - amount
-      - base_amount
-      - channel
-      - createdAt
-      - credentials
-      - currency
-      - id
-      - note
-      - provider
-      - status
-      type: object
-    InvoiceStatus:
-      type: string
-      x-enum-varnames:
-      - InvoiceStatusFailed
-      - InvoiceStatusPending
-      - InvoiceStatusExpired
-      - InvoiceStatusPaid
-      - InvoiceStatusCompleted
-    Page-Invoice:
+    Page-Payment:
       example:
         prev_cursor: prev_cursor
         next_cursor: next_cursor
@@ -1109,21 +1014,20 @@ components:
             key: ""
           credentials:
             key: ""
-          channel: channel
-          userId: userId
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          expiredAt: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          failed_message: failed_message
           uid: uid
-          failedAt: 2000-01-23T04:56:07.000+00:00
-          provider: provider
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          user_id: user_id
           extra:
             key: ""
-          base_amount: base_amount
-          paidAt: 2000-01-23T04:56:07.000+00:00
+          payment_provider: payment_provider
           currency: currency
+          details:
+            key: ""
           expiration: 0
           id: id
-          failedReason: failedReason
+          payment_method: payment_method
           status: status
         - note: note
           amount: amount
@@ -1131,28 +1035,27 @@ components:
             key: ""
           credentials:
             key: ""
-          channel: channel
-          userId: userId
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          expiredAt: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          failed_message: failed_message
           uid: uid
-          failedAt: 2000-01-23T04:56:07.000+00:00
-          provider: provider
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          user_id: user_id
           extra:
             key: ""
-          base_amount: base_amount
-          paidAt: 2000-01-23T04:56:07.000+00:00
+          payment_provider: payment_provider
           currency: currency
+          details:
+            key: ""
           expiration: 0
           id: id
-          failedReason: failedReason
+          payment_method: payment_method
           status: status
         hasPrev: true
         hasNext: true
       properties:
         data:
           items:
-            $ref: '#/components/schemas/Invoice'
+            $ref: '#/components/schemas/Payment'
           type: array
         hasNext:
           type: boolean
@@ -1165,6 +1068,99 @@ components:
         total:
           type: integer
       type: object
+    Payment:
+      example:
+        note: note
+        amount: amount
+        metadata:
+          key: ""
+        credentials:
+          key: ""
+        created_at: 2000-01-23T04:56:07.000+00:00
+        failed_message: failed_message
+        uid: uid
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        user_id: user_id
+        extra:
+          key: ""
+        payment_provider: payment_provider
+        currency: currency
+        details:
+          key: ""
+        expiration: 0
+        id: id
+        payment_method: payment_method
+        status: status
+      properties:
+        amount:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        credentials:
+          additionalProperties: {}
+          type: object
+        currency:
+          type: string
+        details:
+          additionalProperties: {}
+          nullable: true
+          type: object
+        expiration:
+          type: integer
+        extra:
+          additionalProperties: {}
+          nullable: true
+          type: object
+        failed_message:
+          type: string
+        id:
+          type: string
+        metadata:
+          additionalProperties: {}
+          nullable: true
+          type: object
+        note:
+          type: string
+        payment_method:
+          type: string
+        payment_provider:
+          type: string
+        status:
+          type: string
+          x-enum-varnames:
+          - PaymentStatusFailed
+          - PaymentStatusPending
+          - PaymentStatusExpired
+          - PaymentStatusPaid
+          - PaymentStatusCompleted
+        uid:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        user_id:
+          type: string
+      required:
+      - amount
+      - created_at
+      - credentials
+      - currency
+      - id
+      - note
+      - payment_method
+      - payment_provider
+      - status
+      - updated_at
+      type: object
+    PaymentStatus:
+      type: string
+      x-enum-varnames:
+      - PaymentStatusFailed
+      - PaymentStatusPending
+      - PaymentStatusExpired
+      - PaymentStatusPaid
+      - PaymentStatusCompleted
     Payout:
       example:
         note: note
@@ -1246,48 +1242,48 @@ components:
       type: object
     Refund:
       example:
-        createdAt: createdAt
+        completed_at: completed_at
         note: note
-        amount: 0.8008281904610115
-        completedAt: completedAt
-        failedAt: failedAt
-        invoiceId: invoiceId
+        amount: amount
+        updated_at: updated_at
+        payment_id: payment_id
+        created_at: created_at
+        to_address: to_address
+        failed_at: failed_at
         id: id
-        toAddress: toAddress
-        failedReason: failedReason
+        failed_reason: failed_reason
         status: status
-        updatedAt: updatedAt
       properties:
         amount:
           description: Refund amount (Integer)
-          type: number
-        completedAt:
+          type: string
+        completed_at:
           description: Completed at
           type: string
-        createdAt:
+        created_at:
           description: Created at
           type: string
-        failedAt:
+        failed_at:
           description: Failed at
           type: string
-        failedReason:
+        failed_reason:
           description: Failed reason
           type: string
         id:
           type: string
-        invoiceId:
-          description: Invoice ID
-          type: string
         note:
           description: Refund note
+          type: string
+        payment_id:
+          description: Payment ID
           type: string
         status:
           description: Refund status
           type: string
-        toAddress:
+        to_address:
           description: To Address
           type: string
-        updatedAt:
+        updated_at:
           description: Updated at
           type: string
       type: object

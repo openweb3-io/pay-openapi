@@ -55,7 +55,7 @@ type APIClient struct {
 
 	CurrencyApi *CurrencyApiService
 
-	InvoiceApi *InvoiceApiService
+	PaymentApi *PaymentApiService
 
 	PayoutApi *PayoutApiService
 
@@ -81,7 +81,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.CurrencyApi = (*CurrencyApiService)(&c.common)
-	c.InvoiceApi = (*InvoiceApiService)(&c.common)
+	c.PaymentApi = (*PaymentApiService)(&c.common)
 	c.PayoutApi = (*PayoutApiService)(&c.common)
 	c.RefundApi = (*RefundApiService)(&c.common)
 	c.WebhookApi = (*WebhookApiService)(&c.common)

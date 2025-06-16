@@ -78,8 +78,8 @@ func (a *WebhookApiService) V1EndpointsCreateExecute(r ApiV1EndpointsCreateReque
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/endpoints"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/endpoints"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -206,9 +206,9 @@ func (a *WebhookApiService) V1EndpointsDeleteExecute(r ApiV1EndpointsDeleteReque
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/endpoints/{endpointId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"endpointId"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/endpoints/{endpoint_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"endpoint_id"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -337,8 +337,8 @@ func (a *WebhookApiService) V1EndpointsListExecute(r ApiV1EndpointsListRequest) 
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/endpoints"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/endpoints"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -347,10 +347,10 @@ func (a *WebhookApiService) V1EndpointsListExecute(r ApiV1EndpointsListRequest) 
 		return localVarReturnValue, nil, reportError("limit is required and must be specified")
 	}
 
-	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -467,9 +467,9 @@ func (a *WebhookApiService) V1EndpointsRetrieveExecute(r ApiV1EndpointsRetrieveR
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/endpoints/{endpointId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"endpointId"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/endpoints/{endpoint_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"endpoint_id"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -596,9 +596,9 @@ func (a *WebhookApiService) V1EndpointsUpdateExecute(r ApiV1EndpointsUpdateReque
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/endpoints/{endpointId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"endpointId"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/endpoints/{endpoint_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"endpoint_id"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

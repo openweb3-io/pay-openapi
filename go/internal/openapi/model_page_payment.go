@@ -15,9 +15,9 @@ import (
 	"encoding/json"
 )
 
-// PageInvoice struct for PageInvoice
-type PageInvoice struct {
-	Data *[]Invoice `json:"data,omitempty"`
+// PagePayment struct for PagePayment
+type PagePayment struct {
+	Data *[]Payment `json:"data,omitempty"`
 	HasNext *bool `json:"hasNext,omitempty"`
 	HasPrev *bool `json:"hasPrev,omitempty"`
 	NextCursor *string `json:"next_cursor,omitempty"`
@@ -25,27 +25,27 @@ type PageInvoice struct {
 	Total *int32 `json:"total,omitempty"`
 }
 
-// NewPageInvoice instantiates a new PageInvoice object
+// NewPagePayment instantiates a new PagePayment object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPageInvoice() *PageInvoice {
-	this := PageInvoice{}
+func NewPagePayment() *PagePayment {
+	this := PagePayment{}
 	return &this
 }
 
-// NewPageInvoiceWithDefaults instantiates a new PageInvoice object
+// NewPagePaymentWithDefaults instantiates a new PagePayment object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPageInvoiceWithDefaults() *PageInvoice {
-	this := PageInvoice{}
+func NewPagePaymentWithDefaults() *PagePayment {
+	this := PagePayment{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *PageInvoice) GetData() []Invoice {
+func (o *PagePayment) GetData() []Payment {
 	if o == nil || o.Data == nil {
-		var ret []Invoice
+		var ret []Payment
 		return ret
 	}
 	return *o.Data
@@ -53,7 +53,7 @@ func (o *PageInvoice) GetData() []Invoice {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PageInvoice) GetDataOk() (*[]Invoice, bool) {
+func (o *PagePayment) GetDataOk() (*[]Payment, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -61,7 +61,7 @@ func (o *PageInvoice) GetDataOk() (*[]Invoice, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *PageInvoice) HasData() bool {
+func (o *PagePayment) HasData() bool {
 	if o != nil && o.Data != nil {
 		return true
 	}
@@ -69,13 +69,13 @@ func (o *PageInvoice) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []Invoice and assigns it to the Data field.
-func (o *PageInvoice) SetData(v []Invoice) {
+// SetData gets a reference to the given []Payment and assigns it to the Data field.
+func (o *PagePayment) SetData(v []Payment) {
 	o.Data = &v
 }
 
 // GetHasNext returns the HasNext field value if set, zero value otherwise.
-func (o *PageInvoice) GetHasNext() bool {
+func (o *PagePayment) GetHasNext() bool {
 	if o == nil || o.HasNext == nil {
 		var ret bool
 		return ret
@@ -85,7 +85,7 @@ func (o *PageInvoice) GetHasNext() bool {
 
 // GetHasNextOk returns a tuple with the HasNext field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PageInvoice) GetHasNextOk() (*bool, bool) {
+func (o *PagePayment) GetHasNextOk() (*bool, bool) {
 	if o == nil || o.HasNext == nil {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *PageInvoice) GetHasNextOk() (*bool, bool) {
 }
 
 // HasHasNext returns a boolean if a field has been set.
-func (o *PageInvoice) HasHasNext() bool {
+func (o *PagePayment) HasHasNext() bool {
 	if o != nil && o.HasNext != nil {
 		return true
 	}
@@ -102,12 +102,12 @@ func (o *PageInvoice) HasHasNext() bool {
 }
 
 // SetHasNext gets a reference to the given bool and assigns it to the HasNext field.
-func (o *PageInvoice) SetHasNext(v bool) {
+func (o *PagePayment) SetHasNext(v bool) {
 	o.HasNext = &v
 }
 
 // GetHasPrev returns the HasPrev field value if set, zero value otherwise.
-func (o *PageInvoice) GetHasPrev() bool {
+func (o *PagePayment) GetHasPrev() bool {
 	if o == nil || o.HasPrev == nil {
 		var ret bool
 		return ret
@@ -117,7 +117,7 @@ func (o *PageInvoice) GetHasPrev() bool {
 
 // GetHasPrevOk returns a tuple with the HasPrev field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PageInvoice) GetHasPrevOk() (*bool, bool) {
+func (o *PagePayment) GetHasPrevOk() (*bool, bool) {
 	if o == nil || o.HasPrev == nil {
 		return nil, false
 	}
@@ -125,7 +125,7 @@ func (o *PageInvoice) GetHasPrevOk() (*bool, bool) {
 }
 
 // HasHasPrev returns a boolean if a field has been set.
-func (o *PageInvoice) HasHasPrev() bool {
+func (o *PagePayment) HasHasPrev() bool {
 	if o != nil && o.HasPrev != nil {
 		return true
 	}
@@ -134,12 +134,12 @@ func (o *PageInvoice) HasHasPrev() bool {
 }
 
 // SetHasPrev gets a reference to the given bool and assigns it to the HasPrev field.
-func (o *PageInvoice) SetHasPrev(v bool) {
+func (o *PagePayment) SetHasPrev(v bool) {
 	o.HasPrev = &v
 }
 
 // GetNextCursor returns the NextCursor field value if set, zero value otherwise.
-func (o *PageInvoice) GetNextCursor() string {
+func (o *PagePayment) GetNextCursor() string {
 	if o == nil || o.NextCursor == nil {
 		var ret string
 		return ret
@@ -149,7 +149,7 @@ func (o *PageInvoice) GetNextCursor() string {
 
 // GetNextCursorOk returns a tuple with the NextCursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PageInvoice) GetNextCursorOk() (*string, bool) {
+func (o *PagePayment) GetNextCursorOk() (*string, bool) {
 	if o == nil || o.NextCursor == nil {
 		return nil, false
 	}
@@ -157,7 +157,7 @@ func (o *PageInvoice) GetNextCursorOk() (*string, bool) {
 }
 
 // HasNextCursor returns a boolean if a field has been set.
-func (o *PageInvoice) HasNextCursor() bool {
+func (o *PagePayment) HasNextCursor() bool {
 	if o != nil && o.NextCursor != nil {
 		return true
 	}
@@ -166,12 +166,12 @@ func (o *PageInvoice) HasNextCursor() bool {
 }
 
 // SetNextCursor gets a reference to the given string and assigns it to the NextCursor field.
-func (o *PageInvoice) SetNextCursor(v string) {
+func (o *PagePayment) SetNextCursor(v string) {
 	o.NextCursor = &v
 }
 
 // GetPrevCursor returns the PrevCursor field value if set, zero value otherwise.
-func (o *PageInvoice) GetPrevCursor() string {
+func (o *PagePayment) GetPrevCursor() string {
 	if o == nil || o.PrevCursor == nil {
 		var ret string
 		return ret
@@ -181,7 +181,7 @@ func (o *PageInvoice) GetPrevCursor() string {
 
 // GetPrevCursorOk returns a tuple with the PrevCursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PageInvoice) GetPrevCursorOk() (*string, bool) {
+func (o *PagePayment) GetPrevCursorOk() (*string, bool) {
 	if o == nil || o.PrevCursor == nil {
 		return nil, false
 	}
@@ -189,7 +189,7 @@ func (o *PageInvoice) GetPrevCursorOk() (*string, bool) {
 }
 
 // HasPrevCursor returns a boolean if a field has been set.
-func (o *PageInvoice) HasPrevCursor() bool {
+func (o *PagePayment) HasPrevCursor() bool {
 	if o != nil && o.PrevCursor != nil {
 		return true
 	}
@@ -198,12 +198,12 @@ func (o *PageInvoice) HasPrevCursor() bool {
 }
 
 // SetPrevCursor gets a reference to the given string and assigns it to the PrevCursor field.
-func (o *PageInvoice) SetPrevCursor(v string) {
+func (o *PagePayment) SetPrevCursor(v string) {
 	o.PrevCursor = &v
 }
 
 // GetTotal returns the Total field value if set, zero value otherwise.
-func (o *PageInvoice) GetTotal() int32 {
+func (o *PagePayment) GetTotal() int32 {
 	if o == nil || o.Total == nil {
 		var ret int32
 		return ret
@@ -213,7 +213,7 @@ func (o *PageInvoice) GetTotal() int32 {
 
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PageInvoice) GetTotalOk() (*int32, bool) {
+func (o *PagePayment) GetTotalOk() (*int32, bool) {
 	if o == nil || o.Total == nil {
 		return nil, false
 	}
@@ -221,7 +221,7 @@ func (o *PageInvoice) GetTotalOk() (*int32, bool) {
 }
 
 // HasTotal returns a boolean if a field has been set.
-func (o *PageInvoice) HasTotal() bool {
+func (o *PagePayment) HasTotal() bool {
 	if o != nil && o.Total != nil {
 		return true
 	}
@@ -230,11 +230,11 @@ func (o *PageInvoice) HasTotal() bool {
 }
 
 // SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *PageInvoice) SetTotal(v int32) {
+func (o *PagePayment) SetTotal(v int32) {
 	o.Total = &v
 }
 
-func (o PageInvoice) MarshalJSON() ([]byte, error) {
+func (o PagePayment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
@@ -257,38 +257,38 @@ func (o PageInvoice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullablePageInvoice struct {
-	value *PageInvoice
+type NullablePagePayment struct {
+	value *PagePayment
 	isSet bool
 }
 
-func (v NullablePageInvoice) Get() *PageInvoice {
+func (v NullablePagePayment) Get() *PagePayment {
 	return v.value
 }
 
-func (v *NullablePageInvoice) Set(val *PageInvoice) {
+func (v *NullablePagePayment) Set(val *PagePayment) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePageInvoice) IsSet() bool {
+func (v NullablePagePayment) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePageInvoice) Unset() {
+func (v *NullablePagePayment) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePageInvoice(val *PageInvoice) *NullablePageInvoice {
-	return &NullablePageInvoice{value: val, isSet: true}
+func NewNullablePagePayment(val *PagePayment) *NullablePagePayment {
+	return &NullablePagePayment{value: val, isSet: true}
 }
 
-func (v NullablePageInvoice) MarshalJSON() ([]byte, error) {
+func (v NullablePagePayment) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePageInvoice) UnmarshalJSON(src []byte) error {
+func (v *NullablePagePayment) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

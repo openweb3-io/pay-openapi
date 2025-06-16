@@ -4,18 +4,18 @@ All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1RefundsCreate**](RefundApi.md#v1RefundsCreate) | **POST** /api/v1/apps/{appId}/refunds | Refund invoice payment
-[**v1RefundsList**](RefundApi.md#v1RefundsList) | **GET** /api/v1/apps/{appId}/refunds | List refunds
-[**v1RefundsRetrieve**](RefundApi.md#v1RefundsRetrieve) | **GET** /api/v1/apps/{appId}/refunds/{refundId} | Retrieve a refund
+[**v1RefundsCreate**](RefundApi.md#v1RefundsCreate) | **POST** /api/v1/apps/{app_id}/refunds | Refund payment
+[**v1RefundsList**](RefundApi.md#v1RefundsList) | **GET** /api/v1/apps/{app_id}/refunds | List refunds
+[**v1RefundsRetrieve**](RefundApi.md#v1RefundsRetrieve) | **GET** /api/v1/apps/{app_id}/refunds/{refund_id} | Retrieve a refund
 
 
 <a name="v1RefundsCreate"></a>
 # **v1RefundsCreate**
 > Refund v1RefundsCreate(appId, createRefund)
 
-Refund invoice payment
+Refund payment
 
-Refund invoice payment
+Refund payment
 
 ### Example
 ```java

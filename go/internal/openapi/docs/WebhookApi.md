@@ -4,11 +4,11 @@ All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1EndpointsCreate**](WebhookApi.md#V1EndpointsCreate) | **Post** /api/v1/apps/{appId}/endpoints | Create a webhook endpoint
-[**V1EndpointsDelete**](WebhookApi.md#V1EndpointsDelete) | **Delete** /api/v1/apps/{appId}/endpoints/{endpointId} | Delete a webhook endpoint
-[**V1EndpointsList**](WebhookApi.md#V1EndpointsList) | **Get** /api/v1/apps/{appId}/endpoints | List webhook endpoints
-[**V1EndpointsRetrieve**](WebhookApi.md#V1EndpointsRetrieve) | **Get** /api/v1/apps/{appId}/endpoints/{endpointId} | Retrieve a webhook endpoint
-[**V1EndpointsUpdate**](WebhookApi.md#V1EndpointsUpdate) | **Patch** /api/v1/apps/{appId}/endpoints/{endpointId} | Update a webhook endpoint
+[**V1EndpointsCreate**](WebhookApi.md#V1EndpointsCreate) | **Post** /api/v1/apps/{app_id}/endpoints | Create a webhook endpoint
+[**V1EndpointsDelete**](WebhookApi.md#V1EndpointsDelete) | **Delete** /api/v1/apps/{app_id}/endpoints/{endpoint_id} | Delete a webhook endpoint
+[**V1EndpointsList**](WebhookApi.md#V1EndpointsList) | **Get** /api/v1/apps/{app_id}/endpoints | List webhook endpoints
+[**V1EndpointsRetrieve**](WebhookApi.md#V1EndpointsRetrieve) | **Get** /api/v1/apps/{app_id}/endpoints/{endpoint_id} | Retrieve a webhook endpoint
+[**V1EndpointsUpdate**](WebhookApi.md#V1EndpointsUpdate) | **Patch** /api/v1/apps/{app_id}/endpoints/{endpoint_id} | Update a webhook endpoint
 
 
 

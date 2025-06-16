@@ -23,30 +23,29 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * Refund
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-14T03:11:44.796828+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-17T02:08:34.702118+08:00[Asia/Shanghai]")
 public class Refund {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
-  private BigDecimal amount;
+  private String amount;
 
-  public static final String SERIALIZED_NAME_COMPLETED_AT = "completedAt";
+  public static final String SERIALIZED_NAME_COMPLETED_AT = "completed_at";
   @SerializedName(SERIALIZED_NAME_COMPLETED_AT)
   private String completedAt;
 
-  public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
+  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private String createdAt;
 
-  public static final String SERIALIZED_NAME_FAILED_AT = "failedAt";
+  public static final String SERIALIZED_NAME_FAILED_AT = "failed_at";
   @SerializedName(SERIALIZED_NAME_FAILED_AT)
   private String failedAt;
 
-  public static final String SERIALIZED_NAME_FAILED_REASON = "failedReason";
+  public static final String SERIALIZED_NAME_FAILED_REASON = "failed_reason";
   @SerializedName(SERIALIZED_NAME_FAILED_REASON)
   private String failedReason;
 
@@ -54,28 +53,28 @@ public class Refund {
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
 
-  public static final String SERIALIZED_NAME_INVOICE_ID = "invoiceId";
-  @SerializedName(SERIALIZED_NAME_INVOICE_ID)
-  private String invoiceId;
-
   public static final String SERIALIZED_NAME_NOTE = "note";
   @SerializedName(SERIALIZED_NAME_NOTE)
   private String note;
+
+  public static final String SERIALIZED_NAME_PAYMENT_ID = "payment_id";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_ID)
+  private String paymentId;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private String status;
 
-  public static final String SERIALIZED_NAME_TO_ADDRESS = "toAddress";
+  public static final String SERIALIZED_NAME_TO_ADDRESS = "to_address";
   @SerializedName(SERIALIZED_NAME_TO_ADDRESS)
   private String toAddress;
 
-  public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
+  public static final String SERIALIZED_NAME_UPDATED_AT = "updated_at";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private String updatedAt;
 
 
-  public Refund amount(BigDecimal amount) {
+  public Refund amount(String amount) {
     
     this.amount = amount;
     return this;
@@ -88,12 +87,12 @@ public class Refund {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Refund amount (Integer)")
 
-  public BigDecimal getAmount() {
+  public String getAmount() {
     return amount;
   }
 
 
-  public void setAmount(BigDecimal amount) {
+  public void setAmount(String amount) {
     this.amount = amount;
   }
 
@@ -213,29 +212,6 @@ public class Refund {
   }
 
 
-  public Refund invoiceId(String invoiceId) {
-    
-    this.invoiceId = invoiceId;
-    return this;
-  }
-
-   /**
-   * Invoice ID
-   * @return invoiceId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Invoice ID")
-
-  public String getInvoiceId() {
-    return invoiceId;
-  }
-
-
-  public void setInvoiceId(String invoiceId) {
-    this.invoiceId = invoiceId;
-  }
-
-
   public Refund note(String note) {
     
     this.note = note;
@@ -256,6 +232,29 @@ public class Refund {
 
   public void setNote(String note) {
     this.note = note;
+  }
+
+
+  public Refund paymentId(String paymentId) {
+    
+    this.paymentId = paymentId;
+    return this;
+  }
+
+   /**
+   * Payment ID
+   * @return paymentId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Payment ID")
+
+  public String getPaymentId() {
+    return paymentId;
+  }
+
+
+  public void setPaymentId(String paymentId) {
+    this.paymentId = paymentId;
   }
 
 
@@ -343,8 +342,8 @@ public class Refund {
         Objects.equals(this.failedAt, refund.failedAt) &&
         Objects.equals(this.failedReason, refund.failedReason) &&
         Objects.equals(this.id, refund.id) &&
-        Objects.equals(this.invoiceId, refund.invoiceId) &&
         Objects.equals(this.note, refund.note) &&
+        Objects.equals(this.paymentId, refund.paymentId) &&
         Objects.equals(this.status, refund.status) &&
         Objects.equals(this.toAddress, refund.toAddress) &&
         Objects.equals(this.updatedAt, refund.updatedAt);
@@ -352,7 +351,7 @@ public class Refund {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, completedAt, createdAt, failedAt, failedReason, id, invoiceId, note, status, toAddress, updatedAt);
+    return Objects.hash(amount, completedAt, createdAt, failedAt, failedReason, id, note, paymentId, status, toAddress, updatedAt);
   }
 
   @Override
@@ -365,8 +364,8 @@ public class Refund {
     sb.append("    failedAt: ").append(toIndentedString(failedAt)).append("\n");
     sb.append("    failedReason: ").append(toIndentedString(failedReason)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    invoiceId: ").append(toIndentedString(invoiceId)).append("\n");
     sb.append("    note: ").append(toIndentedString(note)).append("\n");
+    sb.append("    paymentId: ").append(toIndentedString(paymentId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    toAddress: ").append(toIndentedString(toAddress)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");

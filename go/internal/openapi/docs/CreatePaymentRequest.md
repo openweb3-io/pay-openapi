@@ -1,286 +1,307 @@
-# CreateInvoiceRequest
+# CreatePaymentRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **string** | Amount (Integer) | 
-**Channel** | **string** | Channel | 
 **Currency** | **string** | Currency | 
 **Expiration** | Pointer to **int32** | Expiration | [optional] 
 **Extra** | Pointer to **map[string]interface{}** | Extra | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | Metadata | [optional] 
 **Note** | Pointer to **string** | Note | [optional] 
+**PaymentMethod** | **string** | PaymentMethod | 
+**PaymentProvider** | **string** | PaymentProvider | 
 **Provider** | **string** | Provider | 
 **Uid** | Pointer to **string** | Unique ID | [optional] 
 **UserId** | Pointer to **string** | User ID | [optional] 
 
 ## Methods
 
-### NewCreateInvoiceRequest
+### NewCreatePaymentRequest
 
-`func NewCreateInvoiceRequest(amount string, channel string, currency string, provider string, ) *CreateInvoiceRequest`
+`func NewCreatePaymentRequest(amount string, currency string, paymentMethod string, paymentProvider string, provider string, ) *CreatePaymentRequest`
 
-NewCreateInvoiceRequest instantiates a new CreateInvoiceRequest object
+NewCreatePaymentRequest instantiates a new CreatePaymentRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCreateInvoiceRequestWithDefaults
+### NewCreatePaymentRequestWithDefaults
 
-`func NewCreateInvoiceRequestWithDefaults() *CreateInvoiceRequest`
+`func NewCreatePaymentRequestWithDefaults() *CreatePaymentRequest`
 
-NewCreateInvoiceRequestWithDefaults instantiates a new CreateInvoiceRequest object
+NewCreatePaymentRequestWithDefaults instantiates a new CreatePaymentRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *CreateInvoiceRequest) GetAmount() string`
+`func (o *CreatePaymentRequest) GetAmount() string`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *CreateInvoiceRequest) GetAmountOk() (*string, bool)`
+`func (o *CreatePaymentRequest) GetAmountOk() (*string, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *CreateInvoiceRequest) SetAmount(v string)`
+`func (o *CreatePaymentRequest) SetAmount(v string)`
 
 SetAmount sets Amount field to given value.
 
 
-### GetChannel
-
-`func (o *CreateInvoiceRequest) GetChannel() string`
-
-GetChannel returns the Channel field if non-nil, zero value otherwise.
-
-### GetChannelOk
-
-`func (o *CreateInvoiceRequest) GetChannelOk() (*string, bool)`
-
-GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetChannel
-
-`func (o *CreateInvoiceRequest) SetChannel(v string)`
-
-SetChannel sets Channel field to given value.
-
-
 ### GetCurrency
 
-`func (o *CreateInvoiceRequest) GetCurrency() string`
+`func (o *CreatePaymentRequest) GetCurrency() string`
 
 GetCurrency returns the Currency field if non-nil, zero value otherwise.
 
 ### GetCurrencyOk
 
-`func (o *CreateInvoiceRequest) GetCurrencyOk() (*string, bool)`
+`func (o *CreatePaymentRequest) GetCurrencyOk() (*string, bool)`
 
 GetCurrencyOk returns a tuple with the Currency field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrency
 
-`func (o *CreateInvoiceRequest) SetCurrency(v string)`
+`func (o *CreatePaymentRequest) SetCurrency(v string)`
 
 SetCurrency sets Currency field to given value.
 
 
 ### GetExpiration
 
-`func (o *CreateInvoiceRequest) GetExpiration() int32`
+`func (o *CreatePaymentRequest) GetExpiration() int32`
 
 GetExpiration returns the Expiration field if non-nil, zero value otherwise.
 
 ### GetExpirationOk
 
-`func (o *CreateInvoiceRequest) GetExpirationOk() (*int32, bool)`
+`func (o *CreatePaymentRequest) GetExpirationOk() (*int32, bool)`
 
 GetExpirationOk returns a tuple with the Expiration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExpiration
 
-`func (o *CreateInvoiceRequest) SetExpiration(v int32)`
+`func (o *CreatePaymentRequest) SetExpiration(v int32)`
 
 SetExpiration sets Expiration field to given value.
 
 ### HasExpiration
 
-`func (o *CreateInvoiceRequest) HasExpiration() bool`
+`func (o *CreatePaymentRequest) HasExpiration() bool`
 
 HasExpiration returns a boolean if a field has been set.
 
 ### GetExtra
 
-`func (o *CreateInvoiceRequest) GetExtra() map[string]interface{}`
+`func (o *CreatePaymentRequest) GetExtra() map[string]interface{}`
 
 GetExtra returns the Extra field if non-nil, zero value otherwise.
 
 ### GetExtraOk
 
-`func (o *CreateInvoiceRequest) GetExtraOk() (*map[string]interface{}, bool)`
+`func (o *CreatePaymentRequest) GetExtraOk() (*map[string]interface{}, bool)`
 
 GetExtraOk returns a tuple with the Extra field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetExtra
 
-`func (o *CreateInvoiceRequest) SetExtra(v map[string]interface{})`
+`func (o *CreatePaymentRequest) SetExtra(v map[string]interface{})`
 
 SetExtra sets Extra field to given value.
 
 ### HasExtra
 
-`func (o *CreateInvoiceRequest) HasExtra() bool`
+`func (o *CreatePaymentRequest) HasExtra() bool`
 
 HasExtra returns a boolean if a field has been set.
 
 ### SetExtraNil
 
-`func (o *CreateInvoiceRequest) SetExtraNil(b bool)`
+`func (o *CreatePaymentRequest) SetExtraNil(b bool)`
 
  SetExtraNil sets the value for Extra to be an explicit nil
 
 ### UnsetExtra
-`func (o *CreateInvoiceRequest) UnsetExtra()`
+`func (o *CreatePaymentRequest) UnsetExtra()`
 
 UnsetExtra ensures that no value is present for Extra, not even an explicit nil
 ### GetMetadata
 
-`func (o *CreateInvoiceRequest) GetMetadata() map[string]interface{}`
+`func (o *CreatePaymentRequest) GetMetadata() map[string]interface{}`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *CreateInvoiceRequest) GetMetadataOk() (*map[string]interface{}, bool)`
+`func (o *CreatePaymentRequest) GetMetadataOk() (*map[string]interface{}, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *CreateInvoiceRequest) SetMetadata(v map[string]interface{})`
+`func (o *CreatePaymentRequest) SetMetadata(v map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
 
 ### HasMetadata
 
-`func (o *CreateInvoiceRequest) HasMetadata() bool`
+`func (o *CreatePaymentRequest) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
 
 ### SetMetadataNil
 
-`func (o *CreateInvoiceRequest) SetMetadataNil(b bool)`
+`func (o *CreatePaymentRequest) SetMetadataNil(b bool)`
 
  SetMetadataNil sets the value for Metadata to be an explicit nil
 
 ### UnsetMetadata
-`func (o *CreateInvoiceRequest) UnsetMetadata()`
+`func (o *CreatePaymentRequest) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetNote
 
-`func (o *CreateInvoiceRequest) GetNote() string`
+`func (o *CreatePaymentRequest) GetNote() string`
 
 GetNote returns the Note field if non-nil, zero value otherwise.
 
 ### GetNoteOk
 
-`func (o *CreateInvoiceRequest) GetNoteOk() (*string, bool)`
+`func (o *CreatePaymentRequest) GetNoteOk() (*string, bool)`
 
 GetNoteOk returns a tuple with the Note field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNote
 
-`func (o *CreateInvoiceRequest) SetNote(v string)`
+`func (o *CreatePaymentRequest) SetNote(v string)`
 
 SetNote sets Note field to given value.
 
 ### HasNote
 
-`func (o *CreateInvoiceRequest) HasNote() bool`
+`func (o *CreatePaymentRequest) HasNote() bool`
 
 HasNote returns a boolean if a field has been set.
 
+### GetPaymentMethod
+
+`func (o *CreatePaymentRequest) GetPaymentMethod() string`
+
+GetPaymentMethod returns the PaymentMethod field if non-nil, zero value otherwise.
+
+### GetPaymentMethodOk
+
+`func (o *CreatePaymentRequest) GetPaymentMethodOk() (*string, bool)`
+
+GetPaymentMethodOk returns a tuple with the PaymentMethod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentMethod
+
+`func (o *CreatePaymentRequest) SetPaymentMethod(v string)`
+
+SetPaymentMethod sets PaymentMethod field to given value.
+
+
+### GetPaymentProvider
+
+`func (o *CreatePaymentRequest) GetPaymentProvider() string`
+
+GetPaymentProvider returns the PaymentProvider field if non-nil, zero value otherwise.
+
+### GetPaymentProviderOk
+
+`func (o *CreatePaymentRequest) GetPaymentProviderOk() (*string, bool)`
+
+GetPaymentProviderOk returns a tuple with the PaymentProvider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentProvider
+
+`func (o *CreatePaymentRequest) SetPaymentProvider(v string)`
+
+SetPaymentProvider sets PaymentProvider field to given value.
+
+
 ### GetProvider
 
-`func (o *CreateInvoiceRequest) GetProvider() string`
+`func (o *CreatePaymentRequest) GetProvider() string`
 
 GetProvider returns the Provider field if non-nil, zero value otherwise.
 
 ### GetProviderOk
 
-`func (o *CreateInvoiceRequest) GetProviderOk() (*string, bool)`
+`func (o *CreatePaymentRequest) GetProviderOk() (*string, bool)`
 
 GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProvider
 
-`func (o *CreateInvoiceRequest) SetProvider(v string)`
+`func (o *CreatePaymentRequest) SetProvider(v string)`
 
 SetProvider sets Provider field to given value.
 
 
 ### GetUid
 
-`func (o *CreateInvoiceRequest) GetUid() string`
+`func (o *CreatePaymentRequest) GetUid() string`
 
 GetUid returns the Uid field if non-nil, zero value otherwise.
 
 ### GetUidOk
 
-`func (o *CreateInvoiceRequest) GetUidOk() (*string, bool)`
+`func (o *CreatePaymentRequest) GetUidOk() (*string, bool)`
 
 GetUidOk returns a tuple with the Uid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUid
 
-`func (o *CreateInvoiceRequest) SetUid(v string)`
+`func (o *CreatePaymentRequest) SetUid(v string)`
 
 SetUid sets Uid field to given value.
 
 ### HasUid
 
-`func (o *CreateInvoiceRequest) HasUid() bool`
+`func (o *CreatePaymentRequest) HasUid() bool`
 
 HasUid returns a boolean if a field has been set.
 
 ### GetUserId
 
-`func (o *CreateInvoiceRequest) GetUserId() string`
+`func (o *CreatePaymentRequest) GetUserId() string`
 
 GetUserId returns the UserId field if non-nil, zero value otherwise.
 
 ### GetUserIdOk
 
-`func (o *CreateInvoiceRequest) GetUserIdOk() (*string, bool)`
+`func (o *CreatePaymentRequest) GetUserIdOk() (*string, bool)`
 
 GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUserId
 
-`func (o *CreateInvoiceRequest) SetUserId(v string)`
+`func (o *CreatePaymentRequest) SetUserId(v string)`
 
 SetUserId sets UserId field to given value.
 
 ### HasUserId
 
-`func (o *CreateInvoiceRequest) HasUserId() bool`
+`func (o *CreatePaymentRequest) HasUserId() bool`
 
 HasUserId returns a boolean if a field has been set.
 

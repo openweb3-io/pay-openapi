@@ -16,7 +16,7 @@ export class Refund {
     /**
     * Refund amount (Integer)
     */
-    'amount'?: number;
+    'amount'?: string;
     /**
     * Completed at
     */
@@ -35,13 +35,13 @@ export class Refund {
     'failedReason'?: string;
     'id'?: string;
     /**
-    * Invoice ID
-    */
-    'invoiceId'?: string;
-    /**
     * Refund note
     */
     'note'?: string;
+    /**
+    * Payment ID
+    */
+    'paymentId'?: string;
     /**
     * Refund status
     */
@@ -61,30 +61,30 @@ export class Refund {
         {
             "name": "amount",
             "baseName": "amount",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "completedAt",
-            "baseName": "completedAt",
+            "baseName": "completed_at",
             "type": "string",
             "format": ""
         },
         {
             "name": "createdAt",
-            "baseName": "createdAt",
+            "baseName": "created_at",
             "type": "string",
             "format": ""
         },
         {
             "name": "failedAt",
-            "baseName": "failedAt",
+            "baseName": "failed_at",
             "type": "string",
             "format": ""
         },
         {
             "name": "failedReason",
-            "baseName": "failedReason",
+            "baseName": "failed_reason",
             "type": "string",
             "format": ""
         },
@@ -95,14 +95,14 @@ export class Refund {
             "format": ""
         },
         {
-            "name": "invoiceId",
-            "baseName": "invoiceId",
+            "name": "note",
+            "baseName": "note",
             "type": "string",
             "format": ""
         },
         {
-            "name": "note",
-            "baseName": "note",
+            "name": "paymentId",
+            "baseName": "payment_id",
             "type": "string",
             "format": ""
         },
@@ -114,13 +114,13 @@ export class Refund {
         },
         {
             "name": "toAddress",
-            "baseName": "toAddress",
+            "baseName": "to_address",
             "type": "string",
             "format": ""
         },
         {
             "name": "updatedAt",
-            "baseName": "updatedAt",
+            "baseName": "updated_at",
             "type": "string",
             "format": ""
         }    ];

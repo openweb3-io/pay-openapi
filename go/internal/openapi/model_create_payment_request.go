@@ -15,12 +15,10 @@ import (
 	"encoding/json"
 )
 
-// CreateInvoiceRequest struct for CreateInvoiceRequest
-type CreateInvoiceRequest struct {
+// CreatePaymentRequest struct for CreatePaymentRequest
+type CreatePaymentRequest struct {
 	// Amount (Integer)
 	Amount string `json:"amount"`
-	// Channel
-	Channel string `json:"channel"`
 	// Currency
 	Currency string `json:"currency"`
 	// Expiration
@@ -31,6 +29,10 @@ type CreateInvoiceRequest struct {
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Note
 	Note *string `json:"note,omitempty"`
+	// PaymentMethod
+	PaymentMethod string `json:"payment_method"`
+	// PaymentProvider
+	PaymentProvider string `json:"payment_provider"`
 	// Provider
 	Provider string `json:"provider"`
 	// Unique ID
@@ -39,29 +41,30 @@ type CreateInvoiceRequest struct {
 	UserId *string `json:"userId,omitempty"`
 }
 
-// NewCreateInvoiceRequest instantiates a new CreateInvoiceRequest object
+// NewCreatePaymentRequest instantiates a new CreatePaymentRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateInvoiceRequest(amount string, channel string, currency string, provider string) *CreateInvoiceRequest {
-	this := CreateInvoiceRequest{}
+func NewCreatePaymentRequest(amount string, currency string, paymentMethod string, paymentProvider string, provider string) *CreatePaymentRequest {
+	this := CreatePaymentRequest{}
 	this.Amount = amount
-	this.Channel = channel
 	this.Currency = currency
+	this.PaymentMethod = paymentMethod
+	this.PaymentProvider = paymentProvider
 	this.Provider = provider
 	return &this
 }
 
-// NewCreateInvoiceRequestWithDefaults instantiates a new CreateInvoiceRequest object
+// NewCreatePaymentRequestWithDefaults instantiates a new CreatePaymentRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateInvoiceRequestWithDefaults() *CreateInvoiceRequest {
-	this := CreateInvoiceRequest{}
+func NewCreatePaymentRequestWithDefaults() *CreatePaymentRequest {
+	this := CreatePaymentRequest{}
 	return &this
 }
 
 // GetAmount returns the Amount field value
-func (o *CreateInvoiceRequest) GetAmount() string {
+func (o *CreatePaymentRequest) GetAmount() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -72,7 +75,7 @@ func (o *CreateInvoiceRequest) GetAmount() string {
 
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
-func (o *CreateInvoiceRequest) GetAmountOk() (*string, bool) {
+func (o *CreatePaymentRequest) GetAmountOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -80,36 +83,12 @@ func (o *CreateInvoiceRequest) GetAmountOk() (*string, bool) {
 }
 
 // SetAmount sets field value
-func (o *CreateInvoiceRequest) SetAmount(v string) {
+func (o *CreatePaymentRequest) SetAmount(v string) {
 	o.Amount = v
 }
 
-// GetChannel returns the Channel field value
-func (o *CreateInvoiceRequest) GetChannel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Channel
-}
-
-// GetChannelOk returns a tuple with the Channel field value
-// and a boolean to check if the value has been set.
-func (o *CreateInvoiceRequest) GetChannelOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Channel, true
-}
-
-// SetChannel sets field value
-func (o *CreateInvoiceRequest) SetChannel(v string) {
-	o.Channel = v
-}
-
 // GetCurrency returns the Currency field value
-func (o *CreateInvoiceRequest) GetCurrency() string {
+func (o *CreatePaymentRequest) GetCurrency() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -120,7 +99,7 @@ func (o *CreateInvoiceRequest) GetCurrency() string {
 
 // GetCurrencyOk returns a tuple with the Currency field value
 // and a boolean to check if the value has been set.
-func (o *CreateInvoiceRequest) GetCurrencyOk() (*string, bool) {
+func (o *CreatePaymentRequest) GetCurrencyOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -128,12 +107,12 @@ func (o *CreateInvoiceRequest) GetCurrencyOk() (*string, bool) {
 }
 
 // SetCurrency sets field value
-func (o *CreateInvoiceRequest) SetCurrency(v string) {
+func (o *CreatePaymentRequest) SetCurrency(v string) {
 	o.Currency = v
 }
 
 // GetExpiration returns the Expiration field value if set, zero value otherwise.
-func (o *CreateInvoiceRequest) GetExpiration() int32 {
+func (o *CreatePaymentRequest) GetExpiration() int32 {
 	if o == nil || o.Expiration == nil {
 		var ret int32
 		return ret
@@ -143,7 +122,7 @@ func (o *CreateInvoiceRequest) GetExpiration() int32 {
 
 // GetExpirationOk returns a tuple with the Expiration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInvoiceRequest) GetExpirationOk() (*int32, bool) {
+func (o *CreatePaymentRequest) GetExpirationOk() (*int32, bool) {
 	if o == nil || o.Expiration == nil {
 		return nil, false
 	}
@@ -151,7 +130,7 @@ func (o *CreateInvoiceRequest) GetExpirationOk() (*int32, bool) {
 }
 
 // HasExpiration returns a boolean if a field has been set.
-func (o *CreateInvoiceRequest) HasExpiration() bool {
+func (o *CreatePaymentRequest) HasExpiration() bool {
 	if o != nil && o.Expiration != nil {
 		return true
 	}
@@ -160,12 +139,12 @@ func (o *CreateInvoiceRequest) HasExpiration() bool {
 }
 
 // SetExpiration gets a reference to the given int32 and assigns it to the Expiration field.
-func (o *CreateInvoiceRequest) SetExpiration(v int32) {
+func (o *CreatePaymentRequest) SetExpiration(v int32) {
 	o.Expiration = &v
 }
 
 // GetExtra returns the Extra field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateInvoiceRequest) GetExtra() map[string]interface{} {
+func (o *CreatePaymentRequest) GetExtra() map[string]interface{} {
 	if o == nil  {
 		var ret map[string]interface{}
 		return ret
@@ -176,7 +155,7 @@ func (o *CreateInvoiceRequest) GetExtra() map[string]interface{} {
 // GetExtraOk returns a tuple with the Extra field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateInvoiceRequest) GetExtraOk() (*map[string]interface{}, bool) {
+func (o *CreatePaymentRequest) GetExtraOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Extra == nil {
 		return nil, false
 	}
@@ -184,7 +163,7 @@ func (o *CreateInvoiceRequest) GetExtraOk() (*map[string]interface{}, bool) {
 }
 
 // HasExtra returns a boolean if a field has been set.
-func (o *CreateInvoiceRequest) HasExtra() bool {
+func (o *CreatePaymentRequest) HasExtra() bool {
 	if o != nil && o.Extra != nil {
 		return true
 	}
@@ -193,12 +172,12 @@ func (o *CreateInvoiceRequest) HasExtra() bool {
 }
 
 // SetExtra gets a reference to the given map[string]interface{} and assigns it to the Extra field.
-func (o *CreateInvoiceRequest) SetExtra(v map[string]interface{}) {
+func (o *CreatePaymentRequest) SetExtra(v map[string]interface{}) {
 	o.Extra = v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateInvoiceRequest) GetMetadata() map[string]interface{} {
+func (o *CreatePaymentRequest) GetMetadata() map[string]interface{} {
 	if o == nil  {
 		var ret map[string]interface{}
 		return ret
@@ -209,7 +188,7 @@ func (o *CreateInvoiceRequest) GetMetadata() map[string]interface{} {
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateInvoiceRequest) GetMetadataOk() (*map[string]interface{}, bool) {
+func (o *CreatePaymentRequest) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -217,7 +196,7 @@ func (o *CreateInvoiceRequest) GetMetadataOk() (*map[string]interface{}, bool) {
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *CreateInvoiceRequest) HasMetadata() bool {
+func (o *CreatePaymentRequest) HasMetadata() bool {
 	if o != nil && o.Metadata != nil {
 		return true
 	}
@@ -226,12 +205,12 @@ func (o *CreateInvoiceRequest) HasMetadata() bool {
 }
 
 // SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
-func (o *CreateInvoiceRequest) SetMetadata(v map[string]interface{}) {
+func (o *CreatePaymentRequest) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
 // GetNote returns the Note field value if set, zero value otherwise.
-func (o *CreateInvoiceRequest) GetNote() string {
+func (o *CreatePaymentRequest) GetNote() string {
 	if o == nil || o.Note == nil {
 		var ret string
 		return ret
@@ -241,7 +220,7 @@ func (o *CreateInvoiceRequest) GetNote() string {
 
 // GetNoteOk returns a tuple with the Note field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInvoiceRequest) GetNoteOk() (*string, bool) {
+func (o *CreatePaymentRequest) GetNoteOk() (*string, bool) {
 	if o == nil || o.Note == nil {
 		return nil, false
 	}
@@ -249,7 +228,7 @@ func (o *CreateInvoiceRequest) GetNoteOk() (*string, bool) {
 }
 
 // HasNote returns a boolean if a field has been set.
-func (o *CreateInvoiceRequest) HasNote() bool {
+func (o *CreatePaymentRequest) HasNote() bool {
 	if o != nil && o.Note != nil {
 		return true
 	}
@@ -258,12 +237,60 @@ func (o *CreateInvoiceRequest) HasNote() bool {
 }
 
 // SetNote gets a reference to the given string and assigns it to the Note field.
-func (o *CreateInvoiceRequest) SetNote(v string) {
+func (o *CreatePaymentRequest) SetNote(v string) {
 	o.Note = &v
 }
 
+// GetPaymentMethod returns the PaymentMethod field value
+func (o *CreatePaymentRequest) GetPaymentMethod() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PaymentMethod
+}
+
+// GetPaymentMethodOk returns a tuple with the PaymentMethod field value
+// and a boolean to check if the value has been set.
+func (o *CreatePaymentRequest) GetPaymentMethodOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PaymentMethod, true
+}
+
+// SetPaymentMethod sets field value
+func (o *CreatePaymentRequest) SetPaymentMethod(v string) {
+	o.PaymentMethod = v
+}
+
+// GetPaymentProvider returns the PaymentProvider field value
+func (o *CreatePaymentRequest) GetPaymentProvider() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PaymentProvider
+}
+
+// GetPaymentProviderOk returns a tuple with the PaymentProvider field value
+// and a boolean to check if the value has been set.
+func (o *CreatePaymentRequest) GetPaymentProviderOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.PaymentProvider, true
+}
+
+// SetPaymentProvider sets field value
+func (o *CreatePaymentRequest) SetPaymentProvider(v string) {
+	o.PaymentProvider = v
+}
+
 // GetProvider returns the Provider field value
-func (o *CreateInvoiceRequest) GetProvider() string {
+func (o *CreatePaymentRequest) GetProvider() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -274,7 +301,7 @@ func (o *CreateInvoiceRequest) GetProvider() string {
 
 // GetProviderOk returns a tuple with the Provider field value
 // and a boolean to check if the value has been set.
-func (o *CreateInvoiceRequest) GetProviderOk() (*string, bool) {
+func (o *CreatePaymentRequest) GetProviderOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -282,12 +309,12 @@ func (o *CreateInvoiceRequest) GetProviderOk() (*string, bool) {
 }
 
 // SetProvider sets field value
-func (o *CreateInvoiceRequest) SetProvider(v string) {
+func (o *CreatePaymentRequest) SetProvider(v string) {
 	o.Provider = v
 }
 
 // GetUid returns the Uid field value if set, zero value otherwise.
-func (o *CreateInvoiceRequest) GetUid() string {
+func (o *CreatePaymentRequest) GetUid() string {
 	if o == nil || o.Uid == nil {
 		var ret string
 		return ret
@@ -297,7 +324,7 @@ func (o *CreateInvoiceRequest) GetUid() string {
 
 // GetUidOk returns a tuple with the Uid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInvoiceRequest) GetUidOk() (*string, bool) {
+func (o *CreatePaymentRequest) GetUidOk() (*string, bool) {
 	if o == nil || o.Uid == nil {
 		return nil, false
 	}
@@ -305,7 +332,7 @@ func (o *CreateInvoiceRequest) GetUidOk() (*string, bool) {
 }
 
 // HasUid returns a boolean if a field has been set.
-func (o *CreateInvoiceRequest) HasUid() bool {
+func (o *CreatePaymentRequest) HasUid() bool {
 	if o != nil && o.Uid != nil {
 		return true
 	}
@@ -314,12 +341,12 @@ func (o *CreateInvoiceRequest) HasUid() bool {
 }
 
 // SetUid gets a reference to the given string and assigns it to the Uid field.
-func (o *CreateInvoiceRequest) SetUid(v string) {
+func (o *CreatePaymentRequest) SetUid(v string) {
 	o.Uid = &v
 }
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *CreateInvoiceRequest) GetUserId() string {
+func (o *CreatePaymentRequest) GetUserId() string {
 	if o == nil || o.UserId == nil {
 		var ret string
 		return ret
@@ -329,7 +356,7 @@ func (o *CreateInvoiceRequest) GetUserId() string {
 
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateInvoiceRequest) GetUserIdOk() (*string, bool) {
+func (o *CreatePaymentRequest) GetUserIdOk() (*string, bool) {
 	if o == nil || o.UserId == nil {
 		return nil, false
 	}
@@ -337,7 +364,7 @@ func (o *CreateInvoiceRequest) GetUserIdOk() (*string, bool) {
 }
 
 // HasUserId returns a boolean if a field has been set.
-func (o *CreateInvoiceRequest) HasUserId() bool {
+func (o *CreatePaymentRequest) HasUserId() bool {
 	if o != nil && o.UserId != nil {
 		return true
 	}
@@ -346,17 +373,14 @@ func (o *CreateInvoiceRequest) HasUserId() bool {
 }
 
 // SetUserId gets a reference to the given string and assigns it to the UserId field.
-func (o *CreateInvoiceRequest) SetUserId(v string) {
+func (o *CreatePaymentRequest) SetUserId(v string) {
 	o.UserId = &v
 }
 
-func (o CreateInvoiceRequest) MarshalJSON() ([]byte, error) {
+func (o CreatePaymentRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["amount"] = o.Amount
-	}
-	if true {
-		toSerialize["channel"] = o.Channel
 	}
 	if true {
 		toSerialize["currency"] = o.Currency
@@ -374,6 +398,12 @@ func (o CreateInvoiceRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["note"] = o.Note
 	}
 	if true {
+		toSerialize["payment_method"] = o.PaymentMethod
+	}
+	if true {
+		toSerialize["payment_provider"] = o.PaymentProvider
+	}
+	if true {
 		toSerialize["provider"] = o.Provider
 	}
 	if o.Uid != nil {
@@ -385,38 +415,38 @@ func (o CreateInvoiceRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableCreateInvoiceRequest struct {
-	value *CreateInvoiceRequest
+type NullableCreatePaymentRequest struct {
+	value *CreatePaymentRequest
 	isSet bool
 }
 
-func (v NullableCreateInvoiceRequest) Get() *CreateInvoiceRequest {
+func (v NullableCreatePaymentRequest) Get() *CreatePaymentRequest {
 	return v.value
 }
 
-func (v *NullableCreateInvoiceRequest) Set(val *CreateInvoiceRequest) {
+func (v *NullableCreatePaymentRequest) Set(val *CreatePaymentRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateInvoiceRequest) IsSet() bool {
+func (v NullableCreatePaymentRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateInvoiceRequest) Unset() {
+func (v *NullableCreatePaymentRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateInvoiceRequest(val *CreateInvoiceRequest) *NullableCreateInvoiceRequest {
-	return &NullableCreateInvoiceRequest{value: val, isSet: true}
+func NewNullableCreatePaymentRequest(val *CreatePaymentRequest) *NullableCreatePaymentRequest {
+	return &NullableCreatePaymentRequest{value: val, isSet: true}
 }
 
-func (v NullableCreateInvoiceRequest) MarshalJSON() ([]byte, error) {
+func (v NullableCreatePaymentRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateInvoiceRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableCreatePaymentRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

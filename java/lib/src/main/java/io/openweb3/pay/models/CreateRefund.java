@@ -23,31 +23,30 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * CreateRefund
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-14T03:11:44.796828+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-17T02:08:34.702118+08:00[Asia/Shanghai]")
 public class CreateRefund {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
-  private BigDecimal amount;
-
-  public static final String SERIALIZED_NAME_INVOICE_ID = "invoiceId";
-  @SerializedName(SERIALIZED_NAME_INVOICE_ID)
-  private String invoiceId;
+  private String amount;
 
   public static final String SERIALIZED_NAME_NOTE = "note";
   @SerializedName(SERIALIZED_NAME_NOTE)
   private String note;
 
-  public static final String SERIALIZED_NAME_TO_ADDRESS = "toAddress";
+  public static final String SERIALIZED_NAME_PAYMENT_ID = "payment_id";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_ID)
+  private String paymentId;
+
+  public static final String SERIALIZED_NAME_TO_ADDRESS = "to_address";
   @SerializedName(SERIALIZED_NAME_TO_ADDRESS)
   private String toAddress;
 
 
-  public CreateRefund amount(BigDecimal amount) {
+  public CreateRefund amount(String amount) {
     
     this.amount = amount;
     return this;
@@ -60,36 +59,13 @@ public class CreateRefund {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Refund amount (Integer)")
 
-  public BigDecimal getAmount() {
+  public String getAmount() {
     return amount;
   }
 
 
-  public void setAmount(BigDecimal amount) {
+  public void setAmount(String amount) {
     this.amount = amount;
-  }
-
-
-  public CreateRefund invoiceId(String invoiceId) {
-    
-    this.invoiceId = invoiceId;
-    return this;
-  }
-
-   /**
-   * Invoice ID
-   * @return invoiceId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Invoice ID")
-
-  public String getInvoiceId() {
-    return invoiceId;
-  }
-
-
-  public void setInvoiceId(String invoiceId) {
-    this.invoiceId = invoiceId;
   }
 
 
@@ -113,6 +89,29 @@ public class CreateRefund {
 
   public void setNote(String note) {
     this.note = note;
+  }
+
+
+  public CreateRefund paymentId(String paymentId) {
+    
+    this.paymentId = paymentId;
+    return this;
+  }
+
+   /**
+   * Payment ID
+   * @return paymentId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Payment ID")
+
+  public String getPaymentId() {
+    return paymentId;
+  }
+
+
+  public void setPaymentId(String paymentId) {
+    this.paymentId = paymentId;
   }
 
 
@@ -149,14 +148,14 @@ public class CreateRefund {
     }
     CreateRefund createRefund = (CreateRefund) o;
     return Objects.equals(this.amount, createRefund.amount) &&
-        Objects.equals(this.invoiceId, createRefund.invoiceId) &&
         Objects.equals(this.note, createRefund.note) &&
+        Objects.equals(this.paymentId, createRefund.paymentId) &&
         Objects.equals(this.toAddress, createRefund.toAddress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, invoiceId, note, toAddress);
+    return Objects.hash(amount, note, paymentId, toAddress);
   }
 
   @Override
@@ -164,8 +163,8 @@ public class CreateRefund {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateRefund {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    invoiceId: ").append(toIndentedString(invoiceId)).append("\n");
     sb.append("    note: ").append(toIndentedString(note)).append("\n");
+    sb.append("    paymentId: ").append(toIndentedString(paymentId)).append("\n");
     sb.append("    toAddress: ").append(toIndentedString(toAddress)).append("\n");
     sb.append("}");
     return sb.toString();

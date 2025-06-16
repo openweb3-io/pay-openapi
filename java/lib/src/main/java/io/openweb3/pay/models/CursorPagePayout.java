@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * CursorPagePayout
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-14T03:11:44.796828+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-17T02:08:34.702118+08:00[Asia/Shanghai]")
 public class CursorPagePayout {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)

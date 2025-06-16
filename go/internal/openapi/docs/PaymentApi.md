@@ -1,20 +1,20 @@
-# \InvoiceApi
+# \PaymentApi
 
 All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1InvoicesCreate**](InvoiceApi.md#V1InvoicesCreate) | **Post** /api/v1/apps/{appId}/invoices | Create an invoice
-[**V1InvoicesList**](InvoiceApi.md#V1InvoicesList) | **Get** /api/v1/apps/{appId}/invoices | List invoices
-[**V1InvoicesRetrieve**](InvoiceApi.md#V1InvoicesRetrieve) | **Get** /api/v1/apps/{appId}/invoices/{invoiceId} | Retrieve an invoice
+[**V1PaymentsCreate**](PaymentApi.md#V1PaymentsCreate) | **Post** /api/v1/apps/{app_id}/payments | Create an Payment
+[**V1PaymentsList**](PaymentApi.md#V1PaymentsList) | **Get** /api/v1/apps/{app_id}/payments | List Payments
+[**V1PaymentsRetrieve**](PaymentApi.md#V1PaymentsRetrieve) | **Get** /api/v1/apps/{app_id}/payments/{payment_id} | Retrieve an Payment
 
 
 
-## V1InvoicesCreate
+## V1PaymentsCreate
 
-> Invoice V1InvoicesCreate(ctx, appId).CreateInvoiceRequest(createInvoiceRequest).Execute()
+> Payment V1PaymentsCreate(ctx, appId).CreatePaymentRequest(createPaymentRequest).Execute()
 
-Create an invoice
+Create an Payment
 
 
 
@@ -32,17 +32,17 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    createInvoiceRequest := *openapiclient.NewCreateInvoiceRequest("Amount_example", "Channel_example", "Currency_example", "Provider_example") // CreateInvoiceRequest | Request body
+    createPaymentRequest := *openapiclient.NewCreatePaymentRequest("Amount_example", "Currency_example", "PaymentMethod_example", "PaymentProvider_example", "Provider_example") // CreatePaymentRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoiceApi.V1InvoicesCreate(context.Background(), appId).CreateInvoiceRequest(createInvoiceRequest).Execute()
+    resp, r, err := api_client.PaymentApi.V1PaymentsCreate(context.Background(), appId).CreatePaymentRequest(createPaymentRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InvoiceApi.V1InvoicesCreate``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentApi.V1PaymentsCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1InvoicesCreate`: Invoice
-    fmt.Fprintf(os.Stdout, "Response from `InvoiceApi.V1InvoicesCreate`: %v\n", resp)
+    // response from `V1PaymentsCreate`: Payment
+    fmt.Fprintf(os.Stdout, "Response from `PaymentApi.V1PaymentsCreate`: %v\n", resp)
 }
 ```
 
@@ -56,17 +56,17 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiV1InvoicesCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiV1PaymentsCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createInvoiceRequest** | [**CreateInvoiceRequest**](CreateInvoiceRequest.md) | Request body | 
+ **createPaymentRequest** | [**CreatePaymentRequest**](CreatePaymentRequest.md) | Request body | 
 
 ### Return type
 
-[**Invoice**](Invoice.md)
+[**Payment**](Payment.md)
 
 ### Authorization
 
@@ -82,11 +82,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## V1InvoicesList
+## V1PaymentsList
 
-> PageInvoice V1InvoicesList(ctx, appId).Limit(limit).Offset(offset).Channel(channel).UserId(userId).Execute()
+> PagePayment V1PaymentsList(ctx, appId).Limit(limit).Offset(offset).PaymentMethod(paymentMethod).UserId(userId).Execute()
 
-List invoices
+List Payments
 
 
 
@@ -106,18 +106,18 @@ func main() {
     appId := "appId_example" // string | App ID
     limit := int32(56) // int32 |  (optional)
     offset := int32(56) // int32 |  (optional)
-    channel := "channel_example" // string |  (optional)
+    paymentMethod := "paymentMethod_example" // string |  (optional)
     userId := "userId_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoiceApi.V1InvoicesList(context.Background(), appId).Limit(limit).Offset(offset).Channel(channel).UserId(userId).Execute()
+    resp, r, err := api_client.PaymentApi.V1PaymentsList(context.Background(), appId).Limit(limit).Offset(offset).PaymentMethod(paymentMethod).UserId(userId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InvoiceApi.V1InvoicesList``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentApi.V1PaymentsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1InvoicesList`: PageInvoice
-    fmt.Fprintf(os.Stdout, "Response from `InvoiceApi.V1InvoicesList`: %v\n", resp)
+    // response from `V1PaymentsList`: PagePayment
+    fmt.Fprintf(os.Stdout, "Response from `PaymentApi.V1PaymentsList`: %v\n", resp)
 }
 ```
 
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiV1InvoicesListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiV1PaymentsListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -139,12 +139,12 @@ Name | Type | Description  | Notes
 
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
- **channel** | **string** |  | 
+ **paymentMethod** | **string** |  | 
  **userId** | **string** |  | 
 
 ### Return type
 
-[**PageInvoice**](PageInvoice.md)
+[**PagePayment**](PagePayment.md)
 
 ### Authorization
 
@@ -160,11 +160,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## V1InvoicesRetrieve
+## V1PaymentsRetrieve
 
-> Invoice V1InvoicesRetrieve(ctx, appId, invoiceId).Execute()
+> Payment V1PaymentsRetrieve(ctx, appId, paymentId).Execute()
 
-Retrieve an invoice
+Retrieve an Payment
 
 
 
@@ -182,17 +182,17 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    invoiceId := "invoiceId_example" // string | Invoice ID / UID
+    paymentId := "paymentId_example" // string | Payment ID / UID
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InvoiceApi.V1InvoicesRetrieve(context.Background(), appId, invoiceId).Execute()
+    resp, r, err := api_client.PaymentApi.V1PaymentsRetrieve(context.Background(), appId, paymentId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InvoiceApi.V1InvoicesRetrieve``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PaymentApi.V1PaymentsRetrieve``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1InvoicesRetrieve`: Invoice
-    fmt.Fprintf(os.Stdout, "Response from `InvoiceApi.V1InvoicesRetrieve`: %v\n", resp)
+    // response from `V1PaymentsRetrieve`: Payment
+    fmt.Fprintf(os.Stdout, "Response from `PaymentApi.V1PaymentsRetrieve`: %v\n", resp)
 }
 ```
 
@@ -203,11 +203,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **appId** | **string** | App ID | 
-**invoiceId** | **string** | Invoice ID / UID | 
+**paymentId** | **string** | Payment ID / UID | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiV1InvoicesRetrieveRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiV1PaymentsRetrieveRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -217,7 +217,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Invoice**](Invoice.md)
+[**Payment**](Payment.md)
 
 ### Authorization
 

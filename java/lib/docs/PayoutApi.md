@@ -4,9 +4,9 @@ All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1PayoutsCreate**](PayoutApi.md#v1PayoutsCreate) | **POST** /api/v1/apps/{appId}/payouts | Payout to address
-[**v1PayoutsList**](PayoutApi.md#v1PayoutsList) | **GET** /api/v1/apps/{appId}/payouts | List payouts
-[**v1PayoutsRetrieve**](PayoutApi.md#v1PayoutsRetrieve) | **GET** /api/v1/apps/{appId}/payouts/{payoutId} | Retrieve a payout
+[**v1PayoutsCreate**](PayoutApi.md#v1PayoutsCreate) | **POST** /api/v1/apps/{app_id}/payouts | Payout to address
+[**v1PayoutsList**](PayoutApi.md#v1PayoutsList) | **GET** /api/v1/apps/{app_id}/payouts | List payouts
+[**v1PayoutsRetrieve**](PayoutApi.md#v1PayoutsRetrieve) | **GET** /api/v1/apps/{app_id}/payouts/{payout_id} | Retrieve a payout
 
 
 <a name="v1PayoutsCreate"></a>

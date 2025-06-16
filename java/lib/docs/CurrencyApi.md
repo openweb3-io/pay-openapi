@@ -4,9 +4,9 @@ All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1CurrenciesListCrypto**](CurrencyApi.md#v1CurrenciesListCrypto) | **GET** /api/v1/apps/{appId}/currencies/crypto | List available cryptocurrencies
-[**v1CurrenciesListFlat**](CurrencyApi.md#v1CurrenciesListFlat) | **GET** /api/v1/apps/{appId}/currencies/fiat | List available fiat currencies
-[**v1CurrenciesRetrieveRate**](CurrencyApi.md#v1CurrenciesRetrieveRate) | **GET** /api/v1/apps/{appId}/currencies/rate | Get exchange rate
+[**v1CurrenciesListCrypto**](CurrencyApi.md#v1CurrenciesListCrypto) | **GET** /api/v1/apps/{app_id}/currencies/crypto | List available cryptocurrencies
+[**v1CurrenciesListFlat**](CurrencyApi.md#v1CurrenciesListFlat) | **GET** /api/v1/apps/{app_id}/currencies/fiat | List available fiat currencies
+[**v1CurrenciesRetrieveRate**](CurrencyApi.md#v1CurrenciesRetrieveRate) | **GET** /api/v1/apps/{app_id}/currencies/rate | Get exchange rate
 
 
 <a name="v1CurrenciesListCrypto"></a>

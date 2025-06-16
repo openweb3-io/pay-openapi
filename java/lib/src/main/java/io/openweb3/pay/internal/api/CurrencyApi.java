@@ -72,8 +72,8 @@ public class CurrencyApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/currencies/crypto"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/currencies/crypto"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -184,8 +184,8 @@ public class CurrencyApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/currencies/fiat"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/currencies/fiat"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -298,8 +298,8 @@ public class CurrencyApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/currencies/rate"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/currencies/rate"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

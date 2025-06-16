@@ -3,7 +3,7 @@ import * as models from '../models/all';
 import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
-import { CreateInvoiceRequest } from '../models/CreateInvoiceRequest';
+import { CreatePaymentRequest } from '../models/CreatePaymentRequest';
 import { CreatePayout } from '../models/CreatePayout';
 import { CreateRefund } from '../models/CreateRefund';
 import { CreateWebhook } from '../models/CreateWebhook';
@@ -13,8 +13,8 @@ import { CursorPagePayout } from '../models/CursorPagePayout';
 import { CursorPageRefund } from '../models/CursorPageRefund';
 import { CursorPageWebhook } from '../models/CursorPageWebhook';
 import { FiatCurrency } from '../models/FiatCurrency';
-import { Invoice } from '../models/Invoice';
-import { PageInvoice } from '../models/PageInvoice';
+import { PagePayment } from '../models/PagePayment';
+import { Payment } from '../models/Payment';
 import { Payout } from '../models/Payout';
 import { Rate } from '../models/Rate';
 import { Refund } from '../models/Refund';
@@ -113,30 +113,30 @@ export class ObservableCurrencyApi {
  
 }
 
-import { InvoiceApiRequestFactory, InvoiceApiResponseProcessor} from "../apis/InvoiceApi";
-export class ObservableInvoiceApi {
-    private requestFactory: InvoiceApiRequestFactory;
-    private responseProcessor: InvoiceApiResponseProcessor;
+import { PaymentApiRequestFactory, PaymentApiResponseProcessor} from "../apis/PaymentApi";
+export class ObservablePaymentApi {
+    private requestFactory: PaymentApiRequestFactory;
+    private responseProcessor: PaymentApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: InvoiceApiRequestFactory,
-        responseProcessor?: InvoiceApiResponseProcessor
+        requestFactory?: PaymentApiRequestFactory,
+        responseProcessor?: PaymentApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new InvoiceApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new InvoiceApiResponseProcessor();
+        this.requestFactory = requestFactory || new PaymentApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new PaymentApiResponseProcessor();
     }
 
     /**
-     * Create an invoice
-     * Create an invoice
+     * Create an Payment
+     * Create an Payment
      * @param appId App ID
-     * @param createInvoiceRequest Request body
+     * @param createPaymentRequest Request body
      */
-    public v1InvoicesCreate(appId: string, createInvoiceRequest: CreateInvoiceRequest, _options?: Configuration): Observable<Invoice> {
-        const requestContextPromise = this.requestFactory.v1InvoicesCreate(appId, createInvoiceRequest, _options);
+    public v1PaymentsCreate(appId: string, createPaymentRequest: CreatePaymentRequest, _options?: Configuration): Observable<Payment> {
+        const requestContextPromise = this.requestFactory.v1PaymentsCreate(appId, createPaymentRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -150,21 +150,21 @@ export class ObservableInvoiceApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1InvoicesCreate(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1PaymentsCreate(rsp)));
             }));
     }
  
     /**
-     * List invoices
-     * List invoices
+     * List Payments
+     * List Payments
      * @param appId App ID
      * @param limit 
      * @param offset 
-     * @param channel 
+     * @param paymentMethod 
      * @param userId 
      */
-    public v1InvoicesList(appId: string, limit?: number, offset?: number, channel?: string, userId?: string, _options?: Configuration): Observable<PageInvoice> {
-        const requestContextPromise = this.requestFactory.v1InvoicesList(appId, limit, offset, channel, userId, _options);
+    public v1PaymentsList(appId: string, limit?: number, offset?: number, paymentMethod?: string, userId?: string, _options?: Configuration): Observable<PagePayment> {
+        const requestContextPromise = this.requestFactory.v1PaymentsList(appId, limit, offset, paymentMethod, userId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -178,18 +178,18 @@ export class ObservableInvoiceApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1InvoicesList(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1PaymentsList(rsp)));
             }));
     }
  
     /**
-     * Retrieve an invoice
-     * Retrieve an invoice
+     * Retrieve an Payment
+     * Retrieve an Payment
      * @param appId App ID
-     * @param invoiceId Invoice ID / UID
+     * @param paymentId Payment ID / UID
      */
-    public v1InvoicesRetrieve(appId: string, invoiceId: string, _options?: Configuration): Observable<Invoice> {
-        const requestContextPromise = this.requestFactory.v1InvoicesRetrieve(appId, invoiceId, _options);
+    public v1PaymentsRetrieve(appId: string, paymentId: string, _options?: Configuration): Observable<Payment> {
+        const requestContextPromise = this.requestFactory.v1PaymentsRetrieve(appId, paymentId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -203,7 +203,7 @@ export class ObservableInvoiceApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1InvoicesRetrieve(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1PaymentsRetrieve(rsp)));
             }));
     }
  
@@ -320,8 +320,8 @@ export class ObservableRefundApi {
     }
 
     /**
-     * Refund invoice payment
-     * Refund invoice payment
+     * Refund payment
+     * Refund payment
      * @param appId App ID
      * @param createRefund Request body
      */

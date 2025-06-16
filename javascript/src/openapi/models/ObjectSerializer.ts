@@ -1,4 +1,4 @@
-export * from './CreateInvoiceRequest';
+export * from './CreatePaymentRequest';
 export * from './CreatePayout';
 export * from './CreateRefund';
 export * from './CreateWebhook';
@@ -8,15 +8,15 @@ export * from './CursorPagePayout';
 export * from './CursorPageRefund';
 export * from './CursorPageWebhook';
 export * from './FiatCurrency';
-export * from './Invoice';
-export * from './PageInvoice';
+export * from './PagePayment';
+export * from './Payment';
 export * from './Payout';
 export * from './Rate';
 export * from './Refund';
 export * from './UpdateWebhook';
 export * from './Webhook';
 
-import { CreateInvoiceRequest } from './CreateInvoiceRequest';
+import { CreatePaymentRequest } from './CreatePaymentRequest';
 import { CreatePayout } from './CreatePayout';
 import { CreateRefund } from './CreateRefund';
 import { CreateWebhook } from './CreateWebhook';
@@ -26,8 +26,8 @@ import { CursorPagePayout } from './CursorPagePayout';
 import { CursorPageRefund } from './CursorPageRefund';
 import { CursorPageWebhook } from './CursorPageWebhook';
 import { FiatCurrency } from './FiatCurrency';
-import { Invoice } from './Invoice';
-import { PageInvoice } from './PageInvoice';
+import { PagePayment } from './PagePayment';
+import { Payment } from './Payment';
 import { Payout } from './Payout';
 import { Rate } from './Rate';
 import { Refund } from './Refund';
@@ -56,7 +56,7 @@ let enumsMap: Set<string> = new Set<string>([
 ]);
 
 let typeMap: {[index: string]: any} = {
-    "CreateInvoiceRequest": CreateInvoiceRequest,
+    "CreatePaymentRequest": CreatePaymentRequest,
     "CreatePayout": CreatePayout,
     "CreateRefund": CreateRefund,
     "CreateWebhook": CreateWebhook,
@@ -66,8 +66,8 @@ let typeMap: {[index: string]: any} = {
     "CursorPageRefund": CursorPageRefund,
     "CursorPageWebhook": CursorPageWebhook,
     "FiatCurrency": FiatCurrency,
-    "Invoice": Invoice,
-    "PageInvoice": PageInvoice,
+    "PagePayment": PagePayment,
+    "Payment": Payment,
     "Payout": Payout,
     "Rate": Rate,
     "Refund": Refund,

@@ -45,8 +45,8 @@ func (r ApiV1RefundsCreateRequest) Execute() (Refund, *_nethttp.Response, error)
 }
 
 /*
- * V1RefundsCreate Refund invoice payment
- * Refund invoice payment
+ * V1RefundsCreate Refund payment
+ * Refund payment
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId App ID
  * @return ApiV1RefundsCreateRequest
@@ -78,8 +78,8 @@ func (a *RefundApiService) V1RefundsCreateExecute(r ApiV1RefundsCreateRequest) (
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/refunds"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/refunds"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -213,8 +213,8 @@ func (a *RefundApiService) V1RefundsListExecute(r ApiV1RefundsListRequest) (Curs
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/refunds"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/refunds"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -342,9 +342,9 @@ func (a *RefundApiService) V1RefundsRetrieveExecute(r ApiV1RefundsRetrieveReques
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/refunds/{refundId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"refundId"+"}", _neturl.PathEscape(parameterToString(r.refundId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/apps/{app_id}/refunds/{refund_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"refund_id"+"}", _neturl.PathEscape(parameterToString(r.refundId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

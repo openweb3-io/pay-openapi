@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float32** | Refund amount (Integer) | [optional] 
-**InvoiceId** | Pointer to **string** | Invoice ID | [optional] 
+**Amount** | Pointer to **string** | Refund amount (Integer) | [optional] 
 **Note** | Pointer to **string** | Refund note | [optional] 
+**PaymentId** | Pointer to **string** | Payment ID | [optional] 
 **ToAddress** | Pointer to **string** | To Address | [optional] 
 
 ## Methods
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *CreateRefund) GetAmount() float32`
+`func (o *CreateRefund) GetAmount() string`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *CreateRefund) GetAmountOk() (*float32, bool)`
+`func (o *CreateRefund) GetAmountOk() (*string, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *CreateRefund) SetAmount(v float32)`
+`func (o *CreateRefund) SetAmount(v string)`
 
 SetAmount sets Amount field to given value.
 
@@ -52,31 +52,6 @@ SetAmount sets Amount field to given value.
 `func (o *CreateRefund) HasAmount() bool`
 
 HasAmount returns a boolean if a field has been set.
-
-### GetInvoiceId
-
-`func (o *CreateRefund) GetInvoiceId() string`
-
-GetInvoiceId returns the InvoiceId field if non-nil, zero value otherwise.
-
-### GetInvoiceIdOk
-
-`func (o *CreateRefund) GetInvoiceIdOk() (*string, bool)`
-
-GetInvoiceIdOk returns a tuple with the InvoiceId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInvoiceId
-
-`func (o *CreateRefund) SetInvoiceId(v string)`
-
-SetInvoiceId sets InvoiceId field to given value.
-
-### HasInvoiceId
-
-`func (o *CreateRefund) HasInvoiceId() bool`
-
-HasInvoiceId returns a boolean if a field has been set.
 
 ### GetNote
 
@@ -102,6 +77,31 @@ SetNote sets Note field to given value.
 `func (o *CreateRefund) HasNote() bool`
 
 HasNote returns a boolean if a field has been set.
+
+### GetPaymentId
+
+`func (o *CreateRefund) GetPaymentId() string`
+
+GetPaymentId returns the PaymentId field if non-nil, zero value otherwise.
+
+### GetPaymentIdOk
+
+`func (o *CreateRefund) GetPaymentIdOk() (*string, bool)`
+
+GetPaymentIdOk returns a tuple with the PaymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentId
+
+`func (o *CreateRefund) SetPaymentId(v string)`
+
+SetPaymentId sets PaymentId field to given value.
+
+### HasPaymentId
+
+`func (o *CreateRefund) HasPaymentId() bool`
+
+HasPaymentId returns a boolean if a field has been set.
 
 ### GetToAddress
 

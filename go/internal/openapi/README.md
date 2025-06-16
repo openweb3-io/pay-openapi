@@ -78,28 +78,28 @@ All URIs are relative to *https://api.pay.openweb3.io*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CurrencyApi* | [**V1CurrenciesListCrypto**](docs/CurrencyApi.md#v1currencieslistcrypto) | **Get** /api/v1/apps/{appId}/currencies/crypto | List available cryptocurrencies
-*CurrencyApi* | [**V1CurrenciesListFlat**](docs/CurrencyApi.md#v1currencieslistflat) | **Get** /api/v1/apps/{appId}/currencies/fiat | List available fiat currencies
-*CurrencyApi* | [**V1CurrenciesRetrieveRate**](docs/CurrencyApi.md#v1currenciesretrieverate) | **Get** /api/v1/apps/{appId}/currencies/rate | Get exchange rate
-*InvoiceApi* | [**V1InvoicesCreate**](docs/InvoiceApi.md#v1invoicescreate) | **Post** /api/v1/apps/{appId}/invoices | Create an invoice
-*InvoiceApi* | [**V1InvoicesList**](docs/InvoiceApi.md#v1invoiceslist) | **Get** /api/v1/apps/{appId}/invoices | List invoices
-*InvoiceApi* | [**V1InvoicesRetrieve**](docs/InvoiceApi.md#v1invoicesretrieve) | **Get** /api/v1/apps/{appId}/invoices/{invoiceId} | Retrieve an invoice
-*PayoutApi* | [**V1PayoutsCreate**](docs/PayoutApi.md#v1payoutscreate) | **Post** /api/v1/apps/{appId}/payouts | Payout to address
-*PayoutApi* | [**V1PayoutsList**](docs/PayoutApi.md#v1payoutslist) | **Get** /api/v1/apps/{appId}/payouts | List payouts
-*PayoutApi* | [**V1PayoutsRetrieve**](docs/PayoutApi.md#v1payoutsretrieve) | **Get** /api/v1/apps/{appId}/payouts/{payoutId} | Retrieve a payout
-*RefundApi* | [**V1RefundsCreate**](docs/RefundApi.md#v1refundscreate) | **Post** /api/v1/apps/{appId}/refunds | Refund invoice payment
-*RefundApi* | [**V1RefundsList**](docs/RefundApi.md#v1refundslist) | **Get** /api/v1/apps/{appId}/refunds | List refunds
-*RefundApi* | [**V1RefundsRetrieve**](docs/RefundApi.md#v1refundsretrieve) | **Get** /api/v1/apps/{appId}/refunds/{refundId} | Retrieve a refund
-*WebhookApi* | [**V1EndpointsCreate**](docs/WebhookApi.md#v1endpointscreate) | **Post** /api/v1/apps/{appId}/endpoints | Create a webhook endpoint
-*WebhookApi* | [**V1EndpointsDelete**](docs/WebhookApi.md#v1endpointsdelete) | **Delete** /api/v1/apps/{appId}/endpoints/{endpointId} | Delete a webhook endpoint
-*WebhookApi* | [**V1EndpointsList**](docs/WebhookApi.md#v1endpointslist) | **Get** /api/v1/apps/{appId}/endpoints | List webhook endpoints
-*WebhookApi* | [**V1EndpointsRetrieve**](docs/WebhookApi.md#v1endpointsretrieve) | **Get** /api/v1/apps/{appId}/endpoints/{endpointId} | Retrieve a webhook endpoint
-*WebhookApi* | [**V1EndpointsUpdate**](docs/WebhookApi.md#v1endpointsupdate) | **Patch** /api/v1/apps/{appId}/endpoints/{endpointId} | Update a webhook endpoint
+*CurrencyApi* | [**V1CurrenciesListCrypto**](docs/CurrencyApi.md#v1currencieslistcrypto) | **Get** /api/v1/apps/{app_id}/currencies/crypto | List available cryptocurrencies
+*CurrencyApi* | [**V1CurrenciesListFlat**](docs/CurrencyApi.md#v1currencieslistflat) | **Get** /api/v1/apps/{app_id}/currencies/fiat | List available fiat currencies
+*CurrencyApi* | [**V1CurrenciesRetrieveRate**](docs/CurrencyApi.md#v1currenciesretrieverate) | **Get** /api/v1/apps/{app_id}/currencies/rate | Get exchange rate
+*PaymentApi* | [**V1PaymentsCreate**](docs/PaymentApi.md#v1paymentscreate) | **Post** /api/v1/apps/{app_id}/payments | Create an Payment
+*PaymentApi* | [**V1PaymentsList**](docs/PaymentApi.md#v1paymentslist) | **Get** /api/v1/apps/{app_id}/payments | List Payments
+*PaymentApi* | [**V1PaymentsRetrieve**](docs/PaymentApi.md#v1paymentsretrieve) | **Get** /api/v1/apps/{app_id}/payments/{payment_id} | Retrieve an Payment
+*PayoutApi* | [**V1PayoutsCreate**](docs/PayoutApi.md#v1payoutscreate) | **Post** /api/v1/apps/{app_id}/payouts | Payout to address
+*PayoutApi* | [**V1PayoutsList**](docs/PayoutApi.md#v1payoutslist) | **Get** /api/v1/apps/{app_id}/payouts | List payouts
+*PayoutApi* | [**V1PayoutsRetrieve**](docs/PayoutApi.md#v1payoutsretrieve) | **Get** /api/v1/apps/{app_id}/payouts/{payout_id} | Retrieve a payout
+*RefundApi* | [**V1RefundsCreate**](docs/RefundApi.md#v1refundscreate) | **Post** /api/v1/apps/{app_id}/refunds | Refund payment
+*RefundApi* | [**V1RefundsList**](docs/RefundApi.md#v1refundslist) | **Get** /api/v1/apps/{app_id}/refunds | List refunds
+*RefundApi* | [**V1RefundsRetrieve**](docs/RefundApi.md#v1refundsretrieve) | **Get** /api/v1/apps/{app_id}/refunds/{refund_id} | Retrieve a refund
+*WebhookApi* | [**V1EndpointsCreate**](docs/WebhookApi.md#v1endpointscreate) | **Post** /api/v1/apps/{app_id}/endpoints | Create a webhook endpoint
+*WebhookApi* | [**V1EndpointsDelete**](docs/WebhookApi.md#v1endpointsdelete) | **Delete** /api/v1/apps/{app_id}/endpoints/{endpoint_id} | Delete a webhook endpoint
+*WebhookApi* | [**V1EndpointsList**](docs/WebhookApi.md#v1endpointslist) | **Get** /api/v1/apps/{app_id}/endpoints | List webhook endpoints
+*WebhookApi* | [**V1EndpointsRetrieve**](docs/WebhookApi.md#v1endpointsretrieve) | **Get** /api/v1/apps/{app_id}/endpoints/{endpoint_id} | Retrieve a webhook endpoint
+*WebhookApi* | [**V1EndpointsUpdate**](docs/WebhookApi.md#v1endpointsupdate) | **Patch** /api/v1/apps/{app_id}/endpoints/{endpoint_id} | Update a webhook endpoint
 
 
 ## Documentation For Models
 
- - [CreateInvoiceRequest](docs/CreateInvoiceRequest.md)
+ - [CreatePaymentRequest](docs/CreatePaymentRequest.md)
  - [CreatePayout](docs/CreatePayout.md)
  - [CreateRefund](docs/CreateRefund.md)
  - [CreateWebhook](docs/CreateWebhook.md)
@@ -109,8 +109,8 @@ Class | Method | HTTP request | Description
  - [CursorPageRefund](docs/CursorPageRefund.md)
  - [CursorPageWebhook](docs/CursorPageWebhook.md)
  - [FiatCurrency](docs/FiatCurrency.md)
- - [Invoice](docs/Invoice.md)
- - [PageInvoice](docs/PageInvoice.md)
+ - [PagePayment](docs/PagePayment.md)
+ - [Payment](docs/Payment.md)
  - [Payout](docs/Payout.md)
  - [Rate](docs/Rate.md)
  - [Refund](docs/Refund.md)

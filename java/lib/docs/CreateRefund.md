@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **BigDecimal** | Refund amount (Integer) |  [optional]
-**invoiceId** | **String** | Invoice ID |  [optional]
+**amount** | **String** | Refund amount (Integer) |  [optional]
 **note** | **String** | Refund note |  [optional]
+**paymentId** | **String** | Payment ID |  [optional]
 **toAddress** | **String** | To Address |  [optional]
 
 

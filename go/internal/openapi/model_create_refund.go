@@ -18,13 +18,13 @@ import (
 // CreateRefund struct for CreateRefund
 type CreateRefund struct {
 	// Refund amount (Integer)
-	Amount *float32 `json:"amount,omitempty"`
-	// Invoice ID
-	InvoiceId *string `json:"invoiceId,omitempty"`
+	Amount *string `json:"amount,omitempty"`
 	// Refund note
 	Note *string `json:"note,omitempty"`
+	// Payment ID
+	PaymentId *string `json:"payment_id,omitempty"`
 	// To Address
-	ToAddress *string `json:"toAddress,omitempty"`
+	ToAddress *string `json:"to_address,omitempty"`
 }
 
 // NewCreateRefund instantiates a new CreateRefund object
@@ -45,9 +45,9 @@ func NewCreateRefundWithDefaults() *CreateRefund {
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *CreateRefund) GetAmount() float32 {
+func (o *CreateRefund) GetAmount() string {
 	if o == nil || o.Amount == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Amount
@@ -55,7 +55,7 @@ func (o *CreateRefund) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateRefund) GetAmountOk() (*float32, bool) {
+func (o *CreateRefund) GetAmountOk() (*string, bool) {
 	if o == nil || o.Amount == nil {
 		return nil, false
 	}
@@ -71,41 +71,9 @@ func (o *CreateRefund) HasAmount() bool {
 	return false
 }
 
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *CreateRefund) SetAmount(v float32) {
+// SetAmount gets a reference to the given string and assigns it to the Amount field.
+func (o *CreateRefund) SetAmount(v string) {
 	o.Amount = &v
-}
-
-// GetInvoiceId returns the InvoiceId field value if set, zero value otherwise.
-func (o *CreateRefund) GetInvoiceId() string {
-	if o == nil || o.InvoiceId == nil {
-		var ret string
-		return ret
-	}
-	return *o.InvoiceId
-}
-
-// GetInvoiceIdOk returns a tuple with the InvoiceId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateRefund) GetInvoiceIdOk() (*string, bool) {
-	if o == nil || o.InvoiceId == nil {
-		return nil, false
-	}
-	return o.InvoiceId, true
-}
-
-// HasInvoiceId returns a boolean if a field has been set.
-func (o *CreateRefund) HasInvoiceId() bool {
-	if o != nil && o.InvoiceId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetInvoiceId gets a reference to the given string and assigns it to the InvoiceId field.
-func (o *CreateRefund) SetInvoiceId(v string) {
-	o.InvoiceId = &v
 }
 
 // GetNote returns the Note field value if set, zero value otherwise.
@@ -138,6 +106,38 @@ func (o *CreateRefund) HasNote() bool {
 // SetNote gets a reference to the given string and assigns it to the Note field.
 func (o *CreateRefund) SetNote(v string) {
 	o.Note = &v
+}
+
+// GetPaymentId returns the PaymentId field value if set, zero value otherwise.
+func (o *CreateRefund) GetPaymentId() string {
+	if o == nil || o.PaymentId == nil {
+		var ret string
+		return ret
+	}
+	return *o.PaymentId
+}
+
+// GetPaymentIdOk returns a tuple with the PaymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateRefund) GetPaymentIdOk() (*string, bool) {
+	if o == nil || o.PaymentId == nil {
+		return nil, false
+	}
+	return o.PaymentId, true
+}
+
+// HasPaymentId returns a boolean if a field has been set.
+func (o *CreateRefund) HasPaymentId() bool {
+	if o != nil && o.PaymentId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentId gets a reference to the given string and assigns it to the PaymentId field.
+func (o *CreateRefund) SetPaymentId(v string) {
+	o.PaymentId = &v
 }
 
 // GetToAddress returns the ToAddress field value if set, zero value otherwise.
@@ -177,14 +177,14 @@ func (o CreateRefund) MarshalJSON() ([]byte, error) {
 	if o.Amount != nil {
 		toSerialize["amount"] = o.Amount
 	}
-	if o.InvoiceId != nil {
-		toSerialize["invoiceId"] = o.InvoiceId
-	}
 	if o.Note != nil {
 		toSerialize["note"] = o.Note
 	}
+	if o.PaymentId != nil {
+		toSerialize["payment_id"] = o.PaymentId
+	}
 	if o.ToAddress != nil {
-		toSerialize["toAddress"] = o.ToAddress
+		toSerialize["to_address"] = o.ToAddress
 	}
 	return json.Marshal(toSerialize)
 }

@@ -73,8 +73,8 @@ public class RefundApi {
         Object localVarPostBody = createRefund;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/refunds"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/refunds"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -120,8 +120,8 @@ public class RefundApi {
     }
 
     /**
-     * Refund invoice payment
-     * Refund invoice payment
+     * Refund payment
+     * Refund payment
      * @param appId App ID (required)
      * @param createRefund Request body (required)
      * @return Refund
@@ -138,8 +138,8 @@ public class RefundApi {
     }
 
     /**
-     * Refund invoice payment
-     * Refund invoice payment
+     * Refund payment
+     * Refund payment
      * @param appId App ID (required)
      * @param createRefund Request body (required)
      * @return ApiResponse&lt;Refund&gt;
@@ -157,8 +157,8 @@ public class RefundApi {
     }
 
     /**
-     * Refund invoice payment (asynchronously)
-     * Refund invoice payment
+     * Refund payment (asynchronously)
+     * Refund payment
      * @param appId App ID (required)
      * @param createRefund Request body (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -195,8 +195,8 @@ public class RefundApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/refunds"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/refunds"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -322,9 +322,9 @@ public class RefundApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/refunds/{refundId}"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()))
-            .replaceAll("\\{" + "refundId" + "\\}", localVarApiClient.escapeString(refundId.toString()));
+        String localVarPath = "/api/v1/apps/{app_id}/refunds/{refund_id}"
+            .replaceAll("\\{" + "app_id" + "\\}", localVarApiClient.escapeString(appId.toString()))
+            .replaceAll("\\{" + "refund_id" + "\\}", localVarApiClient.escapeString(refundId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();

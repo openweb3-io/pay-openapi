@@ -24,7 +24,7 @@ type (
 	}
 	Pay struct {
 		Endpoint *Endpoint
-		Invoice  *Invoice
+		Payment  *Payment
 	}
 )
 
@@ -84,7 +84,7 @@ func New(apikey string, privateKey string, options *PayOptions) *Pay {
 		Endpoint: &Endpoint{
 			api: apiClient,
 		},
-		Invoice: &Invoice{
+		Payment: &Payment{
 			api: apiClient,
 		},
 	}

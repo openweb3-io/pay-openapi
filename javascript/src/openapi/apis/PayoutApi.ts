@@ -37,8 +37,8 @@ export class PayoutApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/payouts'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/apps/{app_id}/payouts'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -93,8 +93,8 @@ export class PayoutApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/payouts'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/apps/{app_id}/payouts'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -149,9 +149,9 @@ export class PayoutApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/payouts/{payoutId}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
-            .replace('{' + 'payoutId' + '}', encodeURIComponent(String(payoutId)));
+        const localVarPath = '/api/v1/apps/{app_id}/payouts/{payout_id}'
+            .replace('{' + 'app_id' + '}', encodeURIComponent(String(appId)))
+            .replace('{' + 'payout_id' + '}', encodeURIComponent(String(payoutId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

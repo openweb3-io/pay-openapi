@@ -4,9 +4,9 @@ All URIs are relative to *https://api.pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1RefundsCreate**](RefundApi.md#V1RefundsCreate) | **Post** /api/v1/apps/{appId}/refunds | Refund invoice payment
-[**V1RefundsList**](RefundApi.md#V1RefundsList) | **Get** /api/v1/apps/{appId}/refunds | List refunds
-[**V1RefundsRetrieve**](RefundApi.md#V1RefundsRetrieve) | **Get** /api/v1/apps/{appId}/refunds/{refundId} | Retrieve a refund
+[**V1RefundsCreate**](RefundApi.md#V1RefundsCreate) | **Post** /api/v1/apps/{app_id}/refunds | Refund payment
+[**V1RefundsList**](RefundApi.md#V1RefundsList) | **Get** /api/v1/apps/{app_id}/refunds | List refunds
+[**V1RefundsRetrieve**](RefundApi.md#V1RefundsRetrieve) | **Get** /api/v1/apps/{app_id}/refunds/{refund_id} | Retrieve a refund
 
 
 
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 > Refund V1RefundsCreate(ctx, appId).CreateRefund(createRefund).Execute()
 
-Refund invoice payment
+Refund payment
 
 
 

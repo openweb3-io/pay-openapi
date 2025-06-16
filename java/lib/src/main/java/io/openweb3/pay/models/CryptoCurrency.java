@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * CryptoCurrency
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-14T03:11:44.796828+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-17T02:08:34.702118+08:00[Asia/Shanghai]")
 public class CryptoCurrency {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)

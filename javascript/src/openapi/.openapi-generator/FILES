@@ -1,7 +1,7 @@
 .gitignore
 README.md
 apis/CurrencyApi.ts
-apis/InvoiceApi.ts
+apis/PaymentApi.ts
 apis/PayoutApi.ts
 apis/RefundApi.ts
 apis/WebhookApi.ts
@@ -14,7 +14,7 @@ http/http.ts
 http/isomorphic-fetch.ts
 index.ts
 middleware.ts
-models/CreateInvoiceRequest.ts
+models/CreatePaymentRequest.ts
 models/CreatePayout.ts
 models/CreateRefund.ts
 models/CreateWebhook.ts
@@ -24,9 +24,9 @@ models/CursorPagePayout.ts
 models/CursorPageRefund.ts
 models/CursorPageWebhook.ts
 models/FiatCurrency.ts
-models/Invoice.ts
 models/ObjectSerializer.ts
-models/PageInvoice.ts
+models/PagePayment.ts
+models/Payment.ts
 models/Payout.ts
 models/Rate.ts
 models/Refund.ts
