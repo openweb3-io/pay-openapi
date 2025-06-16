@@ -65,7 +65,7 @@ public class WebhookApiTest {
         String appId = null;
         String endpointId = null;
         Object body = null;
-        Webhook response = api.v1EndpointsDelete(appId, endpointId, body);
+        Webhook response = api.v1EndpointsDelete(appId, endpointId);
 
         // TODO: test validations
     }
@@ -85,7 +85,7 @@ public class WebhookApiTest {
         String cursor = null;
         String ordering = null;
         Object body = null;
-        CursorPageWebhook response = api.v1EndpointsList(appId, limit, cursor, ordering, body);
+        CursorPageWebhook response = api.v1EndpointsList(appId, limit, cursor);
 
         // TODO: test validations
     }
@@ -103,7 +103,7 @@ public class WebhookApiTest {
         String appId = null;
         String endpointId = null;
         Object body = null;
-        Webhook response = api.v1EndpointsRetrieve(appId, endpointId, body);
+        Webhook response = api.v1EndpointsRetrieve(appId, endpointId);
 
         // TODO: test validations
     }

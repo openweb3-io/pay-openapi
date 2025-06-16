@@ -1,9 +1,19 @@
 package io.openweb3.pay;
 
 
+import io.openweb3.pay.models.Ordering;
+
 public class EndpointListOptions  {
     private String cursor;
     private Integer limit;
+    private Ordering ordering;
+
+    public void setOrdering(final Ordering ordering) {
+        this.ordering = ordering;
+    }
+    public Ordering getOrdering() {
+        return this.ordering;
+    }
 
     public void setCursor(final String cursor) {
         this.cursor = cursor;

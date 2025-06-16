@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { Invoice } from './Invoice';
+import { Payment } from './payments';
 import { HttpFile } from '../http/http';
 
 export class PageInvoice {
-    'data'?: Array<Invoice>;
+    'data'?: Array<Payment>;
     'hasNext'?: boolean;
     'hasPrev'?: boolean;
     'nextCursor'?: string;

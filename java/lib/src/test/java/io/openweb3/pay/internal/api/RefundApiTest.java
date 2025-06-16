@@ -65,7 +65,7 @@ public class RefundApiTest {
         String cursor = null;
         Integer limit = null;
         Object body = null;
-        CursorPageRefund response = api.v1RefundsList(appId, cursor, limit, body);
+        CursorPageRefund response = api.v1RefundsList(appId, cursor, limit);
 
         // TODO: test validations
     }
@@ -83,7 +83,7 @@ public class RefundApiTest {
         String appId = null;
         String refundId = null;
         Object body = null;
-        Refund response = api.v1RefundsRetrieve(appId, refundId, body);
+        Refund response = api.v1RefundsRetrieve(appId, refundId);
 
         // TODO: test validations
     }

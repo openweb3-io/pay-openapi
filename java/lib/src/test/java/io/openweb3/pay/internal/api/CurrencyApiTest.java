@@ -46,7 +46,7 @@ public class CurrencyApiTest {
     public void v1CurrenciesListCryptoTest() throws ApiException {
         String appId = null;
         Object body = null;
-        List<CryptoCurrency> response = api.v1CurrenciesListCrypto(appId, body);
+        List<CryptoCurrency> response = api.v1CurrenciesListCrypto(appId);
 
         // TODO: test validations
     }
@@ -63,7 +63,7 @@ public class CurrencyApiTest {
     public void v1CurrenciesListFlatTest() throws ApiException {
         String appId = null;
         Object body = null;
-        List<FiatCurrency> response = api.v1CurrenciesListFlat(appId, body);
+        List<FiatCurrency> response = api.v1CurrenciesListFlat(appId);
 
         // TODO: test validations
     }
@@ -82,7 +82,7 @@ public class CurrencyApiTest {
         String from = null;
         String to = null;
         Object body = null;
-        List<Rate> response = api.v1CurrenciesRetrieveRate(appId, from, to, body);
+        List<Rate> response = api.v1CurrenciesRetrieveRate(appId, from, to);
 
         // TODO: test validations
     }

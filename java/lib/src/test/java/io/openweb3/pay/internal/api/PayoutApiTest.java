@@ -65,7 +65,7 @@ public class PayoutApiTest {
         String cursor = null;
         Integer limit = null;
         Object body = null;
-        CursorPagePayout response = api.v1PayoutsList(appId, cursor, limit, body);
+        CursorPagePayout response = api.v1PayoutsList(appId, cursor, limit);
 
         // TODO: test validations
     }
@@ -83,7 +83,7 @@ public class PayoutApiTest {
         String appId = null;
         String payoutId = null;
         Object body = null;
-        Payout response = api.v1PayoutsRetrieve(appId, payoutId, body);
+        Payout response = api.v1PayoutsRetrieve(appId, payoutId);
 
         // TODO: test validations
     }

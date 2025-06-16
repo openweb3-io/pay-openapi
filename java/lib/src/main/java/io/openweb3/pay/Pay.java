@@ -22,7 +22,7 @@ import java.io.IOException;
 
 public final class Pay {
 	public static final String VERSION = "0.2.0";
-	private final Invoice invoice;
+	private final Payments payment;
 	private final Endpoint endpoint;
 
 	public Pay(final String apikey, final String privateKeyPath) {
@@ -89,7 +89,7 @@ public final class Pay {
 
 		Configuration.setDefaultApiClient(apiClient);
 
-		this.invoice = new Invoice();
+		this.payment = new Payments();
 		this.endpoint = new Endpoint();
 	}
 
@@ -159,8 +159,8 @@ public final class Pay {
     }
 
 
-	public Invoice getInvoice() {
-		return invoice;
+	public Payments getPayments() {
+		return payment;
 	}
 
 	public Endpoint getEndpoint() {

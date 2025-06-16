@@ -2,9 +2,9 @@ import {
   Configuration,
   createConfiguration,
   CursorPageWebhook,
-  InvoiceApi,
+  PaymentApi,
   Middleware,
-  PageInvoice,
+  PagePayment,
   RequestContext,
   ResponseContext,
   ServerConfiguration,
@@ -15,8 +15,8 @@ import { createHash } from "crypto";
 import { timingSafeEqual } from "./timing_safe_equal";
 import * as base64 from "@stablelib/base64";
 import * as sha256 from "fast-sha256";
-import { CreateInvoiceRequest as InvoiceIn } from "./openapi/models/CreateInvoiceRequest";
-import { Invoice as InvoiceOut } from "./openapi/models/Invoice";
+import { CreatePaymentRequest as PaymentIn } from "./openapi/models/CreatePaymentRequest";
+import { Payment as PaymentOut } from "./openapi/models/Payment";
 import { CreateWebhook as EndpointIn } from "./openapi/models/CreateWebhook";
 import { UpdateWebhook as EndpointPatch } from "./openapi/models/UpdateWebhook";
 import { Webhook as EndpointOut } from "./openapi/models/Webhook";
@@ -95,7 +95,7 @@ export interface payOptions {
 
 export class pay {
   public readonly _configuration: Configuration;
-  public readonly Invoice: Invoice;
+  public readonly Payment: Payment;
   public readonly Endpoint: Endpoint;
 
   public constructor(apikey: string, privateKey: string, options: payOptions = {}) {
@@ -112,7 +112,7 @@ export class pay {
     });
 
     this._configuration = config;
-    this.Invoice = new Invoice(config);
+    this.Payment = new Payment(config);
     this.Endpoint = new Endpoint(config);
   }
 }
@@ -122,29 +122,29 @@ interface ListOptions {
   limit?: number;
 }
 
-export interface InvoiceListOptions {
+export interface PaymentListOptions {
      /**
      * 
      * @type string
-     * @memberof InvoiceApiv1InvoicesList
+     * @memberof PaymentApiv1PaymentsList
      */
      userId?: string
      /**
       * 
       * @type number
-      * @memberof InvoiceApiv1InvoicesList
+      * @memberof PaymentApiv1PaymentsList
       */
      offset?: number
      /**
       * 
       * @type number
-      * @memberof InvoiceApiv1InvoicesList
+      * @memberof PaymentApiv1PaymentsList
       */
      limit?: number
      /**
       * 
       * @type string
-      * @memberof InvoiceApiv1InvoicesList
+      * @memberof PaymentApiv1PaymentsList
       */
      channel?: string
 }
@@ -154,26 +154,26 @@ export interface EndpointListOptions {
   limit: number;
 }
 
-class Invoice {
-  private readonly api: InvoiceApi;
+class Payment {
+  private readonly api: PaymentApi;
 
   public constructor(config: Configuration) {
-    this.api = new InvoiceApi(config);
+    this.api = new PaymentApi(config);
   }
 
-  public list(appId: string, options?: InvoiceListOptions): Promise<PageInvoice> {
-    return this.api.v1InvoicesList({ appId, ...options });
+  public list(appId: string, options?: PaymentListOptions): Promise<PagePayment> {
+    return this.api.v1PaymentsList({ appId, ...options });
   }
 
   public create(
     appId: string,
-    invoiceIn: InvoiceIn
-  ): Promise<InvoiceOut> {
-    return this.api.v1InvoicesCreate({ appId, createInvoiceRequest: invoiceIn });
+    PaymentIn: PaymentIn
+  ): Promise<PaymentOut> {
+    return this.api.v1PaymentsCreate({ appId, createPaymentRequest: PaymentIn });
   }
 
-  public get(appId: string, idOrUid: string): Promise<InvoiceOut> {
-    return this.api.v1InvoicesRetrieve({ appId, invoiceId: idOrUid });
+  public get(appId: string, idOrUid: string): Promise<PaymentOut> {
+    return this.api.v1PaymentsRetrieve({ appId, paymentId: idOrUid });
   }
 }
 

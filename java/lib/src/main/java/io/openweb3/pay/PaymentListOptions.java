@@ -2,10 +2,10 @@ package io.openweb3.pay;
 
 import io.openweb3.pay.models.Ordering;
 
-public class InvoiceListOptions extends ListOptions {
+public class PaymentListOptions extends ListOptions {
     private Ordering ordering;
-    private String channel;
     private String userId;
+    private String paymentMethod;
 
     public void setOrdering(final Ordering ordering) {
         this.ordering = ordering;
@@ -15,18 +15,18 @@ public class InvoiceListOptions extends ListOptions {
         return this.ordering;
     }
 
-    public void setChannel(final String channel) {
-        this.channel = channel;
-    }
-
-    public String getChannel() {
-        return channel;
-    }
-
     public void setUserId(final String userId) {
         this.userId = userId;
     }
+
     public String getUserId() {
         return userId;
+    }
+
+    public void setPaymentMethod(final String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 }
